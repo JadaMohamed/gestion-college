@@ -3,17 +3,17 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Current File",
+            "name": "App",
             "request": "launch",
-            "mainClass": "${file}"
+            "mainClass": "application.App",
+            "projectName": "gestion-college_85b39c21",
+            "vmArgs": "--module-path \"libraries/javafx-sdk-22/lib\" --add-modules javafx.controls,javafx.fxml"
         },
         {
             "type": "java",
-            "name": "App",
+            "name": "Current File",
             "request": "launch",
-            "mainClass": "App",
-            "projectName": "gestion-college_9e20c6c0",
-            "vmArgs": "--module-path \"C:/javafx-sdk-22/lib\" --add-modules javafx.controls,javafx.fxml"
-        },
+            "mainClass": "${file}"
+        }
     ]
 }
