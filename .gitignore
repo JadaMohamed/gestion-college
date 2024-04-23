@@ -9,7 +9,9 @@
 *.tmp
 
 # Ignore IDE-specific files
-.vscode/
+.vscode/launch.json
+.vscode/settings.json
+
 .idea/
 
 # Ignore dependencies
