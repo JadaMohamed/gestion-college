@@ -9,7 +9,9 @@
 *.tmp
 
 # Ignore IDE-specific files
+.vscode/
 .idea/
 
 # Ignore dependencies
 /node_modules/
+
