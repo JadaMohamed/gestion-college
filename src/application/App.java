@@ -1,6 +1,6 @@
 package application;
 
-import application.controllers.TestNiveauGridController;
+import application.controllers.LoginSceneController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,18 +11,19 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Load the FXML file
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/interfaces/TestNiveauGridScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/interfaces/LoginScene.fxml"));
         Parent root = loader.load();
 
         // Get the controller
-        TestNiveauGridController controller = loader.getController();
+        LoginSceneController controller = loader.getController();
         // Initialize the controller
         controller.initialize();
 
         // Set the scene
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Test");
+        primaryStage.setTitle("Crestwood College");
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
