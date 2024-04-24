@@ -1,6 +1,6 @@
 package application;
 
-import application.controllers.LoginSceneController;
+import application.controllers.BackofficeSceneController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,11 +11,11 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Load the FXML file
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/interfaces/LoginScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../resources/interfaces/BackofficeScene.fxml"));
         Parent root = loader.load();
 
         // Get the controller
-        LoginSceneController controller = loader.getController();
+        BackofficeSceneController controller = loader.getController();
         // Initialize the controller
         controller.initialize();
 
