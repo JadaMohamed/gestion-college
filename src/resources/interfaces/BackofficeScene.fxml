@@ -201,11 +201,6 @@
                   <Label layoutX="488.0" layoutY="341.0" text="Absences" />
                </children>
             </Pane>
-            <Pane fx:id="classesPane" layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Label layoutX="488.0" layoutY="341.0" text="Classes" />
-               </children>
-            </Pane>
             <Pane fx:id="accueilPane" layoutX="20.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5; -fx-border-radius: 10; -fx-border-width: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <AnchorPane layoutX="24.0" layoutY="24.0" prefHeight="58.0" prefWidth="78.0">
@@ -1342,6 +1337,11 @@
                         </AnchorPane>
                      </children>
                   </Pane>
+               </children>
+            </Pane>
+            <Pane fx:id="classesPane" layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="488.0" layoutY="341.0" text="Classes" />
                </children>
             </Pane>
          </children>
