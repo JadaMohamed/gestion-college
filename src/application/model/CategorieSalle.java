@@ -2,22 +2,30 @@ package application.model;
 
 public class CategorieSalle {
 
-    private int idCategorieSalle;
-    private String nomCategorieSalle;
+    private int id;
+    private String nom;
 
-    public int getIdCategorieSalle() {
-        return idCategorieSalle;
+    public CategorieSalle() {
     }
 
-    public void setIdCategorieSalle(int idCategorieSalle) {
-        this.idCategorieSalle = idCategorieSalle;
+    public CategorieSalle(int id, String nom) {
+        this.id = id;
+        this.nom = nom;
     }
 
-    public String getNomCategorieSalle() {
-        return nomCategorieSalle;
+    public int getId() {
+        return id;
     }
 
-    public void setNomCategorieSalle(String nomCategorieSalle) {
-        this.nomCategorieSalle = nomCategorieSalle;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 }

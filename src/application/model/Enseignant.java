@@ -1,51 +1,40 @@
 package application.model;
 
-public class Enseignant {
+import java.sql.Date;
+import java.util.Vector;
 
-    private int idEnseignant;
-    private String nomEnseignant;
-    private String prenomEnseignant;
-    private String emailEnseignant;
-    private String telephoneEnseignant;
+public class Enseignant extends Personne {
 
-    public int getIdEnseignant() {
-        return idEnseignant;
+    private int id;
+    private Vector<Cours> listCours;
+
+    public Enseignant() {
     }
 
-    public void setIdEnseignant(int idEnseignant) {
-        this.idEnseignant = idEnseignant;
+    public Enseignant(int id, Vector<Cours> listCours, String nom, String prenom, String email, String telephone,
+            Date dateNaissance) {
+        super(nom, prenom, email, telephone, dateNaissance);
+        this.id = id;
+        this.listCours = new Vector<Cours>();
     }
 
-    public String getNomEnseignant() {
-        return nomEnseignant;
+    public void addCours(Cours cours) {
+        this.listCours.add(cours);
     }
 
-    public void setNomEnseignant(String nomEnseignant) {
-        this.nomEnseignant = nomEnseignant;
+    public int getId() {
+        return id;
     }
 
-    public String getPrenomEnseignant() {
-        return prenomEnseignant;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setPrenomEnseignant(String prenomEnseignant) {
-        this.prenomEnseignant = prenomEnseignant;
+    public Vector<Cours> getListCours() {
+        return listCours;
     }
 
-    public String getEmailEnseignant() {
-        return emailEnseignant;
+    public void setListCours(Vector<Cours> listCours) {
+        this.listCours = listCours;
     }
-
-    public void setEmailEnseignant(String emailEnseignant) {
-        this.emailEnseignant = emailEnseignant;
-    }
-
-    public String getTelephoneEnseignant() {
-        return telephoneEnseignant;
-    }
-
-    public void setTelephoneEnseignant(String telephoneEnseignant) {
-        this.telephoneEnseignant = telephoneEnseignant;
-    }
-
 }

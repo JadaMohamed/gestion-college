@@ -1,15 +1,15 @@
 package application.model;
 
-public class TypeCours {
+public class NiveauClasse {
 
     private int id;
     private String nom;
 
-    public TypeCours() {
+    public NiveauClasse() {
 
     }
 
-    public TypeCours(int id, String nom) {
+    public NiveauClasse(int id, String nom) {
         this.id = id;
         this.nom = nom;
     }

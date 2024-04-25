@@ -2,7 +2,7 @@ package application.controllers;
 
 import java.util.Vector;
 
-import application.model.Niveau;
+import application.model.NiveauClasse;
 import application.services.NiveauService;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -14,20 +14,20 @@ import javafx.scene.control.TableView;
 public class TestNiveauGridController {
 
     @FXML
-    private TableView<Niveau> niveauTableView;
+    private TableView<NiveauClasse> niveauTableView;
 
     @FXML
-    private TableColumn<Niveau, Integer> idNiveauColumn;
+    private TableColumn<NiveauClasse, Integer> idNiveauColumn;
 
     @FXML
-    private TableColumn<Niveau, String> nomNiveauColumn;
+    private TableColumn<NiveauClasse, String> nomNiveauColumn;
 
     public void initialize() {
         // Call the service to retrieve data
-        Vector<Niveau> niveauData = NiveauService.getAllNiveaus();
+        Vector<NiveauClasse> niveauData = NiveauService.getAllNiveaus();
 
         // Create a list with a single Niveau object
-        ObservableList<Niveau> niveauList = FXCollections.observableArrayList();
+        ObservableList<NiveauClasse> niveauList = FXCollections.observableArrayList();
         niveauList.addAll(niveauData);
 
         // Associate data with columns

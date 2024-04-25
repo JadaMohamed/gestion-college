@@ -1,49 +1,45 @@
 package application.model;
 
-public class Administrateur {
-    private int idAdministrateur;
-    private String nomAdministrateur;
-    private String emailAdministrateur;
-    private String passwordAdministrateur;
-    private String roleAdministrateur;
+import java.sql.Date;
 
-    public int getIdAdministrateur() {
-        return idAdministrateur;
+public class Administrateur extends Personne {
+
+    private int id;
+    private String role;
+    private String motDePass;
+
+    public Administrateur() {
     }
 
-    public void setIdAdministrateur(int idAdministrateur) {
-        this.idAdministrateur = idAdministrateur;
+    public Administrateur(int id, String nom, String prenom, String email, String telephone, Date dateNaissance,
+            String role, String motDePass) {
+        super(nom, prenom, email, telephone, dateNaissance);
+        this.id = id;
+        this.role = role;
+        this.motDePass = motDePass;
     }
 
-    public String getNomAdministrateur() {
-        return nomAdministrateur;
+    public int getId() {
+        return id;
     }
 
-    public void setNomAdministrateur(String nomAdministrateur) {
-        this.nomAdministrateur = nomAdministrateur;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getEmailAdministrateur() {
-        return emailAdministrateur;
+    public String getRole() {
+        return role;
     }
 
-    public void setEmailAdministrateur(String emailAdministrateur) {
-        this.emailAdministrateur = emailAdministrateur;
+    public void setRole(String role) {
+        this.role = role;
     }
 
-    public String getPasswordAdministrateur() {
-        return passwordAdministrateur;
+    public String getMotDePass() {
+        return motDePass;
     }
 
-    public void setPasswordAdministrateur(String passwordAdministrateur) {
-        this.passwordAdministrateur = passwordAdministrateur;
-    }
-
-    public String getRoleAdministrateur() {
-        return roleAdministrateur;
-    }
-
-    public void setRoleAdministrateur(String roleAdministrateur) {
-        this.roleAdministrateur = roleAdministrateur;
+    public void setMotDePass(String motDePass) {
+        this.motDePass = motDePass;
     }
 }

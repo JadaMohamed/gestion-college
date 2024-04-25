@@ -4,19 +4,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import application.model.Niveau;
+import application.model.NiveauClasse;
 import application.repositories.NiveauRepository;
 
 public class NiveauService {
 
-    public static Vector<Niveau> getAllNiveaus() {
+    public static Vector<NiveauClasse> getAllNiveaus() {
 
-        Vector<Niveau> resNiveau = new Vector<Niveau>();
+        Vector<NiveauClasse> resNiveau = new Vector<NiveauClasse>();
         ResultSet result = NiveauRepository.getAllNiveaus();
 
         try {
             while (result.next()) {
-                Niveau statNiveau = new Niveau();
+                NiveauClasse statNiveau = new NiveauClasse();
                 statNiveau.setIdNiveau(result.getInt("idNiveau"));
                 statNiveau.setNomNiveau(result.getString("nomNiveau"));
                 resNiveau.add(statNiveau);
