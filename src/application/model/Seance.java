@@ -1,72 +1,97 @@
 package application.model;
 
 import java.sql.Time;
+import java.util.Vector;
 
 import application.model.enums.JoursSemaine;
 
 public class Seance {
 
-    private int idSeance;
-    private int idSalle;
-    private JoursSemaine jourSeance;
-    private Time heureDebutSeance;
-    private Time heureFinSeance;
-    private int idCours;
-    private int idClasse;
+    private int id;
+    private Salle salle;
+    private JoursSemaine jour;
+    private Time heureDebut;
+    private Time heureFin;
+    private Cours cours;
+    private Classe classe;
+    private Vector<Absence> listAbsence;
 
-    public int getIdSeance() {
-        return idSeance;
+    public Seance() {
+
     }
 
-    public void setIdSeance(int idSeance) {
-        this.idSeance = idSeance;
+    public Seance(int id, Salle salle, JoursSemaine jour, Time heureDebut, Time heureFin, Cours cours, Classe classe) {
+        this.id = id;
+        this.salle = salle;
+        this.jour = jour;
+        this.heureDebut = heureDebut;
+        this.heureFin = heureFin;
+        this.cours = cours;
+        this.classe = classe;
+        this.listAbsence = new Vector<Absence>();
     }
 
-    public int getIdSalle() {
-        return idSalle;
+    public int getId() {
+        return id;
     }
 
-    public void setIdSalle(int idSalle) {
-        this.idSalle = idSalle;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public JoursSemaine getJourSeance() {
-        return jourSeance;
+    public Salle getSalle() {
+        return salle;
     }
 
-    public void setJourSeance(JoursSemaine jourSeance) {
-        this.jourSeance = jourSeance;
+    public void setSalle(Salle salle) {
+        this.salle = salle;
     }
 
-    public Time getHeureDebutSeance() {
-        return heureDebutSeance;
+    public JoursSemaine getJour() {
+        return jour;
     }
 
-    public void setHeureDebutSeance(Time heureDebutSeance) {
-        this.heureDebutSeance = heureDebutSeance;
+    public void setJour(JoursSemaine jour) {
+        this.jour = jour;
     }
 
-    public Time getHeureFinSeance() {
-        return heureFinSeance;
+    public Time getHeureDebut() {
+        return heureDebut;
     }
 
-    public void setHeureFinSeance(Time heureFinSeance) {
-        this.heureFinSeance = heureFinSeance;
+    public void setHeureDebut(Time heureDebut) {
+        this.heureDebut = heureDebut;
     }
 
-    public int getIdCours() {
-        return idCours;
+    public Time getHeureFin() {
+        return heureFin;
     }
 
-    public void setIdCours(int idCours) {
-        this.idCours = idCours;
+    public void setHeureFin(Time heureFin) {
+        this.heureFin = heureFin;
     }
 
-    public int getIdClasse() {
-        return idClasse;
+    public Cours getCours() {
+        return cours;
     }
 
-    public void setIdClasse(int idClasse) {
-        this.idClasse = idClasse;
+    public void setCours(Cours cours) {
+        this.cours = cours;
+    }
+
+    public Classe getClasse() {
+        return classe;
+    }
+
+    public void setClasse(Classe classe) {
+        this.classe = classe;
+    }
+
+    public Vector<Absence> getListAbsences() {
+        return listAbsence;
+    }
+
+    public void setListAbsences(Vector<Absence> listAbsences) {
+        this.listAbsence = listAbsences;
     }
 }

@@ -1,27 +1,47 @@
 package application.model;
 
+import java.util.Vector;
+
 public class Cours {
 
-    private int idCours;
-    private int idTypeCours;
+    private int id;
+    private TypeCours typeCours;
     private String nomCours;
-    private int idEnseignant;
-    private int idNiveau;
+    private Enseignant enseignant;
+    private NiveauClasse niveauClasse;
+    private Vector<Seance> listSeances;
 
-    public int getIdCours() {
-        return idCours;
+    public Cours() {
+
     }
 
-    public void setIdCours(int idCours) {
-        this.idCours = idCours;
+    public Cours(int id, TypeCours typeCours, String nomCours, Enseignant enseignant, NiveauClasse niveauClasse) {
+        this.id = id;
+        this.typeCours = typeCours;
+        this.nomCours = nomCours;
+        this.enseignant = enseignant;
+        this.niveauClasse = niveauClasse;
+        this.listSeances = new Vector<Seance>();
     }
 
-    public int getIdTypeCours() {
-        return idTypeCours;
+    public void addSeance(Seance seance) {
+        this.listSeances.add(seance);
     }
 
-    public void setIdTypeCours(int idTypeCours) {
-        this.idTypeCours = idTypeCours;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public TypeCours getTypeCours() {
+        return typeCours;
+    }
+
+    public void setTypeCours(TypeCours typeCours) {
+        this.typeCours = typeCours;
     }
 
     public String getNomCours() {
@@ -32,20 +52,27 @@ public class Cours {
         this.nomCours = nomCours;
     }
 
-    public int getIdEnseignant() {
-        return idEnseignant;
+    public Enseignant getEnseignant() {
+        return enseignant;
     }
 
-    public void setIdEnseignant(int idEnseignant) {
-        this.idEnseignant = idEnseignant;
+    public void setEnseignant(Enseignant enseignant) {
+        this.enseignant = enseignant;
     }
 
-    public int getIdNiveau() {
-        return idNiveau;
+    public NiveauClasse getNiveauClasse() {
+        return niveauClasse;
     }
 
-    public void setIdNiveau(int idNiveau) {
-        this.idNiveau = idNiveau;
+    public void setNiveauClasse(NiveauClasse niveauClasse) {
+        this.niveauClasse = niveauClasse;
     }
 
+    public Vector<Seance> getListSeances() {
+        return listSeances;
+    }
+
+    public void setListSeances(Vector<Seance> listSeances) {
+        this.listSeances = listSeances;
+    }
 }

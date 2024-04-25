@@ -2,58 +2,70 @@ package application.model;
 
 public class Absence {
 
-    private int idAbsence;
-    private int idSeance;
-    private int idEtudiant;
-    private int numeroSemaine;
-    private String motifAbsence;
-    private Boolean estAbsenceExcuse;
+    private int id;
+    private Etudiant etudiant;
+    private String motif;
+    private Seance seance;
+    private int numSemaine;
+    private boolean estExcuse;
 
-    public int getIdAbsence() {
-        return idAbsence;
+    public Absence() {
     }
 
-    public void setIdAbsence(int idAbsence) {
-        this.idAbsence = idAbsence;
+    public Absence(int id, Etudiant etudiant, String motif, Seance seance, int numSemaine, boolean estExcuse) {
+        this.id = id;
+        this.etudiant = etudiant;
+        this.motif = motif;
+        this.seance = seance;
+        this.numSemaine = numSemaine;
+        this.estExcuse = estExcuse;
     }
 
-    public int getIdSeance() {
-        return idSeance;
+    public int getId() {
+        return id;
     }
 
-    public void setIdSeance(int idSeance) {
-        this.idSeance = idSeance;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getIdEtudiant() {
-        return idEtudiant;
+    public Etudiant getEtudiant() {
+        return etudiant;
     }
 
-    public void setNumeroSemaine(int numeroSemaine) {
-        this.numeroSemaine = numeroSemaine;
+    public void setEtudiant(Etudiant etudiant) {
+        this.etudiant = etudiant;
     }
 
-    public int getNumeroSemaine() {
-        return numeroSemaine;
+    public String getMotif() {
+        return motif;
     }
 
-    public void setIdEtudiant(int idEtudiant) {
-        this.idEtudiant = idEtudiant;
+    public void setMotif(String motif) {
+        this.motif = motif;
     }
 
-    public String getMotifAbsence() {
-        return motifAbsence;
+    public Seance getSeance() {
+        return seance;
     }
 
-    public void setMotifAbsence(String motifAbsence) {
-        this.motifAbsence = motifAbsence;
+    public void setSeance(Seance seance) {
+        this.seance = seance;
     }
 
-    public Boolean getEstAbsenceExcuse() {
-        return estAbsenceExcuse;
+    public int getNumSemaine() {
+        return numSemaine;
     }
 
-    public void setEstAbsenceExcuse(Boolean estAbsenceExcuse) {
-        this.estAbsenceExcuse = estAbsenceExcuse;
+    public void setNumSemaine(int numSemaine) {
+        this.numSemaine = numSemaine;
+    }
+
+    public boolean isEstExcuse() {
+        return estExcuse;
+    }
+
+    public void setEstExcuse(boolean estExcuse) {
+        this.estExcuse = estExcuse;
     }
 }

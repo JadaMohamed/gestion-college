@@ -1,18 +1,42 @@
 package application.model;
 
+import java.util.Vector;
+
 public class Salle {
 
-    private int idSalle;
+    private int id;
+    private CategorieSalle categorieSalle;
     private String nomSalle;
-    private int capaciteSalle;
-    private int idCategorieSalle;
+    private int capacite;
+    private Vector<MaterielSalle> listMateriels;
+    private Vector<Seance> listSeances;
 
-    public int getIdSalle() {
-        return idSalle;
+    public Salle() {
     }
 
-    public void setIdSalle(int idSalle) {
-        this.idSalle = idSalle;
+    public Salle(int id, CategorieSalle categorieSalle, String nomSalle, int capacite) {
+        this.id = id;
+        this.categorieSalle = categorieSalle;
+        this.nomSalle = nomSalle;
+        this.capacite = capacite;
+        this.listMateriels = new Vector<MaterielSalle>();
+        this.listSeances = new Vector<Seance>();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public CategorieSalle getCategorieSalle() {
+        return categorieSalle;
+    }
+
+    public void setCategorieSalle(CategorieSalle categorieSalle) {
+        this.categorieSalle = categorieSalle;
     }
 
     public String getNomSalle() {
@@ -23,19 +47,27 @@ public class Salle {
         this.nomSalle = nomSalle;
     }
 
-    public int getCapaciteSalle() {
-        return capaciteSalle;
+    public int getCapacite() {
+        return capacite;
     }
 
-    public void setCapaciteSalle(int capaciteSalle) {
-        this.capaciteSalle = capaciteSalle;
+    public void setCapacite(int capacite) {
+        this.capacite = capacite;
     }
 
-    public int getIdCategorieSalle() {
-        return idCategorieSalle;
+    public Vector<Seance> getListSeance() {
+        return listSeances;
     }
 
-    public void setIdCategorieSalle(int idCategorieSalle) {
-        this.idCategorieSalle = idCategorieSalle;
+    public void setListSeance(Vector<Seance> listSeance) {
+        this.listSeances = listSeance;
+    }
+
+    public Vector<MaterielSalle> getListMaterielSalle() {
+        return listMateriels;
+    }
+
+    public void setListMaterielSalle(Vector<MaterielSalle> listMaterielSalle) {
+        this.listMateriels = listMaterielSalle;
     }
 }

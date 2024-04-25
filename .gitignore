@@ -14,3 +14,4 @@
 
 # Ignore dependencies
 /node_modules/
+bin/

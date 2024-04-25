@@ -1,71 +1,82 @@
 package application.model;
 
 import java.sql.Date;
+import java.util.Vector;
 
-public class Etudiant {
+public class Etudiant extends Personne {
 
-    private int idEtudiant;
-    private String nomEtudiant;
-    private String prenomEtudiant;
-    private String telephoneParentEtudiant;
-    private String emailParentEtudiant;
-    private Date dateNaissanceEtudiant;
-    private int idClasse;
+    private int id;
+    private String cne;
+    private Classe classe;
+    private String emailParent;
+    private String telephoneParent;
+    private Vector<Absence> listAbsence;
 
-    public int getIdEtudiant() {
-        return idEtudiant;
+    public Etudiant() {
+
     }
 
-    public void setIdEtudiant(int idEtudiant) {
-        this.idEtudiant = idEtudiant;
+    public Etudiant(int id, String cne, Classe classe, String emailParent, String telephoneParent,
+            Vector<Absence> listAbsence, String nom, String prenom, String email, String telephone,
+            Date dateNaissance) {
+        super(nom, prenom, email, telephone, dateNaissance);
+        this.id = id;
+        this.cne = cne;
+        this.classe = classe;
+        this.emailParent = emailParent;
+        this.telephoneParent = telephoneParent;
+        this.listAbsence = new Vector<Absence>();
     }
 
-    public String getNomEtudiant() {
-        return nomEtudiant;
+    public void addAbsence(Absence absence) {
+        this.listAbsence.add(absence);
     }
 
-    public void setNomEtudiant(String nomEtudiant) {
-        this.nomEtudiant = nomEtudiant;
+    public int getId() {
+        return id;
     }
 
-    public String getPrenomEtudiant() {
-        return prenomEtudiant;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setPrenomEtudiant(String prenomEtudiant) {
-        this.prenomEtudiant = prenomEtudiant;
+    public String getCne() {
+        return cne;
     }
 
-    public String getTelephoneParentEtudiant() {
-        return telephoneParentEtudiant;
+    public void setCne(String cne) {
+        this.cne = cne;
     }
 
-    public void setTelephoneParentEtudiant(String telephoneParentEtudiant) {
-        this.telephoneParentEtudiant = telephoneParentEtudiant;
+    public Classe getClasse() {
+        return classe;
     }
 
-    public String getEmailParentEtudiant() {
-        return emailParentEtudiant;
+    public void setClasse(Classe classe) {
+        this.classe = classe;
     }
 
-    public void setEmailParentEtudiant(String emailParentEtudiant) {
-        this.emailParentEtudiant = emailParentEtudiant;
+    public String getEmailParent() {
+        return emailParent;
     }
 
-    public Date getDateNaissanceEtudiant() {
-        return dateNaissanceEtudiant;
+    public void setEmailParent(String emailParent) {
+        this.emailParent = emailParent;
     }
 
-    public void setDateNaissanceEtudiant(Date dateNaissanceEtudiant) {
-        this.dateNaissanceEtudiant = dateNaissanceEtudiant;
+    public String getTelephoneParent() {
+        return telephoneParent;
     }
 
-    public int getIdClasse() {
-        return idClasse;
+    public void setTelephoneParent(String telephoneParent) {
+        this.telephoneParent = telephoneParent;
     }
 
-    public void setIdClasse(int idClasse) {
-        this.idClasse = idClasse;
+    public Vector<Absence> getListAbsence() {
+        return listAbsence;
     }
 
+    public void setListAbsence(Vector<Absence> listAbsence) {
+        this.listAbsence = listAbsence;
+    }
 }

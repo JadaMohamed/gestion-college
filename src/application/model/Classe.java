@@ -1,41 +1,82 @@
 package application.model;
 
+import java.util.Vector;
+
 public class Classe {
 
-    private int idClasse;
-    private int numeroClasse;
-    private int idNiveau;
-    private int effectifClasse;
+    private int id;
+    private int numero;
+    private NiveauClasse niveau;
+    private int effectif;
+    private Vector<Seance> listSeances;
+    private Vector<Etudiant> listEtudiants;
 
-    public int getIdClasse() {
-        return idClasse;
+    public Classe() {
+
     }
 
-    public void setIdClasse(int idClasse) {
-        this.idClasse = idClasse;
+    public Classe(int id, int numero, NiveauClasse niveau, int effectif) {
+        this.id = id;
+        this.numero = numero;
+        this.niveau = niveau;
+        this.effectif = effectif;
+        this.listSeances = new Vector<Seance>();
+        this.listEtudiants = new Vector<Etudiant>();
     }
 
-    public int getNumeroClasse() {
-        return numeroClasse;
+    public void addSeance(Seance seance) {
+        listSeances.add(seance);
     }
 
-    public void setNumeroClasse(int numeroClasse) {
-        this.numeroClasse = numeroClasse;
+    public void addEtudiant(Etudiant etudiant) {
+        listEtudiants.add(etudiant);
     }
 
-    public int getIdNiveau() {
-        return idNiveau;
+    public int getId() {
+        return id;
     }
 
-    public void setIdNiveau(int idNiveau) {
-        this.idNiveau = idNiveau;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getEffectifClasse() {
-        return effectifClasse;
+    public int getNumero() {
+        return numero;
     }
 
-    public void setEffectifClasse(int effectifClasse) {
-        this.effectifClasse = effectifClasse;
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public NiveauClasse getNiveau() {
+        return niveau;
+    }
+
+    public void setNiveau(NiveauClasse niveau) {
+        this.niveau = niveau;
+    }
+
+    public int getEffectif() {
+        return effectif;
+    }
+
+    public void setEffectif(int effectif) {
+        this.effectif = effectif;
+    }
+
+    public Vector<Seance> getListSeances() {
+        return listSeances;
+    }
+
+    public void setListSeances(Vector<Seance> listSeances) {
+        this.listSeances = listSeances;
+    }
+
+    public Vector<Etudiant> getListEtudiants() {
+        return listEtudiants;
+    }
+
+    public void setListEtudiants(Vector<Etudiant> listEtudiants) {
+        this.listEtudiants = listEtudiants;
     }
 }

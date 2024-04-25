@@ -1,35 +1,43 @@
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "java",
-            "name": "App",
-            "request": "launch",
-            "mainClass": "application.App",
-            "projectName": "gestion-college_23fa5c69",
-            "vmArgs": "--module-path \"c:/javafx-sdk-22/lib\" --add-modules javafx.controls,javafx.fxml"
-        },
-        {
-            "type": "java",
-            "name": "App",
-            "request": "launch",
-            "mainClass": "application.App",
-            "projectName": "gestion-college_e4bb1c34",
-            "vmArgs": "--module-path \"c:/javafx-sdk-22/lib\" --add-modules javafx.controls,javafx.fxml"
-        },
-        {
-            "type": "java",
-            "name": "App",
-            "request": "launch",
-            "mainClass": "application.App",
-            "projectName": "gestion-college_85b39c21",
-            "vmArgs": "--module-path \"c:/javafx-sdk-22/lib\" --add-modules javafx.controls,javafx.fxml"
-        },
-        {
-            "type": "java",
-            "name": "Current File",
-            "request": "launch",
-            "mainClass": "${file}"
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "App",
+      "request": "launch",
+      "mainClass": "application.App",
+      "projectName": "gestion-college_39eaee46",
+      "vmArgs": "--module-path \"c:/javafx-sdk-22/lib\" --add-modules javafx.controls,javafx.fxml"
+    },
+    {
+      "type": "java",
+      "name": "App",
+      "request": "launch",
+      "mainClass": "application.App",
+      "projectName": "gestion-college_23fa5c69",
+      "vmArgs": "--module-path \"c:/javafx-sdk-22/lib\" --add-modules javafx.controls,javafx.fxml"
+    },
+    {
+      "type": "java",
+      "name": "App",
+      "request": "launch",
+      "mainClass": "application.App",
+      "projectName": "gestion-college_e4bb1c34",
+      "vmArgs": "--module-path \"c:/javafx-sdk-22/lib\" --add-modules javafx.controls,javafx.fxml"
+    },
+    {
+      "type": "java",
+      "name": "App",
+      "request": "launch",
+      "mainClass": "application.App",
+      "projectName": "gestion-college_85b39c21",
+      "vmArgs": "--module-path \"c:/javafx-sdk-22/lib\" --add-modules javafx.controls,javafx.fxml"
+    },
+    {
+      "type": "java",
+      "name": "Current File",
+      "request": "launch",
+      "mainClass": "${file}"
+    }
+  ]
 }

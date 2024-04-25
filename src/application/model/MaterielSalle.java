@@ -2,31 +2,51 @@ package application.model;
 
 public class MaterielSalle {
 
-    private int idMateriel;
-    private String legendeMateriel;
-    private int quantiteDiponibleMateriel;
+    private int id;
+    private String nom;
+    private Salle salle;
+    private int quantite;
 
-    public int getIdMateriel() {
-        return idMateriel;
+    public MaterielSalle() {
     }
 
-    public void setIdMateriel(int idMateriel) {
-        this.idMateriel = idMateriel;
+    public MaterielSalle(int id, String nom, Salle salle, int quantite) {
+        this.id = id;
+        this.nom = nom;
+        this.salle = salle;
+        this.quantite = quantite;
     }
 
-    public String getLegendeMateriel() {
-        return legendeMateriel;
+    public int getId() {
+        return id;
     }
 
-    public void setLegendeMateriel(String legendeMateriel) {
-        this.legendeMateriel = legendeMateriel;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getQuantiteDiponibleMateriel() {
-        return quantiteDiponibleMateriel;
+    public String getNom() {
+        return nom;
     }
 
-    public void setQuantiteDiponibleMateriel(int quantiteDiponibleMateriel) {
-        this.quantiteDiponibleMateriel = quantiteDiponibleMateriel;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
+
+    public Salle getSalle() {
+        return salle;
+    }
+
+    public void setSalle(Salle salle) {
+        this.salle = salle;
+    }
+
+    public int getQuantite() {
+        return quantite;
+    }
+
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
+    }
+
 }
