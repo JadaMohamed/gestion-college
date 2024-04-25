@@ -17,8 +17,8 @@ public class NiveauService {
         try {
             while (result.next()) {
                 NiveauClasse statNiveau = new NiveauClasse();
-                statNiveau.setIdNiveau(result.getInt("idNiveau"));
-                statNiveau.setNomNiveau(result.getString("nomNiveau"));
+                statNiveau.setId(result.getInt("id"));
+                statNiveau.setNom(result.getString("nom"));
                 resNiveau.add(statNiveau);
             }
         } catch (SQLException e) {

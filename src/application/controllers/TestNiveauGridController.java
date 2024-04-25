@@ -31,9 +31,9 @@ public class TestNiveauGridController {
         niveauList.addAll(niveauData);
 
         // Associate data with columns
-        idNiveauColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getIdNiveau()));
+        idNiveauColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getId()));
         nomNiveauColumn
-                .setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getNomNiveau()));
+                .setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getNom()));
 
         niveauTableView.setItems(niveauList);
     }
