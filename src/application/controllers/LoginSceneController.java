@@ -40,7 +40,7 @@ public class LoginSceneController {
     public void validateLogin() {
         try {
             java.sql.Connection connectDB = SqlConnection.getConnection();
-            String verifyLogin = "SELECT count(1) FROM adsministrateur WHERE email = '" + emailInput.getText() + "' AND motDePass = '" + passwordInput.getText() + "' ";
+            String verifyLogin = "SELECT count(1) FROM administrateur WHERE email = '" + emailInput.getText() + "' AND motDePass = '" + passwordInput.getText() + "' ";
             java.sql.Statement statement = connectDB.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);
 
