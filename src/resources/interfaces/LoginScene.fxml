@@ -32,7 +32,7 @@
                      <font>
                         <Font name="Poppins Regular" size="12.0" />
                      </font></Label>
-                  <TextField fx:id="emailInput" prefHeight="40.0" prefWidth="240.0" promptText="user@email.com" style="-fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-color: #fff;">
+                  <TextField fx:id="emailInput" prefHeight="40.0" prefWidth="240.0" promptText="user@email.com" style="-fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-color: #fff;" text="ibrahimouali@crestwood.com">
                      <font>
                         <Font name="Poppins Regular" size="14.0" />
                      </font>
@@ -47,7 +47,7 @@
                      <font>
                         <Font name="Poppins Regular" size="12.0" />
                      </font></Label>
-                  <PasswordField fx:id="passwordInput" prefHeight="40.0" prefWidth="240.0" promptText="******" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4;">
+                  <PasswordField fx:id="passwordInput" prefHeight="40.0" prefWidth="240.0" promptText="******" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4;" text="ibrahim">
                      <font>
                         <Font size="14.0" />
                      </font>
