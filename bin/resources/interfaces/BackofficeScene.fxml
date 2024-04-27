@@ -195,10 +195,6 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Pane fx:id="sallesPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Label layoutX="490.0" layoutY="342.0" text="Salles" />
-               </children></Pane>
             <Pane fx:id="absencesPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="488.0" layoutY="341.0" text="Absences" />
@@ -1666,6 +1662,332 @@
                         </AnchorPane>
                      </children>
                   </Pane>
+               </children>
+            </Pane>
+            <Pane fx:id="classesPane" layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Text layoutX="24.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hi, Admin  👋">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#7b7b7b" layoutX="24.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fri, April 19">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <HBox layoutX="24.0" layoutY="100.0" prefHeight="123.0" prefWidth="952.0">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="235.5" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-color: EDEEF0;">
+                           <HBox.margin>
+                              <Insets right="24.0" />
+                           </HBox.margin>
+                           <children>
+                              <Text fill="#5a6080" layoutX="18.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3ème année" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+                                 <font>
+                                    <Font name="Dubai Medium" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#4e427f" layoutX="28.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="36.0">
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#5a6080" layoutX="30.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2 en cours" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="95.0">
+                                 <font>
+                                    <Font name="Dubai Medium" size="14.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="133.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../Downloads/3EME-xs.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="235.5" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-color: EDEEF0;">
+                           <HBox.margin>
+                              <Insets right="24.0" />
+                           </HBox.margin>
+                           <children>
+                              <Text fill="#5a6080" layoutX="18.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4ème année" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+                                 <font>
+                                    <Font name="Dubai Medium" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#4e427f" layoutX="28.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="36.0">
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#5a6080" layoutX="28.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1 en cours" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="95.0">
+                                 <font>
+                                    <Font name="Dubai Medium" size="14.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="130.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../Downloads/4EME-xs%20(1).png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="210.0" layoutY="10.0" prefHeight="200.0" prefWidth="235.5" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-color: EDEEF0;">
+                           <HBox.margin>
+                              <Insets right="24.0" />
+                           </HBox.margin>
+                           <children>
+                              <Text fill="#5a6080" layoutX="30.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5ème année" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+                                 <font>
+                                    <Font name="Dubai Medium" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#4e427f" layoutX="40.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="36.0">
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#5a6080" layoutX="40.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3 en cours" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="95.0">
+                                 <font>
+                                    <Font name="Dubai Medium" size="14.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="131.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../Downloads/5EME-xs%20(1).png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="235.5" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-color: EDEEF0;">
+                           <children>
+                              <Text fill="#5a6080" layoutX="29.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="6ème année" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+                                 <font>
+                                    <Font name="Dubai Medium" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#4e427f" layoutX="39.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="36.0">
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#5a6080" layoutX="49.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3 en cours" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="95.0">
+                                 <font>
+                                    <Font name="Dubai Medium" size="14.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="127.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../Downloads/6EME-xs%20(1).png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+                  <AnchorPane layoutX="24.0" layoutY="255.0" prefHeight="445.0" prefWidth="952.0" style="-fx-background-color: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-width: 1; -fx-border-color: EDEEF0;">
+                     <children>
+                        <HBox prefHeight="49.0" prefWidth="952.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: EDEEF0;">
+                           <children>
+                              <Label text="Classes">
+                                 <font>
+                                    <Font name="Dubai Medium" size="18.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="20.0" top="8.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <HBox prefHeight="38.0" prefWidth="380.0" style="-fx-border-color: EDEEF0; -fx-border-radius: 8;">
+                                 <children>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../../Downloads/search-lg.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets left="8.0" top="6.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <TextField promptText="Search" style="-fx-border-color: transparent; -fx-background-color: transparent; -fx-background-insets: 0;">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets bottom="7.0" left="400.0" top="7.0" />
+                                 </HBox.margin>
+                              </HBox>
+                              <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="74.0" style="-fx-background-color: transparent; -fx-border-color: EDEEF0; -fx-border-radius: 8; -fx-cursor: hand;" text="Filters">
+                                 <HBox.margin>
+                                    <Insets left="10.0" top="7.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../../Downloads/filter-lines%20(1).png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <padding>
+                                    <Insets left="8.0" right="8.0" />
+                                 </padding>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <GridPane layoutY="49.0" prefHeight="350.0" prefWidth="959.0" stylesheets="@../../../../../bg-grid.css">
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints minHeight="2.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Classe">
+                                 <GridPane.margin>
+                                    <Insets left="24.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font name="Dubai Medium" size="12.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../Downloads/arrow-down.png" />
+                                 </image>
+                                 <GridPane.margin>
+                                    <Insets left="60.0" top="-4.0" />
+                                 </GridPane.margin>
+                              </ImageView>
+                              <Label text="Effectif" textFill="#475467" GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="20.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font name="Dubai Medium" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Statut" textFill="#475467" GridPane.columnIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="20.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font name="Dubai Medium" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Salle" textFill="#475467" GridPane.columnIndex="3">
+                                 <GridPane.margin>
+                                    <Insets left="20.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font name="Dubai Medium" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Professeur" textFill="#475467" GridPane.columnIndex="4">
+                                 <GridPane.margin>
+                                    <Insets left="20.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font name="Dubai Medium" size="12.0" />
+                                 </font>
+                              </Label>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.rowIndex="1" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.rowIndex="3" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.rowIndex="5" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="6" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+                           </children>
+                        </GridPane>
+                        <AnchorPane prefHeight="40.5" prefWidth="960.0" AnchorPane.topAnchor="400.0">
+                           <children>
+                              <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: EAECF0; -fx-border-width: 1; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand;" text="Previous" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="4.0">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../../Downloads/arrow-left.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font name="Dubai Medium" size="14.0" />
+                                 </font>
+                              </Button>
+                              <HBox alignment="CENTER" prefHeight="40.5" prefWidth="200.0" AnchorPane.leftAnchor="376.0" AnchorPane.rightAnchor="376.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" style="-fx-cursor: hand; -fx-background-color: F9FAFB;" text="1" textFill="#1d2939">
+                                       <font>
+                                          <Font name="Dubai Medium" size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button layoutX="88.0" layoutY="18.0" mnemonicParsing="false" style="-fx-cursor: hand; -fx-background-color: transparent;" text="2" textFill="#1d2939">
+                                       <font>
+                                          <Font name="Dubai Medium" size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button layoutX="62.0" layoutY="18.0" mnemonicParsing="false" style="-fx-cursor: hand; -fx-background-color: transparent;" text="3" textFill="#1d2939">
+                                       <font>
+                                          <Font name="Dubai Medium" size="14.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <Button layoutX="851.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="89.0" style="-fx-background-color: transparent; -fx-border-color: EAECF0; -fx-border-width: 1; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand;" text="Next" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="851.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="4.0">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../../Downloads/arrow-right.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font name="Dubai Medium" size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
                </children>
             </Pane>
          </children>
