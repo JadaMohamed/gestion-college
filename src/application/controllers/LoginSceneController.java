@@ -27,8 +27,11 @@ public class LoginSceneController {
     @FXML
     private Label errorMssg;
 
+    @FXML
     public void initialize() {
-        passwordInput.setOnKeyPressed(this::handleEnterKeyPressed);
+        if (passwordInput != null) {
+            passwordInput.setOnKeyPressed(this::handleEnterKeyPressed);
+        }
     }
 
     private void handleEnterKeyPressed(KeyEvent event) {
@@ -37,6 +40,7 @@ public class LoginSceneController {
         }
     }
 
+    @FXML
     public void loginButtonAction(ActionEvent e) {
         if (!emailInput.getText().isBlank() && !passwordInput.getText().isBlank()) {
             validateLogin();
@@ -45,7 +49,7 @@ public class LoginSceneController {
         }
     }
 
-    public void validateLogin() {
+    private void validateLogin() {
         try {
             int count = LoginRepository.validateLogin(emailInput.getText(), passwordInput.getText());
             if (count == 1) {
@@ -58,7 +62,7 @@ public class LoginSceneController {
         }
     }
 
-    public void openHomePage() {
+    private void openHomePage() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("../../resources/interfaces/BackofficeScene.fxml"));
             Scene scene = new Scene(root);

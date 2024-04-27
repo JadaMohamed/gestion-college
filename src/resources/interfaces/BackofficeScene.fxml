@@ -820,7 +820,7 @@
                               </VBox>
                               <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="194.0" spacing="16.0">
                                  <children>
-                                    <Button mnemonicParsing="false" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Annuler" textAlignment="CENTER" textFill="#344054">
+                                    <Button fx:id="annulerButtonInfos" mnemonicParsing="false" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Annuler" textAlignment="CENTER" textFill="#344054">
                                        <font>
                                           <Font name="Inter Medium" size="13.0" />
                                        </font>
@@ -831,7 +831,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </Button>
-                                    <Button mnemonicParsing="false" style="-fx-background-color: #7F56D9; -fx-background-radius: 4px; -fx-border-radius: 4px;" text="Sauvegarder" textAlignment="CENTER" textFill="WHITE">
+                                    <Button fx:id="sauvegardeButtonInfos" mnemonicParsing="false" style="-fx-background-color: #7F56D9; -fx-background-radius: 4px; -fx-border-radius: 4px;" text="Sauvegarder" textAlignment="CENTER" textFill="WHITE">
                                        <font>
                                           <Font name="Inter Medium" size="13.0" />
                                        </font>
@@ -858,7 +858,7 @@
                               </Text>
                               <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="626.0" spacing="16.0">
                                  <children>
-                                    <TextField prefHeight="34.0" prefWidth="190.0" promptText="Nom" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;">
+                                    <TextField fx:id="nomFieldInfos" prefHeight="34.0" prefWidth="190.0" promptText="Nom" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -869,7 +869,7 @@
                                           <Font name="Inter Bold" size="13.0" />
                                        </font>
                                     </TextField>
-                                    <TextField prefHeight="34.0" prefWidth="190.0" promptText="Prenom" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;">
+                                    <TextField fx:id="prenomFieldInfos" prefHeight="34.0" prefWidth="190.0" promptText="Prenom" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;">
                                        <padding>
                                           <Insets bottom="8.0" left="12.0" right="12.0" top="8.0" />
                                        </padding>
@@ -893,7 +893,7 @@
                               </Text>
                               <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="626.0" spacing="16.0">
                                  <children>
-                                    <TextField prefHeight="34.0" prefWidth="396.0" promptText="+212 674-389348" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;">
+                                    <TextField fx:id="numFieldInfos" prefHeight="34.0" prefWidth="396.0" promptText="+212 674-389348" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -920,7 +920,7 @@
                               </Text>
                               <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="626.0" spacing="16.0">
                                  <children>
-                                    <DatePicker maxWidth="-Infinity" minWidth="-Infinity" prefWidth="396.0" promptText="07/19/2002" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-image-insets: 0; -fx-background-insets: 0;" />
+                                    <DatePicker fx:id="datePickerInfos" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="396.0" promptText="07/19/2002" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-border-image-insets: 0; -fx-background-insets: 0;" />
                                  </children>
                               </HBox>
                            </children>
@@ -950,7 +950,7 @@
                               </VBox>
                               <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="194.0" spacing="16.0">
                                  <children>
-                                    <Button mnemonicParsing="false" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Annuler" textAlignment="CENTER" textFill="#344054">
+                                    <Button fx:id="annulerButtonSecurity" mnemonicParsing="false" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Annuler" textAlignment="CENTER" textFill="#344054">
                                        <font>
                                           <Font name="Inter Medium" size="13.0" />
                                        </font>
@@ -961,7 +961,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </Button>
-                                    <Button mnemonicParsing="false" style="-fx-background-color: #7F56D9; -fx-background-radius: 4px; -fx-border-radius: 4px;" text="Sauvegarder" textAlignment="CENTER" textFill="WHITE">
+                                    <Button fx:id="sauvegardeButtonSecurity" mnemonicParsing="false" style="-fx-background-color: #7F56D9; -fx-background-radius: 4px; -fx-border-radius: 4px;" text="Sauvegarder" textAlignment="CENTER" textFill="WHITE">
                                        <font>
                                           <Font name="Inter Medium" size="13.0" />
                                        </font>
@@ -988,7 +988,7 @@
                               </Text>
                               <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="626.0" spacing="16.0">
                                  <children>
-                                    <TextField prefHeight="34.0" prefWidth="396.0" promptText="nom@email.com" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;">
+                                    <TextField fx:id="emaiFieldSecurity" prefHeight="34.0" prefWidth="396.0" promptText="nom@email.com" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -1015,7 +1015,7 @@
                               </Text>
                               <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="626.0" spacing="16.0">
                                  <children>
-                                    <TextField prefHeight="34.0" prefWidth="396.0" promptText="********" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;">
+                                    <TextField fx:id="oldPasswordSecurity" prefHeight="34.0" prefWidth="396.0" promptText="********" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -1039,7 +1039,7 @@
                               </Text>
                               <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="626.0" spacing="16.0">
                                  <children>
-                                    <TextField prefHeight="34.0" prefWidth="396.0" promptText="********" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;">
+                                    <TextField fx:id="newPasswordSecurity" prefHeight="34.0" prefWidth="396.0" promptText="********" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;">
                                        <padding>
                                           <Insets bottom="8.0" left="12.0" right="12.0" top="8.0" />
                                        </padding>
