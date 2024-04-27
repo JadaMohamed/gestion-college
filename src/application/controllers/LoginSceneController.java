@@ -48,7 +48,7 @@ public class LoginSceneController {
                 int count = queryResult.getInt(1);
                 if (count == 1) {
                     // Connexion réussie
-                    openHomePgae();
+                    openHomePage();
                 } else {
                     // Échec de connexion
                     errorMssg.setText("Email or Password are wrong. Please try again !");
@@ -59,7 +59,7 @@ public class LoginSceneController {
         }
     }
 
-    public void openHomePgae(){
+    public void openHomePage(){
         try{
             Parent root = FXMLLoader.load(getClass().getResource("../../resources/interfaces/BackofficeScene.fxml"));
             Scene scene = new Scene(root);
