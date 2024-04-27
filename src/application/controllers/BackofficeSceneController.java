@@ -12,10 +12,10 @@ public class BackofficeSceneController {
     private AccueilPaneController accueilPaneController;
 
     @FXML
-    private Button absencesButton, accueilButton, classesButton, deconnecterButton, sallesButton, settingsButton;
+    private Button absencesButton, accueilButton, classesButton, deconnecterButton, sallesButton, parametresButton;
 
     @FXML
-    private Pane absencesPane, accueilPane, classesPane, sallesPane;
+    private Pane absencesPane, accueilPane, classesPane, sallesPane, parametresPane;
 
     @FXML
     void handleSideBarButtonAction(ActionEvent event) {
@@ -32,6 +32,9 @@ public class BackofficeSceneController {
         } else if (event.getSource() == classesButton) {
             classesPane.toFront();
             toggleStyleClass(classesButton);
+        } else if (event.getSource() == parametresButton) {
+            parametresPane.toFront();
+            toggleStyleClass(parametresButton);
         }
     }
 
@@ -41,18 +44,28 @@ public class BackofficeSceneController {
             sallesButton.getStyleClass().removeAll("active");
             absencesButton.getStyleClass().removeAll("active");
             classesButton.getStyleClass().removeAll("active");
+            parametresButton.getStyleClass().removeAll("active");
         } else if (event == sallesButton) {
             sallesButton.getStyleClass().add("active");
             accueilButton.getStyleClass().removeAll("active");
             absencesButton.getStyleClass().removeAll("active");
             classesButton.getStyleClass().removeAll("active");
+            parametresButton.getStyleClass().removeAll("active");
         } else if (event == absencesButton) {
             absencesButton.getStyleClass().add("active");
             accueilButton.getStyleClass().removeAll("active");
             sallesButton.getStyleClass().removeAll("active");
             classesButton.getStyleClass().removeAll("active");
+            parametresButton.getStyleClass().removeAll("active");
         } else if (event == classesButton) {
             classesButton.getStyleClass().add("active");
+            accueilButton.getStyleClass().removeAll("active");
+            sallesButton.getStyleClass().removeAll("active");
+            absencesButton.getStyleClass().removeAll("active");
+            parametresButton.getStyleClass().removeAll("active");
+        } else if (event == parametresButton) {
+            parametresButton.getStyleClass().add("active");
+            classesButton.getStyleClass().removeAll("active");
             accueilButton.getStyleClass().removeAll("active");
             sallesButton.getStyleClass().removeAll("active");
             absencesButton.getStyleClass().removeAll("active");

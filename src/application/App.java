@@ -25,10 +25,12 @@ public class App extends Application {
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         // primaryStage.initStyle(StageStyle.UNDECORATED);
-        primaryStage.setTitle("Crestwood College");
+        primaryStage.setTitle("Login");
         primaryStage.setResizable(false);
         primaryStage.show();
     }
 
-    public static void main(String[] args) {launch(args);}
+    public static void main(String[] args) {
+        launch(args);
+    }
 }

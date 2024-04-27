@@ -18,7 +18,7 @@ public class LoginSceneController {
     @FXML
     private TextField emailInput;
 
-    @FXML 
+    @FXML
     private PasswordField passwordInput;
 
     @FXML
@@ -37,7 +37,7 @@ public class LoginSceneController {
         }
     }
 
-    public void loginButtonAction(ActionEvent e){
+    public void loginButtonAction(ActionEvent e) {
         if (!emailInput.getText().isBlank() && !passwordInput.getText().isBlank()) {
             validateLogin();
         } else {
@@ -58,14 +58,15 @@ public class LoginSceneController {
         }
     }
 
-    public void openHomePage(){
-        try{
+    public void openHomePage() {
+        try {
             Parent root = FXMLLoader.load(getClass().getResource("../../resources/interfaces/BackofficeScene.fxml"));
             Scene scene = new Scene(root);
-            Stage stage = (Stage) loginButton.getScene().getWindow(); 
+            Stage stage = (Stage) loginButton.getScene().getWindow();
             stage.setScene(scene);
+            stage.setTitle("Crestwood college");
             stage.show();
-        } catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
