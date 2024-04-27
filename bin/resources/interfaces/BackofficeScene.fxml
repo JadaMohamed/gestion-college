@@ -195,13 +195,335 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Pane fx:id="sallesPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Label layoutX="490.0" layoutY="342.0" text="Salles" />
-               </children></Pane>
             <Pane fx:id="absencesPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="488.0" layoutY="341.0" text="Absences" />
+               </children>
+            </Pane>
+            <Pane fx:id="classesPane" layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Text layoutX="24.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hi, Admin  👋">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#7b7b7b" layoutX="24.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fri, April 19">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <HBox layoutX="24.0" layoutY="100.0" prefHeight="123.0" prefWidth="952.0">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="235.5" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-color: EDEEF0;">
+                           <HBox.margin>
+                              <Insets right="24.0" />
+                           </HBox.margin>
+                           <children>
+                              <Text fill="#5a6080" layoutX="18.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3ème année" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+                                 <font>
+                                    <Font name="Dubai Medium" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#4e427f" layoutX="28.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="36.0">
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#5a6080" layoutX="30.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2 en cours" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="95.0">
+                                 <font>
+                                    <Font name="Dubai Medium" size="14.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="133.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../Downloads/3EME-xs.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="235.5" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-color: EDEEF0;">
+                           <HBox.margin>
+                              <Insets right="24.0" />
+                           </HBox.margin>
+                           <children>
+                              <Text fill="#5a6080" layoutX="18.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4ème année" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+                                 <font>
+                                    <Font name="Dubai Medium" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#4e427f" layoutX="28.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="36.0">
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#5a6080" layoutX="28.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1 en cours" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="95.0">
+                                 <font>
+                                    <Font name="Dubai Medium" size="14.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="130.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../Downloads/4EME-xs%20(1).png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="210.0" layoutY="10.0" prefHeight="200.0" prefWidth="235.5" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-color: EDEEF0;">
+                           <HBox.margin>
+                              <Insets right="24.0" />
+                           </HBox.margin>
+                           <children>
+                              <Text fill="#5a6080" layoutX="30.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5ème année" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+                                 <font>
+                                    <Font name="Dubai Medium" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#4e427f" layoutX="40.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="36.0">
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#5a6080" layoutX="40.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3 en cours" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="95.0">
+                                 <font>
+                                    <Font name="Dubai Medium" size="14.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="131.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../Downloads/5EME-xs%20(1).png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="235.5" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-color: EDEEF0;">
+                           <children>
+                              <Text fill="#5a6080" layoutX="29.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="6ème année" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+                                 <font>
+                                    <Font name="Dubai Medium" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#4e427f" layoutX="39.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="36.0">
+                                 <font>
+                                    <Font name="System Bold" size="30.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#5a6080" layoutX="49.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3 en cours" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="95.0">
+                                 <font>
+                                    <Font name="Dubai Medium" size="14.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="127.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../Downloads/6EME-xs%20(1).png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+                  <AnchorPane layoutX="24.0" layoutY="255.0" prefHeight="445.0" prefWidth="952.0" style="-fx-background-color: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-width: 1; -fx-border-color: EDEEF0;">
+                     <children>
+                        <HBox prefHeight="49.0" prefWidth="952.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: EDEEF0;">
+                           <children>
+                              <Label text="Classes">
+                                 <font>
+                                    <Font name="Dubai Medium" size="18.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="20.0" top="8.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <HBox prefHeight="38.0" prefWidth="380.0" style="-fx-border-color: EDEEF0; -fx-border-radius: 8;">
+                                 <children>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../../Downloads/search-lg.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets left="8.0" top="6.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <TextField promptText="Search" style="-fx-border-color: transparent; -fx-background-color: transparent; -fx-background-insets: 0;">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets bottom="7.0" left="400.0" top="7.0" />
+                                 </HBox.margin>
+                              </HBox>
+                              <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="74.0" style="-fx-background-color: transparent; -fx-border-color: EDEEF0; -fx-border-radius: 8; -fx-cursor: hand;" text="Filters">
+                                 <HBox.margin>
+                                    <Insets left="10.0" top="7.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../../Downloads/filter-lines%20(1).png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <padding>
+                                    <Insets left="8.0" right="8.0" />
+                                 </padding>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <GridPane layoutY="49.0" prefHeight="350.0" prefWidth="959.0" stylesheets="@../../../../../bg-grid.css">
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints minHeight="2.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Classe">
+                                 <GridPane.margin>
+                                    <Insets left="24.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font name="Dubai Medium" size="12.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../Downloads/arrow-down.png" />
+                                 </image>
+                                 <GridPane.margin>
+                                    <Insets left="60.0" top="-4.0" />
+                                 </GridPane.margin>
+                              </ImageView>
+                              <Label text="Effectif" textFill="#475467" GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="20.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font name="Dubai Medium" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Statut" textFill="#475467" GridPane.columnIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="20.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font name="Dubai Medium" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Salle" textFill="#475467" GridPane.columnIndex="3">
+                                 <GridPane.margin>
+                                    <Insets left="20.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font name="Dubai Medium" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Professeur" textFill="#475467" GridPane.columnIndex="4">
+                                 <GridPane.margin>
+                                    <Insets left="20.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font name="Dubai Medium" size="12.0" />
+                                 </font>
+                              </Label>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.rowIndex="1" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.rowIndex="3" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.rowIndex="5" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="6" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+                           </children>
+                        </GridPane>
+                        <AnchorPane prefHeight="40.5" prefWidth="960.0" AnchorPane.topAnchor="400.0">
+                           <children>
+                              <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: EAECF0; -fx-border-width: 1; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand;" text="Previous" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="4.0">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../../Downloads/arrow-left.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font name="Dubai Medium" size="14.0" />
+                                 </font>
+                              </Button>
+                              <HBox alignment="CENTER" prefHeight="40.5" prefWidth="200.0" AnchorPane.leftAnchor="376.0" AnchorPane.rightAnchor="376.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" style="-fx-cursor: hand; -fx-background-color: F9FAFB;" text="1" textFill="#1d2939">
+                                       <font>
+                                          <Font name="Dubai Medium" size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button layoutX="88.0" layoutY="18.0" mnemonicParsing="false" style="-fx-cursor: hand; -fx-background-color: transparent;" text="2" textFill="#1d2939">
+                                       <font>
+                                          <Font name="Dubai Medium" size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button layoutX="62.0" layoutY="18.0" mnemonicParsing="false" style="-fx-cursor: hand; -fx-background-color: transparent;" text="3" textFill="#1d2939">
+                                       <font>
+                                          <Font name="Dubai Medium" size="14.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <Button layoutX="851.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="89.0" style="-fx-background-color: transparent; -fx-border-color: EAECF0; -fx-border-width: 1; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand;" text="Next" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="851.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="4.0">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../../Downloads/arrow-right.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font name="Dubai Medium" size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
                </children>
             </Pane>
             <Pane fx:id="accueilPane" layoutX="20.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5; -fx-border-radius: 10; -fx-border-width: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -1342,330 +1664,894 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane fx:id="classesPane" layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Pane fx:id="sallesPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Text layoutX="24.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hi, Admin  👋">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Text>
-                  <Text fill="#7b7b7b" layoutX="24.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fri, April 19">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Text>
-                  <HBox layoutX="24.0" layoutY="100.0" prefHeight="123.0" prefWidth="952.0">
+                  <AnchorPane prefHeight="58.0" prefWidth="78.0">
                      <children>
-                        <AnchorPane prefHeight="200.0" prefWidth="235.5" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-color: EDEEF0;">
-                           <HBox.margin>
-                              <Insets right="24.0" />
-                           </HBox.margin>
-                           <children>
-                              <Text fill="#5a6080" layoutX="18.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3ème année" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
-                                 <font>
-                                    <Font name="Dubai Medium" size="14.0" />
-                                 </font>
-                              </Text>
-                              <Text fill="#4e427f" layoutX="28.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="36.0">
-                                 <font>
-                                    <Font name="System Bold" size="30.0" />
-                                 </font>
-                              </Text>
-                              <Text fill="#5a6080" layoutX="30.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2 en cours" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="95.0">
-                                 <font>
-                                    <Font name="Dubai Medium" size="14.0" />
-                                 </font>
-                              </Text>
-                              <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="133.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../../../../Downloads/3EME-xs.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="235.5" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-color: EDEEF0;">
-                           <HBox.margin>
-                              <Insets right="24.0" />
-                           </HBox.margin>
-                           <children>
-                              <Text fill="#5a6080" layoutX="18.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4ème année" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
-                                 <font>
-                                    <Font name="Dubai Medium" size="14.0" />
-                                 </font>
-                              </Text>
-                              <Text fill="#4e427f" layoutX="28.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="36.0">
-                                 <font>
-                                    <Font name="System Bold" size="30.0" />
-                                 </font>
-                              </Text>
-                              <Text fill="#5a6080" layoutX="28.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1 en cours" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="95.0">
-                                 <font>
-                                    <Font name="Dubai Medium" size="14.0" />
-                                 </font>
-                              </Text>
-                              <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="130.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../../../../Downloads/4EME-xs%20(1).png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane layoutX="210.0" layoutY="10.0" prefHeight="200.0" prefWidth="235.5" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-color: EDEEF0;">
-                           <HBox.margin>
-                              <Insets right="24.0" />
-                           </HBox.margin>
-                           <children>
-                              <Text fill="#5a6080" layoutX="30.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5ème année" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
-                                 <font>
-                                    <Font name="Dubai Medium" size="14.0" />
-                                 </font>
-                              </Text>
-                              <Text fill="#4e427f" layoutX="40.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="36.0">
-                                 <font>
-                                    <Font name="System Bold" size="30.0" />
-                                 </font>
-                              </Text>
-                              <Text fill="#5a6080" layoutX="40.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3 en cours" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="95.0">
-                                 <font>
-                                    <Font name="Dubai Medium" size="14.0" />
-                                 </font>
-                              </Text>
-                              <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="131.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../../../../Downloads/5EME-xs%20(1).png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="235.5" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-color: EDEEF0;">
-                           <children>
-                              <Text fill="#5a6080" layoutX="29.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="6ème année" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
-                                 <font>
-                                    <Font name="Dubai Medium" size="14.0" />
-                                 </font>
-                              </Text>
-                              <Text fill="#4e427f" layoutX="39.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="36.0">
-                                 <font>
-                                    <Font name="System Bold" size="30.0" />
-                                 </font>
-                              </Text>
-                              <Text fill="#5a6080" layoutX="49.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3 en cours" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="95.0">
-                                 <font>
-                                    <Font name="Dubai Medium" size="14.0" />
-                                 </font>
-                              </Text>
-                              <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="127.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../../../../Downloads/6EME-xs%20(1).png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </AnchorPane>
+                        <Label layoutX="20.0" layoutY="7.0" text="Hi, Admin 👋">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="25.0" layoutY="33.0" text="Fri, April 19" textFill="#7b7b7b">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
                      </children>
-                  </HBox>
-                  <AnchorPane layoutX="24.0" layoutY="255.0" prefHeight="445.0" prefWidth="952.0" style="-fx-background-color: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-width: 1; -fx-border-color: EDEEF0;">
+                  </AnchorPane>
+                  <Pane layoutX="14.0" layoutY="103.0" prefHeight="536.0" prefWidth="977.0" style="-fx-background-color: WHITE; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: EDEEF0;">
                      <children>
-                        <HBox prefHeight="49.0" prefWidth="952.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: EDEEF0;">
+                        <AnchorPane layoutX="-1.0" layoutY="-3.0" prefHeight="54.0" prefWidth="953.0" style="-fx-border-width: 0 0 1 0; -fx-border-color: EDEEF0;">
                            <children>
-                              <Label text="Classes">
-                                 <font>
-                                    <Font name="Dubai Medium" size="18.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets left="20.0" top="8.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <HBox prefHeight="38.0" prefWidth="380.0" style="-fx-border-color: EDEEF0; -fx-border-radius: 8;">
+                              <AnchorPane prefHeight="23.0" prefWidth="161.0" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="8.0">
                                  <children>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../../../../../Downloads/search-lg.png" />
-                                       </image>
-                                       <HBox.margin>
-                                          <Insets left="8.0" top="6.0" />
-                                       </HBox.margin>
-                                    </ImageView>
-                                    <TextField promptText="Search" style="-fx-border-color: transparent; -fx-background-color: transparent; -fx-background-insets: 0;">
+                                    <Label layoutX="48.0" layoutY="3.0" text=" Salles">
+                                       <padding>
+                                          <Insets left="-49.0" />
+                                       </padding>
                                        <font>
-                                          <Font size="14.0" />
+                                          <Font name="Dubai Medium" size="18.0" />
                                        </font>
-                                    </TextField>
+                                    </Label>
+                                    <ImageView fitHeight="51.0" fitWidth="51.0" layoutX="-52.0" layoutY="-40.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
-                                 <HBox.margin>
-                                    <Insets bottom="7.0" left="400.0" top="7.0" />
-                                 </HBox.margin>
+                              </AnchorPane>
+                              <AnchorPane layoutX="442.0" layoutY="47.0" prefHeight="50.0" prefWidth="510.0" AnchorPane.leftAnchor="442.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox prefHeight="41.0" prefWidth="380.0" style="-fx-border-radius: 5; -fx-border-color: EDEEF0;" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="5.0">
+                                       <children>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../../../../Downloads/OIP.jpeg" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets left="12.0" top="2.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                          <TextField layoutY="-12.0" nodeOrientation="LEFT_TO_RIGHT" promptText="Search" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-background-insets: 0;">
+                                             <HBox.margin>
+                                                <Insets top="-3.0" />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                       <padding>
+                                          <Insets top="7.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox prefHeight="38.0" prefWidth="103.0" style="-fx-border-color: EDEEF0; -fx-border-radius: 5; -fx-cursor: hand;" AnchorPane.leftAnchor="390.0" AnchorPane.topAnchor="5.0">
+                                       <children>
+                                          <ImageView fitHeight="20.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../../../../Downloads/Capture_d_écran_2024-04-27_000518-removebg-preview.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets left="18.0" top="7.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                          <Label text="Filters" textFill="#344054">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets top="7.0" />
+                                             </HBox.margin>
+                                             <padding>
+                                                <Insets left="5.0" />
+                                             </padding>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="-10.0" />
+                           </padding>
+                        </AnchorPane>
+                        <AnchorPane layoutY="50.0" prefHeight="362.0" prefWidth="952.0">
+                           <children>
+                              <HBox prefHeight="350.0" prefWidth="952.0">
+                                 <children>
+                                    <VBox prefHeight="354.0" prefWidth="300.0">
+                                       <children>
+                                          <VBox prefHeight="160.0" prefWidth="100.0">
+                                             <children>
+                                                <Label text="Salle " textFill="#475467">
+                                                   <VBox.margin>
+                                                      <Insets left="15.0" top="7.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="10.0" prefHeight="180.0" prefWidth="100.0" style="-fx-background-color: EAECF0;">
+                                             <children>
+                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                   <VBox.margin>
+                                                      <Insets left="15.0" top="11.0" />
+                                                   </VBox.margin>
+                                                   <image>
+                                                      <Image url="@../../../../../../Downloads/Capture_d_écran_2024-04-26_204319-removebg-preview%20(1).png" />
+                                                   </image>
+                                                </ImageView>
+                                                <Text fill="#685a5a" strokeType="OUTSIDE" strokeWidth="0.0">
+                                                   <VBox.margin>
+                                                      <Insets left="55.0" />
+                                                   </VBox.margin>
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Text>
+                                                <Text fill="#101828" strokeType="OUTSIDE" strokeWidth="0.0" text="Laboratoire A06" wrappingWidth="98.6220703125">
+                                                   <VBox.margin>
+                                                      <Insets left="55.0" top="-43.0" />
+                                                   </VBox.margin>
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="10.0" prefHeight="180.0" prefWidth="100.0">
+                                             <children>
+                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../../../../Downloads/Capture_d_écran_2024-04-26_232603-removebg-preview.png" />
+                                                   </image>
+                                                   <VBox.margin>
+                                                      <Insets left="15.0" top="11.0" />
+                                                   </VBox.margin>
+                                                </ImageView>
+                                                <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets left="55.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <Text fill="#101828" strokeType="OUTSIDE" strokeWidth="0.0" text="NB27" wrappingWidth="87.158203125">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets left="55.0" top="-43.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                             </children>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="10.0" prefHeight="180.0" prefWidth="100.0" style="-fx-background-color: EAECF0;">
+                                             <children>
+                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../../../../Downloads/Capture_d_écran_2024-04-26_204319-removebg-preview%20(1).png" />
+                                                   </image>
+                                                   <VBox.margin>
+                                                      <Insets left="15.0" top="11.0" />
+                                                   </VBox.margin>
+                                                </ImageView>
+                                                <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets left="55.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <Text fill="#101828" strokeType="OUTSIDE" strokeWidth="0.0" text="Laboratoire B05">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets left="55.0" top="-43.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                             </children>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="10.0" prefHeight="180.0" prefWidth="100.0">
+                                             <children>
+                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../../../../Downloads/Capture_d_écran_2024-04-26_232603-removebg-preview.png" />
+                                                   </image>
+                                                   <VBox.margin>
+                                                      <Insets left="15.0" top="11.0" />
+                                                   </VBox.margin>
+                                                </ImageView>
+                                             </children>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="80.0" prefHeight="180.0" prefWidth="100.0" style="-fx-background-color: EAECF0;">
+                                             <children>
+                                                <Text fill="#101828" strokeType="OUTSIDE" strokeWidth="0.0" text="NB14">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets left="55.0" top="-37.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                   <VBox.margin>
+                                                      <Insets left="15.0" top="28.0" />
+                                                   </VBox.margin>
+                                                   <image>
+                                                      <Image url="@../../../../../../Downloads/Capture_d_écran_2024-04-26_233219-removebg-preview.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="128.0" prefHeight="180.0" prefWidth="300.0">
+                                             <children>
+                                                <Text fill="#101828" strokeType="OUTSIDE" strokeWidth="0.0" text="Salle sport 1">
+                                                   <VBox.margin>
+                                                      <Insets left="55.0" top="-37.0" />
+                                                   </VBox.margin>
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Text>
+                                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                                   <VBox.margin>
+                                                      <Insets left="15.0" top="27.0" />
+                                                   </VBox.margin>
+                                                   <image>
+                                                      <Image url="@../../../../../../Downloads/Capture_d_écran_2024-04-26_232603-removebg-preview.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <Text fill="#101828" strokeType="OUTSIDE" strokeWidth="0.0" text="NB23">
+                                                   <VBox.margin>
+                                                      <Insets left="55.0" top="-26.0" />
+                                                   </VBox.margin>
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="354.0" prefWidth="216.0">
+                                       <children>
+                                          <VBox layoutX="10.0" layoutY="10.0" prefHeight="180.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="Cours" textFill="#475467">
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" top="7.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../../../../Downloads/arrow-down.png" />
+                                                   </image>
+                                                   <VBox.margin>
+                                                      <Insets left="53.0" top="-16.0" />
+                                                   </VBox.margin>
+                                                </ImageView>
+                                             </children>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="161.0" style="-fx-background-color: EAECF0;">
+                                             <children>
+                                                <Label text="TP Chimie Organique" textFill="#101828">
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" top="17.0" />
+                                                   </VBox.margin>
+                                                   <font>
+                                                      <Font name="Dubai Medium" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label text="Programmation Java" textFill="#101828">
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" top="17.0" />
+                                                   </VBox.margin>
+                                                   <font>
+                                                      <Font name="Dubai Medium" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: EAECF0;">
+                                             <children>
+                                                <Label text="TP Mangametrie" textFill="#101828">
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" top="17.0" />
+                                                   </VBox.margin>
+                                                   <font>
+                                                      <Font name="Dubai Medium" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label text="TD Analyse " textFill="#101828">
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" top="17.0" />
+                                                   </VBox.margin>
+                                                   <font>
+                                                      <Font name="Dubai Medium" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="80.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: EAECF0;">
+                                             <children>
+                                                <Label text="Séance du sport" textFill="#101828">
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" top="17.0" />
+                                                   </VBox.margin>
+                                                   <font>
+                                                      <Font name="Dubai Medium" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label text="Analyse des données" textFill="#101828">
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" top="17.0" />
+                                                   </VBox.margin>
+                                                   <font>
+                                                      <Font name="Dubai Medium" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="354.0" prefWidth="216.0">
+                                       <children>
+                                          <VBox prefHeight="180.0" prefWidth="200.0">
+                                             <children>
+                                                <Label text="Classe" textFill="#475467">
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" top="7.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                             <padding>
+                                                <Insets left="40.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: EAECF0;">
+                                             <children>
+                                                <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="6">
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" top="17.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="ème">
+                                                   <font>
+                                                      <Font size="8.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets left="28.0" top="-13.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="3">
+                                                   <VBox.margin>
+                                                      <Insets left="45.0" top="-14.75" />
+                                                   </VBox.margin>
+                                                </Text>
+                                             </children>
+                                             <padding>
+                                                <Insets left="40.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="6">
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" top="17.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="ème">
+                                                   <font>
+                                                      <Font size="8.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets left="28.0" top="-12.75" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="2">
+                                                   <VBox.margin>
+                                                      <Insets left="45.0" top="-14.75" />
+                                                   </VBox.margin>
+                                                </Text>
+                                             </children>
+                                             <padding>
+                                                <Insets left="40.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="126.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: EAECF0;">
+                                             <children>
+                                                <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="4">
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" top="17.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="ème">
+                                                   <font>
+                                                      <Font size="8.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets left="28.0" top="-12.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="3">
+                                                   <VBox.margin>
+                                                      <Insets left="45.0" top="-15.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                             </children>
+                                             <padding>
+                                                <Insets left="40.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="184.0" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="5">
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" top="17.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="ème">
+                                                   <font>
+                                                      <Font size="8.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets left="28.0" top="-13.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="4">
+                                                   <VBox.margin>
+                                                      <Insets left="45.0" top="-14.75" />
+                                                   </VBox.margin>
+                                                </Text>
+                                             </children>
+                                             <padding>
+                                                <Insets left="40.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="80.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: EAECF0;">
+                                             <children>
+                                                <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="3">
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" top="17.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="ème">
+                                                   <font>
+                                                      <Font size="8.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets left="28.0" top="-13.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="3">
+                                                   <VBox.margin>
+                                                      <Insets left="45.0" top="-14.75" />
+                                                   </VBox.margin>
+                                                </Text>
+                                             </children>
+                                             <padding>
+                                                <Insets left="40.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="68.0" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="6">
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" top="17.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="ème">
+                                                   <font>
+                                                      <Font size="8.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets left="28.0" top="-13.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                                <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="1">
+                                                   <VBox.margin>
+                                                      <Insets left="45.0" top="-14.75" />
+                                                   </VBox.margin>
+                                                </Text>
+                                             </children>
+                                             <padding>
+                                                <Insets left="40.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="354.0" prefWidth="216.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <children>
+                                          <VBox prefHeight="180.0" prefWidth="100.0">
+                                             <children>
+                                                <Label text="Statu" textFill="#475467">
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" top="7.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                             </children>
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: EAECF0;">
+                                             <children>
+                                                <Text fill="#389d83" strokeType="OUTSIDE" strokeWidth="0.0" text="Disponible">
+                                                   <font>
+                                                      <Font name="Dubai Medium" size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" top="17.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                             </children>
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="126.0" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Text fill="#389d83" strokeType="OUTSIDE" strokeWidth="0.0" text="Disponible">
+                                                   <font>
+                                                      <Font name="Dubai Medium" size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" top="17.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                             </children>
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="184.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: EAECF0;">
+                                             <children>
+                                                <Text fill="#f42f2f" strokeType="OUTSIDE" strokeWidth="0.0" text="Occupée">
+                                                   <font>
+                                                      <Font name="Dubai Medium" size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" top="17.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                             </children>
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="184.0" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Text fill="#389d83" strokeType="OUTSIDE" strokeWidth="0.0" text="Disponible">
+                                                   <font>
+                                                      <Font name="Dubai Medium" size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" top="17.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                             </children>
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="150.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: EAECF0;">
+                                             <children>
+                                                <Text fill="#f42f2f" strokeType="OUTSIDE" strokeWidth="0.0" text="Occupée">
+                                                   <font>
+                                                      <Font name="Dubai Medium" size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" top="17.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                             </children>
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="126.0" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Text fill="#f42f2f" strokeType="OUTSIDE" strokeWidth="0.0" text="Occupée">
+                                                   <font>
+                                                      <Font name="Dubai Medium" size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" top="17.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                             </children>
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="354.0" prefWidth="216.0">
+                                       <children>
+                                          <VBox prefHeight="180.0" prefWidth="100.0">
+                                             <children>
+                                                <Label text="Capacité" textFill="#475467">
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" top="7.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                             </children>
+                                             <padding>
+                                                <Insets left="20.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: EAECF0;">
+                                             <children>
+                                                <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="45">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" top="17.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                             </children>
+                                             <padding>
+                                                <Insets left="20.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="45">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" top="17.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                             </children>
+                                             <padding>
+                                                <Insets left="20.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: EAECF0;">
+                                             <children>
+                                                <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="45">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" top="17.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                             </children>
+                                             <padding>
+                                                <Insets left="20.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="45">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" top="17.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                             </children>
+                                             <padding>
+                                                <Insets left="20.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="290.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: EAECF0;">
+                                             <children>
+                                                <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="45">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" top="17.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                             </children>
+                                             <padding>
+                                                <Insets left="20.0" />
+                                             </padding>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="68.0" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="45">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets left="20.0" top="17.0" />
+                                                   </VBox.margin>
+                                                </Text>
+                                             </children>
+                                             <padding>
+                                                <Insets left="20.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="354.0" prefWidth="216.0">
+                                       <children>
+                                          <VBox prefHeight="180.0" prefWidth="100.0" />
+                                          <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: EAECF0;">
+                                             <children>
+                                                <Text fill="#6941c6" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="Voir">
+                                                   <VBox.margin>
+                                                      <Insets left="90.0" top="17.0" />
+                                                   </VBox.margin>
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Text fill="#6941c6" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="Voir">
+                                                   <VBox.margin>
+                                                      <Insets left="90.0" top="17.0" />
+                                                   </VBox.margin>
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: EAECF0;">
+                                             <children>
+                                                <Text fill="#6941c6" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="Voir">
+                                                   <VBox.margin>
+                                                      <Insets left="90.0" top="17.0" />
+                                                   </VBox.margin>
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="184.0" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Text fill="#6941c6" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="Voir">
+                                                   <VBox.margin>
+                                                      <Insets left="90.0" top="17.0" />
+                                                   </VBox.margin>
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: EAECF0;">
+                                             <children>
+                                                <Text fill="#6941c6" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="Voir">
+                                                   <VBox.margin>
+                                                      <Insets left="90.0" top="17.0" />
+                                                   </VBox.margin>
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </VBox>
+                                          <VBox layoutX="10.0" layoutY="68.0" prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Text fill="#6941c6" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="Voir">
+                                                   <VBox.margin>
+                                                      <Insets left="90.0" top="17.0" />
+                                                   </VBox.margin>
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
                               </HBox>
-                              <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="74.0" style="-fx-background-color: transparent; -fx-border-color: EDEEF0; -fx-border-radius: 8; -fx-cursor: hand;" text="Filters">
-                                 <HBox.margin>
-                                    <Insets left="10.0" top="7.0" />
-                                 </HBox.margin>
-                                 <graphic>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../../../../../Downloads/filter-lines%20(1).png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <padding>
-                                    <Insets left="8.0" right="8.0" />
-                                 </padding>
-                              </Button>
                            </children>
-                        </HBox>
-                        <GridPane layoutY="49.0" prefHeight="350.0" prefWidth="959.0" stylesheets="@../../../../../bg-grid.css">
-                          <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="20.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                              <RowConstraints minHeight="2.0" prefHeight="0.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
+                        </AnchorPane>
+                        <HBox layoutX="-7.0" layoutY="409.0" prefHeight="53.0" prefWidth="952.0">
                            <children>
-                              <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Classe">
-                                 <GridPane.margin>
-                                    <Insets left="24.0" />
-                                 </GridPane.margin>
-                                 <font>
-                                    <Font name="Dubai Medium" size="12.0" />
-                                 </font>
-                              </Text>
-                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../../../../Downloads/arrow-down.png" />
-                                 </image>
-                                 <GridPane.margin>
-                                    <Insets left="60.0" top="-4.0" />
-                                 </GridPane.margin>
-                              </ImageView>
-                              <Label text="Effectif" textFill="#475467" GridPane.columnIndex="1">
-                                 <GridPane.margin>
-                                    <Insets left="20.0" />
-                                 </GridPane.margin>
-                                 <font>
-                                    <Font name="Dubai Medium" size="12.0" />
-                                 </font>
-                              </Label>
-                              <Label text="Statut" textFill="#475467" GridPane.columnIndex="2">
-                                 <GridPane.margin>
-                                    <Insets left="20.0" />
-                                 </GridPane.margin>
-                                 <font>
-                                    <Font name="Dubai Medium" size="12.0" />
-                                 </font>
-                              </Label>
-                              <Label text="Salle" textFill="#475467" GridPane.columnIndex="3">
-                                 <GridPane.margin>
-                                    <Insets left="20.0" />
-                                 </GridPane.margin>
-                                 <font>
-                                    <Font name="Dubai Medium" size="12.0" />
-                                 </font>
-                              </Label>
-                              <Label text="Professeur" textFill="#475467" GridPane.columnIndex="4">
-                                 <GridPane.margin>
-                                    <Insets left="20.0" />
-                                 </GridPane.margin>
-                                 <font>
-                                    <Font name="Dubai Medium" size="12.0" />
-                                 </font>
-                              </Label>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.rowIndex="1" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.rowIndex="3" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.rowIndex="5" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: F9FAFB;" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="6" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="6" />
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="6" />
-                           </children>
-                        </GridPane>
-                        <AnchorPane prefHeight="40.5" prefWidth="960.0" AnchorPane.topAnchor="400.0">
-                           <children>
-                              <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: EAECF0; -fx-border-width: 1; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand;" text="Previous" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="4.0">
-                                 <graphic>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                              <AnchorPane prefHeight="50.0" prefWidth="100.0" style="-fx-cursor: hand; -fx-border-radius: 5; -fx-border-width: 1; -fx-border-color: EDEEF0;">
+                                 <children>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="73.0" AnchorPane.topAnchor="2.0">
                                        <image>
                                           <Image url="@../../../../../../Downloads/arrow-left.png" />
                                        </image>
                                     </ImageView>
-                                 </graphic>
-                                 <font>
-                                    <Font name="Dubai Medium" size="14.0" />
-                                 </font>
-                              </Button>
-                              <HBox alignment="CENTER" prefHeight="40.5" prefWidth="200.0" AnchorPane.leftAnchor="376.0" AnchorPane.rightAnchor="376.0">
-                                 <children>
-                                    <Button mnemonicParsing="false" style="-fx-cursor: hand; -fx-background-color: F9FAFB;" text="1" textFill="#1d2939">
+                                    <Text fill="#344054" strokeType="OUTSIDE" strokeWidth="0.0" text="Previous" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="0.0">
                                        <font>
                                           <Font name="Dubai Medium" size="14.0" />
                                        </font>
-                                    </Button>
-                                    <Button layoutX="88.0" layoutY="18.0" mnemonicParsing="false" style="-fx-cursor: hand; -fx-background-color: transparent;" text="2" textFill="#1d2939">
-                                       <font>
-                                          <Font name="Dubai Medium" size="14.0" />
-                                       </font>
-                                    </Button>
-                                    <Button layoutX="62.0" layoutY="18.0" mnemonicParsing="false" style="-fx-cursor: hand; -fx-background-color: transparent;" text="3" textFill="#1d2939">
-                                       <font>
-                                          <Font name="Dubai Medium" size="14.0" />
-                                       </font>
-                                    </Button>
+                                    </Text>
                                  </children>
-                              </HBox>
-                              <Button layoutX="851.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="89.0" style="-fx-background-color: transparent; -fx-border-color: EAECF0; -fx-border-width: 1; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand;" text="Next" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="851.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="4.0">
-                                 <graphic>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <HBox.margin>
+                                    <Insets bottom="8.0" left="15.0" top="8.0" />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets top="5.0" />
+                                 </padding>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="35.0" prefWidth="90.0">
+                                 <children>
+                                    <HBox layoutX="2.0" layoutY="4.0" prefHeight="35.0" prefWidth="90.0" AnchorPane.topAnchor="8.0">
+                                       <children>
+                                          <Label prefHeight="25.0" prefWidth="25.0" style="-fx-cursor: hand; -fx-background-color: F9FAFB; -fx-border-radius: 4; -fx-border-width: 1; -fx-background-radius: 4;" text="1" textFill="#1d2939">
+                                             <font>
+                                                <Font name="Dubai Medium" size="14.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets left="9.0" />
+                                             </padding>
+                                          </Label>
+                                          <Label prefHeight="25.0" prefWidth="25.0" style="-fx-cursor: hand;" text="2" textFill="#1d2939">
+                                             <font>
+                                                <Font name="Dubai Medium" size="14.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets left="9.0" />
+                                             </padding>
+                                          </Label>
+                                          <Label prefHeight="25.0" prefWidth="25.0" style="-fx-cursor: hand;" text="3" textFill="#1d2939">
+                                             <font>
+                                                <Font name="Dubai Medium" size="14.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets left="9.0" />
+                                             </padding>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets left="310.0" />
+                                 </HBox.margin>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="30.0" prefWidth="90.0" style="-fx-cursor: hand; -fx-border-radius: 5; -fx-border-width: 1; -fx-border-color: EDEEF0;">
+                                 <children>
+                                    <Label layoutX="53.0" layoutY="19.0" text="Next" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="0.0">
+                                       <font>
+                                          <Font name="Dubai Medium" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="113.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="6.0">
                                        <image>
                                           <Image url="@../../../../../../Downloads/arrow-right.png" />
                                        </image>
                                     </ImageView>
-                                 </graphic>
-                                 <font>
-                                    <Font name="Dubai Medium" size="14.0" />
-                                 </font>
-                              </Button>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="320.0" top="10.0" />
+                                 </HBox.margin>
+                              </AnchorPane>
                            </children>
-                        </AnchorPane>
+                        </HBox>
                      </children>
-                  </AnchorPane>
+                  </Pane>
                </children>
             </Pane>
          </children>
