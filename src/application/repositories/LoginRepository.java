@@ -23,4 +23,21 @@ public class LoginRepository {
         }
         return count;
     }
+
+    public static int getAdminId(String email) {
+        int adminId = 0;
+        try {
+            java.sql.Connection connectDB = SqlConnection.getConnection();
+            String query = "SELECT id FROM administrateur WHERE email = ?";
+            java.sql.PreparedStatement preparedStatement = connectDB.prepareStatement(query);
+            preparedStatement.setString(1, email);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                adminId = rs.getInt("id");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return adminId;
+    }
 }

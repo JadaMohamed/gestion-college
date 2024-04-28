@@ -53,7 +53,8 @@ public class LoginSceneController {
         try {
             int count = LoginRepository.validateLogin(emailInput.getText(), passwordInput.getText());
             if (count == 1) {
-                openHomePage();
+                int adminId = LoginRepository.getAdminId(emailInput.getText());
+                openHomePage(adminId);
             } else {
                 errorMssg.setText("Email or Password are wrong. Please try again!");
             }
@@ -62,9 +63,14 @@ public class LoginSceneController {
         }
     }
 
-    private void openHomePage() {
+    private void openHomePage(int adminId) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../../resources/interfaces/BackofficeScene.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/interfaces/BackofficeScene.fxml"));
+            Parent root = loader.load();
+            
+            BackofficeSceneController backofficeController = loader.getController();
+            backofficeController.initialize(adminId);
+    
             Scene scene = new Scene(root);
             Stage stage = (Stage) loginButton.getScene().getWindow();
             stage.setScene(scene);
@@ -74,4 +80,5 @@ public class LoginSceneController {
             e.printStackTrace();
         }
     }
+    
 }

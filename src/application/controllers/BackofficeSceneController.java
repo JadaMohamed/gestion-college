@@ -1,21 +1,32 @@
 package application.controllers;
 
-import application.controllers.BackofficeSubControllers.AccueilPaneController;
+import application.repositories.BackOfficeSceneRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class BackofficeSceneController {
 
     @FXML
-    private AccueilPaneController accueilPaneController;
-
-    @FXML
-    private Button absencesButton, accueilButton, classesButton, deconnecterButton, sallesButton, parametresButton;
+    private Button absencesButton, accueilButton, classesButton, deconnecterButton, sallesButton, parametresButton, annulerButton;
 
     @FXML
     private Pane absencesPane, accueilPane, classesPane, sallesPane, parametresPane;
+
+    @FXML
+    private TextField nomFieldInfos, prenomFieldInfos, numFieldInfos, emailFieldSecurity,oldPasswordSecurity,newPasswordSecurity;
+
+    @FXML
+    private DatePicker datePickerInfos;
+
+    @FXML
+    private Label errorPasswordUpdate;
+
+    private int currentAdminId;
 
     @FXML
     void handleSideBarButtonAction(ActionEvent event) {
@@ -72,8 +83,52 @@ public class BackofficeSceneController {
         }
     }
 
-    public void initialize() {
-
+    public void initialize(int adminId) {
+        this.currentAdminId = adminId;
+        loadAdminData();
     }
 
+    public void loadAdminData() {
+        try {
+            ResultSet rs = BackOfficeSceneRepository.getAdminData(currentAdminId);
+            if (rs.next()) {
+                nomFieldInfos.setText(rs.getString("nom"));
+                prenomFieldInfos.setText(rs.getString("prenom"));
+                numFieldInfos.setText(rs.getString("telephone"));
+                datePickerInfos.setValue(rs.getDate("dateNaissance").toLocalDate());
+                emailFieldSecurity.setText(rs.getString("email"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void sauvegardeButtonInfos(ActionEvent event) {
+        try {
+            BackOfficeSceneRepository.updateAdminData(currentAdminId, nomFieldInfos.getText(), prenomFieldInfos.getText(), numFieldInfos.getText(), java.sql.Date.valueOf(datePickerInfos.getValue()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void cancelChanges() {
+        loadAdminData();
+    }
+
+    @FXML
+    public void sauvegardeButtonSecurity(ActionEvent event) {
+        try {
+            ResultSet rs = BackOfficeSceneRepository.validatePassword(currentAdminId, oldPasswordSecurity.getText());
+            if (rs.next()) {
+                BackOfficeSceneRepository.updatePassword(currentAdminId, emailFieldSecurity.getText(), newPasswordSecurity.getText());
+                errorPasswordUpdate.setText("Votre mot de passe a été bien changé !");
+            } else {
+                errorPasswordUpdate.setText("L'ancien motDePasse est Incorrect !");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

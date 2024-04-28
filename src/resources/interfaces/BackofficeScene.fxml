@@ -820,7 +820,7 @@
                               </VBox>
                               <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="194.0" spacing="16.0">
                                  <children>
-                                    <Button fx:id="annulerButtonInfos" mnemonicParsing="false" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Annuler" textAlignment="CENTER" textFill="#344054">
+                                    <Button fx:id="annulerButton" mnemonicParsing="false" onAction="#cancelChanges" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Annuler" textAlignment="CENTER" textFill="#344054">
                                        <font>
                                           <Font name="Inter Medium" size="13.0" />
                                        </font>
@@ -831,7 +831,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </Button>
-                                    <Button fx:id="sauvegardeButtonInfos" mnemonicParsing="false" style="-fx-background-color: #7F56D9; -fx-background-radius: 4px; -fx-border-radius: 4px;" text="Sauvegarder" textAlignment="CENTER" textFill="WHITE">
+                                    <Button fx:id="sauvegardeButtonInfos" mnemonicParsing="false" onAction="#sauvegardeButtonInfos" style="-fx-background-color: #7F56D9; -fx-background-radius: 4px; -fx-border-radius: 4px;" text="Sauvegarder" textAlignment="CENTER" textFill="WHITE">
                                        <font>
                                           <Font name="Inter Medium" size="13.0" />
                                        </font>
@@ -950,7 +950,7 @@
                               </VBox>
                               <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="194.0" spacing="16.0">
                                  <children>
-                                    <Button fx:id="annulerButtonSecurity" mnemonicParsing="false" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Annuler" textAlignment="CENTER" textFill="#344054">
+                                    <Button fx:id="annulerButton" mnemonicParsing="false" onAction="#cancelChanges" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Annuler" textAlignment="CENTER" textFill="#344054">
                                        <font>
                                           <Font name="Inter Medium" size="13.0" />
                                        </font>
@@ -961,7 +961,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </Button>
-                                    <Button fx:id="sauvegardeButtonSecurity" mnemonicParsing="false" style="-fx-background-color: #7F56D9; -fx-background-radius: 4px; -fx-border-radius: 4px;" text="Sauvegarder" textAlignment="CENTER" textFill="WHITE">
+                                    <Button fx:id="sauvegardeButtonSecurity" mnemonicParsing="false" onAction="#sauvegardeButtonSecurity" style="-fx-background-color: #7F56D9; -fx-background-radius: 4px; -fx-border-radius: 4px;" text="Sauvegarder" textAlignment="CENTER" textFill="WHITE">
                                        <font>
                                           <Font name="Inter Medium" size="13.0" />
                                        </font>
@@ -988,7 +988,7 @@
                               </Text>
                               <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="626.0" spacing="16.0">
                                  <children>
-                                    <TextField fx:id="emaiFieldSecurity" prefHeight="34.0" prefWidth="396.0" promptText="nom@email.com" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;">
+                                    <TextField fx:id="emailFieldSecurity" prefHeight="34.0" prefWidth="396.0" promptText="nom@email.com" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -1059,6 +1059,11 @@
                         </HBox>
                      </children>
                   </VBox>
+                  <Label fx:id="errorPasswordUpdate" layoutX="351.0" layoutY="646.0" prefHeight="34.0" prefWidth="396.0" textFill="RED">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </children>
