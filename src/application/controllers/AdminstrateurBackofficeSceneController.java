@@ -11,7 +11,7 @@ import javafx.scene.layout.Pane;
 public class AdminstrateurBackofficeSceneController {
 
     @FXML
-    private Button absencesButton, accueilButton, classesButton, deconnecterButton, sallesButton, parametresButton,
+    private Button accueilButton, classesButton, deconnecterButton, sallesButton, parametresButton,
             annulerButtonParametres;
 
     @FXML
@@ -77,10 +77,6 @@ public class AdminstrateurBackofficeSceneController {
 
     public Button getSallesButton() {
         return sallesButton;
-    }
-
-    public Button getAbsencesButton() {
-        return absencesButton;
     }
 
     public Button getClassesButton() {

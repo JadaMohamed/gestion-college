@@ -26,9 +26,6 @@ public class SidebarController {
         } else if (event.getSource() == mainController.getSallesButton()) {
             mainController.getSallesPane().toFront();
             toggleStyleClass(mainController.getSallesButton());
-        } else if (event.getSource() == mainController.getAbsencesButton()) {
-            mainController.getAbsencesPane().toFront();
-            toggleStyleClass(mainController.getAbsencesButton());
         } else if (event.getSource() == mainController.getClassesButton()) {
             mainController.getClassesPane().toFront();
             toggleStyleClass(mainController.getClassesButton());
@@ -44,7 +41,6 @@ public class SidebarController {
         Button[] buttons = {
                 mainController.getAccueilButton(),
                 mainController.getSallesButton(),
-                mainController.getAbsencesButton(),
                 mainController.getClassesButton(),
                 mainController.getParametresButton()
         };
