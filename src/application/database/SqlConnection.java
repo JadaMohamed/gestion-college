@@ -2,6 +2,7 @@ package application.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class SqlConnection {
     private static Connection conn;
@@ -24,5 +25,14 @@ public class SqlConnection {
 
     public static Connection getConnection() {
         return conn;
+    }
+    public static void closeConnection() {
+        if (conn != null) {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
