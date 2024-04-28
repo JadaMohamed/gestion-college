@@ -34,6 +34,9 @@ public class SidebarController {
             toggleStyleClass(mainController.getParametresButton());
         } else if (event.getSource() == mainController.getDeconnecterButton()) {
             LoginService.seDeconnecter(mainController.getDeconnecterButton());
+        } else if (event.getSource() == mainController.getAffectationButton()) {
+            mainController.getAffectationPane().toFront();
+            toggleStyleClass(mainController.getAffectationButton());
         }
     }
 
@@ -42,7 +45,8 @@ public class SidebarController {
                 mainController.getAccueilButton(),
                 mainController.getSallesButton(),
                 mainController.getClassesButton(),
-                mainController.getParametresButton()
+                mainController.getParametresButton(),
+                mainController.getAffectationButton()
         };
 
         for (Button button : buttons) {

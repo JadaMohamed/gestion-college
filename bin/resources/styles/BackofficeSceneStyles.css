@@ -89,3 +89,9 @@
   -fx-font-family: "Inter";
   -fx-font-weight: bold;
 }
+
+.combo-box {
+  -fx-font-family: "Inter";
+  -fx-font-weight: bold;
+  -fx-font-size: 13px;
+}

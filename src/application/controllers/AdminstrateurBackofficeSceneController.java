@@ -11,11 +11,11 @@ import javafx.scene.layout.Pane;
 public class AdminstrateurBackofficeSceneController {
 
     @FXML
-    private Button accueilButton, classesButton, deconnecterButton, sallesButton, parametresButton,
+    private Button accueilButton, classesButton, deconnecterButton, sallesButton, parametresButton, affectationButton,
             annulerButtonParametres;
 
     @FXML
-    private Pane absencesPane, accueilPane, classesPane, sallesPane, parametresPane, rootPane;
+    private Pane affectationPane, accueilPane, classesPane, sallesPane, parametresPane, rootPane;
 
     @FXML
     private Button sauvegarderButtonInfosParametres, sauvegarderButtonSecurityParametres;
@@ -99,8 +99,8 @@ public class AdminstrateurBackofficeSceneController {
         return sallesPane;
     }
 
-    public Pane getAbsencesPane() {
-        return absencesPane;
+    public Pane getAffectationPane() {
+        return affectationPane;
     }
 
     public Pane getClassesPane() {
@@ -113,6 +113,10 @@ public class AdminstrateurBackofficeSceneController {
 
     public Button getAnnulerButton() {
         return annulerButtonParametres;
+    }
+
+    public Button getAffectationButton() {
+        return affectationButton;
     }
 
     public TextField getNomFieldParametres() {
