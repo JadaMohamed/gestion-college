@@ -1,6 +1,6 @@
-package application.controllers.BackofficeSubControllers;
+package application.controllers.AdminstrateurBackofficeSceneSubController;
 
-import application.controllers.BackofficeSceneController;
+import application.controllers.AdminstrateurBackofficeSceneController;
 import application.services.AdministrateurService;
 import application.utilities.PushAlert;
 import javafx.scene.control.Alert.AlertType;
@@ -8,9 +8,9 @@ import javafx.stage.Stage;
 
 public class ParametresPaneController {
 
-    private BackofficeSceneController mainController;
+    private AdminstrateurBackofficeSceneController mainController;
 
-    public ParametresPaneController(BackofficeSceneController mainController) {
+    public ParametresPaneController(AdminstrateurBackofficeSceneController mainController) {
         this.mainController = mainController;
     }
 

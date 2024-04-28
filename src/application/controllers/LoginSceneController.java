@@ -69,11 +69,11 @@ public class LoginSceneController {
     private void openHomePage(int adminId) {
         try {
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("../../resources/interfaces/BackofficeScene.fxml"));
+                    getClass().getResource("../../resources/interfaces/AdministrateurBackofficeScene.fxml"));
             Parent root = loader.load();
 
-            BackofficeSceneController backofficeController = loader.getController();
-            backofficeController.initialize(adminId);
+            AdminstrateurBackofficeSceneController administrateueBackofficeController = loader.getController();
+            administrateueBackofficeController.initialize(adminId);
 
             Scene scene = new Scene(root);
             Stage stage = (Stage) loginButton.getScene().getWindow();

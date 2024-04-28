@@ -1,6 +1,6 @@
-package application.controllers.BackofficeSubControllers;
+package application.controllers.AdminstrateurBackofficeSceneSubController;
 
-import application.controllers.BackofficeSceneController;
+import application.controllers.AdminstrateurBackofficeSceneController;
 import application.services.LoginService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,9 +8,9 @@ import javafx.scene.control.Button;
 
 public class SidebarController {
 
-    private BackofficeSceneController mainController;
+    private AdminstrateurBackofficeSceneController mainController;
 
-    public SidebarController(BackofficeSceneController mainController) {
+    public SidebarController(AdminstrateurBackofficeSceneController mainController) {
         this.mainController = mainController;
     }
 

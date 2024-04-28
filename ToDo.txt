@@ -10,11 +10,11 @@ GUIs Implementations
         a- Implement Sidebar & Panes navigator ✅
         b- Implement Accueil Pane ✅
         c- Implement Salle-X Pane
-        d- Implement Salles Pane
+        d- Implement Salles Pane ✅
         e- Implement Absences Pane
         f- Implement Classe-X Pane
-        g- Implement Classes Pane
-        h- Implement Settings Pane
+        g- Implement Classes Pane ✅
+        h- Implement Settings Pane ✅
 
 Java Implementations
     1- Implement dbConnector & mySqlDrivers ✅
@@ -30,4 +30,4 @@ Java Implementations
             4- Implement AbsencesController
             5- Implement Classe-XController
             6- Implement ClassesController
-            7- Implement SettingsController 
+            7- Implement SettingsController ✅

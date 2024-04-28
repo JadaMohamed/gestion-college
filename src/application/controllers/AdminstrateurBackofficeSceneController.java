@@ -1,14 +1,14 @@
 package application.controllers;
 
+import application.controllers.AdminstrateurBackofficeSceneSubController.ParametresPaneController;
+import application.controllers.AdminstrateurBackofficeSceneSubController.SidebarController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
-import application.controllers.BackofficeSubControllers.ParametresPaneController;
-import application.controllers.BackofficeSubControllers.SidebarController;
 
-public class BackofficeSceneController {
+public class AdminstrateurBackofficeSceneController {
 
     @FXML
     private Button absencesButton, accueilButton, classesButton, deconnecterButton, sallesButton, parametresButton,
