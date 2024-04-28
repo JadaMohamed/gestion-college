@@ -3,29 +3,7 @@
   "configurations": [
     {
       "type": "java",
-      "name": "Launch with Arguments Prompt",
-      "request": "launch",
-      "mainClass": "",
-      "args": "${command:SpecifyProgramArgs}"
-    },
-    {
-      "type": "java",
-      "name": "App",
-      "request": "launch",
-      "mainClass": "application.App",
-      "projectName": "gestion-college-1_ed4ebcd",
-      "vmArgs": "--module-path \"c:/javafx-sdk-22/lib\" --add-modules javafx.controls,javafx.fxml"
-      
-    },
-    {
-      "type": "java",
-      "name": "Launch Java Program",
-      "request": "launch",
-      "mainClass": ""
-    },
-    {
-      "type": "java",
-      "name": "App",
+      "name": "Run JavaFX Application",
       "request": "launch",
       "mainClass": "application.App",
       "projectName": "gestion-college_39eaee46",
@@ -33,33 +11,10 @@
     },
     {
       "type": "java",
-      "name": "App",
+      "name": "Launch with Arguments Prompt",
       "request": "launch",
-      "mainClass": "application.App",
-      "projectName": "gestion-college_23fa5c69",
-      "vmArgs": "--module-path \"c:/javafx-sdk-22/lib\" --add-modules javafx.controls,javafx.fxml"
-    },
-    {
-      "type": "java",
-      "name": "App",
-      "request": "launch",
-      "mainClass": "application.App",
-      "projectName": "gestion-college_e4bb1c34",
-      "vmArgs": "--module-path \"c:/javafx-sdk-22/lib\" --add-modules javafx.controls,javafx.fxml"
-    },
-    {
-      "type": "java",
-      "name": "App",
-      "request": "launch",
-      "mainClass": "application.App",
-      "projectName": "gestion-college_85b39c21",
-      "vmArgs": "--module-path \"c:/javafx-sdk-22/lib\" --add-modules javafx.controls,javafx.fxml"
-    },
-    {
-      "type": "java",
-      "name": "Current File",
-      "request": "launch",
-      "mainClass": "${file}"
+      "mainClass": "",
+      "args": "${command:SpecifyProgramArgs}"
     }
   ]
 }

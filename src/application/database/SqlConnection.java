@@ -26,6 +26,7 @@ public class SqlConnection {
     public static Connection getConnection() {
         return conn;
     }
+
     public static void closeConnection() {
         if (conn != null) {
             try {

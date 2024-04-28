@@ -1,162 +1,153 @@
 package application.controllers;
 
-import application.database.SqlConnection;
-import application.repositories.BackOfficeSceneRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import application.controllers.BackofficeSubControllers.ParametresPaneController;
+import application.controllers.BackofficeSubControllers.SidebarController;
 
 public class BackofficeSceneController {
 
     @FXML
-    private Button absencesButton, accueilButton, classesButton, deconnecterButton, sallesButton, parametresButton, annulerButton;
+    private Button absencesButton, accueilButton, classesButton, deconnecterButton, sallesButton, parametresButton,
+            annulerButtonParametres;
 
     @FXML
-    private Pane absencesPane, accueilPane, classesPane, sallesPane, parametresPane;
+    private Pane absencesPane, accueilPane, classesPane, sallesPane, parametresPane, rootPane;
 
     @FXML
-    private TextField nomFieldInfos, prenomFieldInfos, numFieldInfos, emailFieldSecurity,oldPasswordSecurity,newPasswordSecurity;
+    private Button sauvegarderButtonInfosParametres, sauvegarderButtonSecurityParametres;
 
     @FXML
-    private DatePicker datePickerInfos;
+    private TextField nomFieldParametres, prenomFieldParametres, telephoneFieldParametres, emailFieldParametres,
+            oldPasswordParametres,
+            newPasswordParametres;
+
+    @FXML
+    private DatePicker dateBirthDatePickerParametres;
 
     @FXML
     private Label errorPasswordUpdate;
 
     private int currentAdminId;
 
-    @FXML
-    void handleSideBarButtonAction(ActionEvent event) {
-
-        if (event.getSource() == accueilButton) {
-            accueilPane.toFront();
-            toggleStyleClass(accueilButton);
-        } else if (event.getSource() == sallesButton) {
-            sallesPane.toFront();
-            toggleStyleClass(sallesButton);
-        } else if (event.getSource() == absencesButton) {
-            absencesPane.toFront();
-            toggleStyleClass(absencesButton);
-        } else if (event.getSource() == classesButton) {
-            classesPane.toFront();
-            toggleStyleClass(classesButton);
-        } else if (event.getSource() == parametresButton) {
-            parametresPane.toFront();
-            toggleStyleClass(parametresButton);
-        } else if (event.getSource() == deconnecterButton) {
-            try {
-            // Fermer la connexion
-            SqlConnection.closeConnection();
-            
-            // Afficher la scène de connexion
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../resources/interfaces/LoginScene.fxml"));
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) deconnecterButton.getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Login");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-}
-
-    public void toggleStyleClass(Button event) {
-        if (event == accueilButton) {
-            accueilButton.getStyleClass().add("active");
-            sallesButton.getStyleClass().removeAll("active");
-            absencesButton.getStyleClass().removeAll("active");
-            classesButton.getStyleClass().removeAll("active");
-            parametresButton.getStyleClass().removeAll("active");
-        } else if (event == sallesButton) {
-            sallesButton.getStyleClass().add("active");
-            accueilButton.getStyleClass().removeAll("active");
-            absencesButton.getStyleClass().removeAll("active");
-            classesButton.getStyleClass().removeAll("active");
-            parametresButton.getStyleClass().removeAll("active");
-        } else if (event == absencesButton) {
-            absencesButton.getStyleClass().add("active");
-            accueilButton.getStyleClass().removeAll("active");
-            sallesButton.getStyleClass().removeAll("active");
-            classesButton.getStyleClass().removeAll("active");
-            parametresButton.getStyleClass().removeAll("active");
-        } else if (event == classesButton) {
-            classesButton.getStyleClass().add("active");
-            accueilButton.getStyleClass().removeAll("active");
-            sallesButton.getStyleClass().removeAll("active");
-            absencesButton.getStyleClass().removeAll("active");
-            parametresButton.getStyleClass().removeAll("active");
-        } else if (event == parametresButton) {
-            parametresButton.getStyleClass().add("active");
-            classesButton.getStyleClass().removeAll("active");
-            accueilButton.getStyleClass().removeAll("active");
-            sallesButton.getStyleClass().removeAll("active");
-            absencesButton.getStyleClass().removeAll("active");
-        }
-    }
+    private SidebarController sidebarController;
+    private ParametresPaneController parametresPaneController;
 
     public void initialize(int adminId) {
         this.currentAdminId = adminId;
-        loadAdminData();
-    }
-
-    public void loadAdminData() {
-        try {
-            ResultSet rs = BackOfficeSceneRepository.getAdminData(currentAdminId);
-            if (rs.next()) {
-                nomFieldInfos.setText(rs.getString("nom"));
-                prenomFieldInfos.setText(rs.getString("prenom"));
-                numFieldInfos.setText(rs.getString("telephone"));
-                datePickerInfos.setValue(rs.getDate("dateNaissance").toLocalDate());
-                emailFieldSecurity.setText(rs.getString("email"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        sidebarController = new SidebarController(this);
+        parametresPaneController = new ParametresPaneController(this);
+        sidebarController.initialize();
+        parametresPaneController.initialize();
+        parametresPaneController.loadAdminData();
     }
 
     @FXML
-    public void sauvegardeButtonInfos(ActionEvent event) {
-        try {
-            BackOfficeSceneRepository.updateAdminData(currentAdminId, nomFieldInfos.getText(), prenomFieldInfos.getText(), numFieldInfos.getText(), java.sql.Date.valueOf(datePickerInfos.getValue()));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void handleSideBarButtonAction(ActionEvent event) {
+        sidebarController.handleSideBarButtonAction(event);
     }
 
     @FXML
-    public void cancelChanges() {
-        loadAdminData();
+    public void handleCancelParametresChanges(ActionEvent event) {
+        parametresPaneController.annulerLesModifications();
     }
 
     @FXML
-    public void sauvegardeButtonSecurity(ActionEvent event) {
-        try {
-            ResultSet rs = BackOfficeSceneRepository.validatePassword(currentAdminId, oldPasswordSecurity.getText());
-            if (rs.next()) {
-                BackOfficeSceneRepository.updatePassword(currentAdminId, emailFieldSecurity.getText(), newPasswordSecurity.getText());
-                errorPasswordUpdate.setText("Votre mot de passe a été bien changé !");
-            } else {
-                errorPasswordUpdate.setText("L'ancien motDePasse est Incorrect !");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void handleSauvegarderButtonSecurityParameters(ActionEvent event) {
+        parametresPaneController.handleSauvegarderButtonSecurityParameters();
     }
 
-    @FXML 
-    public void seDeconnecter(){
+    @FXML
+    public void handleSauvegarderButtonInfosParameters(ActionEvent event) {
+        parametresPaneController.handleSauvegarderButtonInfosParameters();
+    }
 
+    // Methods to access UI elements SubControllers
+
+    public int getCurrentAdminId() {
+        return currentAdminId;
+    }
+
+    public Button getAccueilButton() {
+        return accueilButton;
+    }
+
+    public Button getSallesButton() {
+        return sallesButton;
+    }
+
+    public Button getAbsencesButton() {
+        return absencesButton;
+    }
+
+    public Button getClassesButton() {
+        return classesButton;
+    }
+
+    public Button getParametresButton() {
+        return parametresButton;
+    }
+
+    public Button getDeconnecterButton() {
+        return deconnecterButton;
+    }
+
+    public Pane getAccueilPane() {
+        return accueilPane;
+    }
+
+    public Pane getSallesPane() {
+        return sallesPane;
+    }
+
+    public Pane getAbsencesPane() {
+        return absencesPane;
+    }
+
+    public Pane getClassesPane() {
+        return classesPane;
+    }
+
+    public Pane getParametresPane() {
+        return parametresPane;
+    }
+
+    public Button getAnnulerButton() {
+        return annulerButtonParametres;
+    }
+
+    public TextField getNomFieldParametres() {
+        return nomFieldParametres;
+    }
+
+    public TextField getPreomFieldParametres() {
+        return prenomFieldParametres;
+    }
+
+    public TextField getEmailFieldParametres() {
+        return emailFieldParametres;
+    }
+
+    public TextField getTelephoneFieldParametres() {
+        return telephoneFieldParametres;
+    }
+
+    public DatePicker getDateBirthDatePickerParametres() {
+        return dateBirthDatePickerParametres;
+    }
+
+    public TextField getOldPasswordParametres() {
+        return oldPasswordParametres;
+    }
+
+    public TextField getNewPasswordParametres() {
+        return newPasswordParametres;
+    }
+
+    public Scene getScene() {
+        return rootPane.getScene();
     }
 }
