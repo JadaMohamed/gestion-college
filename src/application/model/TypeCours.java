@@ -14,6 +14,10 @@ public class TypeCours {
         this.nom = nom;
     }
 
+    public String toString() {
+        return nom;
+    }
+
     public int getId() {
         return id;
     }

@@ -18,6 +18,10 @@ public class Enseignant extends Personne {
         this.listCours = new Vector<Cours>();
     }
 
+    public String toString() {
+        return super.getNom() + " " + super.getPrenom();
+    }
+
     public void addCours(Cours cours) {
         this.listCours.add(cours);
     }

@@ -8,6 +8,7 @@ public class Personne {
     private String prenom;
     private String email;
     private String telephone;
+    private String photoURL;
     private Date dateNaissance;
 
     public Personne() {
@@ -19,6 +20,14 @@ public class Personne {
         this.email = email;
         this.telephone = telephone;
         this.dateNaissance = dateNaissance;
+    }
+
+    public String getPhotoURL() {
+        return photoURL;
+    }
+
+    public void setPhotoURL(String photoURL) {
+        this.photoURL = photoURL;
     }
 
     public String getNom() {

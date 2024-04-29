@@ -95,3 +95,7 @@
   -fx-font-weight: bold;
   -fx-font-size: 13px;
 }
+
+.tool-bar {
+  -fx-background-color: #336699; /* Change the color code as needed */
+}

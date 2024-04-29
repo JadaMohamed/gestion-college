@@ -8,6 +8,7 @@ public class Classe {
     private int numero;
     private NiveauClasse niveau;
     private int effectif;
+    private String nom;
     private Vector<Seance> listSeances;
     private Vector<Etudiant> listEtudiants;
 
@@ -28,6 +29,11 @@ public class Classe {
         listSeances.add(seance);
     }
 
+    @Override
+    public String toString() {
+        return nom + " " + numero;
+    }
+
     public void addEtudiant(Etudiant etudiant) {
         listEtudiants.add(etudiant);
     }
@@ -38,6 +44,14 @@ public class Classe {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public int getNumero() {

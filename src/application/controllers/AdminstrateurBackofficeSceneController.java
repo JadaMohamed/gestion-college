@@ -1,7 +1,11 @@
 package application.controllers;
 
+import application.controllers.AdminstrateurBackofficeSceneSubController.AffectationPaneController;
 import application.controllers.AdminstrateurBackofficeSceneSubController.ParametresPaneController;
 import application.controllers.AdminstrateurBackofficeSceneSubController.SidebarController;
+import application.model.Classe;
+import application.model.Enseignant;
+import application.model.TypeCours;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -18,7 +22,20 @@ public class AdminstrateurBackofficeSceneController {
     private Pane affectationPane, accueilPane, classesPane, sallesPane, parametresPane, rootPane;
 
     @FXML
-    private Button sauvegarderButtonInfosParametres, sauvegarderButtonSecurityParametres;
+    private Button sauvegarderButtonInfosParametres, sauvegarderButtonSecurityParametres, handleAffecterButton,
+            handleAnnulerAffectation;
+
+    @FXML
+    private ComboBox<String> sallesComboAffectation, joursComboAffectation, horairesComboAffectation;
+
+    @FXML
+    private ComboBox<Enseignant> enseignantComboAffectation;
+
+    @FXML
+    private ComboBox<TypeCours> typeCoursComboAffectation;
+
+    @FXML
+    private ComboBox<Classe> classesComboAffectation;
 
     @FXML
     private TextField nomFieldParametres, prenomFieldParametres, telephoneFieldParametres, emailFieldParametres,
@@ -35,14 +52,17 @@ public class AdminstrateurBackofficeSceneController {
 
     private SidebarController sidebarController;
     private ParametresPaneController parametresPaneController;
+    private AffectationPaneController affectationPaneController;
 
     public void initialize(int adminId) {
         this.currentAdminId = adminId;
         sidebarController = new SidebarController(this);
         parametresPaneController = new ParametresPaneController(this);
+        affectationPaneController = new AffectationPaneController(this);
         sidebarController.initialize();
         parametresPaneController.initialize();
         parametresPaneController.loadAdminData();
+        affectationPaneController.initialize();
     }
 
     @FXML
@@ -53,6 +73,16 @@ public class AdminstrateurBackofficeSceneController {
     @FXML
     public void handleCancelParametresChanges(ActionEvent event) {
         parametresPaneController.annulerLesModifications();
+    }
+
+    @FXML
+    public void handleAnnulerAffectation(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void handleAffecterButton(ActionEvent event) {
+        System.out.println(typeCoursComboAffectation.getSelectionModel().getSelectedItem().getId());
     }
 
     @FXML
@@ -147,7 +177,31 @@ public class AdminstrateurBackofficeSceneController {
         return newPasswordParametres;
     }
 
+    public ComboBox<String> getSallesComboAffectation() {
+        return sallesComboAffectation;
+    }
+
+    public ComboBox<String> getJoursComboAffectation() {
+        return joursComboAffectation;
+    }
+
+    public ComboBox<Classe> getClassesComboAffectation() {
+        return classesComboAffectation;
+    }
+
+    public ComboBox<String> getHorairesComboAffectation() {
+        return horairesComboAffectation;
+    }
+
+    public ComboBox<TypeCours> getTypeCoursComboAffectation() {
+        return typeCoursComboAffectation;
+    }
+
     public Scene getScene() {
         return rootPane.getScene();
+    }
+
+    public ComboBox<Enseignant> getEnseignantComboAffectation() {
+        return enseignantComboAffectation;
     }
 }
