@@ -98,11 +98,7 @@
             <Font name="Inter Medium" size="12.0" />
          </font>
       </Label>
-      <ImageView fitHeight="28.0" fitWidth="102.0" layoutX="44.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="16.0">
-         <image>
-            <Image url="@../images/crestwoodlogo.png" />
-         </image>
-      </ImageView>
       <Label fx:id="errorMssg" layoutX="86.0" layoutY="165.0" prefHeight="20.0" prefWidth="300.0" textFill="#eb0303" AnchorPane.bottomAnchor="319.0" />
+      <Button layoutX="56.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleAutofillJada" text="AUTOFILL_JADA" AnchorPane.leftAnchor="56.4" AnchorPane.topAnchor="48.0" />
    </children>
 </AnchorPane>

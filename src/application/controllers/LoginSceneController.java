@@ -52,6 +52,12 @@ public class LoginSceneController {
         }
     }
 
+    @FXML
+    public void handleAutofillJada(ActionEvent e) {
+        emailInput.setText("mohamed@jada.com");
+        passwordInput.setText("jada");
+    }
+
     private void validateLogin() {
         try {
             int count = LoginRepository.validateLogin(emailInput.getText(), passwordInput.getText());

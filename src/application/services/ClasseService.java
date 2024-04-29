@@ -3,7 +3,6 @@ package application.services;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
-
 import application.model.Classe;
 import application.repositories.ClasseRepository;
 
@@ -28,4 +27,5 @@ public class ClasseService {
         }
         return resClasses;
     }
+
 }

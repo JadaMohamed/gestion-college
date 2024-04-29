@@ -13,6 +13,10 @@ public class Horaires {
         this.heureFin = heureFin;
     }
 
+    public Horaires() {
+
+    }
+
     public LocalTime getHeureDebut() {
         return heureDebut;
     }

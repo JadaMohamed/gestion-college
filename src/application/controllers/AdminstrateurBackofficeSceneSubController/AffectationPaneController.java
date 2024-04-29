@@ -11,6 +11,7 @@ import application.model.enums.JoursSemaine;
 import application.services.ClasseService;
 import application.services.EnseignantService;
 import application.services.SallesService;
+import application.services.SeanceService;
 import application.services.TypeCoursService;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -32,12 +33,25 @@ public class AffectationPaneController {
     }
 
     public void initialize() {
+
         fillClassesComboBox();
         fillTypeCours();
         fillEnseignants();
         fillJoursSemaine();
-        fillHoraires();
-        fillSalles();
+        // schedules
+        mainController.getJoursComboAffectation().getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> updateHoraires());
+        mainController.getClassesComboAffectation().getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    updateHoraires();
+                });
+        mainController.getEnseignantComboAffectation().getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> updateHoraires());
+
+        mainController.getHorairesComboAffectation().getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> updateAvailableSallesByHoraire());
+        // fillHoraires();
+        // fillSalles();
     }
 
     public void fillClassesComboBox() {
@@ -56,6 +70,39 @@ public class AffectationPaneController {
         mainController.getTypeCoursComboAffectation().getItems().addAll(allTypes);
         if (!allTypes.isEmpty()) {
             mainController.getTypeCoursComboAffectation().getSelectionModel().select(0);
+        }
+    }
+
+    private void updateAvailableSallesByHoraire() {
+
+        mainController.getSallesComboAffectation().getItems().clear();
+
+        Horaires selectedHoraires = mainController.getHorairesComboAffectation().getSelectionModel().getSelectedItem();
+        JoursSemaine selectedJours = mainController.getJoursComboAffectation().getSelectionModel().getSelectedItem();
+
+        if (selectedHoraires != null && selectedJours != null) {
+            Vector<Salle> salles = SallesService.getAvailableSallesByHoraire(selectedJours, selectedHoraires);
+            mainController.getSallesComboAffectation().getItems().addAll(salles);
+            mainController.getSallesComboAffectation().getSelectionModel().select(0);
+        }
+    }
+
+    private void updateHoraires() {
+        // Clear the existing items in horairesComboAffectation
+        mainController.getHorairesComboAffectation().getItems().clear();
+
+        // Get the selected JoursSemaine and Classe
+        JoursSemaine selectedJour = mainController.getJoursComboAffectation().getValue();
+        Classe selectedClasse = mainController.getClassesComboAffectation().getValue();
+        Enseignant selectedEnseignant = mainController.getEnseignantComboAffectation().getValue();
+
+        // Check if both JoursSemaine and Classe are selected
+        if (selectedJour != null && selectedClasse != null) {
+            // Get the available time slots for the selected JoursSemaine and Classe
+            Vector<Horaires> horaires = SeanceService.getAvailableHoraires(selectedJour, selectedClasse,
+                    selectedEnseignant);
+            // Add the available time slots to horairesComboAffectation
+            mainController.getHorairesComboAffectation().getItems().addAll(horaires);
         }
     }
 
