@@ -17,7 +17,6 @@ public class App extends Application {
         LoginSceneController controller = new LoginSceneController();
         // Initialize the controller
         controller.initialize();
-
         // Set the scene
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);

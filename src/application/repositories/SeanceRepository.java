@@ -23,4 +23,17 @@ public class SeanceRepository {
         parameters.add(jour.name());
         return dbClient.executeCommand(true, query, parameters);
     }
+
+    public static void insertIntoSeance(int idSalle, String jour, String heureDebut, String heureFin, int idCours,
+            int idClasse) throws SQLException {
+        String query = "INSERT INTO seance (id, idSalle, jour, heureDebut, heureFin, idCours, idClasse) VALUES (null, ?, ?, ?, ?, ?, ?)";
+        Vector<Object> parameters = new Vector<Object>();
+        parameters.add(idSalle);
+        parameters.add(jour);
+        parameters.add(heureDebut);
+        parameters.add(heureFin);
+        parameters.add(idCours);
+        parameters.add(idClasse);
+        dbClient.executeCommand(false, query, parameters);
+    }
 }

@@ -1409,7 +1409,7 @@
                               <VBox prefHeight="40.0" prefWidth="275.0" spacing="4.0" />
                               <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="194.0" spacing="16.0">
                                  <children>
-                                    <Button fx:id="annulerButtonParametres1" mnemonicParsing="false" onAction="#handleAnnulerAffectation" prefWidth="84.4" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Annuler" textAlignment="CENTER" textFill="#344054">
+                                    <Button mnemonicParsing="false" onAction="#handleAnnulerAffectation" prefWidth="84.4" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Annuler" textAlignment="CENTER" textFill="#344054">
                                        <font>
                                           <Font name="Inter Medium" size="13.0" />
                                        </font>

@@ -8,7 +8,10 @@ import java.util.Vector;
 import application.model.Classe;
 import application.model.Enseignant;
 import application.model.Horaires;
+import application.model.Salle;
+import application.model.TypeCours;
 import application.model.enums.JoursSemaine;
+import application.repositories.CoursRepository;
 import application.repositories.SeanceRepository;
 
 public class SeanceService {
@@ -54,6 +57,26 @@ public class SeanceService {
         }
 
         return resHoraires;
+    }
+
+    public static void affecterUneSeance(Classe classe, TypeCours typeCours, Enseignant enseignant, String coursNom,
+            Horaires horaires, JoursSemaine jour, Salle salle) {
+        int idCours = 0;
+        try {
+            ResultSet coursResultSet = CoursRepository.insertIntoCours(typeCours.getId(), coursNom, enseignant.getId(),
+                    classe.getNiveau().getId());
+            while (coursResultSet.next()) {
+                idCours = coursResultSet.getInt("LAST_INSERT_ID()");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            SeanceRepository.insertIntoSeance(salle.getId(), jour.name(), horaires.getHeureDebut().toString(),
+                    horaires.getHeureFin().toString(), idCours, classe.getId());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

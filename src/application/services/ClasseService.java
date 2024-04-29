@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 import application.model.Classe;
+import application.model.NiveauClasse;
 import application.repositories.ClasseRepository;
 
 public class ClasseService {
@@ -20,6 +21,7 @@ public class ClasseService {
                 statClasse.setNom(result.getString("nom"));
                 statClasse.setEffectif(result.getInt("effectif"));
                 statClasse.setNumero(result.getInt("numero"));
+                statClasse.setNiveau(new NiveauClasse(result.getInt("idNiveauClasse"), result.getString("nom")));
                 resClasses.add(statClasse);
             }
         } catch (SQLException e) {

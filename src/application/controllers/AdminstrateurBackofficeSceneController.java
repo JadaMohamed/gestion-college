@@ -47,7 +47,7 @@ public class AdminstrateurBackofficeSceneController {
     @FXML
     private TextField nomFieldParametres, prenomFieldParametres, telephoneFieldParametres, emailFieldParametres,
             oldPasswordParametres,
-            newPasswordParametres;
+            newPasswordParametres, nomCoursFieldAffectation;
 
     @FXML
     private DatePicker dateBirthDatePickerParametres;
@@ -84,12 +84,12 @@ public class AdminstrateurBackofficeSceneController {
 
     @FXML
     public void handleAnnulerAffectation(ActionEvent event) {
-
+        affectationPaneController.annulerAffectation();
     }
 
     @FXML
     public void handleAffecterButton(ActionEvent event) {
-        System.out.println(typeCoursComboAffectation.getSelectionModel().getSelectedItem().getId());
+        affectationPaneController.affecterUneSeance();
     }
 
     @FXML
@@ -180,6 +180,10 @@ public class AdminstrateurBackofficeSceneController {
         return oldPasswordParametres;
     }
 
+    public TextField getNomCoursFieldAffectation() {
+        return nomCoursFieldAffectation;
+    }
+
     public TextField getNewPasswordParametres() {
         return newPasswordParametres;
     }
@@ -211,4 +215,5 @@ public class AdminstrateurBackofficeSceneController {
     public ComboBox<Enseignant> getEnseignantComboAffectation() {
         return enseignantComboAffectation;
     }
+
 }

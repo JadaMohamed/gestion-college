@@ -13,15 +13,18 @@ import application.services.EnseignantService;
 import application.services.SallesService;
 import application.services.SeanceService;
 import application.services.TypeCoursService;
+import application.utilities.PushAlert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 public class AffectationPaneController {
@@ -73,10 +76,44 @@ public class AffectationPaneController {
         }
     }
 
+    public void annulerAffectation() {
+        updateHoraires();
+        updateAvailableSallesByHoraire();
+        mainController.getNomCoursFieldAffectation().setText("");
+
+    }
+
+    public void affecterUneSeance() {
+        Salle selectedSalle = mainController.getSallesComboAffectation().getSelectionModel().getSelectedItem();
+        TypeCours selectedTypeCours = mainController.getTypeCoursComboAffectation().getSelectionModel()
+                .getSelectedItem();
+        Horaires selectedHoraires = mainController.getHorairesComboAffectation().getSelectionModel().getSelectedItem();
+        JoursSemaine selectedJours = mainController.getJoursComboAffectation().getSelectionModel().getSelectedItem();
+        Classe selectedClasse = mainController.getClassesComboAffectation().getSelectionModel().getSelectedItem();
+        Enseignant selectedEnseignant = mainController.getEnseignantComboAffectation().getSelectionModel()
+                .getSelectedItem();
+        String selectedCourName = mainController.getNomCoursFieldAffectation().getText();
+        if (selectedClasse != null && selectedTypeCours != null && selectedEnseignant != null
+                && !selectedCourName.isEmpty() && selectedHoraires != null && selectedJours != null
+                && selectedSalle != null) {
+            SeanceService.affecterUneSeance(selectedClasse, selectedTypeCours, selectedEnseignant, selectedCourName,
+                    selectedHoraires, selectedJours, selectedSalle);
+            Stage currentStage = (Stage) mainController.getScene().getWindow();
+            mainController.getNomCoursFieldAffectation().setText("");
+            updateHoraires();
+            updateAvailableSallesByHoraire();
+            PushAlert.showAlert("Affectation succès", "L'affectation a été faite avec succès", AlertType.INFORMATION,
+                    currentStage);
+        } else {
+            Stage currentStage = (Stage) mainController.getScene().getWindow();
+            PushAlert.showAlert("Affectation échoué", "Veuillez remplir le formulaire", AlertType.ERROR,
+                    currentStage);
+        }
+    }
+
     private void updateAvailableSallesByHoraire() {
 
         mainController.getSallesComboAffectation().getItems().clear();
-
         Horaires selectedHoraires = mainController.getHorairesComboAffectation().getSelectionModel().getSelectedItem();
         JoursSemaine selectedJours = mainController.getJoursComboAffectation().getSelectionModel().getSelectedItem();
 
