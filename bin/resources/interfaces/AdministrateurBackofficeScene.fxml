@@ -1235,6 +1235,9 @@
                                        <padding>
                                           <Insets bottom="4.0" left="5.0" right="5.0" top="4.0" />
                                        </padding>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
                                     </ComboBox>
                                  </children>
                               </HBox>
@@ -1277,6 +1280,9 @@
                                        <padding>
                                           <Insets bottom="4.0" left="5.0" right="5.0" top="4.0" />
                                        </padding>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
                                     </ComboBox>
                                  </children>
                               </HBox>
@@ -1295,6 +1301,9 @@
                                        <padding>
                                           <Insets bottom="4.0" left="5.0" right="5.0" top="4.0" />
                                        </padding>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
                                     </ComboBox>
                                  </children>
                               </HBox>
@@ -1358,11 +1367,17 @@
                                        <padding>
                                           <Insets bottom="4.0" left="5.0" right="5.0" top="4.0" />
                                        </padding>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
                                     </ComboBox>
                                     <ComboBox fx:id="horairesComboAffectation" prefWidth="190.0" promptText="Horaire" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;" styleClass="combo-box">
                                        <padding>
                                           <Insets bottom="4.0" left="5.0" right="5.0" top="4.0" />
                                        </padding>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
                                     </ComboBox>
                                  </children>
                               </HBox>
@@ -1381,6 +1396,9 @@
                                        <padding>
                                           <Insets bottom="4.0" left="5.0" right="5.0" top="4.0" />
                                        </padding>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
                                     </ComboBox>
                                  </children>
                               </HBox>

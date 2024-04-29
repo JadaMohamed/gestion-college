@@ -27,6 +27,11 @@ public class Salle {
         return id;
     }
 
+    @Override
+    public String toString() {
+        return this.nomSalle + " - " + this.categorieSalle.getNom();
+    }
+
     public void setId(int id) {
         this.id = id;
     }

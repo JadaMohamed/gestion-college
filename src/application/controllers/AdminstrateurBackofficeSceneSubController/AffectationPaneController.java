@@ -4,9 +4,13 @@ import java.util.Vector;
 import application.controllers.AdminstrateurBackofficeSceneController;
 import application.model.Classe;
 import application.model.Enseignant;
+import application.model.Horaires;
+import application.model.Salle;
 import application.model.TypeCours;
+import application.model.enums.JoursSemaine;
 import application.services.ClasseService;
 import application.services.EnseignantService;
+import application.services.SallesService;
 import application.services.TypeCoursService;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -31,6 +35,9 @@ public class AffectationPaneController {
         fillClassesComboBox();
         fillTypeCours();
         fillEnseignants();
+        fillJoursSemaine();
+        fillHoraires();
+        fillSalles();
     }
 
     public void fillClassesComboBox() {
@@ -49,6 +56,24 @@ public class AffectationPaneController {
         mainController.getTypeCoursComboAffectation().getItems().addAll(allTypes);
         if (!allTypes.isEmpty()) {
             mainController.getTypeCoursComboAffectation().getSelectionModel().select(0);
+        }
+    }
+
+    public void fillHoraires() {
+        Vector<Horaires> horaires = Horaires.horairesDisponible();
+        mainController.getHorairesComboAffectation().getItems().addAll(horaires);
+    }
+
+    public void fillJoursSemaine() {
+        mainController.getJoursComboAffectation().getItems().addAll(JoursSemaine.values());
+    }
+
+    public void fillSalles() {
+        Vector<Salle> salles = SallesService.getAllSalles();
+        mainController.getSallesComboAffectation().getItems().clear();
+        mainController.getSallesComboAffectation().getItems().addAll(salles);
+        if (!salles.isEmpty()) {
+            mainController.getSallesComboAffectation().getSelectionModel().select(0);
         }
     }
 
@@ -94,9 +119,7 @@ public class AffectationPaneController {
                                             vbox);
                                     hbox.setSpacing(10);
                                     hbox.setFillHeight(true);
-                                    HBox.setHgrow(nameLabel, Priority.ALWAYS); // Make name label expand to fill
-                                                                               // available space
-
+                                    HBox.setHgrow(nameLabel, Priority.ALWAYS);
                                     // Set the HBox as the graphic of the cell
                                     setGraphic(hbox);
                                 }

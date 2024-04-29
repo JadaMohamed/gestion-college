@@ -5,7 +5,10 @@ import application.controllers.AdminstrateurBackofficeSceneSubController.Paramet
 import application.controllers.AdminstrateurBackofficeSceneSubController.SidebarController;
 import application.model.Classe;
 import application.model.Enseignant;
+import application.model.Horaires;
+import application.model.Salle;
 import application.model.TypeCours;
+import application.model.enums.JoursSemaine;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -26,8 +29,12 @@ public class AdminstrateurBackofficeSceneController {
             handleAnnulerAffectation;
 
     @FXML
-    private ComboBox<String> sallesComboAffectation, joursComboAffectation, horairesComboAffectation;
+    private ComboBox<Salle> sallesComboAffectation;
 
+    @FXML
+    private ComboBox<Horaires> horairesComboAffectation;
+    @FXML
+    private ComboBox<JoursSemaine> joursComboAffectation;
     @FXML
     private ComboBox<Enseignant> enseignantComboAffectation;
 
@@ -177,11 +184,11 @@ public class AdminstrateurBackofficeSceneController {
         return newPasswordParametres;
     }
 
-    public ComboBox<String> getSallesComboAffectation() {
+    public ComboBox<Salle> getSallesComboAffectation() {
         return sallesComboAffectation;
     }
 
-    public ComboBox<String> getJoursComboAffectation() {
+    public ComboBox<JoursSemaine> getJoursComboAffectation() {
         return joursComboAffectation;
     }
 
@@ -189,7 +196,7 @@ public class AdminstrateurBackofficeSceneController {
         return classesComboAffectation;
     }
 
-    public ComboBox<String> getHorairesComboAffectation() {
+    public ComboBox<Horaires> getHorairesComboAffectation() {
         return horairesComboAffectation;
     }
 
