@@ -83,7 +83,6 @@ public class AdminstrateurBackofficeSceneController {
         parametresPaneController.loadAdminData();
         affectationPaneController.initialize();
         accueilPaneController.initialize();
-        accueilPaneController.calculerSallesDisponibles();
     }
 
     public void updateSallesDisponibles(int nombreLaboratoires, int nombreSalleCours, int nombreSalleSport) {
@@ -235,24 +234,6 @@ public class AdminstrateurBackofficeSceneController {
 
     public ComboBox<Enseignant> getEnseignantComboAffectation() {
         return enseignantComboAffectation;
-    }
-
-    // Appeler la méthode pour calculer les salles disponibles
-    public void calculerSallesDisponibles() {
-        accueilPaneController.calculerSallesDisponibles();
-    }
-
-    // Getters pour les variables nombreLaboratoiresDisponibles, nombreSalleCoursDisponibles et nombreSalleDeSportDisponibles
-    public int getNombreLaboratoiresDisponibles() {
-        return accueilPaneController.getNombreLaboratoiresDisponibles();
-    }
-
-    public int getNombreSalleCoursDisponibles() {
-        return accueilPaneController.getNombreSalleCoursDisponibles();
-    }
-
-    public int getNombreSalleDeSportDisponibles() {
-        return accueilPaneController.getNombreSalleDeSportDisponibles();
     }
 
 }
