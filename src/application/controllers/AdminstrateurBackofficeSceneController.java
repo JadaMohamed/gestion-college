@@ -1,5 +1,6 @@
 package application.controllers;
 
+import application.controllers.AdminstrateurBackofficeSceneSubController.AccueilPaneController;
 import application.controllers.AdminstrateurBackofficeSceneSubController.AffectationPaneController;
 import application.controllers.AdminstrateurBackofficeSceneSubController.ParametresPaneController;
 import application.controllers.AdminstrateurBackofficeSceneSubController.SidebarController;
@@ -14,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 public class AdminstrateurBackofficeSceneController {
 
@@ -57,19 +59,38 @@ public class AdminstrateurBackofficeSceneController {
 
     private int currentAdminId;
 
+    @FXML
+    private Text SallesDisponibles,coursEnCours,effectifEnCours;
+
+    @FXML
+    private Label nombreLaboratoiresDisponibles,nombreSalleCoursDisponibles,nombreSalleDeSportDisponibles,
+    nombreClasse3EnCours,nombreClasse4EnCours,nombreClasse5EnCours,nombreClasse6EnCours,
+    nombreAbscencesNonExcuses;
+
     private SidebarController sidebarController;
     private ParametresPaneController parametresPaneController;
     private AffectationPaneController affectationPaneController;
+    private AccueilPaneController accueilPaneController;
 
     public void initialize(int adminId) {
         this.currentAdminId = adminId;
         sidebarController = new SidebarController(this);
         parametresPaneController = new ParametresPaneController(this);
         affectationPaneController = new AffectationPaneController(this);
+        accueilPaneController = new AccueilPaneController(this);
         sidebarController.initialize();
         parametresPaneController.initialize();
         parametresPaneController.loadAdminData();
         affectationPaneController.initialize();
+        accueilPaneController.initialize();
+        accueilPaneController.calculerSallesDisponibles();
+    }
+
+    public void updateSallesDisponibles(int nombreLaboratoires, int nombreSalleCours, int nombreSalleSport) {
+        // Mettre à jour les vues avec les nombres de salles disponibles
+        nombreLaboratoiresDisponibles.setText(String.valueOf(nombreLaboratoires));
+        nombreSalleCoursDisponibles.setText(String.valueOf(nombreSalleCours));
+        nombreSalleDeSportDisponibles.setText(String.valueOf(nombreSalleSport));
     }
 
     @FXML
@@ -214,6 +235,24 @@ public class AdminstrateurBackofficeSceneController {
 
     public ComboBox<Enseignant> getEnseignantComboAffectation() {
         return enseignantComboAffectation;
+    }
+
+    // Appeler la méthode pour calculer les salles disponibles
+    public void calculerSallesDisponibles() {
+        accueilPaneController.calculerSallesDisponibles();
+    }
+
+    // Getters pour les variables nombreLaboratoiresDisponibles, nombreSalleCoursDisponibles et nombreSalleDeSportDisponibles
+    public int getNombreLaboratoiresDisponibles() {
+        return accueilPaneController.getNombreLaboratoiresDisponibles();
+    }
+
+    public int getNombreSalleCoursDisponibles() {
+        return accueilPaneController.getNombreSalleCoursDisponibles();
+    }
+
+    public int getNombreSalleDeSportDisponibles() {
+        return accueilPaneController.getNombreSalleDeSportDisponibles();
     }
 
 }

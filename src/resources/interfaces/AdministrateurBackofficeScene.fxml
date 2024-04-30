@@ -654,321 +654,6 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="accueilPane" layoutX="20.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5; -fx-border-radius: 10; -fx-border-width: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <HBox layoutX="24.0" layoutY="16.0" spacing="2.0">
-                     <children>
-                        <Text fill="#4e427f" strokeType="OUTSIDE" strokeWidth="0.0" text="Hi, Admin ">
-                           <font>
-                              <Font name="Inter ExtraBold" size="16.0" />
-                           </font>
-                        </Text>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/👋🏼.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </HBox>
-                  <Text fill="#7b7b7b" layoutX="24.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fri, April 19">
-                     <font>
-                        <Font name="Inter SemiBold" size="14.0" />
-                     </font>
-                  </Text>
-                  <HBox layoutX="24.0" layoutY="80.0" prefHeight="100.0" prefWidth="952.0" spacing="16.0">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <children>
-                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="98.0" prefWidth="307.0" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-color: EDEEF0; -fx-font-family: Inter;">
-                           <children>
-                              <Text fill="#4e427f" layoutX="18.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Salles disponibles" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="12.0">
-                                 <font>
-                                    <Font name="Inter SemiBold" size="14.0" />
-                                 </font>
-                              </Text>
-                              <Text fill="#4e427f" layoutX="22.400000000000002" layoutY="70.0625" strokeType="OUTSIDE" strokeWidth="0.0" text="5" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="41.0">
-                                 <font>
-                                    <Font name="Inter SemiBold" size="30.0" />
-                                 </font>
-                              </Text>
-                              <ImageView fitHeight="54.0" fitWidth="54.0" layoutX="133.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="32.0">
-                                 <image>
-                                    <Image url="@../images/calendarfeaturedicon.png" />
-                                 </image>
-                              </ImageView>
-                              <HBox spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0">
-                                 <children>
-                                    <HBox alignment="CENTER_LEFT" spacing="4.0" style="-fx-border-color: #C8CCD1; -fx-border-width: 0 1 0 0;">
-                                       <children>
-                                          <Label text="1" textFill="#5a6080">
-                                             <font>
-                                                <Font name="Poppins Medium" size="13.0" />
-                                             </font>
-                                          </Label>
-                                          <ImageView fitHeight="61.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/icons/beaker-02.png" />
-                                             </image>
-                                          </ImageView>
-                                       </children>
-                                       <opaqueInsets>
-                                          <Insets />
-                                       </opaqueInsets>
-                                       <padding>
-                                          <Insets right="10.0" />
-                                       </padding>
-                                    </HBox>
-                                    <HBox alignment="CENTER_LEFT" spacing="4.0" style="-fx-border-color: #C8CCD1; -fx-border-width: 0 1 0 0;">
-                                       <children>
-                                          <Label text="4" textFill="#5a6080">
-                                             <font>
-                                                <Font name="Poppins Medium" size="13.0" />
-                                             </font>
-                                          </Label>
-                                          <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/icons/tv-02.png" />
-                                             </image>
-                                          </ImageView>
-                                       </children>
-                                       <opaqueInsets>
-                                          <Insets />
-                                       </opaqueInsets>
-                                       <padding>
-                                          <Insets right="10.0" />
-                                       </padding>
-                                    </HBox>
-                                    <HBox alignment="CENTER_LEFT" spacing="4.0">
-                                       <children>
-                                          <Label text="0" textFill="#5a6080">
-                                             <font>
-                                                <Font name="Poppins Medium" size="13.0" />
-                                             </font>
-                                          </Label>
-                                          <ImageView fitHeight="16.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/icons/sports_basketball.png" />
-                                             </image>
-                                          </ImageView>
-                                       </children>
-                                       <opaqueInsets>
-                                          <Insets />
-                                       </opaqueInsets>
-                                       <padding>
-                                          <Insets right="10.0" />
-                                       </padding>
-                                    </HBox>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="98.0" prefWidth="307.0" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-color: EDEEF0; -fx-font-family: Inter;">
-                           <children>
-                              <Text fill="#4e427f" layoutX="18.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cours encours" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="12.0">
-                                 <font>
-                                    <Font name="Inter SemiBold" size="14.0" />
-                                 </font>
-                              </Text>
-                              <Text fill="#4e427f" layoutX="22.400000000000002" layoutY="70.0625" strokeType="OUTSIDE" strokeWidth="0.0" text="17" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="41.0">
-                                 <font>
-                                    <Font name="Inter SemiBold" size="30.0" />
-                                 </font>
-                              </Text>
-                              <ImageView fitHeight="54.0" fitWidth="54.0" layoutX="133.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="32.0">
-                                 <image>
-                                    <Image url="@../images/coursefeatyredicon.png" />
-                                 </image>
-                              </ImageView>
-                              <HBox spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0">
-                                 <children>
-                                    <HBox alignment="CENTER_LEFT" spacing="4.0" style="-fx-border-color: #C8CCD1; -fx-border-width: 0 1 0 0;">
-                                       <children>
-                                          <Label text="4" textFill="#5a6080">
-                                             <font>
-                                                <Font name="Poppins Medium" size="13.0" />
-                                             </font>
-                                          </Label>
-                                          <Label text="3e" textFill="#5a6080">
-                                             <font>
-                                                <Font name="Inter Light" size="13.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                       <opaqueInsets>
-                                          <Insets />
-                                       </opaqueInsets>
-                                       <padding>
-                                          <Insets right="10.0" />
-                                       </padding>
-                                    </HBox>
-                                    <HBox alignment="CENTER_LEFT" spacing="4.0" style="-fx-border-color: #C8CCD1; -fx-border-width: 0 1 0 0;">
-                                       <children>
-                                          <Label text="3" textFill="#5a6080">
-                                             <font>
-                                                <Font name="Poppins Medium" size="13.0" />
-                                             </font>
-                                          </Label>
-                                          <Label text="4e" textFill="#5a6080">
-                                             <font>
-                                                <Font name="Inter Light" size="13.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                       <opaqueInsets>
-                                          <Insets />
-                                       </opaqueInsets>
-                                       <padding>
-                                          <Insets right="10.0" />
-                                       </padding>
-                                    </HBox>
-                                    <HBox alignment="CENTER_LEFT" spacing="4.0" style="-fx-border-color: #C8CCD1; -fx-border-width: 0 1 0 0;">
-                                       <children>
-                                          <Label text="6" textFill="#5a6080">
-                                             <font>
-                                                <Font name="Poppins Medium" size="13.0" />
-                                             </font>
-                                          </Label>
-                                          <Label text="5e" textFill="#5a6080">
-                                             <font>
-                                                <Font name="Inter Light" size="13.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                       <opaqueInsets>
-                                          <Insets />
-                                       </opaqueInsets>
-                                       <padding>
-                                          <Insets right="10.0" />
-                                       </padding>
-                                    </HBox>
-                                    <HBox alignment="CENTER_LEFT" spacing="4.0">
-                                       <children>
-                                          <Label text="4" textFill="#5a6080">
-                                             <font>
-                                                <Font name="Poppins Medium" size="13.0" />
-                                             </font>
-                                          </Label>
-                                          <Label text="6e" textFill="#5a6080">
-                                             <font>
-                                                <Font name="Inter Light" size="13.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                       <opaqueInsets>
-                                          <Insets />
-                                       </opaqueInsets>
-                                       <padding>
-                                          <Insets right="10.0" />
-                                       </padding>
-                                    </HBox>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="98.0" prefWidth="307.0" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-color: EDEEF0; -fx-font-family: Inter;">
-                           <children>
-                              <Text fill="#4e427f" layoutX="18.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Effectif en cours" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="12.0">
-                                 <font>
-                                    <Font name="Inter SemiBold" size="14.0" />
-                                 </font>
-                              </Text>
-                              <Text fill="#4e427f" layoutX="22.400000000000002" layoutY="70.0625" strokeType="OUTSIDE" strokeWidth="0.0" text="839" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="41.0">
-                                 <font>
-                                    <Font name="Inter SemiBold" size="30.0" />
-                                 </font>
-                              </Text>
-                              <ImageView fitHeight="54.0" fitWidth="54.0" layoutX="133.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="32.0">
-                                 <image>
-                                    <Image url="@../images/usersfeaturedicon.png" />
-                                 </image>
-                              </ImageView>
-                              <HBox alignment="CENTER_LEFT" spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0">
-                                 <children>
-                                    <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/icons/Warning%20icon.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label text="56" textFill="#b42318">
-                                       <font>
-                                          <Font name="Poppins Medium" size="13.0" />
-                                       </font>
-                                    </Label>
-                                    <Label text="Abscences non excusés" textFill="#b42318">
-                                       <font>
-                                          <Font name="Inter Light" size="13.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <padding>
-                                    <Insets right="10.0" />
-                                 </padding>
-                              </HBox>
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </HBox>
-                  <VBox layoutX="24.0" layoutY="214.0" prefHeight="463.0" prefWidth="954.0" style="-fx-background-color: #fff; -fx-background-radius: 8px; -fx-border-color: #EDEEF0; -fx-border-radius: 8px;">
-                     <children>
-                        <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="952.0" spacing="407.0" style="-fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0; -fx-border-radius: 4px 4px 0 0;">
-                           <children>
-                              <Label layoutX="24.0" text="Classes">
-                                 <font>
-                                    <Font name="Inter SemiBold" size="14.0" />
-                                 </font>
-                              </Label>
-                              <HBox prefHeight="26.0" prefWidth="460.0" spacing="16.0">
-                                 <children>
-                                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                       <children>
-                                          <TextField maxHeight="-Infinity" prefHeight="35.2" prefWidth="300.0" promptText="Search" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-background-radius: 4px; -fx-border-radius: 4px;">
-                                             <padding>
-                                                <Insets bottom="7.2" left="36.0" right="16.0" top="7.2" />
-                                             </padding>
-                                             <font>
-                                                <Font name="Inter Medium" size="14.0" />
-                                             </font>
-                                          </TextField>
-                                          <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="8.6" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="8.6">
-                                             <image>
-                                                <Image url="@../images/icons/search-lg.png" />
-                                             </image>
-                                          </ImageView>
-                                       </children>
-                                    </AnchorPane>
-                                    <ComboBox prefWidth="180.0" promptText="Filter" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;">
-                                       <padding>
-                                          <Insets bottom="4.0" left="6.0" right="6.0" top="4.0" />
-                                       </padding>
-                                    </ComboBox>
-                                 </children>
-                              </HBox>
-                           </children>
-                           <padding>
-                              <Insets bottom="10.0" left="16.0" right="16.0" top="10.0" />
-                           </padding>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </HBox>
-                        <TableView fx:id="coursEncoursTableView1" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="438.0" prefWidth="952.0" style="-fx-background-color: #fff; -fx-background-radius: 8px;">
-                           <columns>
-                              <TableColumn fx:id="coursEncoursProfesseur1" editable="false" prefWidth="211.19994813203812" style="-fx-background-color: #fff; -fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0; -fx-padding: 7px 10px;" styleClass="tableViewColumn" text="Classe" />
-                              <TableColumn fx:id="coursEncoursCours1" editable="false" prefWidth="85.06666564941406" style="-fx-background-color: #fff; -fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0;" styleClass="tableViewColumn" text="Effectif" />
-                              <TableColumn fx:id="coursEncoursClasse1" editable="false" prefWidth="137.8665771484375" style="-fx-background-color: #fff; -fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0;" styleClass="tableViewColumn" text="Statu" />
-                              <TableColumn fx:id="coursEncoursSalle1" editable="false" prefWidth="215.73333740234375" style="-fx-background-color: #fff; -fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0;" styleClass="tableViewColumn" text="Salle" />
-                              <TableColumn fx:id="coursEncoursHoraires1" editable="false" prefWidth="248.2666015625" style="-fx-background-color: #fff; -fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0;" styleClass="tableViewColumn" text="Professeur" />
-                              <TableColumn fx:id="coursEncoursAction1" editable="false" prefWidth="55.466552734375" style="-fx-background-color: #fff; -fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0;" styleClass="tableViewColumn" />
-                           </columns>
-                        </TableView>
-                     </children>
-                  </VBox>
-               </children>
-            </Pane>
             <Pane fx:id="sallesPane" layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <VBox layoutX="24.0" layoutY="214.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="463.0" prefWidth="954.0" style="-fx-background-color: #fff; -fx-background-radius: 8px; -fx-border-color: #EDEEF0; -fx-border-radius: 8px;">
@@ -1445,6 +1130,321 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="accueilPane" layoutX="20.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5; -fx-border-radius: 10; -fx-border-width: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox layoutX="24.0" layoutY="16.0" spacing="2.0">
+                     <children>
+                        <Text fill="#4e427f" strokeType="OUTSIDE" strokeWidth="0.0" text="Hi, Admin ">
+                           <font>
+                              <Font name="Inter ExtraBold" size="16.0" />
+                           </font>
+                        </Text>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/👋🏼.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <Text fill="#7b7b7b" layoutX="24.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fri, April 19">
+                     <font>
+                        <Font name="Inter SemiBold" size="14.0" />
+                     </font>
+                  </Text>
+                  <HBox layoutX="24.0" layoutY="80.0" prefHeight="100.0" prefWidth="952.0" spacing="16.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <children>
+                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="98.0" prefWidth="307.0" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-color: EDEEF0; -fx-font-family: Inter;">
+                           <children>
+                              <Text fill="#4e427f" layoutX="18.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Salles disponibles" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="12.0">
+                                 <font>
+                                    <Font name="Inter SemiBold" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="SallesDisponibles" fill="#4e427f" layoutX="22.400000000000002" layoutY="70.0625" strokeType="OUTSIDE" strokeWidth="0.0" text="5" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="41.0">
+                                 <font>
+                                    <Font name="Inter SemiBold" size="30.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="54.0" fitWidth="54.0" layoutX="133.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="32.0">
+                                 <image>
+                                    <Image url="@../images/calendarfeaturedicon.png" />
+                                 </image>
+                              </ImageView>
+                              <HBox spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="4.0" style="-fx-border-color: #C8CCD1; -fx-border-width: 0 1 0 0;">
+                                       <children>
+                                          <Label fx:id="nombreLaboratoiresDisponibles" text="1" textFill="#5a6080">
+                                             <font>
+                                                <Font name="Poppins Medium" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fitHeight="61.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/icons/beaker-02.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <padding>
+                                          <Insets right="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="4.0" style="-fx-border-color: #C8CCD1; -fx-border-width: 0 1 0 0;">
+                                       <children>
+                                          <Label fx:id="nombreSalleCoursDisponibles" text="4" textFill="#5a6080">
+                                             <font>
+                                                <Font name="Poppins Medium" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/icons/tv-02.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <padding>
+                                          <Insets right="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="4.0">
+                                       <children>
+                                          <Label fx:id="nombreSalleDeSportDisponibles" text="0" textFill="#5a6080">
+                                             <font>
+                                                <Font name="Poppins Medium" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fitHeight="16.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/icons/sports_basketball.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <padding>
+                                          <Insets right="10.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="98.0" prefWidth="307.0" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-color: EDEEF0; -fx-font-family: Inter;">
+                           <children>
+                              <Text fill="#4e427f" layoutX="18.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cours encours" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="12.0">
+                                 <font>
+                                    <Font name="Inter SemiBold" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="coursEnCours" fill="#4e427f" layoutX="22.400000000000002" layoutY="70.0625" strokeType="OUTSIDE" strokeWidth="0.0" text="17" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="41.0">
+                                 <font>
+                                    <Font name="Inter SemiBold" size="30.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="54.0" fitWidth="54.0" layoutX="133.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="32.0">
+                                 <image>
+                                    <Image url="@../images/coursefeatyredicon.png" />
+                                 </image>
+                              </ImageView>
+                              <HBox spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="4.0" style="-fx-border-color: #C8CCD1; -fx-border-width: 0 1 0 0;">
+                                       <children>
+                                          <Label fx:id="nombreClasse3EnCours" text="4" textFill="#5a6080">
+                                             <font>
+                                                <Font name="Poppins Medium" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="3e" textFill="#5a6080">
+                                             <font>
+                                                <Font name="Inter Light" size="13.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <padding>
+                                          <Insets right="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="4.0" style="-fx-border-color: #C8CCD1; -fx-border-width: 0 1 0 0;">
+                                       <children>
+                                          <Label fx:id="nombreClasse4EnCours" text="3" textFill="#5a6080">
+                                             <font>
+                                                <Font name="Poppins Medium" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="4e" textFill="#5a6080">
+                                             <font>
+                                                <Font name="Inter Light" size="13.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <padding>
+                                          <Insets right="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="4.0" style="-fx-border-color: #C8CCD1; -fx-border-width: 0 1 0 0;">
+                                       <children>
+                                          <Label fx:id="nombreClasse5EnCours" text="6" textFill="#5a6080">
+                                             <font>
+                                                <Font name="Poppins Medium" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="5e" textFill="#5a6080">
+                                             <font>
+                                                <Font name="Inter Light" size="13.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <padding>
+                                          <Insets right="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="4.0">
+                                       <children>
+                                          <Label fx:id="nombreClasse6EnCours" text="4" textFill="#5a6080">
+                                             <font>
+                                                <Font name="Poppins Medium" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="6e" textFill="#5a6080">
+                                             <font>
+                                                <Font name="Inter Light" size="13.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                       <padding>
+                                          <Insets right="10.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="98.0" prefWidth="307.0" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-color: EDEEF0; -fx-font-family: Inter;">
+                           <children>
+                              <Text fill="#4e427f" layoutX="18.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Effectif en cours" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="12.0">
+                                 <font>
+                                    <Font name="Inter SemiBold" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="effectifEnCours" fill="#4e427f" layoutX="22.400000000000002" layoutY="70.0625" strokeType="OUTSIDE" strokeWidth="0.0" text="839" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="41.0">
+                                 <font>
+                                    <Font name="Inter SemiBold" size="30.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="54.0" fitWidth="54.0" layoutX="133.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="32.0">
+                                 <image>
+                                    <Image url="@../images/usersfeaturedicon.png" />
+                                 </image>
+                              </ImageView>
+                              <HBox alignment="CENTER_LEFT" spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0">
+                                 <children>
+                                    <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/icons/Warning%20icon.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label text="56" textFill="#b42318">
+                                       <font>
+                                          <Font name="Poppins Medium" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Abscences non excusés" textFill="#b42318">
+                                       <font>
+                                          <Font name="Inter Light" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+                  <VBox layoutX="24.0" layoutY="214.0" prefHeight="463.0" prefWidth="954.0" style="-fx-background-color: #fff; -fx-background-radius: 8px; -fx-border-color: #EDEEF0; -fx-border-radius: 8px;">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="952.0" spacing="407.0" style="-fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0; -fx-border-radius: 4px 4px 0 0;">
+                           <children>
+                              <Label layoutX="24.0" text="Classes">
+                                 <font>
+                                    <Font name="Inter SemiBold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <HBox prefHeight="26.0" prefWidth="460.0" spacing="16.0">
+                                 <children>
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                       <children>
+                                          <TextField maxHeight="-Infinity" prefHeight="35.2" prefWidth="300.0" promptText="Search" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-background-radius: 4px; -fx-border-radius: 4px;">
+                                             <padding>
+                                                <Insets bottom="7.2" left="36.0" right="16.0" top="7.2" />
+                                             </padding>
+                                             <font>
+                                                <Font name="Inter Medium" size="14.0" />
+                                             </font>
+                                          </TextField>
+                                          <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="8.6" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="8.6">
+                                             <image>
+                                                <Image url="@../images/icons/search-lg.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </AnchorPane>
+                                    <ComboBox prefWidth="180.0" promptText="Filter" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;">
+                                       <padding>
+                                          <Insets bottom="4.0" left="6.0" right="6.0" top="4.0" />
+                                       </padding>
+                                    </ComboBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="16.0" right="16.0" top="10.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                        <TableView fx:id="coursEncoursTableView1" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="438.0" prefWidth="952.0" style="-fx-background-color: #fff; -fx-background-radius: 8px;">
+                           <columns>
+                              <TableColumn fx:id="coursEncoursProfesseur1" editable="false" prefWidth="211.19994813203812" style="-fx-background-color: #fff; -fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0; -fx-padding: 7px 10px;" styleClass="tableViewColumn" text="Classe" />
+                              <TableColumn fx:id="coursEncoursCours1" editable="false" prefWidth="85.06666564941406" style="-fx-background-color: #fff; -fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0;" styleClass="tableViewColumn" text="Effectif" />
+                              <TableColumn fx:id="coursEncoursClasse1" editable="false" prefWidth="137.8665771484375" style="-fx-background-color: #fff; -fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0;" styleClass="tableViewColumn" text="Statu" />
+                              <TableColumn fx:id="coursEncoursSalle1" editable="false" prefWidth="215.73333740234375" style="-fx-background-color: #fff; -fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0;" styleClass="tableViewColumn" text="Salle" />
+                              <TableColumn fx:id="coursEncoursHoraires1" editable="false" prefWidth="248.2666015625" style="-fx-background-color: #fff; -fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0;" styleClass="tableViewColumn" text="Professeur" />
+                              <TableColumn fx:id="coursEncoursAction1" editable="false" prefWidth="55.466552734375" style="-fx-background-color: #fff; -fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0;" styleClass="tableViewColumn" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
                </children>
             </Pane>
          </children>

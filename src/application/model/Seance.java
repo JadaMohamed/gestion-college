@@ -16,8 +16,11 @@ public class Seance {
     private Classe classe;
     private Vector<Absence> listAbsence;
 
-    public Seance() {
-
+    public Seance(int id, JoursSemaine jour, Time heureDebut, Time heureFin) {
+        this.id = id;
+        this.jour = jour;
+        this.heureDebut = heureDebut;
+        this.heureFin = heureFin;
     }
 
     public Seance(int id, Salle salle, JoursSemaine jour, Time heureDebut, Time heureFin, Cours cours, Classe classe) {
@@ -93,5 +96,9 @@ public class Seance {
 
     public void setListAbsences(Vector<Absence> listAbsences) {
         this.listAbsence = listAbsences;
+    }
+
+    public int getIdSalle() {
+        return salle.getId();
     }
 }
