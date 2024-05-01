@@ -15,21 +15,69 @@
   -fx-background-color: #9975e4;
 }
 
-.tableView {
+/* TableViews */
+.table-view {
   -fx-background-color: transparent;
-  -fx-alignment: center-left;
-  -fx-border-color: #1e90ff;
-  -fx-border-radius: 5px;
-  -fx-border-width: 0.1px;
-  -fx-font-size: 13px;
+}
+.table-view .corner {
+  -fx-background-color: transparent;
+}
+.table-view .column-header {
+  -fx-padding: 5px;
+  -fx-background-color: transparent;
+}
+.table-view .column-header .label {
+  -fx-padding: 10px;
+  -fx-alignment: CENTER-LEFT;
+  -fx-text-fill: #475467;
+}
+.table-view .table-cell {
+  -fx-border-color: transparent;
+  -fx-padding: 2 0 2 10px;
+  -fx-alignment: CENTER-LEFT;
 }
 
-.tableView .tableViewColumn {
-  -fx-font-weight: 300;
+.table-row-cell:hover {
+}
+.table-row-cell:hover {
+  -fx-background-color: #d6bbfb;
+  -fx-text-background-color: #6941c6;
+  -fx-text-fill: #6941c6;
+}
+.table-row-cell:odd {
+  -fx-background-color: #ffffff;
+  -fx-background-insets: 0, 0 0 1 0;
+  -fx-padding: 5px;
+}
+.table-row-cell:even {
+  -fx-background-color: #f9fafb;
+  -fx-background-insets: 0, 0 0 1 0;
+  -fx-padding: 5px;
+}
+.table-view .column-header-background {
   -fx-background-color: #fff;
-  -fx-border-color: #1e90ff;
-  -fx-border-width: 0.1px;
-  -fx-text-fill: #3e3e3e;
+  -fx-background-insets: 0 11px 0 0;
+  -fx-padding: 5px 0 5px 5px;
+}
+.table-view .virtual-flow .scroll-bar:vertical,
+.table-view .virtual-flow .scroll-bar:vertical .track,
+.table-view .virtual-flow .scroll-bar:vertical .track-background,
+.table-view .virtual-flow .scroll-bar:horizontal,
+.table-view .virtual-flow .scroll-bar:horizontal .track,
+.table-view .virtual-flow .scroll-bar:horizontal .track-background {
+  -fx-background-color: transparent;
+}
+.table-row-cell:highlighted {
+  -fx-background-color: #d6bbfb;
+  -fx-text-background-color: #6941c6;
+}
+.table-view .virtual-flow .scroll-bar .increment-button,
+.table-view .virtual-flow .scroll-bar .decrement-button {
+  -fx-opacity: 0;
+  -fx-padding: 2;
+}
+.table-view .column-header-background .filler {
+  -fx-background-color: transparent;
 }
 
 * {
@@ -58,6 +106,10 @@
 .date-picker .selected {
   -fx-background-color: -fx-primary-color;
   -fx-text-fill: white;
+}
+
+.boldtableViewColumn {
+  -fx-text-fill: #101828;
 }
 
 .date-picker .cell:hover,

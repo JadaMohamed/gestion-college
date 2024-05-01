@@ -3,6 +3,9 @@ package application.services;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
 
 import application.model.Classe;
@@ -82,7 +85,7 @@ public class SeanceService {
     public static int getNombreSallesDisponibles() {
         int nombreTotalSalles = 22;
         int nombreSeancesEnCours = 0;
-    
+
         try {
             ResultSet resultSet = SeanceRepository.getNombreSeanceEnCours();
             if (resultSet.next()) {
@@ -93,23 +96,23 @@ public class SeanceService {
         }
         return nombreTotalSalles - nombreSeancesEnCours;
     }
-    
+
     public static int[] getNombreSallesOccupes() throws SQLException {
-        int[] nombreSallesOccupes = new int[3]; 
+        int[] nombreSallesOccupes = new int[3];
         try {
             ResultSet resultSet = SeanceRepository.getNombreSallesOccupes();
             if (resultSet.next()) {
                 nombreSallesOccupes[0] = resultSet.getInt("nombreLaboratoiresOccupes");
                 nombreSallesOccupes[1] = resultSet.getInt("nombreSalleCoursOccupes");
                 nombreSallesOccupes[2] = resultSet.getInt("nombreSalleDeSportOccupes");
-                
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return nombreSallesOccupes;
-    } 
-    
+    }
+
     public static int[] getNombreCoursParNiveau() {
         int[] nombreCoursParNiveau = new int[4];
         try {
@@ -138,6 +141,32 @@ public class SeanceService {
         }
         return effectifEnCours;
     }
-    
+
+    public static Vector<Map<String, String>> getSeancesEnCours() {
+        Vector<Map<String, String>> seances = new Vector<Map<String, String>>();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        ResultSet result;
+        try {
+            result = SeanceRepository.getSeancesEnCours();
+            while (result.next()) {
+                Map<String, String> seance = new HashMap<>();
+                seance.put("enseignantFullName",
+                        result.getString("nomEnseignant") + " " + result.getString("prenomEnseignant"));
+                seance.put("enseignantEmail", result.getString("emailEnseignant"));
+                seance.put("enseignantPhotoUrl", result.getString("photoUrlEnseignant"));
+                seance.put("horaires",
+                        result.getTime("heureDebut").toLocalTime().format(formatter) + " - "
+                                + result.getTime("heureFin").toLocalTime().format(formatter));
+                seance.put("coursNom", result.getString("nomCours"));
+                seance.put("classeNom", result.getString("nomNiveau") + " " + result.getString("numeroClasse"));
+                seance.put("salleNom", result.getString("nomSalle"));
+                seance.put("effectif", result.getString("effectif"));
+                seances.add(seance);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return seances;
+    }
 
 }

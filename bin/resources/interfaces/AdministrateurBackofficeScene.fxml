@@ -1207,9 +1207,9 @@
                   </HBox>
                   <VBox layoutX="24.0" layoutY="214.0" prefHeight="463.0" prefWidth="954.0" style="-fx-background-color: #fff; -fx-background-radius: 8px; -fx-border-color: #EDEEF0; -fx-border-radius: 8px;">
                      <children>
-                        <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="952.0" spacing="407.0" style="-fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0; -fx-border-radius: 4px 4px 0 0;">
+                        <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="952.0" spacing="341.0" style="-fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0; -fx-border-radius: 4px 4px 0 0;">
                            <children>
-                              <Label layoutX="24.0" text="Classes">
+                              <Label layoutX="24.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="150.0" text="Classes en cours">
                                  <font>
                                     <Font name="Inter SemiBold" size="14.0" />
                                  </font>
@@ -1228,7 +1228,7 @@
                                           </TextField>
                                           <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="8.6" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="8.6">
                                              <image>
-                                                <Image url="@../images/icons/search-lg.png" />
+                                                <Image url="@../../../../dev/gestion-college/src/resources/images/icons/search-lg.png" />
                                              </image>
                                           </ImageView>
                                        </children>
@@ -1244,18 +1244,15 @@
                            <padding>
                               <Insets bottom="10.0" left="16.0" right="16.0" top="10.0" />
                            </padding>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
                         </HBox>
-                        <TableView fx:id="coursEncoursTableView1" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="438.0" prefWidth="952.0" style="-fx-background-color: #fff; -fx-background-radius: 8px;">
+                        <TableView fx:id="coursEncoursTableView" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="404.0" prefWidth="954.0">
                            <columns>
-                              <TableColumn fx:id="coursEncoursProfesseur1" editable="false" prefWidth="211.19994813203812" style="-fx-background-color: #fff; -fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0; -fx-padding: 7px 10px;" styleClass="tableViewColumn" text="Classe" />
-                              <TableColumn fx:id="coursEncoursCours1" editable="false" prefWidth="85.06666564941406" style="-fx-background-color: #fff; -fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0;" styleClass="tableViewColumn" text="Effectif" />
-                              <TableColumn fx:id="coursEncoursClasse1" editable="false" prefWidth="137.8665771484375" style="-fx-background-color: #fff; -fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0;" styleClass="tableViewColumn" text="Statu" />
-                              <TableColumn fx:id="coursEncoursSalle1" editable="false" prefWidth="215.73333740234375" style="-fx-background-color: #fff; -fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0;" styleClass="tableViewColumn" text="Salle" />
-                              <TableColumn fx:id="coursEncoursHoraires1" editable="false" prefWidth="248.2666015625" style="-fx-background-color: #fff; -fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0;" styleClass="tableViewColumn" text="Professeur" />
-                              <TableColumn fx:id="coursEncoursAction1" editable="false" prefWidth="55.466552734375" style="-fx-background-color: #fff; -fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0;" styleClass="tableViewColumn" />
+                              <TableColumn fx:id="coursEncoursProfesseurColumn" editable="false" prefWidth="235.0" text="Professeur" />
+                              <TableColumn fx:id="coursEncoursClasseColumn" editable="false" prefWidth="100.0" style="-fx-font-weight: bold;" styleClass="boldtableViewColumn" text="Classe" />
+                              <TableColumn fx:id="coursEncoursEffectifColumn" editable="false" prefWidth="100.0" styleClass="tableViewColumn" text="Effectif" />
+                              <TableColumn fx:id="coursEncoursCourNomColumn" editable="false" prefWidth="190.0" style="-fx-font-weight: bold;" styleClass="boldtableViewColumn" text="Cours" />
+                              <TableColumn fx:id="coursEncoursHorairesColumn" editable="false" prefWidth="130.0" styleClass="tableViewColumn" text="Horaires" />
+                              <TableColumn fx:id="coursEncoursSalleColumn" editable="false" prefWidth="180.0" style="-fx-font-weight: bold;" styleClass="boldtableViewColumn" text="Salle" />
                            </columns>
                         </TableView>
                      </children>

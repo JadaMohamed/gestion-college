@@ -1,5 +1,7 @@
 package application.controllers;
 
+import java.util.Map;
+
 import application.controllers.AdminstrateurBackofficeSceneSubController.AccueilPaneController;
 import application.controllers.AdminstrateurBackofficeSceneSubController.AffectationPaneController;
 import application.controllers.AdminstrateurBackofficeSceneSubController.ClassesPaneController;
@@ -45,6 +47,15 @@ public class AdminstrateurBackofficeSceneController {
     private ComboBox<TypeCours> typeCoursComboAffectation;
 
     @FXML
+    private TableView<Map<String, String>> coursEncoursTableView;
+    @FXML
+    private TableColumn<Map<String, String>, String> coursEncoursSalleColumn, coursEncoursHorairesColumn,
+            coursEncoursClasseColumn, coursEncoursCourNomColumn, coursEncoursEffectifColumn;
+
+    @FXML
+    private TableColumn<Map<String, String>, Map<String, String>> coursEncoursProfesseurColumn;
+
+    @FXML
     private ComboBox<Classe> classesComboAffectation;
 
     @FXML
@@ -61,7 +72,7 @@ public class AdminstrateurBackofficeSceneController {
     private int currentAdminId;
 
     @FXML
-    private Text SallesDisponibles,coursEnCours,effectifEnCours;
+    private Text SallesDisponibles, coursEnCours, effectifEnCours;
 
     @FXML
     private Label nombreLaboratoiresDisponibles,nombreSalleCoursDisponibles,nombreSalleDeSportDisponibles,
@@ -91,13 +102,13 @@ public class AdminstrateurBackofficeSceneController {
         affectationPaneController.initialize();
         accueilPaneController.initialize();
         classesPaneController.initialize();
-        // sallesPaneController.initialize();
     }
 
     public void setSallesDisponiblesText(String text) {
         SallesDisponibles.setText(text);
     }
-    public void setCoursEnCoursText(String text){
+
+    public void setCoursEnCoursText(String text) {
         coursEnCours.setText(text);
     }
 
@@ -116,12 +127,15 @@ public class AdminstrateurBackofficeSceneController {
     public void setCoursEnCours6emeText(String text) {
         nombreClasse6EnCours.setText(text);
     }
+
     public void setCoursEnCours5emeText(String text) {
         nombreClasse5EnCours.setText(text);
     }
+
     public void setCoursEnCours4emeText(String text) {
         nombreClasse4EnCours.setText(text);
     }
+
     public void setCoursEnCours3emeText(String text) {
         nombreClasse3EnCours.setText(text);
     }
