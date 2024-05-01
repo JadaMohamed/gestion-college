@@ -1248,7 +1248,7 @@
                                     <Font name="Inter SemiBold" size="14.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="coursEnCours" fill="#4e427f" layoutX="22.400000000000002" layoutY="70.0625" strokeType="OUTSIDE" strokeWidth="0.0" text="17" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="41.0">
+                              <Text fx:id="coursEnCours" fill="#4e427f" layoutX="22.400000000000002" layoutY="70.0625" strokeType="OUTSIDE" strokeWidth="0.0" text="0" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="41.0">
                                  <font>
                                     <Font name="Inter SemiBold" size="30.0" />
                                  </font>

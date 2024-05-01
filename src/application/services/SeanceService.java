@@ -79,4 +79,65 @@ public class SeanceService {
         }
     }
 
+    public static int getNombreSallesDisponibles() {
+        int nombreTotalSalles = 22;
+        int nombreSeancesEnCours = 0;
+    
+        try {
+            ResultSet resultSet = SeanceRepository.getNombreSeanceEnCours();
+            if (resultSet.next()) {
+                nombreSeancesEnCours = resultSet.getInt("seancesencours");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return nombreTotalSalles - nombreSeancesEnCours;
+    }
+    
+    public static int[] getNombreSallesOccupes() throws SQLException {
+        int[] nombreSallesOccupes = new int[3]; 
+        try {
+            ResultSet resultSet = SeanceRepository.getNombreSallesOccupes();
+            if (resultSet.next()) {
+                nombreSallesOccupes[0] = resultSet.getInt("nombreLaboratoiresOccupes");
+                nombreSallesOccupes[1] = resultSet.getInt("nombreSalleCoursOccupes");
+                nombreSallesOccupes[2] = resultSet.getInt("nombreSalleDeSportOccupes");
+                
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return nombreSallesOccupes;
+    } 
+    
+    public static int[] getNombreCoursParNiveau() {
+        int[] nombreCoursParNiveau = new int[4];
+        try {
+            ResultSet resultSet = SeanceRepository.getNombreCoursParNiveau();
+            if (resultSet.next()) {
+                nombreCoursParNiveau[0] = resultSet.getInt("nombreCours6eme");
+                nombreCoursParNiveau[1] = resultSet.getInt("nombreCours5eme");
+                nombreCoursParNiveau[2] = resultSet.getInt("nombreCours4eme");
+                nombreCoursParNiveau[3] = resultSet.getInt("nombreCours3eme");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return nombreCoursParNiveau;
+    }
+
+    public static int getEffectifEnCours() throws SQLException {
+        int effectifEnCours = 0;
+        try {
+            ResultSet resultSet = SeanceRepository.getEffectifEnCours();
+            if (resultSet.next()) {
+                effectifEnCours = resultSet.getInt("effectifEnCours");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return effectifEnCours;
+    }
+    
+
 }

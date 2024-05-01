@@ -83,13 +83,43 @@ public class AdminstrateurBackofficeSceneController {
         parametresPaneController.loadAdminData();
         affectationPaneController.initialize();
         accueilPaneController.initialize();
+        
     }
 
-    public void updateSallesDisponibles(int nombreLaboratoires, int nombreSalleCours, int nombreSalleSport) {
-        // Mettre à jour les vues avec les nombres de salles disponibles
-        nombreLaboratoiresDisponibles.setText(String.valueOf(nombreLaboratoires));
-        nombreSalleCoursDisponibles.setText(String.valueOf(nombreSalleCours));
-        nombreSalleDeSportDisponibles.setText(String.valueOf(nombreSalleSport));
+    public void setSallesDisponiblesText(String text) {
+        SallesDisponibles.setText(text);
+    }
+    public void setCoursEnCoursText(String text){
+        coursEnCours.setText(text);
+    }
+
+    public void setNombreLaboratoiresOccupesText(String text) {
+        nombreLaboratoiresDisponibles.setText(text);
+    }
+
+    public void setNombreSalleCoursOccupesText(String text) {
+        nombreSalleCoursDisponibles.setText(text);
+    }
+
+    public void setNombreSalleDeSportOccupesText(String text) {
+        nombreSalleDeSportDisponibles.setText(text);
+    }
+
+    public void setCoursEnCours6emeText(String text) {
+        nombreClasse6EnCours.setText(text);
+    }
+    public void setCoursEnCours5emeText(String text) {
+        nombreClasse5EnCours.setText(text);
+    }
+    public void setCoursEnCours4emeText(String text) {
+        nombreClasse4EnCours.setText(text);
+    }
+    public void setCoursEnCours3emeText(String text) {
+        nombreClasse3EnCours.setText(text);
+    }
+
+    public void setEffectifEnCoursText(String text) {
+        effectifEnCours.setText(text);
     }
 
     @FXML
