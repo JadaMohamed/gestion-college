@@ -43,22 +43,22 @@ public class SeanceRepository {
 
     public static int getNombreSeancesEnCours() throws SQLException {
         String query = "SELECT count(id) as seancesencours " +
-                    "FROM seance " +
-                    "WHERE DAYOFWEEK(CURDATE()) = CASE " +
-                    "WHEN seance.jour = 'LUNDI' THEN 2 " +
-                    "WHEN seance.jour = 'MARDI' THEN 3 " +
-                    "WHEN seance.jour = 'MERCREDI' THEN 4 " +
-                    "WHEN seance.jour = 'JEUDI' THEN 5 " +
-                    "WHEN seance.jour = 'VENDREDI' THEN 6 " +
-                    "WHEN seance.jour = 'SAMEDI' THEN 7 " +
-                    "WHEN seance.jour = 'DIMANCHE' THEN 1 " +
-                    "END " +
-                    "AND CURTIME() BETWEEN seance.heureDebut AND seance.heureFin";
+                "FROM seance " +
+                "WHERE DAYOFWEEK(CURDATE()) = CASE " +
+                "WHEN seance.jour = 'LUNDI' THEN 2 " +
+                "WHEN seance.jour = 'MARDI' THEN 3 " +
+                "WHEN seance.jour = 'MERCREDI' THEN 4 " +
+                "WHEN seance.jour = 'JEUDI' THEN 5 " +
+                "WHEN seance.jour = 'VENDREDI' THEN 6 " +
+                "WHEN seance.jour = 'SAMEDI' THEN 7 " +
+                "WHEN seance.jour = 'DIMANCHE' THEN 1 " +
+                "END " +
+                "AND CURTIME() BETWEEN seance.heureDebut AND seance.heureFin";
         int nombreSeancesEnCours = 0;
         try (java.sql.Connection connectDB = SqlConnection.getConnection();
-            java.sql.PreparedStatement statement = connectDB.prepareStatement(query);
-            ResultSet resultSet = statement.executeQuery()) {
-    
+                java.sql.PreparedStatement statement = connectDB.prepareStatement(query);
+                ResultSet resultSet = statement.executeQuery()) {
+
             if (resultSet.next()) {
                 nombreSeancesEnCours = resultSet.getInt("seancesencours");
                 System.out.println("nombreSeancesEnCours est : " + nombreSeancesEnCours);
@@ -69,6 +69,7 @@ public class SeanceRepository {
         }
         return nombreSeancesEnCours;
     }
+
     public static ResultSet getNombreSeanceEnCours() throws SQLException {
         String query = "SELECT count(id) as seancesencours " +
                 "FROM seance " +
@@ -141,21 +142,41 @@ public class SeanceRepository {
     public static ResultSet getEffectifEnCours() throws SQLException {
         List<Object> parameters = new ArrayList<>();
         String query = "SELECT SUM(C.effectif) AS effectifEnCours " +
-        "FROM classe C " +
-        "JOIN seance S ON C.id = S.idClasse " +
-        "WHERE DAYOFWEEK(CURDATE()) = CASE " +
-        "    WHEN S.jour = 'LUNDI' THEN 2 " +
-        "    WHEN S.jour = 'MARDI' THEN 3 " +
-        "    WHEN S.jour = 'MERCREDI' THEN 4 " +
-        "    WHEN S.jour = 'JEUDI' THEN 5 " +
-        "    WHEN S.jour = 'VENDREDI' THEN 6 " +
-        "    WHEN S.jour = 'SAMEDI' THEN 7 " +
-        "    WHEN S.jour = 'DIMANCHE' THEN 1 " +
-        "END " +
-        "AND CURTIME() BETWEEN S.heureDebut AND S.heureFin"
-        ;
+                "FROM classe C " +
+                "JOIN seance S ON C.id = S.idClasse " +
+                "WHERE DAYOFWEEK(CURDATE()) = CASE " +
+                "    WHEN S.jour = 'LUNDI' THEN 2 " +
+                "    WHEN S.jour = 'MARDI' THEN 3 " +
+                "    WHEN S.jour = 'MERCREDI' THEN 4 " +
+                "    WHEN S.jour = 'JEUDI' THEN 5 " +
+                "    WHEN S.jour = 'VENDREDI' THEN 6 " +
+                "    WHEN S.jour = 'SAMEDI' THEN 7 " +
+                "    WHEN S.jour = 'DIMANCHE' THEN 1 " +
+                "END " +
+                "AND CURTIME() BETWEEN S.heureDebut AND S.heureFin";
         return dbClient.executeCommand(true, query, parameters);
     }
 
-
+    public static ResultSet getSeancesEnCours() {
+        String query = "SELECT salle.nom AS nomSalle, cours.nom AS nomCours, niveau.nom AS nomNiveau,classe.effectif AS effectif, classe.numero AS numeroClasse, enseignant.nom AS nomEnseignant, enseignant.prenom AS prenomEnseignant, enseignant.email AS emailEnseignant, enseignant.photoUrl AS photoUrlEnseignant, seance.heureDebut, seance.heureFin "
+                +
+                "FROM salle, cours, classe, enseignant, seance, niveau " +
+                "WHERE salle.id = seance.idSalle " +
+                "AND enseignant.id = cours.idEnseignant " +
+                "AND seance.idCours = cours.id " +
+                "AND seance.idClasse = classe.id " +
+                "AND niveau.id = classe.idNiveauClasse " +
+                "AND DAYOFWEEK(CURDATE()) = CASE " +
+                "WHEN seance.jour = 'LUNDI' THEN 2 " +
+                "WHEN seance.jour = 'MARDI' THEN 3 " +
+                "WHEN seance.jour = 'MERCREDI' THEN 4 " +
+                "WHEN seance.jour = 'JEUDI' THEN 5 " +
+                "WHEN seance.jour = 'VENDREDI' THEN 6 " +
+                "WHEN seance.jour = 'SAMEDI' THEN 7 " +
+                "WHEN seance.jour = 'DIMANCHE' THEN 1 " +
+                "END " +
+                "AND CURTIME() BETWEEN seance.heureDebut AND seance.heureFin;";
+        Vector<Object> parameters = new Vector<Object>();
+        return dbClient.executeCommand(true, query, parameters);
+    }
 }

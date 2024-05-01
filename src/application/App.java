@@ -12,7 +12,6 @@ public class App extends Application {
     public void start(Stage primaryStage) throws Exception {
         // Load the FXML file
         Parent root = FXMLLoader.load(getClass().getResource("../resources/interfaces/LoginScene.fxml"));
-
         // Set the controller
         LoginSceneController controller = new LoginSceneController();
         // Initialize the controller

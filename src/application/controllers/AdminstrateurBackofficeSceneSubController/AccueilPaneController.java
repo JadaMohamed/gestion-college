@@ -2,17 +2,22 @@ package application.controllers.AdminstrateurBackofficeSceneSubController;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
 
 import application.controllers.AdminstrateurBackofficeSceneController;
 import application.repositories.SeanceRepository;
 import application.services.SeanceService;
+import application.utilities.CustomCellFactory;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 public class AccueilPaneController {
     private AdminstrateurBackofficeSceneController mainController;
-    
+
     public AccueilPaneController(AdminstrateurBackofficeSceneController mainController) {
         this.mainController = mainController;
         // this.seanceRepository = new SeanceRepository();
@@ -53,18 +58,18 @@ public class AccueilPaneController {
         int nombreSallesDisponibles = SeanceService.getNombreSallesDisponibles();
         mainController.setSallesDisponiblesText(String.valueOf(nombreSallesDisponibles));
     }
-    
+
     public void updateCoursEnCours() {
-    try {
-        ResultSet resultSet = SeanceRepository.getNombreSeanceEnCours();
-        if (resultSet.next()) {
-            int nombreCoursEnCours = resultSet.getInt("seancesencours");
-            mainController.setCoursEnCoursText(String.valueOf(nombreCoursEnCours));
+        try {
+            ResultSet resultSet = SeanceRepository.getNombreSeanceEnCours();
+            if (resultSet.next()) {
+                int nombreCoursEnCours = resultSet.getInt("seancesencours");
+                mainController.setCoursEnCoursText(String.valueOf(nombreCoursEnCours));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
     }
-}
 
     public void updateSallesOccupesLabels() {
         try {
@@ -85,13 +90,45 @@ public class AccueilPaneController {
         mainController.setCoursEnCours3emeText(String.valueOf(nombreCoursParNiveau[3]));
     }
 
-    public void updateEffectifEnCours(){
-        try{
+    public void updateEffectifEnCours() {
+        try {
             int effectifEnCours = SeanceService.getEffectifEnCours();
-        mainController.setEffectifEnCoursText(String.valueOf(effectifEnCours));
-        }catch(SQLException e){
+            mainController.setEffectifEnCoursText(String.valueOf(effectifEnCours));
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-}
 
+    public void fillCurrentSeances(TableView<Map<String, String>> coursEncoursTableView,
+            TableColumn<Map<String, String>, String> coursEncoursSalleColumn,
+            TableColumn<Map<String, String>, String> coursEncoursHorairesColumn,
+            TableColumn<Map<String, String>, String> coursEncoursClasseColumn,
+            TableColumn<Map<String, String>, String> coursEncoursCourNomColumn,
+            TableColumn<Map<String, String>, String> coursEncoursEffectifColumn,
+            TableColumn<Map<String, String>, Map<String, String>> coursEncoursProfesseurColumn) {
+        ObservableList<Map<String, String>> coursEncoursData = FXCollections.observableArrayList();
+        coursEncoursData.addAll(SeanceService.getSeancesEnCours());
+
+        // Associate data with columns
+        coursEncoursSalleColumn
+                .setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
+                        cellData.getValue().get("salleNom")));
+        coursEncoursHorairesColumn
+                .setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
+                        cellData.getValue().get("horaires")));
+        coursEncoursClasseColumn
+                .setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
+                        cellData.getValue().get("classeNom")));
+        coursEncoursProfesseurColumn
+                .setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
+        coursEncoursProfesseurColumn.setCellFactory(new CustomCellFactory());
+        coursEncoursCourNomColumn
+                .setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
+                        cellData.getValue().get("coursNom")));
+        coursEncoursEffectifColumn
+                .setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
+                        cellData.getValue().get("effectif")));
+
+        coursEncoursTableView.setItems(coursEncoursData);
+    }
+}
