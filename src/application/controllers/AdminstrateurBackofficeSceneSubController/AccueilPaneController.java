@@ -6,8 +6,11 @@ import java.util.Map;
 
 import application.controllers.AdminstrateurBackofficeSceneController;
 import application.repositories.SeanceRepository;
+import application.services.ClasseService;
 import application.services.SeanceService;
 import application.utilities.CustomCellFactory;
+import application.utilities.CustomClasseCell;
+import application.utilities.CustomStatusCell;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -130,5 +133,32 @@ public class AccueilPaneController {
                         cellData.getValue().get("effectif")));
 
         coursEncoursTableView.setItems(coursEncoursData);
+    }
+
+    public void fillClassesWithSeances(TableView<Map<String, String>> classesTableView,
+            TableColumn<Map<String, String>, String> classesSalleColumn,
+            TableColumn<Map<String, String>, String> classesStatusColumn,
+            TableColumn<Map<String, String>, String> classesClasseColumn,
+            TableColumn<Map<String, String>, String> classesEffectifColumn,
+            TableColumn<Map<String, String>, Map<String, String>> classesProfesseurColumn) {
+        ObservableList<Map<String, String>> data = FXCollections.observableArrayList();
+        data.addAll(ClasseService.getAllClassesWithCurrentSeances());
+
+        // Associate data with columns
+        classesSalleColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
+                cellData.getValue().get("salleNom")));
+        classesStatusColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
+                cellData.getValue().get("status")));
+        classesStatusColumn.setCellFactory(new CustomStatusCell());
+        classesClasseColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
+                cellData.getValue().get("classeNom")));
+        // Set custom cell factory for classesClasseColumn
+        classesClasseColumn.setCellFactory(new CustomClasseCell());
+        classesProfesseurColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
+        classesProfesseurColumn.setCellFactory(new CustomCellFactory());
+        classesEffectifColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
+                cellData.getValue().get("effectif")));
+
+        classesTableView.setItems(data);
     }
 }

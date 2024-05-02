@@ -1425,61 +1425,6 @@
                         </AnchorPane>
                      </children>
                   </HBox>
-                  <VBox layoutX="24.0" layoutY="214.0" prefHeight="463.0" prefWidth="952.0" style="-fx-background-color: #fff; -fx-background-radius: 8px; -fx-border-color: #EDEEF0; -fx-border-radius: 8px;">
-                     <children>
-                        <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="952.0" spacing="361.0" style="-fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0; -fx-border-radius: 4px 4px 0 0;">
-                           <children>
-                              <Label text="Cours encours">
-                                 <font>
-                                    <Font name="Inter SemiBold" size="14.0" />
-                                 </font>
-                              </Label>
-                              <HBox prefHeight="26.0" prefWidth="460.0" spacing="16.0">
-                                 <children>
-                                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                       <children>
-                                          <TextField maxHeight="-Infinity" prefHeight="35.2" prefWidth="300.0" promptText="Search" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-background-radius: 4px; -fx-border-radius: 4px;">
-                                             <padding>
-                                                <Insets bottom="7.2" left="36.0" right="16.0" top="7.2" />
-                                             </padding>
-                                             <font>
-                                                <Font name="Inter Medium" size="14.0" />
-                                             </font>
-                                          </TextField>
-                                          <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="8.6" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="8.6">
-                                             <image>
-                                                <Image url="@../images/icons/search-lg.png" />
-                                             </image>
-                                          </ImageView>
-                                       </children>
-                                    </AnchorPane>
-                                    <ComboBox prefWidth="180.0" promptText="Filter" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;">
-                                       <padding>
-                                          <Insets bottom="4.0" left="6.0" right="6.0" top="4.0" />
-                                       </padding>
-                                    </ComboBox>
-                                 </children>
-                              </HBox>
-                           </children>
-                           <padding>
-                              <Insets bottom="10.0" left="16.0" right="16.0" top="10.0" />
-                           </padding>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </HBox>
-                        <TableView fx:id="coursEncoursTableView" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="451.0" prefWidth="952.0" style="-fx-background-color: #fff; -fx-background-radius: 8px;">
-                           <columns>
-                              <TableColumn fx:id="coursEncoursProfesseur" editable="false" prefWidth="249.33338624238968" style="-fx-background-color: #fff; -fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0; -fx-padding: 7px 10px;" styleClass="tableViewColumn" text="Professeur" />
-                              <TableColumn fx:id="coursEncoursCours" editable="false" prefWidth="213.8666229248047" style="-fx-background-color: #fff; -fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0;" styleClass="tableViewColumn" text="Cours" />
-                              <TableColumn fx:id="coursEncoursClasse" editable="false" prefWidth="137.59991455078125" style="-fx-background-color: #fff; -fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0;" styleClass="tableViewColumn" text="Classe" />
-                              <TableColumn fx:id="coursEncoursSalle" editable="false" prefWidth="189.60009765625" style="-fx-background-color: #fff; -fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0;" styleClass="tableViewColumn" text="Salle" />
-                              <TableColumn fx:id="coursEncoursHoraires" editable="false" prefWidth="103.46661376953125" style="-fx-background-color: #fff; -fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0;" styleClass="tableViewColumn" text="Horaires" />
-                              <TableColumn fx:id="coursEncoursAction" editable="false" prefWidth="55.466552734375" style="-fx-background-color: #fff; -fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0;" styleClass="tableViewColumn" />
-                           </columns>
-                        </TableView>
-                     </children>
-                  </VBox>
                   <HBox alignment="CENTER_LEFT" layoutX="24.0" layoutY="16.0" prefHeight="30.0" prefWidth="87.0">
                      <children>
                         <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
@@ -1502,6 +1447,61 @@
                         </Text>
                      </children>
                   </HBox>
+                  <VBox layoutX="24.0" layoutY="214.0" prefHeight="463.0" prefWidth="952.0" style="-fx-background-color: #fff; -fx-background-radius: 8px; -fx-border-color: #EDEEF0; -fx-border-radius: 8px;">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="952.0" spacing="407.4" style="-fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0; -fx-border-radius: 4px 4px 0 0;">
+                           <children>
+                              <Label text="Classes">
+                                 <font>
+                                    <Font name="Inter SemiBold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <HBox prefHeight="26.0" prefWidth="460.0" spacing="16.0">
+                                 <children>
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                       <children>
+                                          <TextField maxHeight="-Infinity" prefHeight="35.2" prefWidth="300.0" promptText="Search" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-background-radius: 4px; -fx-border-radius: 4px;">
+                                             <padding>
+                                                <Insets bottom="7.2" left="36.0" right="16.0" top="7.2" />
+                                             </padding>
+                                             <font>
+                                                <Font name="Inter Medium" size="14.0" />
+                                             </font>
+                                          </TextField>
+                                          <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="8.6" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="8.6">
+                                             <image>
+                                                <Image url="@../../../../gestion-college1/src/resources/images/icons/search-lg.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </AnchorPane>
+                                    <ComboBox prefWidth="180.0" promptText="Filter" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;">
+                                       <padding>
+                                          <Insets bottom="4.0" left="6.0" right="6.0" top="4.0" />
+                                       </padding>
+                                    </ComboBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="16.0" right="16.0" top="10.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                        <TableView fx:id="classesTableView" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="451.0" prefWidth="952.0" style="-fx-background-color: #fff; -fx-background-radius: 8px;">
+                           <columns>
+                              <TableColumn fx:id="classesClasseColumn" editable="false" prefWidth="120.0" styleClass="tableViewColumn" text="Classe" />
+                              <TableColumn fx:id="classesEffectifColumn" editable="false" prefWidth="100.0" styleClass="tableViewColumn" text="Effectif" />
+                              <TableColumn fx:id="classesStatusColumn" editable="false" prefWidth="160.0" styleClass="tableViewColumn" text="Status" />
+                              <TableColumn fx:id="classesSalleColumn" editable="false" prefWidth="200.0" style="-fx-font-weight: bold;" styleClass="tableViewColumn" text="Salle" />
+                              <TableColumn fx:id="classesProfesseurColumn" editable="false" prefWidth="222.0" styleClass="tableViewColumn" text="Professeur" />
+                              <TableColumn fx:id="classesActionColumn" editable="false" prefWidth="100.0" styleClass="tableViewColumn" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
                </children>
             </Pane>
          </children>

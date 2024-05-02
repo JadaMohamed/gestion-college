@@ -10,7 +10,7 @@ public class TypeCoursRepository {
 
     public static ResultSet getAllTypes() throws SQLException {
         Vector<Object> parameters = new Vector<Object>();
-        String query = "SELECT * FROM typecours";
+        String query = "SELECT * FROM typeCours";
         return dbClient.executeCommand(true, query, parameters);
     }
 }

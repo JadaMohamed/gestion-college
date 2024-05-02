@@ -2,6 +2,8 @@ package application.services;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
 import application.model.Classe;
 import application.model.NiveauClasse;
@@ -28,6 +30,31 @@ public class ClasseService {
             e.printStackTrace();
         }
         return resClasses;
+    }
+
+    public static Vector<Map<String, String>> getAllClassesWithCurrentSeances() {
+        Vector<Map<String, String>> seances = new Vector<Map<String, String>>();
+        ResultSet result;
+        try {
+            result = ClasseRepository.getAllClassesWithCurrentSeances();
+            while (result.next()) {
+                Map<String, String> seance = new HashMap<>();
+                seance.put("enseignantFullName",
+                        result.getString("nomEnseignant") + " " + result.getString("prenomEnseignant"));
+                seance.put("enseignantEmail", result.getString("emailEnseignant"));
+                seance.put("enseignantPhotoUrl", result.getString("photoUrlEnseignant"));
+                seance.put("coursNom", result.getString("nomCours"));
+                seance.put("classeNom", result.getString("nomNiveau") + " " + result.getString("numeroClasse"));
+                seance.put("salleNom", result.getString("nomSalle"));
+                seance.put("effectif", result.getString("effectif"));
+                seance.put("classeId", result.getString("id"));
+                seance.put("status", result.getString("status"));
+                seances.add(seance);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return seances;
     }
 
 }

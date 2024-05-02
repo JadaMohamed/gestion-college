@@ -47,13 +47,13 @@ public class AdminstrateurBackofficeSceneController {
     private ComboBox<TypeCours> typeCoursComboAffectation;
 
     @FXML
-    private TableView<Map<String, String>> coursEncoursTableView;
+    private TableView<Map<String, String>> coursEncoursTableView, classesTableView;
     @FXML
     private TableColumn<Map<String, String>, String> coursEncoursSalleColumn, coursEncoursHorairesColumn,
-            coursEncoursClasseColumn, coursEncoursCourNomColumn, coursEncoursEffectifColumn;
-
+            coursEncoursClasseColumn, coursEncoursCourNomColumn, coursEncoursEffectifColumn, classesClasseColumn,
+            classesEffectifColumn, classesStatusColumn, classesSalleColumn, classesActionColumn;
     @FXML
-    private TableColumn<Map<String, String>, Map<String, String>> coursEncoursProfesseurColumn;
+    private TableColumn<Map<String, String>, Map<String, String>> coursEncoursProfesseurColumn, classesProfesseurColumn;
 
     @FXML
     private ComboBox<Classe> classesComboAffectation;
@@ -75,10 +75,10 @@ public class AdminstrateurBackofficeSceneController {
     private Text SallesDisponibles, coursEnCours, effectifEnCours;
 
     @FXML
-    private Label nombreLaboratoiresDisponibles,nombreSalleCoursDisponibles,nombreSalleDeSportDisponibles,
-    nombreClasse3EnCours,nombreClasse4EnCours,nombreClasse5EnCours,nombreClasse6EnCours,
-    nombreAbscencesNonExcuses,
-    nombre3emeEnCours,nombre4emeEnCours,nombre5emeEnCours,nombre6emeEnCours;
+    private Label nombreLaboratoiresDisponibles, nombreSalleCoursDisponibles, nombreSalleDeSportDisponibles,
+            nombreClasse3EnCours, nombreClasse4EnCours, nombreClasse5EnCours, nombreClasse6EnCours,
+            nombreAbscencesNonExcuses,
+            nombre3emeEnCours, nombre4emeEnCours, nombre5emeEnCours, nombre6emeEnCours;
 
     private SidebarController sidebarController;
     private ParametresPaneController parametresPaneController;
@@ -102,6 +102,13 @@ public class AdminstrateurBackofficeSceneController {
         affectationPaneController.initialize();
         accueilPaneController.initialize();
         classesPaneController.initialize();
+        accueilPaneController.fillCurrentSeances(coursEncoursTableView, coursEncoursSalleColumn,
+                coursEncoursHorairesColumn,
+                coursEncoursClasseColumn, coursEncoursCourNomColumn, coursEncoursEffectifColumn,
+                coursEncoursProfesseurColumn);
+        accueilPaneController.fillClassesWithSeances(classesTableView, classesSalleColumn, classesStatusColumn,
+                classesClasseColumn, classesEffectifColumn,
+                classesProfesseurColumn);
     }
 
     public void setSallesDisponiblesText(String text) {
