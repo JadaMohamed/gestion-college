@@ -14,7 +14,6 @@ import application.utilities.CustomStatusCell;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -23,31 +22,7 @@ public class AccueilPaneController {
 
     public AccueilPaneController(AdminstrateurBackofficeSceneController mainController) {
         this.mainController = mainController;
-        // this.seanceRepository = new SeanceRepository();
-        // this.sallesRepository = new SallesRepository();
-        // this.categorieSalleRepository = new CategorieSalleRepository();
     }
-
-    @FXML
-    public TableView<Object> coursEncoursTableView;
-
-    @FXML
-    private TableColumn<Object, String> coursEncoursAction;
-
-    @FXML
-    private TableColumn<Object, String> coursEncoursClasse;
-
-    @FXML
-    private TableColumn<Object, String> coursEncoursCours;
-
-    @FXML
-    private TableColumn<Object, String> coursEncoursHoraires;
-
-    @FXML
-    private TableColumn<Object, String> coursEncoursProfesseur;
-
-    @FXML
-    private TableColumn<Object, String> coursEncoursSalle;
 
     public void initialize() {
         updateSallesDisponibles();
@@ -140,13 +115,18 @@ public class AccueilPaneController {
             TableColumn<Map<String, String>, String> classesStatusColumn,
             TableColumn<Map<String, String>, String> classesClasseColumn,
             TableColumn<Map<String, String>, String> classesEffectifColumn,
+            TableColumn<Map<String, String>, String> classesCoursColumn,
+            TableColumn<Map<String, String>, String> classesActionColumn,
             TableColumn<Map<String, String>, Map<String, String>> classesProfesseurColumn) {
         ObservableList<Map<String, String>> data = FXCollections.observableArrayList();
         data.addAll(ClasseService.getAllClassesWithCurrentSeances());
 
+        // handle actions
         // Associate data with columns
         classesSalleColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
                 cellData.getValue().get("salleNom")));
+        classesCoursColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
+                cellData.getValue().get("coursNom")));
         classesStatusColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
                 cellData.getValue().get("status")));
         classesStatusColumn.setCellFactory(new CustomStatusCell());

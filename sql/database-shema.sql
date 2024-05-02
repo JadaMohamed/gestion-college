@@ -535,3 +535,91 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+SELECT 
+    classe.id, 
+    classe.numero AS numeroClasse, 
+    niveau.nom AS nomNiveau, 
+    classe.effectif, 
+    CASE 
+        WHEN seance.id IS NOT NULL THEN 
+            CASE 
+                WHEN DAYOFWEEK(CURDATE()) = 
+                    CASE 
+                        WHEN seance.jour = 'LUNDI' THEN 2 
+                        WHEN seance.jour = 'MARDI' THEN 3 
+                        WHEN seance.jour = 'MERCREDI' THEN 4 
+                        WHEN seance.jour = 'JEUDI' THEN 5 
+                        WHEN seance.jour = 'VENDREDI' THEN 6 
+                        WHEN seance.jour = 'SAMEDI' THEN 7 
+                        WHEN seance.jour = 'DIMANCHE' THEN 1 
+                    END 
+                AND CURTIME() BETWEEN seance.heureDebut AND seance.heureFin 
+                THEN 1 
+                ELSE 0 
+            END 
+        ELSE 0 
+    END AS status, 
+    CASE 
+        WHEN seance.id IS NOT NULL THEN 
+            CASE 
+                WHEN DAYOFWEEK(CURDATE()) = 
+                    CASE 
+                        WHEN seance.jour = 'LUNDI' THEN 2 
+                        WHEN seance.jour = 'MARDI' THEN 3 
+                        WHEN seance.jour = 'MERCREDI' THEN 4 
+                        WHEN seance.jour = 'JEUDI' THEN 5 
+                        WHEN seance.jour = 'VENDREDI' THEN 6 
+                        WHEN seance.jour = 'SAMEDI' THEN 7 
+                        WHEN seance.jour = 'DIMANCHE' THEN 1 
+                    END 
+                AND CURTIME() BETWEEN seance.heureDebut AND seance.heureFin 
+                THEN salle.nom 
+                ELSE '-' 
+            END 
+        ELSE '-' 
+    END AS nomSalle, 
+    CASE 
+        WHEN status=0 THEN COALESCE(cours.nom, '-') 
+        ELSE '-' 
+    END AS nomCours,
+    CASE 
+        WHEN seance.id IS NOT NULL THEN COALESCE(enseignant.nom, '-') 
+        ELSE '-' 
+    END AS nomEnseignant, 
+    CASE 
+        WHEN seance.id IS NOT NULL THEN COALESCE(enseignant.prenom, '-') 
+        ELSE '-' 
+    END AS prenomEnseignant, 
+    CASE 
+        WHEN seance.id IS NOT NULL THEN COALESCE(enseignant.email, '-') 
+        ELSE '-' 
+    END AS emailEnseignant, 
+    CASE 
+        WHEN seance.id IS NOT NULL THEN COALESCE(enseignant.photoUrl, '-') 
+        ELSE '-' 
+    END AS photoUrlEnseignant
+FROM 
+    classe 
+LEFT JOIN 
+    niveau ON niveau.id = classe.idNiveauClasse 
+LEFT JOIN 
+    seance ON classe.id = seance.idClasse 
+LEFT JOIN 
+    salle ON seance.idSalle = salle.id 
+LEFT JOIN 
+    cours ON cours.id = seance.idCours 
+LEFT JOIN 
+    enseignant ON enseignant.id = cours.idEnseignant
+    AND DAYOFWEEK(CURDATE()) = 
+        CASE 
+            WHEN seance.jour = 'LUNDI' THEN 2 
+            WHEN seance.jour = 'MARDI' THEN 3 
+            WHEN seance.jour = 'MERCREDI' THEN 4 
+            WHEN seance.jour = 'JEUDI' THEN 5 
+            WHEN seance.jour = 'VENDREDI' THEN 6 
+            WHEN seance.jour = 'SAMEDI' THEN 7 
+            WHEN seance.jour = 'DIMANCHE' THEN 1 
+        END 
+    AND CURTIME() BETWEEN seance.heureDebut AND seance.heureFin;

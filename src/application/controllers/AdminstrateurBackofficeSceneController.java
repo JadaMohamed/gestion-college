@@ -13,6 +13,8 @@ import application.model.Horaires;
 import application.model.Salle;
 import application.model.TypeCours;
 import application.model.enums.JoursSemaine;
+import application.utilities.ButtonClickHandler;
+import application.utilities.CustomClasseCellButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -27,7 +29,7 @@ public class AdminstrateurBackofficeSceneController {
             annulerButtonParametres;
 
     @FXML
-    private Pane affectationPane, accueilPane, classesPane, sallesPane, parametresPane, rootPane;
+    private Pane affectationPane, accueilPane, classesPane, sallesPane, parametresPane, rootPane, activeClassePane;
 
     @FXML
     private Button sauvegarderButtonInfosParametres, sauvegarderButtonSecurityParametres, handleAffecterButton,
@@ -51,7 +53,7 @@ public class AdminstrateurBackofficeSceneController {
     @FXML
     private TableColumn<Map<String, String>, String> coursEncoursSalleColumn, coursEncoursHorairesColumn,
             coursEncoursClasseColumn, coursEncoursCourNomColumn, coursEncoursEffectifColumn, classesClasseColumn,
-            classesEffectifColumn, classesStatusColumn, classesSalleColumn, classesActionColumn;
+            classesEffectifColumn, classesStatusColumn, classesSalleColumn, classesCoursColumn, classesActionColumn;
     @FXML
     private TableColumn<Map<String, String>, Map<String, String>> coursEncoursProfesseurColumn, classesProfesseurColumn;
 
@@ -72,7 +74,7 @@ public class AdminstrateurBackofficeSceneController {
     private int currentAdminId;
 
     @FXML
-    private Text SallesDisponibles, coursEnCours, effectifEnCours;
+    private Text SallesDisponibles, coursEnCours, effectifEnCours, activeClasseLabel, tempText;
 
     @FXML
     private Label nombreLaboratoiresDisponibles, nombreSalleCoursDisponibles, nombreSalleDeSportDisponibles,
@@ -107,9 +109,27 @@ public class AdminstrateurBackofficeSceneController {
                 coursEncoursClasseColumn, coursEncoursCourNomColumn, coursEncoursEffectifColumn,
                 coursEncoursProfesseurColumn);
         accueilPaneController.fillClassesWithSeances(classesTableView, classesSalleColumn, classesStatusColumn,
-                classesClasseColumn, classesEffectifColumn,
+                classesClasseColumn, classesEffectifColumn, classesCoursColumn, classesActionColumn,
                 classesProfesseurColumn);
+        classesActionColumn.setCellFactory(new CustomClasseCellButton(activeClassePane, clickHandler));
     }
+
+    ButtonClickHandler clickHandler = rowData -> {
+        // Perform actions here based on the row data
+        // For example:
+        activeClasseLabel.setText(rowData.get("classeNom"));
+        StringBuilder builder = new StringBuilder();
+
+        // Iterate over the entries of the rowData map
+        for (Map.Entry<String, String> entry : rowData.entrySet()) {
+            // Concatenate the key-value pair into the StringBuilder
+            builder.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
+        }
+
+        // Set the concatenated string to the tempText
+        tempText.setText(builder.toString());
+
+    };
 
     public void setSallesDisponiblesText(String text) {
         SallesDisponibles.setText(text);

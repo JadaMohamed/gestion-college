@@ -43,7 +43,8 @@ public class ClasseService {
                         result.getString("nomEnseignant") + " " + result.getString("prenomEnseignant"));
                 seance.put("enseignantEmail", result.getString("emailEnseignant"));
                 seance.put("enseignantPhotoUrl", result.getString("photoUrlEnseignant"));
-                seance.put("coursNom", result.getString("nomCours"));
+                seance.put("coursNom", seance.get("enseignantFullName").contains("-") ? "-"
+                        : result.getString("nomCours"));
                 seance.put("classeNom", result.getString("nomNiveau") + " " + result.getString("numeroClasse"));
                 seance.put("salleNom", result.getString("nomSalle"));
                 seance.put("effectif", result.getString("effectif"));
