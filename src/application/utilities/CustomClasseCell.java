@@ -29,26 +29,24 @@ public class CustomClasseCell implements
                     setGraphic(null);
                 } else {
                     // Determine the niveau icon path based on the class name
-                    String niveauIconPath = ""; // Path to the class level icon
+                    String niveauIconPath = "/resources/images/icons/3EME-xs.png"; // Default path if class name
+                                                                                   // doesn't match
                     // Adjust this logic based on your class naming convention
-                    if (item.contains("3em")) {
-                        niveauIconPath = "https://res.cloudinary.com/djjwswdo4/image/upload/v1714582826/3EME-xs_doghwa.png";
+                    if (item.contains("3eme")) {
+                        niveauIconPath = "/resources/images/icons/3EME-xs.png"; // Update path for local resource
                     } else if (item.contains("4eme")) {
-                        niveauIconPath = "https://res.cloudinary.com/djjwswdo4/image/upload/v1714582825/4EME-xs_cxhfov.png";
-
+                        niveauIconPath = "/resources/images/icons/4EME-xs.png"; // Update path for local resource
                     } else if (item.contains("5eme")) {
-                        niveauIconPath = "https://res.cloudinary.com/djjwswdo4/image/upload/v1714582826/5EME-xs_b1oqla.png";
-                    } // Add more conditions for other class levels
-                    else if (item.contains("6eme")) {
-                        niveauIconPath = "https://res.cloudinary.com/djjwswdo4/image/upload/v1714582826/6EME-xs_gzo58p.png";
-                    } else {
-                        niveauIconPath = "https://res.cloudinary.com/djjwswdo4/image/upload/v1714582826/3EME-xs_doghwa.png";
+                        niveauIconPath = "/resources/images/icons/5EME-xs.png"; // Update path for local resource
+                    } else if (item.contains("6eme")) {
+                        niveauIconPath = "/resources/images/icons/6EME-xs.png"; // Update path for local resource
                     }
+
                     try {
                         // Set the icon image
-                        iconImageView.setImage(new Image(niveauIconPath));
+                        iconImageView.setImage(new Image(getClass().getResourceAsStream(niveauIconPath)));
                     } catch (Exception e) {
-                        System.out.println("error from here 2");
+                        System.out.println("Error loading niveau icon image: " + e.getMessage());
                     }
                     iconImageView.setFitWidth(24); // Adjust the size as needed
                     iconImageView.setFitHeight(24);

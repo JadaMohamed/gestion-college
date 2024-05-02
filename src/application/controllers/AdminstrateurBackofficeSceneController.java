@@ -185,6 +185,10 @@ public class AdminstrateurBackofficeSceneController {
     @FXML
     public void handleAffecterButton(ActionEvent event) {
         affectationPaneController.affecterUneSeance();
+        accueilPaneController.fillCurrentSeances(coursEncoursTableView, coursEncoursSalleColumn,
+                coursEncoursHorairesColumn,
+                coursEncoursClasseColumn, coursEncoursCourNomColumn, coursEncoursEffectifColumn,
+                coursEncoursProfesseurColumn);
     }
 
     @FXML

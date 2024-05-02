@@ -17,14 +17,14 @@ public class CategorieSalleRepository {
         }
         // Création de la chaîne de paramètres pour la clause IN
         String params = idCategories.stream()
-                                    .map(id -> "?")
-                                    .collect(Collectors.joining(", "));
-        String query = "SELECT nom FROM categoriesalle WHERE idCategorieSalle IN (" + params + ")";
-        
+                .map(id -> "?")
+                .collect(Collectors.joining(", "));
+        String query = "SELECT nom FROM categorieSalle WHERE idCategoriSSalle IN (" + params + ")";
+
         System.out.println("Query: " + query); // Print the query string for debugging
-        
+
         try (java.sql.Connection connection = SqlConnection.getConnection();
-            java.sql.PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                java.sql.PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             // Définition des valeurs des paramètres
             for (int i = 0; i < idCategories.size(); i++) {
                 preparedStatement.setInt(i + 1, idCategories.get(i));
@@ -39,6 +39,5 @@ public class CategorieSalleRepository {
         }
         return nomsCategories;
     }
-    
-    
+
 }

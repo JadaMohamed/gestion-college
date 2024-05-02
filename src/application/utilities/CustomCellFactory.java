@@ -26,10 +26,16 @@ public class CustomCellFactory implements
                     setText(null);
                     setGraphic(null);
                 } else {
-                    // Extract enseignant data from the map
+                    // Extract enseignant data from the map;
                     String enseignantFullName = item.get("enseignantFullName");
                     String enseignantEmail = item.get("enseignantEmail");
                     String enseignantPhotoUrl = item.get("enseignantPhotoUrl");
+                    if ((enseignantFullName == null || enseignantFullName.contains("-"))) {
+                        Label cellLabel = new Label("-");
+                        setText(null);
+                        setGraphic(cellLabel);
+                        return;
+                    }
 
                     // Create labels for full name and email
                     Label nameLabel = new Label(enseignantFullName);
@@ -37,23 +43,22 @@ public class CustomCellFactory implements
 
                     // Set font weight for email label
                     emailLabel.setStyle("-fx-font-weight: lighter;-fx-font-size: 10px;-fx-text-fill: #475467;");
-
                     nameLabel.setStyle("-fx-font-weight: bold;-fx-font-size: 11px;");
 
                     // Create an image view for the photo
                     ImageView imageView = new ImageView();
                     try {
-                        imageView.setImage(new Image(enseignantPhotoUrl));
+                        imageView.setImage(new Image(getClass().getResourceAsStream(enseignantPhotoUrl)));
                     } catch (Exception e) {
-                        imageView.setImage(new Image(
-                                "https://res.cloudinary.com/djjwswdo4/image/upload/v1714356966/jzg6gsepwvzpsb0rej7a_1_p57hps.png"));
+                        imageView.setImage(
+                                new Image(getClass().getResourceAsStream("/resources/images/profiles/default.png")));
                     }
 
                     // Set size of the image view
                     imageView.setFitWidth(24);
                     imageView.setFitHeight(24);
 
-                    /// Create a VBox to hold labels vertically
+                    // Create a VBox to hold labels vertically
                     VBox vbox = new VBox(nameLabel, emailLabel);
                     vbox.setAlignment(Pos.CENTER_LEFT);
 
@@ -65,9 +70,9 @@ public class CustomCellFactory implements
 
                     // Set the HBox as the graphic of the cell
                     setGraphic(hbox);
-
                 }
             }
+
         };
     }
 }

@@ -23,29 +23,27 @@ public class CustomStatusCell implements
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
 
-                System.out.println(item);
                 if (empty || item == null) {
                     setText(null);
                     setGraphic(null);
                 } else {
                     // Determine the niveau icon path based on the class name
-                    String statusIconPath = "https://res.cloudinary.com/djjwswdo4/image/upload/v1714583564/Badge_Hors_cours_ce0q9a.png";
+                    String statusIconPath = "/resources/images/icons/Badge_Hors_cours.png";
                     ; // Path to the class level icon
                       // Adjust this logic based on your class naming convention
                     if (item.contains("1")) {
 
-                        statusIconPath = "https://res.cloudinary.com/djjwswdo4/image/upload/v1714583567/Badge_En_cours_vfrpxz.png";
+                        statusIconPath = "/resources/images/icons/Badge_En_cours.png";
                         iconWidth = 62;
                     } else {
-                        statusIconPath = "https://res.cloudinary.com/djjwswdo4/image/upload/v1714583564/Badge_Hors_cours_ce0q9a.png";
+                        statusIconPath = "/resources/images/icons/Badge_Hors_cours.png";
                         iconWidth = 72;
                     }
                     try {
                         // Set the icon image
-                        System.out.println("here");
-                        iconImageView.setImage(new Image(statusIconPath));
+                        iconImageView.setImage(new Image(getClass().getResourceAsStream(statusIconPath)));
                     } catch (Exception e) {
-                        System.out.println("error from here 1");
+                        System.out.println("Error loading status icon image: " + e.getMessage());
                     }
                     iconImageView.setFitWidth(iconWidth);
                     iconImageView.setFitHeight(18);
