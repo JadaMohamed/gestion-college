@@ -42,7 +42,12 @@ public class CustomCellFactory implements
 
                     // Create an image view for the photo
                     ImageView imageView = new ImageView();
-                    imageView.setImage(new Image(enseignantPhotoUrl));
+                    try {
+                        imageView.setImage(new Image(enseignantPhotoUrl));
+                    } catch (Exception e) {
+                        imageView.setImage(new Image(
+                                "https://res.cloudinary.com/djjwswdo4/image/upload/v1714356966/jzg6gsepwvzpsb0rej7a_1_p57hps.png"));
+                    }
 
                     // Set size of the image view
                     imageView.setFitWidth(24);

@@ -31,16 +31,22 @@ public class CustomStatusCell implements
                     // Determine the niveau icon path based on the class name
                     String statusIconPath = "https://res.cloudinary.com/djjwswdo4/image/upload/v1714583564/Badge_Hors_cours_ce0q9a.png";
                     ; // Path to the class level icon
-                    // Adjust this logic based on your class naming convention
+                      // Adjust this logic based on your class naming convention
                     if (item.contains("1")) {
 
                         statusIconPath = "https://res.cloudinary.com/djjwswdo4/image/upload/v1714583567/Badge_En_cours_vfrpxz.png";
                         iconWidth = 62;
+                    } else {
+                        statusIconPath = "https://res.cloudinary.com/djjwswdo4/image/upload/v1714583564/Badge_Hors_cours_ce0q9a.png";
+                        iconWidth = 72;
                     }
-                    // Set the icon image
-                    System.out.println("here");
-                    iconImageView.setImage(new Image(statusIconPath));
-
+                    try {
+                        // Set the icon image
+                        System.out.println("here");
+                        iconImageView.setImage(new Image(statusIconPath));
+                    } catch (Exception e) {
+                        System.out.println("error from here 1");
+                    }
                     iconImageView.setFitWidth(iconWidth);
                     iconImageView.setFitHeight(18);
 

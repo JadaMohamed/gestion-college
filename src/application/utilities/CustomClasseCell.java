@@ -44,8 +44,12 @@ public class CustomClasseCell implements
                     } else {
                         niveauIconPath = "https://res.cloudinary.com/djjwswdo4/image/upload/v1714582826/3EME-xs_doghwa.png";
                     }
-                    // Set the icon image
-                    iconImageView.setImage(new Image(niveauIconPath));
+                    try {
+                        // Set the icon image
+                        iconImageView.setImage(new Image(niveauIconPath));
+                    } catch (Exception e) {
+                        System.out.println("error from here 2");
+                    }
                     iconImageView.setFitWidth(24); // Adjust the size as needed
                     iconImageView.setFitHeight(24);
 
