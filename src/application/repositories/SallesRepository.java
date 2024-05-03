@@ -31,4 +31,49 @@ public class SallesRepository {
         return dbClient.executeCommand(true, query, parameters);
     }
 
+    public static ResultSet getAllSallesWithCurrentSeances() throws SQLException {
+        Vector<Object> parameters = new Vector<>();
+        String query = "SELECT " +
+            "salle.id, " +
+            "salle.nom, " +
+            "salle.capacite, " +
+            "CASE " +
+                "WHEN seance.id IS NOT NULL THEN " +
+                    "CASE " +
+                        "WHEN CURTIME() BETWEEN seance.heureDebut AND seance.heureFin THEN '1' " +
+                        "ELSE '0' " +
+                    "END " +
+                "ELSE '0' " +
+            "END AS statut, " +
+            "CASE " +
+                "WHEN seance.id IS NOT NULL THEN " +
+                    "COALESCE(cours.nom, '-') " +
+                "ELSE '-' " +
+            "END AS nomCours, " +
+            "CASE " +
+                "WHEN seance.id IS NOT NULL THEN " +
+                    "CONCAT(niveau.nom, ' ', classe.numero) " +
+                "ELSE '-' " +
+            "END AS numeroClasse " +
+        "FROM " +
+            "salle " +
+        "LEFT JOIN seance ON salle.id = seance.idSalle " +
+        "LEFT JOIN cours ON cours.id = seance.idCours " +
+        "LEFT JOIN classe ON classe.id = seance.idClasse " +
+        "LEFT JOIN niveau ON niveau.id = classe.idNiveauClasse " +
+            "AND DAYOFWEEK(CURDATE()) = " +
+                "CASE " +
+                    "WHEN seance.jour = 'LUNDI' THEN 2 " +
+                    "WHEN seance.jour = 'MARDI' THEN 3 " +
+                    "WHEN seance.jour = 'MERCREDI' THEN 4 " +
+                    "WHEN seance.jour = 'JEUDI' THEN 5 " +
+                    "WHEN seance.jour = 'VENDREDI' THEN 6 " +
+                    "WHEN seance.jour = 'SAMEDI' THEN 7 " +
+                    "WHEN seance.jour = 'DIMANCHE' THEN 1 " +
+                "END " +
+            "AND CURTIME() BETWEEN seance.heureDebut AND seance.heureFin " +
+        "GROUP BY salle.id;";
+
+        return dbClient.executeCommand(true, query, parameters);
+    }
 }

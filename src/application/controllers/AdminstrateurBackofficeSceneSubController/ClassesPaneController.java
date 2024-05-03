@@ -2,7 +2,6 @@ package application.controllers.AdminstrateurBackofficeSceneSubController;
 
 import application.controllers.AdminstrateurBackofficeSceneController;
 import application.services.SeanceService;
-
 public class ClassesPaneController {
     private AdminstrateurBackofficeSceneController mainController;
     
@@ -14,6 +13,7 @@ public class ClassesPaneController {
     public void initialize(){
         update_emeCoursEnCours();
     }
+    
     public void update_emeCoursEnCours(){
         int[] nombreCoursParNiveau = SeanceService.getNombreCoursParNiveau();
         mainController.setNombre3emeEnCoursText(String.valueOf(nombreCoursParNiveau[3]));

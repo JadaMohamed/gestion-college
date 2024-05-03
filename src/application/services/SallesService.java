@@ -2,6 +2,8 @@ package application.services;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
 
 import application.model.CategorieSalle;
@@ -52,5 +54,25 @@ public class SallesService {
             e.printStackTrace();
         }
         return resSalle;
+    }
+
+    public static Vector<Map<String, String>> getAllSallesWithCurrentSeances() {
+        Vector<Map<String, String>> salles = new Vector<>();
+        ResultSet result;
+        try {
+            result = SallesRepository.getAllSallesWithCurrentSeances();
+            while (result.next()) {
+                Map<String, String> salle = new HashMap<>();
+                salle.put("nom", result.getString("nom"));
+                salle.put("capacite", result.getString("capacite"));
+                salle.put("statut", result.getString("statut"));
+                salle.put("cours", result.getString("nomCours"));
+                salle.put("classe", result.getString("numeroClasse"));
+                salles.add(salle);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return salles;
     }
 }
