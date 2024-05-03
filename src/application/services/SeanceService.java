@@ -118,10 +118,10 @@ public class SeanceService {
         try {
             ResultSet resultSet = SeanceRepository.getNombreCoursParNiveau();
             if (resultSet.next()) {
-                nombreCoursParNiveau[0] = resultSet.getInt("nombreCours6eme");
-                nombreCoursParNiveau[1] = resultSet.getInt("nombreCours5eme");
-                nombreCoursParNiveau[2] = resultSet.getInt("nombreCours4eme");
-                nombreCoursParNiveau[3] = resultSet.getInt("nombreCours3eme");
+                nombreCoursParNiveau[0] = resultSet.getInt("nombreCours3eme");
+                nombreCoursParNiveau[1] = resultSet.getInt("nombreCours4eme");
+                nombreCoursParNiveau[2] = resultSet.getInt("nombreCours5eme");
+                nombreCoursParNiveau[3] = resultSet.getInt("nombreCours6eme");
             }
         } catch (SQLException e) {
             e.printStackTrace();

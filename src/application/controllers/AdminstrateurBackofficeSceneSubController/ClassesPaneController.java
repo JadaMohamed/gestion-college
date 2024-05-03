@@ -16,9 +16,9 @@ public class ClassesPaneController {
     }
     public void update_emeCoursEnCours(){
         int[] nombreCoursParNiveau = SeanceService.getNombreCoursParNiveau();
-        mainController.setNombre3emeEnCoursText(String.valueOf(nombreCoursParNiveau[0]));
-        mainController.setNombre4emeEnCoursText(String.valueOf(nombreCoursParNiveau[1]));
-        mainController.setNombre5emeEnCoursText(String.valueOf(nombreCoursParNiveau[2]));
-        mainController.setNombre6emeEnCoursText(String.valueOf(nombreCoursParNiveau[3]));
+        mainController.setNombre3emeEnCoursText(String.valueOf(nombreCoursParNiveau[3]));
+        mainController.setNombre4emeEnCoursText(String.valueOf(nombreCoursParNiveau[2]));
+        mainController.setNombre5emeEnCoursText(String.valueOf(nombreCoursParNiveau[1]));
+        mainController.setNombre6emeEnCoursText(String.valueOf(nombreCoursParNiveau[0]));
     }
 }

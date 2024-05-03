@@ -6,6 +6,7 @@ import application.controllers.AdminstrateurBackofficeSceneSubController.Accueil
 import application.controllers.AdminstrateurBackofficeSceneSubController.AffectationPaneController;
 import application.controllers.AdminstrateurBackofficeSceneSubController.ClassesPaneController;
 import application.controllers.AdminstrateurBackofficeSceneSubController.ParametresPaneController;
+import application.controllers.AdminstrateurBackofficeSceneSubController.SallesPaneController;
 import application.controllers.AdminstrateurBackofficeSceneSubController.SidebarController;
 import application.model.Classe;
 import application.model.Enseignant;
@@ -80,14 +81,15 @@ public class AdminstrateurBackofficeSceneController {
     private Label nombreLaboratoiresDisponibles, nombreSalleCoursDisponibles, nombreSalleDeSportDisponibles,
             nombreClasse3EnCours, nombreClasse4EnCours, nombreClasse5EnCours, nombreClasse6EnCours,
             nombreAbscencesNonExcuses,
-            nombre3emeEnCours, nombre4emeEnCours, nombre5emeEnCours, nombre6emeEnCours;
+            nombre3emeEnCours, nombre4emeEnCours, nombre5emeEnCours, nombre6emeEnCours,
+            nombreLabDisponibles,nombreSalleCourDisponibles,nombreSalleSportDisponibles;
 
     private SidebarController sidebarController;
     private ParametresPaneController parametresPaneController;
     private AffectationPaneController affectationPaneController;
     private AccueilPaneController accueilPaneController;
     private ClassesPaneController classesPaneController;
-    // private SalllesPaneController SalllesPaneController;
+    private SallesPaneController sallesPaneController;
 
     public void initialize(int adminId) {
         this.currentAdminId = adminId;
@@ -96,7 +98,7 @@ public class AdminstrateurBackofficeSceneController {
         affectationPaneController = new AffectationPaneController(this);
         accueilPaneController = new AccueilPaneController(this);
         classesPaneController = new ClassesPaneController(this);
-        // sallesPaneController = new SallesPaneControllers(this);
+        sallesPaneController = new SallesPaneController(this);
 
         sidebarController.initialize();
         parametresPaneController.initialize();
@@ -104,6 +106,7 @@ public class AdminstrateurBackofficeSceneController {
         affectationPaneController.initialize();
         accueilPaneController.initialize();
         classesPaneController.initialize();
+        sallesPaneController.initialize();
         accueilPaneController.fillCurrentSeances(coursEncoursTableView, coursEncoursSalleColumn,
                 coursEncoursHorairesColumn,
                 coursEncoursClasseColumn, coursEncoursCourNomColumn, coursEncoursEffectifColumn,
@@ -185,6 +188,18 @@ public class AdminstrateurBackofficeSceneController {
 
     public void setNombre6emeEnCoursText(String text) {
         nombre6emeEnCours.setText(text);
+    }
+
+    public void setNombreLabOccupesText(String text) {
+        nombreLabDisponibles.setText(text);
+    }
+
+    public void setSalleDisponiblesText(String text) {
+        nombreSalleCourDisponibles.setText(text);
+    }
+
+    public void setNombreSalleSportOccupesText(String text) {
+        nombreSalleSportDisponibles.setText(text);
     }
 
     @FXML
