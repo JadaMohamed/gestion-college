@@ -41,35 +41,6 @@ public class SeanceRepository {
         dbClient.executeCommand(false, query, parameters);
     }
 
-    public static int getNombreSeancesEnCours() throws SQLException {
-        String query = "SELECT count(id) as seancesencours " +
-                "FROM seance " +
-                "WHERE DAYOFWEEK(CURDATE()) = CASE " +
-                "WHEN seance.jour = 'LUNDI' THEN 2 " +
-                "WHEN seance.jour = 'MARDI' THEN 3 " +
-                "WHEN seance.jour = 'MERCREDI' THEN 4 " +
-                "WHEN seance.jour = 'JEUDI' THEN 5 " +
-                "WHEN seance.jour = 'VENDREDI' THEN 6 " +
-                "WHEN seance.jour = 'SAMEDI' THEN 7 " +
-                "WHEN seance.jour = 'DIMANCHE' THEN 1 " +
-                "END " +
-                "AND CURTIME() BETWEEN seance.heureDebut AND seance.heureFin";
-        int nombreSeancesEnCours = 0;
-        try (java.sql.Connection connectDB = SqlConnection.getConnection();
-                java.sql.PreparedStatement statement = connectDB.prepareStatement(query);
-                ResultSet resultSet = statement.executeQuery()) {
-
-            if (resultSet.next()) {
-                nombreSeancesEnCours = resultSet.getInt("seancesencours");
-                System.out.println("nombreSeancesEnCours est : " + nombreSeancesEnCours);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw e;
-        }
-        return nombreSeancesEnCours;
-    }
-
     public static ResultSet getNombreSeanceEnCours() throws SQLException {
         String query = "SELECT count(id) as seancesencours " +
                 "FROM seance " +

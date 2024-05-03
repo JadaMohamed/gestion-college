@@ -987,48 +987,6 @@
                   </VBox>
                </children>
             </Pane>
-            <Pane fx:id="activeSallePane" layoutX="10.0" layoutY="10.0" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <HBox alignment="CENTER_LEFT" layoutX="24.0" layoutY="16.0" prefHeight="30.0" prefWidth="87.0">
-                     <children>
-                        <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/icons/_Breadcrumb%20button%20base.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/icons/chevron-right.png" />
-                           </image>
-                        </ImageView>
-                        <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Salles">
-                           <font>
-                              <Font name="Inter Regular" size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="2.0" />
-                           </HBox.margin>
-                        </Text>
-                        <Pane fx:id="activeSallePane1" prefHeight="200.0" prefWidth="260.0" />
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/icons/chevron-right.png" />
-                           </image>
-                        </ImageView>
-                        <Text fx:id="activeSalleLabel" fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Salles">
-                           <font>
-                              <Font name="Inter Regular" size="14.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </HBox>
-                  <Text fx:id="tempText1" fill="#475467" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="temp1" x="24.0">
-                     <font>
-                        <Font name="Inter Regular" size="14.0" />
-                     </font>
-                  </Text>
-               </children>
-            </Pane>
             <Pane fx:id="sallesPane" layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <VBox layoutX="24.0" layoutY="214.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="463.0" prefWidth="954.0" style="-fx-background-color: #fff; -fx-background-radius: 8px; -fx-border-color: #EDEEF0; -fx-border-radius: 8px;">
@@ -1600,6 +1558,48 @@
                      </children>
                   </VBox>
                   <Pane fx:id="activeSallePane" layoutX="253.0" layoutY="110.0" prefHeight="200.0" prefWidth="200.0" />
+               </children>
+            </Pane>
+            <Pane fx:id="activeSallePane" layoutX="10.0" layoutY="10.0" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" layoutX="24.0" layoutY="16.0" prefHeight="30.0" prefWidth="87.0">
+                     <children>
+                        <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons/_Breadcrumb%20button%20base.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons/chevron-right.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Salles">
+                           <font>
+                              <Font name="Inter Regular" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="2.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Pane fx:id="activeSallePane1" prefHeight="200.0" prefWidth="260.0" />
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons/chevron-right.png" />
+                           </image>
+                        </ImageView>
+                        <Text fx:id="activeSalleLabel" fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Salles">
+                           <font>
+                              <Font name="Inter Regular" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <Text fx:id="tempText1" fill="#475467" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="temp1" x="24.0">
+                     <font>
+                        <Font name="Inter Regular" size="14.0" />
+                     </font>
+                  </Text>
                </children>
             </Pane>
          </children>
