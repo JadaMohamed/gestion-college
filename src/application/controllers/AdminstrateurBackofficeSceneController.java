@@ -14,9 +14,17 @@ import application.model.Horaires;
 import application.model.Salle;
 import application.model.TypeCours;
 import application.model.enums.JoursSemaine;
+import application.services.ClasseService;
 import application.utilities.ButtonClickHandler;
 import application.utilities.CustomClasseCellButton;
 import application.utilities.CustomSalleCellButton;
+import application.utilities.ET0810;
+import application.utilities.ET1012;
+import application.utilities.ET1416;
+import application.utilities.ET1618;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -31,7 +39,8 @@ public class AdminstrateurBackofficeSceneController {
             annulerButtonParametres;
 
     @FXML
-    private Pane affectationPane, accueilPane, classesPane, sallesPane, parametresPane, rootPane, activeClassePane,activeSallePane;
+    private Pane affectationPane, accueilPane, classesPane, sallesPane, parametresPane, rootPane, activeClassePane,
+            activeSallePane;
 
     @FXML
     private Button sauvegarderButtonInfosParametres, sauvegarderButtonSecurityParametres, handleAffecterButton,
@@ -51,14 +60,22 @@ public class AdminstrateurBackofficeSceneController {
     private ComboBox<TypeCours> typeCoursComboAffectation;
 
     @FXML
-    private TableView<Map<String, String>> coursEncoursTableView, classesTableView,sallesTableView;
+    private TableView<Map<String, String>> coursEncoursTableView, classesTableView, sallesTableView,
+            classeEmploiTableView;
     @FXML
     private TableColumn<Map<String, String>, String> coursEncoursSalleColumn, coursEncoursHorairesColumn,
             coursEncoursClasseColumn, coursEncoursCourNomColumn, coursEncoursEffectifColumn, classesClasseColumn,
             classesEffectifColumn, classesStatusColumn, classesSalleColumn, classesCoursColumn, classesActionColumn,
-            sallesColumn,sallesCapaciteColumn,sallesStatutColumn,sallesCoursColumn,sallesClassesColumn,sallesActionColumn;
+            sallesColumn, sallesCapaciteColumn, sallesStatutColumn, sallesCoursColumn, sallesClassesColumn,
+            sallesActionColumn;
     @FXML
     private TableColumn<Map<String, String>, Map<String, String>> coursEncoursProfesseurColumn, classesProfesseurColumn;
+
+    @FXML
+    private TableColumn<Map<String, String>, Map<String, String>> classeEmploi8_10Column,
+            classeEmploi10_12Column, classeEmploi14_16Column, classeEmploi16_18Column;
+    @FXML
+    private TableColumn<Map<String, String>, String> classeEmploiJourColumn;
 
     @FXML
     private ComboBox<Classe> classesComboAffectation;
@@ -77,14 +94,15 @@ public class AdminstrateurBackofficeSceneController {
     private int currentAdminId;
 
     @FXML
-    private Text SallesDisponibles, coursEnCours, effectifEnCours, activeClasseLabel, activeSalleLabel,tempText,tempText1;
+    private Text SallesDisponibles, coursEnCours, effectifEnCours, activeClasseLabel, activeSalleLabel, tempText,
+            tempText1;
 
     @FXML
     private Label nombreLaboratoiresDisponibles, nombreSalleCoursDisponibles, nombreSalleDeSportDisponibles,
             nombreClasse3EnCours, nombreClasse4EnCours, nombreClasse5EnCours, nombreClasse6EnCours,
             nombreAbscencesNonExcuses,
             nombre3emeEnCours, nombre4emeEnCours, nombre5emeEnCours, nombre6emeEnCours,
-            nombreLabDisponibles,nombreSalleCourDisponibles,nombreSalleSportDisponibles;
+            nombreLabDisponibles, nombreSalleCourDisponibles, nombreSalleSportDisponibles;
 
     private SidebarController sidebarController;
     private ParametresPaneController parametresPaneController;
@@ -118,11 +136,9 @@ public class AdminstrateurBackofficeSceneController {
                 classesProfesseurColumn);
         classesActionColumn.setCellFactory(new CustomClasseCellButton(activeClassePane, clickHandler));
         sallesPaneController.fillSallesWithSeances(sallesTableView, sallesColumn, sallesStatutColumn,
-        sallesClassesColumn, sallesCapaciteColumn, sallesCoursColumn,sallesActionColumn);
+                sallesClassesColumn, sallesCapaciteColumn, sallesCoursColumn, sallesActionColumn);
         sallesActionColumn.setCellFactory(new CustomSalleCellButton(activeSallePane, clickHandler2));
     }
-
-    
 
     ButtonClickHandler clickHandler = rowData -> {
         // Perform actions here based on the row data
@@ -133,12 +149,27 @@ public class AdminstrateurBackofficeSceneController {
         // Iterate over the entries of the rowData map
         for (Map.Entry<String, String> entry : rowData.entrySet()) {
             // Concatenate the key-value pair into the StringBuilder
-            builder.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
+            builder.append(entry.getKey()).append(": ").append(entry.getValue());
         }
-
+        ObservableList<Map<String, String>> data = FXCollections.observableArrayList();
+        data.addAll(ClasseService.getEmploiDeTemps(rowData.get("classeId")));
+        classeEmploiJourColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
+                cellData.getValue().get("Day").substring(0, 3)));
+        // 8-10
+        classeEmploi8_10Column.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
+        classeEmploi8_10Column.setCellFactory(new ET0810());
+        // 10-12
+        classeEmploi10_12Column.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
+        classeEmploi10_12Column.setCellFactory(new ET1012());
+        // 14-16
+        classeEmploi14_16Column.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
+        classeEmploi14_16Column.setCellFactory(new ET1416());
+        // 16-18
+        classeEmploi16_18Column.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
+        classeEmploi16_18Column.setCellFactory(new ET1618());
         // Set the concatenated string to the tempText
         tempText.setText(builder.toString());
-
+        classeEmploiTableView.setItems(data);
     };
 
     ButtonClickHandler clickHandler2 = rowData -> {
