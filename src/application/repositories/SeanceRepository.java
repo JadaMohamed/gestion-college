@@ -5,8 +5,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
-
-import application.database.SqlConnection;
 import application.database.dbClient;
 import application.model.Classe;
 import application.model.Enseignant;
@@ -59,26 +57,51 @@ public class SeanceRepository {
     }
 
     public static ResultSet getNombreSallesOccupes() throws SQLException {
-        String query = "SELECT "
-                + "(SELECT COUNT(DISTINCT idSalle) FROM seance JOIN salle ON seance.idSalle = salle.id "
-                + "WHERE salle.idCategorieSalle = 2 AND DAYOFWEEK(CURDATE()) = CASE "
-                + "WHEN seance.jour = 'LUNDI' THEN 2 WHEN seance.jour = 'MARDI' THEN 3 "
-                + "WHEN seance.jour = 'MERCREDI' THEN 4 WHEN seance.jour = 'JEUDI' THEN 5 "
-                + "WHEN seance.jour = 'VENDREDI' THEN 6 WHEN seance.jour = 'SAMEDI' THEN 7 "
-                + "WHEN seance.jour = 'DIMANCHE' THEN 1 END AND CURTIME() BETWEEN seance.heureDebut AND seance.heureFin) AS nombreLaboratoiresOccupes, "
-                + "(SELECT COUNT(DISTINCT idSalle) FROM seance JOIN salle ON seance.idSalle = salle.id "
-                + "WHERE salle.idCategorieSalle = 3 AND DAYOFWEEK(CURDATE()) = CASE "
-                + "WHEN seance.jour = 'LUNDI' THEN 2 WHEN seance.jour = 'MARDI' THEN 3 "
-                + "WHEN seance.jour = 'MERCREDI' THEN 4 WHEN seance.jour = 'JEUDI' THEN 5 "
-                + "WHEN seance.jour = 'VENDREDI' THEN 6 WHEN seance.jour = 'SAMEDI' THEN 7 "
-                + "WHEN seance.jour = 'DIMANCHE' THEN 1 END AND CURTIME() BETWEEN seance.heureDebut AND seance.heureFin) AS nombreSalleCoursOccupes, "
-                + "(SELECT COUNT(DISTINCT idSalle) FROM seance JOIN salle ON seance.idSalle = salle.id "
-                + "WHERE salle.idCategorieSalle = 1 AND DAYOFWEEK(CURDATE()) = CASE "
-                + "WHEN seance.jour = 'LUNDI' THEN 2 WHEN seance.jour = 'MARDI' THEN 3 "
-                + "WHEN seance.jour = 'MERCREDI' THEN 4 WHEN seance.jour = 'JEUDI' THEN 5 "
-                + "WHEN seance.jour = 'VENDREDI' THEN 6 WHEN seance.jour = 'SAMEDI' THEN 7 "
-                + "WHEN seance.jour = 'DIMANCHE' THEN 1 END AND CURTIME() BETWEEN seance.heureDebut AND seance.heureFin) AS nombreSalleDeSportOccupes;";
-
+        String query = "SELECT " +
+                "(SELECT COUNT(DISTINCT idSalle) " +
+                " FROM seance " +
+                " JOIN salle ON seance.idSalle = salle.id " +
+                " WHERE salle.idCategorieSalle = 1 " +
+                " AND DAYOFWEEK(CURDATE()) = CASE " +
+                "                              WHEN seance.jour = 'LUNDI' THEN 2 " +
+                "                              WHEN seance.jour = 'MARDI' THEN 3 " +
+                "                              WHEN seance.jour = 'MERCREDI' THEN 4 " +
+                "                              WHEN seance.jour = 'JEUDI' THEN 5 " +
+                "                              WHEN seance.jour = 'VENDREDI' THEN 6 " +
+                "                              WHEN seance.jour = 'SAMEDI' THEN 7 " +
+                "                              WHEN seance.jour = 'DIMANCHE' THEN 1 " +
+                "                             END " +
+                " AND CURTIME() BETWEEN seance.heureDebut AND seance.heureFin) AS nombreLaboratoiresOccupes, " +
+                
+                "(SELECT COUNT(DISTINCT idSalle) " +
+                " FROM seance " +
+                " JOIN salle ON seance.idSalle = salle.id " +
+                " WHERE salle.idCategorieSalle = 2 " +
+                " AND DAYOFWEEK(CURDATE()) = CASE " +
+                "                              WHEN seance.jour = 'LUNDI' THEN 2 " +
+                "                              WHEN seance.jour = 'MARDI' THEN 3 " +
+                "                              WHEN seance.jour = 'MERCREDI' THEN 4 " +
+                "                              WHEN seance.jour = 'JEUDI' THEN 5 " +
+                "                              WHEN seance.jour = 'VENDREDI' THEN 6 " +
+                "                              WHEN seance.jour = 'SAMEDI' THEN 7 " +
+                "                              WHEN seance.jour = 'DIMANCHE' THEN 1 " +
+                "                             END " +
+                " AND CURTIME() BETWEEN seance.heureDebut AND seance.heureFin) AS nombreSalleCoursOccupes, " +
+                
+                "(SELECT COUNT(DISTINCT idSalle) " +
+                " FROM seance " +
+                " JOIN salle ON seance.idSalle = salle.id " +
+                " WHERE salle.idCategorieSalle = 3 " +
+                " AND DAYOFWEEK(CURDATE()) = CASE " +
+                "                              WHEN seance.jour = 'LUNDI' THEN 2 " +
+                "                              WHEN seance.jour = 'MARDI' THEN 3 " +
+                "                              WHEN seance.jour = 'MERCREDI' THEN 4 " +
+                "                              WHEN seance.jour = 'JEUDI' THEN 5 " +
+                "                              WHEN seance.jour = 'VENDREDI' THEN 6 " +
+                "                              WHEN seance.jour = 'SAMEDI' THEN 7 " +
+                "                              WHEN seance.jour = 'DIMANCHE' THEN 1 " +
+                "                             END " +
+                " AND CURTIME() BETWEEN seance.heureDebut AND seance.heureFin) AS nombreSalleDeSportOccupes;";
         Vector<Object> parameters = new Vector<>();
         return dbClient.executeCommand(true, query, parameters);
     }
