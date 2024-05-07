@@ -185,7 +185,7 @@ public class AdminstrateurBackofficeSceneController {
         classeEmploi16_18Column.setCellFactory(new ET1618());
         // Set the concatenated string to the tempText
         tempText.setText(builder.toString());
-        classeEmploiTableView.setItems(data);
+        classeEmploiTableView.setItems(data);    
     };
 
     ButtonClickHandler clickHandler2 = rowData -> {
