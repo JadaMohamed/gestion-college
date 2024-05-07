@@ -19,9 +19,9 @@
             <Image url="@../images/logincover.png" />
          </image>
       </ImageView>
-      <Label layoutX="55.599999999999994" layoutY="107.0" text="Log in" textFill="#6941c6d1" AnchorPane.leftAnchor="55.599999999999994">
+      <Label layoutX="56.0" layoutY="104.0" text="Log in" textFill="#6941c6" AnchorPane.leftAnchor="56.0">
          <font>
-            <Font name="Inter SemiBold" size="20.0" />
+            <Font name="Inter SemiBold" size="24.0" />
          </font>
       </Label>
       <VBox layoutX="56.4" layoutY="182.0" prefWidth="300.0" spacing="24.0" AnchorPane.leftAnchor="56.4">
@@ -86,6 +86,7 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
+            <Label fx:id="errorMssg" alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="300.0" textFill="#eb0303" />
          </children>
       </VBox>
       <Label layoutX="28.0" layoutY="447.0" text="© Crestwood College 2024" textFill="#b1b1b1" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="28.0">
@@ -98,7 +99,6 @@
             <Font name="Inter Medium" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="errorMssg" layoutX="86.0" layoutY="165.0" prefHeight="20.0" prefWidth="300.0" textFill="#eb0303" AnchorPane.bottomAnchor="319.0" />
-      <Button layoutX="56.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleAutofillJada" text="AUTOFILL_JADA" AnchorPane.leftAnchor="56.4" AnchorPane.topAnchor="48.0" />
+      <Button layoutX="704.0" layoutY="462.0" mnemonicParsing="false" onAction="#handleAutofillJada" text="AUTOFILL_JADA" AnchorPane.leftAnchor="704.0" AnchorPane.topAnchor="462.0" />
    </children>
 </AnchorPane>

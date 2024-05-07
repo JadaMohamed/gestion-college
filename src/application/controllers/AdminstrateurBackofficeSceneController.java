@@ -34,34 +34,41 @@ import javafx.scene.text.Text;
 
 public class AdminstrateurBackofficeSceneController {
 
+    // sideBar buttons
     @FXML
     private Button accueilButton, classesButton, deconnecterButton, sallesButton, parametresButton, affectationButton,
             annulerButtonParametres;
 
+    // application Panes
     @FXML
     private Pane affectationPane, accueilPane, classesPane, sallesPane, parametresPane, rootPane, activeClassePane,
             activeSallePane;
 
+    // parameters Pane buttons
     @FXML
-    private Button sauvegarderButtonInfosParametres, sauvegarderButtonSecurityParametres, handleAffecterButton,
-            handleAnnulerAffectation;
+    private Button sauvegarderButtonInfosParametres, sauvegarderButtonSecurityParametres;
 
+    // affectation Pane buttons
+    @FXML
+    private Button handleAffecterButton, handleAnnulerAffectation;
+
+    // affectation Pane comboBoxes
     @FXML
     private ComboBox<Salle> sallesComboAffectation;
-
     @FXML
     private ComboBox<Horaires> horairesComboAffectation;
     @FXML
     private ComboBox<JoursSemaine> joursComboAffectation;
     @FXML
     private ComboBox<Enseignant> enseignantComboAffectation;
-
     @FXML
     private ComboBox<TypeCours> typeCoursComboAffectation;
 
+    // application Tableviews
     @FXML
     private TableView<Map<String, String>> coursEncoursTableView, classesTableView, sallesTableView,
             classeEmploiTableView;
+
     @FXML
     private TableColumn<Map<String, String>, String> coursEncoursSalleColumn, coursEncoursHorairesColumn,
             coursEncoursClasseColumn, coursEncoursCourNomColumn, coursEncoursEffectifColumn, classesClasseColumn,
@@ -116,15 +123,24 @@ public class AdminstrateurBackofficeSceneController {
         sidebarController = new SidebarController(this);
         parametresPaneController = new ParametresPaneController(this);
         affectationPaneController = new AffectationPaneController(this);
-        accueilPaneController = new AccueilPaneController(this);
         classesPaneController = new ClassesPaneController(this);
         sallesPaneController = new SallesPaneController(this);
+        accueilPaneController = new AccueilPaneController();
 
+        // accueilPaneController usage
+        accueilPaneController.updateCoursEnCoursLabels(nombreClasse3EnCours, nombreClasse4EnCours, nombreClasse5EnCours,
+                nombreClasse6EnCours);
+        accueilPaneController.updateEffectifEnCours(effectifEnCours);
+        accueilPaneController.updateSallesOccupesLabels(nombreLaboratoiresDisponibles, nombreSalleCoursDisponibles,
+                nombreSalleDeSportDisponibles);
+        accueilPaneController.updateCoursEnCours(coursEnCours);
+        accueilPaneController.updateSallesDisponibles(SallesDisponibles);
+
+        //
         sidebarController.initialize();
         parametresPaneController.initialize();
         parametresPaneController.loadAdminData();
         affectationPaneController.initialize();
-        accueilPaneController.initialize();
         classesPaneController.initialize();
         sallesPaneController.initialize();
         accueilPaneController.fillCurrentSeances(coursEncoursTableView, coursEncoursSalleColumn,

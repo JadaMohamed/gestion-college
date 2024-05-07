@@ -3,8 +3,6 @@ package application.controllers.AdminstrateurBackofficeSceneSubController;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
-
-import application.controllers.AdminstrateurBackofficeSceneController;
 import application.repositories.SeanceRepository;
 import application.services.ClasseService;
 import application.services.SeanceService;
@@ -14,64 +12,59 @@ import application.utilities.CustomStatusCell;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.text.Text;
 
 public class AccueilPaneController {
-    private AdminstrateurBackofficeSceneController mainController;
 
-    public AccueilPaneController(AdminstrateurBackofficeSceneController mainController) {
-        this.mainController = mainController;
+    public AccueilPaneController() {
+
     }
 
-    public void initialize() {
-        updateSallesDisponibles();
-        updateCoursEnCours();
-        updateSallesOccupesLabels();
-        updateCoursEnCoursLabels();
-        updateEffectifEnCours();
-    }
-
-    public void updateSallesDisponibles() {
+    public void updateSallesDisponibles(Text SallesDisponibles) {
         int nombreSallesDisponibles = SeanceService.getNombreSallesDisponibles();
-        mainController.setSallesDisponiblesText(String.valueOf(nombreSallesDisponibles));
+        SallesDisponibles.setText(String.valueOf(nombreSallesDisponibles));
     }
 
-    public void updateCoursEnCours() {
+    public void updateCoursEnCours(Text coursEnCours) {
         try {
             ResultSet resultSet = SeanceRepository.getNombreSeanceEnCours();
             if (resultSet.next()) {
                 int nombreCoursEnCours = resultSet.getInt("seancesencours");
-                mainController.setCoursEnCoursText(String.valueOf(nombreCoursEnCours));
+                coursEnCours.setText(String.valueOf(nombreCoursEnCours));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void updateSallesOccupesLabels() {
+    public void updateSallesOccupesLabels(Label nombreLaboratoiresDisponibles, Label nombreSalleCoursDisponibles,
+            Label nombreSalleDeSportDisponibles) {
         try {
             int[] nombreSallesOccupes = SeanceService.getNombreSallesOccupes();
-            mainController.setNombreLaboratoiresOccupesText(String.valueOf(2 - nombreSallesOccupes[0]));
-            mainController.setNombreSalleCoursOccupesText(String.valueOf(17 - nombreSallesOccupes[1]));
-            mainController.setNombreSalleDeSportOccupesText(String.valueOf(3 - nombreSallesOccupes[2]));
+            nombreLaboratoiresDisponibles.setText(String.valueOf(2 - nombreSallesOccupes[0]));
+            nombreSalleCoursDisponibles.setText(String.valueOf(17 - nombreSallesOccupes[1]));
+            nombreSalleDeSportDisponibles.setText(String.valueOf(3 - nombreSallesOccupes[2]));
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void updateCoursEnCoursLabels() {
+    public void updateCoursEnCoursLabels(Label nombreClasse3EnCours, Label nombreClasse4EnCours,
+            Label nombreClasse5EnCours, Label nombreClasse6EnCours) {
         int[] nombreCoursParNiveau = SeanceService.getNombreCoursParNiveau();
-        mainController.setCoursEnCours6emeText(String.valueOf(nombreCoursParNiveau[0]));
-        mainController.setCoursEnCours5emeText(String.valueOf(nombreCoursParNiveau[1]));
-        mainController.setCoursEnCours4emeText(String.valueOf(nombreCoursParNiveau[2]));
-        mainController.setCoursEnCours3emeText(String.valueOf(nombreCoursParNiveau[3]));
+        nombreClasse3EnCours.setText(String.valueOf(nombreCoursParNiveau[0]));
+        nombreClasse4EnCours.setText(String.valueOf(nombreCoursParNiveau[1]));
+        nombreClasse5EnCours.setText(String.valueOf(nombreCoursParNiveau[2]));
+        nombreClasse6EnCours.setText(String.valueOf(nombreCoursParNiveau[3]));
     }
 
-    public void updateEffectifEnCours() {
+    public void updateEffectifEnCours(Text effectifEnCours) {
         try {
-            int effectifEnCours = SeanceService.getEffectifEnCours();
-            mainController.setEffectifEnCoursText(String.valueOf(effectifEnCours));
+            int effectif = SeanceService.getEffectifEnCours();
+            effectifEnCours.setText(String.valueOf(effectif));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -120,8 +113,6 @@ public class AccueilPaneController {
             TableColumn<Map<String, String>, Map<String, String>> classesProfesseurColumn) {
         ObservableList<Map<String, String>> data = FXCollections.observableArrayList();
         data.addAll(ClasseService.getAllClassesWithCurrentSeances());
-
-        // handle actions
         // Associate data with columns
         classesSalleColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
                 cellData.getValue().get("salleNom")));

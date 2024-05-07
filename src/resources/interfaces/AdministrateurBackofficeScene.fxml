@@ -29,7 +29,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" spacing="96.0" style="-fx-border-color: #7F56D9; -fx-border-width: 0 0 1 0;">
                      <children>
-                        <Button fx:id="parametresButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleSideBarButtonAction" prefHeight="40.0" prefWidth="40.0" textFill="#6941c6">
+                        <Button fx:id="parametresButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleSideBarButtonAction" prefHeight="40.0" prefWidth="40.0" styleClass="sideBarButton" textFill="#6941c6">
                            <graphic>
                               <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -43,10 +43,6 @@
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
-                           <styleClass>
-                              <String fx:value="sideBarButton" />
-                              <String fx:value="active" />
-                           </styleClass>
                         </Button>
                         <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -81,7 +77,7 @@
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0" spacing="4.0">
                      <children>
-                        <Button fx:id="accueilButton" alignment="TOP_LEFT" graphicTextGap="12.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#handleSideBarButtonAction" prefWidth="168.0" style="-fx-border-radius: 8px;" styleClass="sideBarButton" text="Accueil" textFill="#f4ebff">
+                        <Button fx:id="accueilButton" alignment="TOP_LEFT" graphicTextGap="12.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#handleSideBarButtonAction" prefWidth="168.0" style="-fx-border-radius: 8px;" text="Accueil" textFill="#f4ebff">
                            <VBox.margin>
                               <Insets bottom="4.0" />
                            </VBox.margin>
@@ -101,6 +97,10 @@
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
+                           <styleClass>
+                              <String fx:value="sideBarButton" />
+                              <String fx:value="active" />
+                           </styleClass>
                         </Button>
                         <Button fx:id="sallesButton" alignment="TOP_LEFT" graphicTextGap="12.0" mnemonicParsing="false" onAction="#handleSideBarButtonAction" prefWidth="168.0" style="-fx-border-radius: 8px;" styleClass="sideBarButton" text="Salles" textFill="WHITE">
                            <padding>
@@ -741,6 +741,309 @@
                   </Label>
                </children>
             </Pane>
+            <Pane fx:id="sallesPane" layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <VBox layoutX="24.0" layoutY="214.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="463.0" prefWidth="954.0" style="-fx-background-color: #fff; -fx-background-radius: 8px; -fx-border-color: #EDEEF0; -fx-border-radius: 8px;">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="952.0" spacing="420.0" style="-fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0; -fx-border-radius: 4px 4px 0 0;">
+                           <children>
+                              <Label prefHeight="18.0" prefWidth="56.0" text="Salles">
+                                 <font>
+                                    <Font name="Inter SemiBold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <HBox prefHeight="26.0" prefWidth="460.0" spacing="16.0">
+                                 <children>
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                       <children>
+                                          <TextField maxHeight="-Infinity" prefHeight="35.2" prefWidth="300.0" promptText="Search" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-background-radius: 4px; -fx-border-radius: 4px;">
+                                             <padding>
+                                                <Insets bottom="7.2" left="36.0" right="16.0" top="7.2" />
+                                             </padding>
+                                             <font>
+                                                <Font name="Inter Medium" size="14.0" />
+                                             </font>
+                                          </TextField>
+                                          <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="8.6" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="8.6">
+                                             <image>
+                                                <Image url="@../images/icons/search-lg.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </AnchorPane>
+                                    <ComboBox prefWidth="180.0" promptText="Filter" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;">
+                                       <padding>
+                                          <Insets bottom="4.0" left="6.0" right="6.0" top="4.0" />
+                                       </padding>
+                                    </ComboBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="16.0" right="16.0" top="10.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                        <TableView fx:id="sallesTableView" minWidth="-Infinity" prefHeight="601.0" prefWidth="952.0" style="-fx-background-color: #fff; -fx-background-radius: 8px;">
+                           <columns>
+                              <TableColumn fx:id="sallesColumn" editable="false" prefWidth="220.0" style="-fx-padding: 7px 10px; -fx-font-weight: bold;" styleClass="tableViewColumn" text="Salle" />
+                              <TableColumn fx:id="sallesCapaciteColumn" editable="false" prefWidth="103.46661376953125" styleClass="tableViewColumn" text="Capacite" />
+                              <TableColumn fx:id="sallesStatutColumn" editable="false" prefWidth="137.59991455078125" styleClass="tableViewColumn" text="Statut" />
+                              <TableColumn fx:id="sallesCoursColumn" editable="false" prefWidth="213.8666229248047" style="-fx-font-weight: bold;" styleClass="tableViewColumn" text="Cours" />
+                              <TableColumn fx:id="sallesClassesColumn" editable="false" prefWidth="189.60009765625" style="-fx-font-weight: bold;" styleClass="tableViewColumn" text="Classe" />
+                              <TableColumn fx:id="sallesActionColumn" editable="false" prefWidth="55.466552734375" styleClass="tableViewColumn" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+                  <HBox layoutX="24.0" layoutY="16.0" spacing="2.0" />
+                  <HBox alignment="CENTER_LEFT" layoutX="24.0" layoutY="16.0" prefHeight="30.0" prefWidth="87.0">
+                     <children>
+                        <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons/_Breadcrumb%20button%20base.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons/chevron-right.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Salles">
+                           <font>
+                              <Font name="Inter Regular" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="2.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="24.0" layoutY="80.0" prefHeight="100.0" prefWidth="952.0" spacing="16.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <children>
+                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="98.0" prefWidth="307.0" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-color: EDEEF0; -fx-font-family: Inter;">
+                           <children>
+                              <Text fill="#4e427f" layoutX="18.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Laboratoires" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="12.0">
+                                 <font>
+                                    <Font name="Inter SemiBold" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#4e427f" layoutX="22.400000000000002" layoutY="70.0625" strokeType="OUTSIDE" strokeWidth="0.0" text="2" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="41.0">
+                                 <font>
+                                    <Font name="Inter SemiBold" size="30.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="54.0" fitWidth="54.0" layoutX="133.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="32.0">
+                                 <image>
+                                    <Image url="@../images/icons/Laboratoire.png" />
+                                 </image>
+                              </ImageView>
+                              <HBox alignment="CENTER_LEFT" spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0">
+                                 <children>
+                                    <Label fx:id="nombreLabDisponibles" text="1" textFill="#5a6080">
+                                       <font>
+                                          <Font name="Poppins Medium" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Dsponible" textFill="#5a6080">
+                                       <font>
+                                          <Font name="Inter Light" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="98.0" prefWidth="307.0" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-color: EDEEF0; -fx-font-family: Inter;">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0">
+                                 <children>
+                                    <Label fx:id="nombreSalleSportDisponibles" text="0" textFill="#5a6080">
+                                       <font>
+                                          <Font name="Poppins Medium" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Dsponible" textFill="#5a6080">
+                                       <font>
+                                          <Font name="Inter Light" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <Text fill="#4e427f" layoutX="18.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Salles de sports" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="12.0">
+                                 <font>
+                                    <Font name="Inter SemiBold" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#4e427f" layoutX="22.400000000000002" layoutY="70.0625" strokeType="OUTSIDE" strokeWidth="0.0" text="3" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="41.0">
+                                 <font>
+                                    <Font name="Inter SemiBold" size="30.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="54.0" fitWidth="54.0" layoutX="133.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="32.0">
+                                 <image>
+                                    <Image url="@../images/icons/Sport.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="98.0" prefWidth="307.0" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-color: EDEEF0; -fx-font-family: Inter;">
+                           <children>
+                              <Text fill="#4e427f" layoutX="18.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Salles de cours" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="12.0">
+                                 <font>
+                                    <Font name="Inter SemiBold" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#4e427f" layoutX="22.400000000000002" layoutY="70.0625" strokeType="OUTSIDE" strokeWidth="0.0" text="17" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="41.0">
+                                 <font>
+                                    <Font name="Inter SemiBold" size="30.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="54.0" fitWidth="54.0" layoutX="133.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="32.0">
+                                 <image>
+                                    <Image url="@../images/icons/Salle%20Cours.png" />
+                                 </image>
+                              </ImageView>
+                              <HBox alignment="CENTER_LEFT" spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0">
+                                 <children>
+                                    <Label fx:id="nombreSalleCourDisponibles" text="4" textFill="#5a6080">
+                                       <font>
+                                          <Font name="Poppins Medium" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Dsponible" textFill="#5a6080">
+                                       <font>
+                                          <Font name="Inter Light" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+               </children>
+            </Pane>
+            <Pane fx:id="activeSallePane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Pane fx:id="activeSallePane" layoutX="10.0" layoutY="10.0" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" layoutX="24.0" layoutY="16.0" prefHeight="30.0" prefWidth="87.0">
+                     <children>
+                        <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons/_Breadcrumb%20button%20base.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons/chevron-right.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Salles">
+                           <font>
+                              <Font name="Inter Regular" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="2.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Pane fx:id="activeSallePane1" prefHeight="200.0" prefWidth="260.0" />
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons/chevron-right.png" />
+                           </image>
+                        </ImageView>
+                        <Text fx:id="activeSalleLabel" fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Salles">
+                           <font>
+                              <Font name="Inter Regular" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <Text fx:id="tempText1" fill="#475467" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="temp1" x="24.0">
+                     <font>
+                        <Font name="Inter Regular" size="14.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane fx:id="activeClassePane" layoutX="40.0" layoutY="40.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" layoutX="24.0" layoutY="16.0" prefHeight="30.0" prefWidth="87.0">
+                     <children>
+                        <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../dev/gestion-college/src/resources/images/icons/_Breadcrumb%20button%20base.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../dev/gestion-college/src/resources/images/icons/chevron-right.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Classes">
+                           <font>
+                              <Font name="Inter Regular" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="2.0" />
+                           </HBox.margin>
+                        </Text>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../dev/gestion-college/src/resources/images/icons/chevron-right.png" />
+                           </image>
+                        </ImageView>
+                        <Text fx:id="activeClasseLabel" fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Classes">
+                           <font>
+                              <Font name="Inter Regular" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <Text fx:id="tempText" fill="#475467" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="temp" x="24.0">
+                     <font>
+                        <Font name="Inter Regular" size="14.0" />
+                     </font>
+                  </Text>
+                  <VBox layoutX="22.0" layoutY="185.0" prefHeight="492.0" prefWidth="956.0" style="-fx-background-color: #fff; -fx-background-radius: 8px; -fx-border-color: #EDEEF0; -fx-border-radius: 8px;">
+                     <children>
+                        <TableView fx:id="classeEmploiTableView" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="954.0">
+                           <columns>
+                              <TableColumn fx:id="classeEmploiJourColumn" editable="false" prefWidth="60.0" style="-fx-font-weight: bold;" text="Jour" />
+                              <TableColumn fx:id="classeEmploi8_10Column" editable="false" prefWidth="218.0" style="-fx-font-weight: bold;" styleClass="boldtableViewColumn" text="08:00 - 10:00" />
+                              <TableColumn fx:id="classeEmploi10_12Column" editable="false" prefWidth="218.0" styleClass="tableViewColumn" text="10:00 - 12:00" />
+                              <TableColumn fx:id="classeEmploi14_16Column" editable="false" prefWidth="218.0" style="-fx-font-weight: bold;" styleClass="boldtableViewColumn" text="14:00 - 16:00" />
+                              <TableColumn fx:id="classeEmploi16_18Column" editable="false" prefWidth="218.0" styleClass="tableViewColumn" text="16:00 - 18:00" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
             <Pane fx:id="classesPane" layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <HBox layoutX="24.0" layoutY="16.0" spacing="2.0" />
@@ -985,308 +1288,6 @@
                         </TableView>
                      </children>
                   </VBox>
-               </children>
-            </Pane>
-            <Pane fx:id="sallesPane" layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <VBox layoutX="24.0" layoutY="214.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="463.0" prefWidth="954.0" style="-fx-background-color: #fff; -fx-background-radius: 8px; -fx-border-color: #EDEEF0; -fx-border-radius: 8px;">
-                     <children>
-                        <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="952.0" spacing="420.0" style="-fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0; -fx-border-radius: 4px 4px 0 0;">
-                           <children>
-                              <Label prefHeight="18.0" prefWidth="56.0" text="Salles">
-                                 <font>
-                                    <Font name="Inter SemiBold" size="14.0" />
-                                 </font>
-                              </Label>
-                              <HBox prefHeight="26.0" prefWidth="460.0" spacing="16.0">
-                                 <children>
-                                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                       <children>
-                                          <TextField maxHeight="-Infinity" prefHeight="35.2" prefWidth="300.0" promptText="Search" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-background-radius: 4px; -fx-border-radius: 4px;">
-                                             <padding>
-                                                <Insets bottom="7.2" left="36.0" right="16.0" top="7.2" />
-                                             </padding>
-                                             <font>
-                                                <Font name="Inter Medium" size="14.0" />
-                                             </font>
-                                          </TextField>
-                                          <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="8.6" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="8.6">
-                                             <image>
-                                                <Image url="@../images/icons/search-lg.png" />
-                                             </image>
-                                          </ImageView>
-                                       </children>
-                                    </AnchorPane>
-                                    <ComboBox prefWidth="180.0" promptText="Filter" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;">
-                                       <padding>
-                                          <Insets bottom="4.0" left="6.0" right="6.0" top="4.0" />
-                                       </padding>
-                                    </ComboBox>
-                                 </children>
-                              </HBox>
-                           </children>
-                           <padding>
-                              <Insets bottom="10.0" left="16.0" right="16.0" top="10.0" />
-                           </padding>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </HBox>
-                        <TableView fx:id="sallesTableView" minWidth="-Infinity" prefHeight="601.0" prefWidth="952.0" style="-fx-background-color: #fff; -fx-background-radius: 8px;">
-                           <columns>
-                              <TableColumn fx:id="sallesColumn" editable="false" prefWidth="220.0" style="-fx-padding: 7px 10px; -fx-font-weight: bold;" styleClass="tableViewColumn" text="Salle" />
-                              <TableColumn fx:id="sallesCapaciteColumn" editable="false" prefWidth="103.46661376953125" styleClass="tableViewColumn" text="Capacite" />
-                              <TableColumn fx:id="sallesStatutColumn" editable="false" prefWidth="137.59991455078125" styleClass="tableViewColumn" text="Statut" />
-                              <TableColumn fx:id="sallesCoursColumn" editable="false" prefWidth="213.8666229248047" style="-fx-font-weight: bold;" styleClass="tableViewColumn" text="Cours" />
-                              <TableColumn fx:id="sallesClassesColumn" editable="false" prefWidth="189.60009765625" style="-fx-font-weight: bold;" styleClass="tableViewColumn" text="Classe" />
-                              <TableColumn fx:id="sallesActionColumn" editable="false" prefWidth="55.466552734375" styleClass="tableViewColumn" />
-                           </columns>
-                        </TableView>
-                     </children>
-                  </VBox>
-                  <HBox layoutX="24.0" layoutY="16.0" spacing="2.0" />
-                  <HBox alignment="CENTER_LEFT" layoutX="24.0" layoutY="16.0" prefHeight="30.0" prefWidth="87.0">
-                     <children>
-                        <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/icons/_Breadcrumb%20button%20base.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/icons/chevron-right.png" />
-                           </image>
-                        </ImageView>
-                        <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Salles">
-                           <font>
-                              <Font name="Inter Regular" size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="2.0" />
-                           </HBox.margin>
-                        </Text>
-                     </children>
-                  </HBox>
-                  <HBox layoutX="24.0" layoutY="80.0" prefHeight="100.0" prefWidth="952.0" spacing="16.0">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <children>
-                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="98.0" prefWidth="307.0" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-color: EDEEF0; -fx-font-family: Inter;">
-                           <children>
-                              <Text fill="#4e427f" layoutX="18.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Laboratoires" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="12.0">
-                                 <font>
-                                    <Font name="Inter SemiBold" size="14.0" />
-                                 </font>
-                              </Text>
-                              <Text fill="#4e427f" layoutX="22.400000000000002" layoutY="70.0625" strokeType="OUTSIDE" strokeWidth="0.0" text="2" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="41.0">
-                                 <font>
-                                    <Font name="Inter SemiBold" size="30.0" />
-                                 </font>
-                              </Text>
-                              <ImageView fitHeight="54.0" fitWidth="54.0" layoutX="133.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="32.0">
-                                 <image>
-                                    <Image url="@../images/icons/Laboratoire.png" />
-                                 </image>
-                              </ImageView>
-                              <HBox alignment="CENTER_LEFT" spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0">
-                                 <children>
-                                    <Label fx:id="nombreLabDisponibles" text="1" textFill="#5a6080">
-                                       <font>
-                                          <Font name="Poppins Medium" size="13.0" />
-                                       </font>
-                                    </Label>
-                                    <Label text="Dsponible" textFill="#5a6080">
-                                       <font>
-                                          <Font name="Inter Light" size="13.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <padding>
-                                    <Insets right="10.0" />
-                                 </padding>
-                              </HBox>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="98.0" prefWidth="307.0" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-color: EDEEF0; -fx-font-family: Inter;">
-                           <children>
-                              <HBox alignment="CENTER_LEFT" spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0">
-                                 <children>
-                                    <Label fx:id="nombreSalleSportDisponibles" text="0" textFill="#5a6080">
-                                       <font>
-                                          <Font name="Poppins Medium" size="13.0" />
-                                       </font>
-                                    </Label>
-                                    <Label text="Dsponible" textFill="#5a6080">
-                                       <font>
-                                          <Font name="Inter Light" size="13.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <padding>
-                                    <Insets right="10.0" />
-                                 </padding>
-                              </HBox>
-                              <Text fill="#4e427f" layoutX="18.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Salles de sports" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="12.0">
-                                 <font>
-                                    <Font name="Inter SemiBold" size="14.0" />
-                                 </font>
-                              </Text>
-                              <Text fill="#4e427f" layoutX="22.400000000000002" layoutY="70.0625" strokeType="OUTSIDE" strokeWidth="0.0" text="3" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="41.0">
-                                 <font>
-                                    <Font name="Inter SemiBold" size="30.0" />
-                                 </font>
-                              </Text>
-                              <ImageView fitHeight="54.0" fitWidth="54.0" layoutX="133.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="32.0">
-                                 <image>
-                                    <Image url="@../images/icons/Sport.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="98.0" prefWidth="307.0" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-color: EDEEF0; -fx-font-family: Inter;">
-                           <children>
-                              <Text fill="#4e427f" layoutX="18.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Salles de cours" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="12.0">
-                                 <font>
-                                    <Font name="Inter SemiBold" size="14.0" />
-                                 </font>
-                              </Text>
-                              <Text fill="#4e427f" layoutX="22.400000000000002" layoutY="70.0625" strokeType="OUTSIDE" strokeWidth="0.0" text="17" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="41.0">
-                                 <font>
-                                    <Font name="Inter SemiBold" size="30.0" />
-                                 </font>
-                              </Text>
-                              <ImageView fitHeight="54.0" fitWidth="54.0" layoutX="133.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="32.0">
-                                 <image>
-                                    <Image url="@../images/icons/Salle%20Cours.png" />
-                                 </image>
-                              </ImageView>
-                              <HBox alignment="CENTER_LEFT" spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0">
-                                 <children>
-                                    <Label fx:id="nombreSalleCourDisponibles" text="4" textFill="#5a6080">
-                                       <font>
-                                          <Font name="Poppins Medium" size="13.0" />
-                                       </font>
-                                    </Label>
-                                    <Label text="Dsponible" textFill="#5a6080">
-                                       <font>
-                                          <Font name="Inter Light" size="13.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <padding>
-                                    <Insets right="10.0" />
-                                 </padding>
-                              </HBox>
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </HBox>
-               </children>
-            </Pane>
-            <Pane fx:id="activeClassePane" layoutX="40.0" layoutY="40.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <HBox alignment="CENTER_LEFT" layoutX="24.0" layoutY="16.0" prefHeight="30.0" prefWidth="87.0">
-                     <children>
-                        <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../dev/gestion-college/src/resources/images/icons/_Breadcrumb%20button%20base.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../dev/gestion-college/src/resources/images/icons/chevron-right.png" />
-                           </image>
-                        </ImageView>
-                        <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Classes">
-                           <font>
-                              <Font name="Inter Regular" size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="2.0" />
-                           </HBox.margin>
-                        </Text>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../dev/gestion-college/src/resources/images/icons/chevron-right.png" />
-                           </image>
-                        </ImageView>
-                        <Text fx:id="activeClasseLabel" fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Classes">
-                           <font>
-                              <Font name="Inter Regular" size="14.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </HBox>
-                  <Text fx:id="tempText" fill="#475467" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="temp" x="24.0">
-                     <font>
-                        <Font name="Inter Regular" size="14.0" />
-                     </font>
-                  </Text>
-                  <VBox layoutX="22.0" layoutY="185.0" prefHeight="492.0" prefWidth="956.0" style="-fx-background-color: #fff; -fx-background-radius: 8px; -fx-border-color: #EDEEF0; -fx-border-radius: 8px;">
-                     <children>
-                        <TableView fx:id="classeEmploiTableView" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="954.0">
-                           <columns>
-                              <TableColumn fx:id="classeEmploiJourColumn" editable="false" prefWidth="60.0" style="-fx-font-weight: bold;" text="Jour" />
-                              <TableColumn fx:id="classeEmploi8_10Column" editable="false" prefWidth="218.0" style="-fx-font-weight: bold;" styleClass="boldtableViewColumn" text="08:00 - 10:00" />
-                              <TableColumn fx:id="classeEmploi10_12Column" editable="false" prefWidth="218.0" styleClass="tableViewColumn" text="10:00 - 12:00" />
-                              <TableColumn fx:id="classeEmploi14_16Column" editable="false" prefWidth="218.0" style="-fx-font-weight: bold;" styleClass="boldtableViewColumn" text="14:00 - 16:00" />
-                              <TableColumn fx:id="classeEmploi16_18Column" editable="false" prefWidth="218.0" styleClass="tableViewColumn" text="16:00 - 18:00" />
-                           </columns>
-                        </TableView>
-                     </children>
-                  </VBox>
-               </children>
-            </Pane>
-            <Pane fx:id="activeSallePane" layoutX="10.0" layoutY="10.0" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <HBox alignment="CENTER_LEFT" layoutX="24.0" layoutY="16.0" prefHeight="30.0" prefWidth="87.0">
-                     <children>
-                        <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/icons/_Breadcrumb%20button%20base.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/icons/chevron-right.png" />
-                           </image>
-                        </ImageView>
-                        <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Salles">
-                           <font>
-                              <Font name="Inter Regular" size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="2.0" />
-                           </HBox.margin>
-                        </Text>
-                        <Pane fx:id="activeSallePane1" prefHeight="200.0" prefWidth="260.0" />
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/icons/chevron-right.png" />
-                           </image>
-                        </ImageView>
-                        <Text fx:id="activeSalleLabel" fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Salles">
-                           <font>
-                              <Font name="Inter Regular" size="14.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </HBox>
-                  <Text fx:id="tempText1" fill="#475467" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="temp1" x="24.0">
-                     <font>
-                        <Font name="Inter Regular" size="14.0" />
-                     </font>
-                  </Text>
                </children>
             </Pane>
             <Pane fx:id="accueilPane" layoutX="20.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5; -fx-border-radius: 10; -fx-border-width: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -1599,7 +1600,6 @@
                         </TableView>
                      </children>
                   </VBox>
-                  <Pane fx:id="activeSallePane" layoutX="253.0" layoutY="110.0" prefHeight="200.0" prefWidth="200.0" />
                </children>
             </Pane>
          </children>
