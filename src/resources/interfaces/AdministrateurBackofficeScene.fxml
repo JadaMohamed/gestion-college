@@ -1506,15 +1506,6 @@
                   </VBox>
                </children>
             </Pane>
-            <TableView fx:id="classeEmploiTableView1" layoutX="10.0" layoutY="10.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="954.0">
-               <columns>
-                  <TableColumn fx:id="classeEmploiJourColumn1" editable="false" prefWidth="60.0" style="-fx-font-weight: bold;" text="Jour" />
-                  <TableColumn fx:id="classeEmploi8_10Column1" editable="false" prefWidth="218.0" style="-fx-font-weight: bold;" styleClass="boldtableViewColumn" text="08:00 - 10:00" />
-                  <TableColumn fx:id="classeEmploi10_12Column1" editable="false" prefWidth="218.0" styleClass="tableViewColumn" text="10:00 - 12:00" />
-                  <TableColumn fx:id="classeEmploi14_16Column1" editable="false" prefWidth="218.0" style="-fx-font-weight: bold;" styleClass="boldtableViewColumn" text="14:00 - 16:00" />
-                  <TableColumn fx:id="classeEmploi16_18Column1" editable="false" prefWidth="218.0" styleClass="tableViewColumn" text="16:00 - 18:00" />
-               </columns>
-            </TableView>
             <Pane fx:id="activeClassePane" layoutX="40.0" layoutY="40.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <HBox alignment="CENTER_LEFT" layoutX="24.0" layoutY="16.0" prefHeight="30.0" prefWidth="87.0">

@@ -15,6 +15,7 @@ import application.model.Salle;
 import application.model.TypeCours;
 import application.model.enums.JoursSemaine;
 import application.services.ClasseService;
+import application.services.SallesService;
 import application.utilities.ButtonClickHandler;
 import application.utilities.CustomClasseCellButton;
 import application.utilities.CustomSalleCellButton;
@@ -67,7 +68,7 @@ public class AdminstrateurBackofficeSceneController {
     // application Tableviews
     @FXML
     private TableView<Map<String, String>> coursEncoursTableView, classesTableView, sallesTableView,
-            classeEmploiTableView;
+            classeEmploiTableView,salleEmploiTableView ;
 
     @FXML
     private TableColumn<Map<String, String>, String> coursEncoursSalleColumn, coursEncoursHorairesColumn,
@@ -81,8 +82,14 @@ public class AdminstrateurBackofficeSceneController {
     @FXML
     private TableColumn<Map<String, String>, Map<String, String>> classeEmploi8_10Column,
             classeEmploi10_12Column, classeEmploi14_16Column, classeEmploi16_18Column;
+
+     @FXML
+    private TableColumn<Map<String, String>, Map<String, String>> salleEmploi8_10Column,
+            salleEmploi10_12Column, salleEmploi14_16Column, salleEmploi16_18Column;
     @FXML
     private TableColumn<Map<String, String>, String> classeEmploiJourColumn;
+    @FXML
+    private TableColumn<Map<String, String>, String> salleEmploiJourColumn;
 
     @FXML
     private ComboBox<Classe> classesComboAffectation;
@@ -191,19 +198,38 @@ public class AdminstrateurBackofficeSceneController {
     ButtonClickHandler clickHandler2 = rowData -> {
         // Perform actions here based on the row data
         // For example:
-        activeSalleLabel.setText(rowData.get("nom"));
+        activeSalleLabel.setText(rowData.get("salleNom"));
         StringBuilder builder = new StringBuilder();
-
+    
         // Iterate over the entries of the rowData map
         for (Map.Entry<String, String> entry : rowData.entrySet()) {
             // Concatenate the key-value pair into the StringBuilder
             builder.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
         }
-
+        
+        ObservableList<Map<String, String>> data = FXCollections.observableArrayList();
+        data.addAll(SallesService.getEmploiDeTempsSalle(rowData.get("salleId")));
+        salleEmploiJourColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
+                cellData.getValue().get("Day").substring(0, 3)));
+        // 8-10
+        salleEmploi8_10Column.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
+        salleEmploi8_10Column.setCellFactory(new ET0810());
+        // 10-12
+        salleEmploi10_12Column.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
+        salleEmploi10_12Column.setCellFactory(new ET1012());
+        // 14-16
+        salleEmploi14_16Column.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
+        salleEmploi14_16Column.setCellFactory(new ET1416());
+        // 16-18
+        salleEmploi16_18Column.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
+        salleEmploi16_18Column.setCellFactory(new ET1618());
+        
         // Set the concatenated string to the tempText
-        tempText1.setText(builder.toString());
-
+        tempText.setText(builder.toString());
+        salleEmploiTableView.setItems(data);    
     };
+    
+    
 
     public void setSallesDisponiblesText(String text) {
         SallesDisponibles.setText(text);
