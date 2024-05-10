@@ -63,7 +63,8 @@ public class SallesService {
             result = SallesRepository.getAllSallesWithCurrentSeances();
             while (result.next()) {
                 Map<String, String> salle = new HashMap<>();
-                salle.put("nom", result.getString("nom"));
+                salle.put("idSalle", result.getString("id"));
+                salle.put("nomSalle", result.getString("nom"));
                 salle.put("capacite", result.getString("capacite"));
                 salle.put("statut", result.getString("statut"));
                 salle.put("cours", result.getString("nomCours"));

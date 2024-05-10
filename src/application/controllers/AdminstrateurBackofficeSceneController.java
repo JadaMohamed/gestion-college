@@ -198,9 +198,10 @@ public class AdminstrateurBackofficeSceneController {
     ButtonClickHandler clickHandler2 = rowData -> {
         // Perform actions here based on the row data
         // For example:
-        activeSalleLabel.setText(rowData.get("salleNom"));
+        activeSalleLabel.setText(rowData.get("nomSalle"));
         StringBuilder builder = new StringBuilder();
     
+        System.out.println(rowData);
         // Iterate over the entries of the rowData map
         for (Map.Entry<String, String> entry : rowData.entrySet()) {
             // Concatenate the key-value pair into the StringBuilder
@@ -208,7 +209,7 @@ public class AdminstrateurBackofficeSceneController {
         }
         
         ObservableList<Map<String, String>> data = FXCollections.observableArrayList();
-        data.addAll(SallesService.getEmploiDeTempsSalle(rowData.get("salleId")));
+        data.addAll(SallesService.getEmploiDeTempsSalle(rowData.get("idSalle")));
         salleEmploiJourColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
                 cellData.getValue().get("Day").substring(0, 3)));
         // 8-10
@@ -225,7 +226,7 @@ public class AdminstrateurBackofficeSceneController {
         salleEmploi16_18Column.setCellFactory(new ET1618());
         
         // Set the concatenated string to the tempText
-        tempText.setText(builder.toString());
+        tempText1.setText(builder.toString());
         salleEmploiTableView.setItems(data);    
     };
     

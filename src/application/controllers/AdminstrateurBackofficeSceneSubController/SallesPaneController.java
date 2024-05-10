@@ -49,7 +49,7 @@ public class SallesPaneController {
     // handle actions
     // Associate data with columns
     sallesColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
-            cellData.getValue().get("nom")));
+            cellData.getValue().get("nomSalle")));
     sallesColumn.setCellFactory(new CustomSalleCell());
     sallesStatusColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
             cellData.getValue().get("statut")));
