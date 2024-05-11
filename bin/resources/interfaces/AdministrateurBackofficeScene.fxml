@@ -1272,7 +1272,7 @@
                               <Image url="@../../../../dev/gestion-college/src/resources/images/icons/chevron-right.png" />
                            </image>
                         </ImageView>
-                        <Text fx:id="activeClasseLabel" fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Classes">
+                        <Text fx:id="activeClasseLabel" fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="nomClasse">
                            <font>
                               <Font name="Inter Regular" size="14.0" />
                            </font>
@@ -1292,7 +1292,7 @@
                         </TableView>
                      </children>
                   </VBox>
-                  <AnchorPane layoutX="24.0" layoutY="80.0" prefHeight="90.0" prefWidth="954.0" style="-fx-background-color: #fff; -fx-border-color: #EDEEF0; -fx-border-radius: 4px; -fx-background-radius: 4px;">
+                  <AnchorPane layoutX="24.0" layoutY="80.0" prefHeight="90.0" prefWidth="954.0" style="-fx-background-color: #fff; -fx-border-color: #EDEEF0; -fx-border-radius: 8px; -fx-background-radius: 8px;">
                      <children>
                         <Label fx:id="activeClasseNomLabel" layoutX="19.0" layoutY="17.0" text="classeNom" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="16.0">
                            <font>
@@ -1331,8 +1331,120 @@
                               </HBox>
                            </children>
                         </HBox>
+                        <Button fx:id="listEtudiantsButton" alignment="TOP_LEFT" graphicTextGap="12.0" layoutX="759.0" layoutY="34.0" mnemonicParsing="false" onAction="#handleListEtudiantsButton" prefHeight="34.0" prefWidth="181.0" style="-fx-border-radius: 8px;" styleClass="sideBarButton" text="List des étudiants" textFill="#f4ebff" AnchorPane.bottomAnchor="16.0" AnchorPane.rightAnchor="16.0">
+                           <padding>
+                              <Insets bottom="8.0" left="12.0" right="12.0" top="8.0" />
+                           </padding>
+                           <graphic>
+                              <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/icons/users-01.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Inter Medium" size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
                      </children>
                   </AnchorPane>
+               </children>
+            </Pane>
+            <Pane fx:id="activeListEtudiantsPane" layoutX="30.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5; -fx-border-radius: 10; -fx-border-width: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <VBox layoutX="24.0" layoutY="80.0" prefHeight="596.0" prefWidth="956.0" style="-fx-background-color: #fff; -fx-background-radius: 8px; -fx-border-color: #EDEEF0; -fx-border-radius: 8px;">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="952.0" spacing="470.6" style="-fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0; -fx-border-radius: 4px 4px 0 0;">
+                           <children>
+                              <Label layoutX="24.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="150.0" text="List des etudiants">
+                                 <font>
+                                    <Font name="Inter SemiBold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <HBox prefHeight="26.0" spacing="16.0">
+                                 <children>
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                       <children>
+                                          <TextField maxHeight="-Infinity" prefHeight="35.2" prefWidth="300.0" promptText="Search" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-background-radius: 4px; -fx-border-radius: 4px;">
+                                             <padding>
+                                                <Insets bottom="7.2" left="36.0" right="16.0" top="7.2" />
+                                             </padding>
+                                             <font>
+                                                <Font name="Inter Medium" size="14.0" />
+                                             </font>
+                                          </TextField>
+                                          <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="8.6" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="8.6">
+                                             <image>
+                                                <Image url="@../images/icons/search-lg.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="16.0" right="16.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                        <TableView fx:id="listEtudiantsTableView" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="954.0">
+                           <columns>
+                              <TableColumn fx:id="listEtudiantsEtudiantColumn" editable="false" prefWidth="200.0" text="Etudiant" />
+                              <TableColumn fx:id="listEtudiantsSexeColumn" editable="false" prefWidth="60.0" text="Sexe" />
+                              <TableColumn fx:id="listEtudiantsDateNaissanceColumn" editable="false" prefWidth="120.0" style="-fx-font-weight: bold;" styleClass="boldtableViewColumn" text="Date naissance" />
+                              <TableColumn fx:id="listEtudiantsContactColumn" editable="false" prefWidth="230.0" style="-fx-font-weight: bold;" styleClass="boldtableViewColumn" text="Contact" />
+                              <TableColumn fx:id="listEtudiantsContactParentsColumn" editable="false" prefWidth="230.0" styleClass="tableViewColumn" text="Contact parents" />
+                              <TableColumn fx:id="listEtudiantsDeleteColumn" editable="false" prefWidth="50.0" style="-fx-font-weight: bold;" styleClass="boldtableViewColumn" />
+                              <TableColumn fx:id="listEtudiantsEditColumn" editable="false" prefWidth="50.0" style="-fx-font-weight: bold;" styleClass="boldtableViewColumn" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="24.0" layoutY="16.0" prefHeight="30.0" prefWidth="87.0">
+                     <children>
+                        <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../dev/gestion-college/src/resources/images/icons/_Breadcrumb%20button%20base.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../dev/gestion-college/src/resources/images/icons/chevron-right.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Classes">
+                           <font>
+                              <Font name="Inter Regular" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="2.0" />
+                           </HBox.margin>
+                        </Text>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../dev/gestion-college/src/resources/images/icons/chevron-right.png" />
+                           </image>
+                        </ImageView>
+                        <Text fx:id="activeListEtudiantsClasseNom" fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="classeNom">
+                           <font>
+                              <Font name="Inter Regular" size="14.0" />
+                           </font>
+                        </Text>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../dev/gestion-college/src/resources/images/icons/chevron-right.png" />
+                           </image>
+                        </ImageView>
+                        <Text fx:id="activeClasseLabel1" fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="List des étudiants">
+                           <font>
+                              <Font name="Inter Regular" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
                </children>
             </Pane>
             <Pane fx:id="accueilPane" layoutX="20.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5; -fx-border-radius: 10; -fx-border-width: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

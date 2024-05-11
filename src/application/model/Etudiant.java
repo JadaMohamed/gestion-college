@@ -18,8 +18,8 @@ public class Etudiant extends Personne {
 
     public Etudiant(int id, String cne, Classe classe, String emailParent, String telephoneParent,
             Vector<Absence> listAbsence, String nom, String prenom, String email, String telephone,
-            Date dateNaissance) {
-        super(nom, prenom, email, telephone, dateNaissance);
+            Date dateNaissance, String sexe) {
+        super(nom, prenom, email, telephone, dateNaissance, sexe);
         this.id = id;
         this.cne = cne;
         this.classe = classe;

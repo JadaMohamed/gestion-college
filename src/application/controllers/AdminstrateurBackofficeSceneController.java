@@ -3,6 +3,7 @@ package application.controllers;
 import java.util.Map;
 
 import application.controllers.AdminstrateurBackofficeSceneSubController.AccueilPaneController;
+import application.controllers.AdminstrateurBackofficeSceneSubController.ActiveListEtudiantsPaneController;
 import application.controllers.AdminstrateurBackofficeSceneSubController.AffectationPaneController;
 import application.controllers.AdminstrateurBackofficeSceneSubController.ClassesPaneController;
 import application.controllers.AdminstrateurBackofficeSceneSubController.ParametresPaneController;
@@ -10,6 +11,7 @@ import application.controllers.AdminstrateurBackofficeSceneSubController.SallesP
 import application.controllers.AdminstrateurBackofficeSceneSubController.SidebarController;
 import application.model.Classe;
 import application.model.Enseignant;
+import application.model.Etudiant;
 import application.model.Horaires;
 import application.model.Salle;
 import application.model.TypeCours;
@@ -18,12 +20,18 @@ import application.services.ClasseService;
 import application.services.SallesService;
 import application.utilities.ButtonClickHandler;
 import application.utilities.CustomClasseCellButton;
+import application.utilities.CustomDeleteEtudiantButton;
+import application.utilities.CustomEditEtudiantButton;
 import application.utilities.CustomSalleCellButton;
 import application.utilities.ET0810;
 import application.utilities.ET1012;
 import application.utilities.ET1416;
 import application.utilities.ET1618;
+import application.utilities.EtudiantContactCell;
+import application.utilities.EtudiantContactParentsCell;
+import application.utilities.EtudiantNomPhotoCell;
 import application.utilities.FormattedLocalDateTime;
+import application.utilities.PushAlert;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,10 +39,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class AdminstrateurBackofficeSceneController {
 
@@ -45,6 +54,7 @@ public class AdminstrateurBackofficeSceneController {
     private AccueilPaneController accueilPaneController;
     private ClassesPaneController classesPaneController;
     private SallesPaneController sallesPaneController;
+    private ActiveListEtudiantsPaneController activeListEtudiantsPaneController;
 
     // sideBar components
     @FXML
@@ -89,10 +99,6 @@ public class AdminstrateurBackofficeSceneController {
     private TableColumn<Map<String, String>, Map<String, String>> classesProfesseurColumn;
 
     @FXML
-    private TableColumn<Map<String, String>, Map<String, String>> classeEmploi8_10Column,
-            classeEmploi10_12Column, classeEmploi14_16Column, classeEmploi16_18Column;
-
-    @FXML
     private TableColumn<Map<String, String>, Map<String, String>> salleEmploi8_10Column,
             salleEmploi10_12Column, salleEmploi14_16Column, salleEmploi16_18Column;
     @FXML
@@ -114,7 +120,8 @@ public class AdminstrateurBackofficeSceneController {
     @FXML
     private Label errorPasswordUpdate;
 
-    private int currentAdminId;
+    private int loggedInAdminId;
+    private Classe activeClasse;
 
     @FXML
     private Text SallesDisponibles, coursEnCours, effectifEnCours, activeClasseLabel, activeSalleLabel,
@@ -123,6 +130,11 @@ public class AdminstrateurBackofficeSceneController {
     @FXML
     private Label nombre3emeEnCours, nombre4emeEnCours, nombre5emeEnCours, nombre6emeEnCours,
             nombreLabDisponibles, nombreSalleCourDisponibles, nombreSalleSportDisponibles;
+
+    // activeClasse Pane
+    @FXML
+    private TableColumn<Map<String, String>, Map<String, String>> classeEmploi8_10Column,
+            classeEmploi10_12Column, classeEmploi14_16Column, classeEmploi16_18Column;
 
     // activeSalle's @FXML
     @FXML
@@ -144,6 +156,22 @@ public class AdminstrateurBackofficeSceneController {
     private Label nombreLaboratoiresDisponibles, nombreSalleCoursDisponibles, nombreSalleDeSportDisponibles,
             nombreClasse3EnCours, nombreClasse4EnCours, nombreClasse5EnCours, nombreClasse6EnCours,
             nombreAbscencesNonExcuses;
+
+    // activeListEtudiantsPane components
+    @FXML
+    private Pane activeListEtudiantsPane;
+    @FXML
+    private TableView<Etudiant> listEtudiantsTableView;
+    @FXML
+    private TableColumn<Etudiant, Etudiant> listEtudiantsEtudiantColumn,
+            listEtudiantsContactColumn, listEtudiantsContactParentsColumn;
+    @FXML
+    private TableColumn<Etudiant, String> listEtudiantsDateNaissanceColumn, listEtudiantsDeleteColumn,
+            listEtudiantsEditColumn, listEtudiantsSexeColumn;
+    @FXML
+    private Button listEtudiantsButton;
+    @FXML
+    private Text activeListEtudiantsClasseNom;
 
     //
     //
@@ -174,7 +202,8 @@ public class AdminstrateurBackofficeSceneController {
 
     // initialize
     public void initialize(int adminId) {
-        this.currentAdminId = adminId;
+        activeClasse = new Classe();
+        this.loggedInAdminId = adminId;
         localDateTimeLabelAccueilPane.setText(FormattedLocalDateTime.getFormattedDateTime());
         sidebarController = new SidebarController(this);
         parametresPaneController = new ParametresPaneController(this);
@@ -182,6 +211,7 @@ public class AdminstrateurBackofficeSceneController {
         classesPaneController = new ClassesPaneController(this);
         sallesPaneController = new SallesPaneController(this);
         accueilPaneController = new AccueilPaneController();
+        activeListEtudiantsPaneController = new ActiveListEtudiantsPaneController();
 
         // accueilPaneController usage
         accueilPaneController.updateCoursEnCoursLabels(nombreClasse3EnCours, nombreClasse4EnCours, nombreClasse5EnCours,
@@ -212,51 +242,25 @@ public class AdminstrateurBackofficeSceneController {
         sallesActionColumn.setCellFactory(new CustomSalleCellButton(activeSallePane, clickHandler2));
     }
 
-    ButtonClickHandler clickHandler = rowData -> {
-        // Perform actions here based on the row data
-        // For example:
+    ButtonClickHandler<Map<String, String>> clickHandler = rowData -> {
+        // set activeClasse (Classe) data
+        // used in active listEtudiantsPane
+        activeClasse.setId(Integer.parseInt(rowData.get("classeId")));
+        activeClasse.setEffectif(Integer.parseInt(rowData.get("effectif")));
+        activeClasse.setNom(rowData.get("classeNom"));
+        // set nomClasse's breadcrumb lable in activeClassePane
         activeClasseLabel.setText(rowData.get("classeNom"));
-        activeClasseNomLabel.setText(rowData.get("classeNom"));
-        activeClasseEffectif.setText(rowData.get("effectif"));
-        if (Integer.parseInt(rowData.get("status")) == 1) {
-
-            activeClasseStatutIcon.setImage(
-                    new Image(getClass().getResourceAsStream("/resources/images/icons/Badge_En_cours.png")));
-        } else {
-            activeClasseStatutIcon.setImage(
-                    new Image(getClass().getResourceAsStream("/resources/images/icons/Badge_Hors_cours.png")));
-        }
-        StringBuilder builder = new StringBuilder();
-
-        // Iterate over the entries of the rowData map
-        for (Map.Entry<String, String> entry : rowData.entrySet()) {
-            // Concatenate the key-value pair into the StringBuilder
-            builder.append(entry.getKey()).append(": ").append(entry.getValue());
-        }
-        ObservableList<Map<String, String>> data = FXCollections
-                .observableArrayList();
-        data.addAll(ClasseService.getEmploiDeTemps(rowData.get("classeId")));
-        classeEmploiJourColumn.setCellValueFactory(
-                cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().get("Day").substring(0, 3)));
-        // 8-10
-        classeEmploi8_10Column.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
-        classeEmploi8_10Column.setCellFactory(new ET0810());
-        // 10-12
-        classeEmploi10_12Column.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
-        classeEmploi10_12Column.setCellFactory(new ET1012());
-        // 14-16
-        classeEmploi14_16Column.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
-        classeEmploi14_16Column.setCellFactory(new ET1416());
-        // 16-18
-        classeEmploi16_18Column.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
-        classeEmploi16_18Column.setCellFactory(new ET1618());
-        // Set the concatenated string to the tempText
-        classeEmploiTableView.setItems(data);
+        // set nomClasse's breadcrumb lable in activeListEtudiantsPane
+        activeListEtudiantsClasseNom.setText(rowData.get("classeNom"));
+        // fill classeEmploiTableView
+        classesPaneController.fillEmploisDeTempsTableView(rowData, classeEmploiJourColumn, classeEmploiTableView,
+                classeEmploi8_10Column, classeEmploi10_12Column, classeEmploi14_16Column, classeEmploi16_18Column);
+        // set active classe information
+        classesPaneController.setActiveClasseInformation(rowData, activeClasseEffectif, activeClasseNomLabel,
+                activeClasseEffectif, activeClasseStatutIcon);
     };
 
-    ButtonClickHandler clickHandler2 = rowData -> {
-        // Perform actions here based on the row data
-        // For example:
+    ButtonClickHandler<Map<String, String>> clickHandler2 = rowData -> {
         activeSalleLabel.setText(rowData.get("nomSalle"));
         StringBuilder builder = new StringBuilder();
 
@@ -288,6 +292,64 @@ public class AdminstrateurBackofficeSceneController {
         tempText1.setText(builder.toString());
         salleEmploiTableView.setItems(data);
     };
+
+    // active list Etudiants Pane
+    ButtonClickHandler<Etudiant> editEtudiantClickHandler = rowData -> {
+        Stage currentStage = (Stage) this.getScene().getWindow();
+        PushAlert.showAlert("info",
+                "Here we suppose to have form to edit student with id = " + rowData.getId() + " infos",
+                AlertType.INFORMATION,
+                currentStage);
+    };
+
+    ButtonClickHandler<Etudiant> deleteEtudiantClickHandler = rowData -> {
+        Stage currentStage = (Stage) this.getScene().getWindow();
+        PushAlert.showAlert("info",
+                "Here we suppose to have conformation to delete the student with id = " + rowData.getId()
+                        + " from database",
+                AlertType.WARNING,
+                currentStage);
+    };
+
+    @FXML
+    public void handleListEtudiantsButton(ActionEvent e) {
+        activeListEtudiantsPane.toFront();
+
+        // get list etudianst from database by selected classe
+        ObservableList<Etudiant> data = FXCollections.observableArrayList();
+        data.addAll(ClasseService.getEtudiantsByClasseId(activeClasse.getId()));
+
+        // set Etudiant's basic infos (photo + fullname + cne) cell value and cell
+        // template
+        listEtudiantsEtudiantColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
+        listEtudiantsEtudiantColumn.setCellFactory(new EtudiantNomPhotoCell());
+
+        // set Etudiant's dateNaissance cell value
+        listEtudiantsDateNaissanceColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
+                cellData.getValue().getDateNaissance().toString()));
+
+        // set Etudiant's sexe cell value
+        listEtudiantsSexeColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
+                cellData.getValue().getSexe()));
+
+        // set Etudiant's contact (email + phone) cell value and cell template
+        listEtudiantsContactColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
+        listEtudiantsContactColumn.setCellFactory(new EtudiantContactCell());
+
+        // set Etudiant's prents contact (email + phone) cell value and cell template
+        listEtudiantsContactParentsColumn
+                .setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
+        // set Edit etudiant button template and clickhandler
+        listEtudiantsContactParentsColumn.setCellFactory(new EtudiantContactParentsCell());
+
+        listEtudiantsEditColumn
+                .setCellFactory(new CustomEditEtudiantButton(editEtudiantClickHandler));
+        listEtudiantsDeleteColumn
+                .setCellFactory(new CustomDeleteEtudiantButton(deleteEtudiantClickHandler));
+
+        // push data to the tablview
+        listEtudiantsTableView.setItems(data);
+    }
 
     public void setSallesDisponiblesText(String text) {
         SallesDisponibles.setText(text);
@@ -393,8 +455,8 @@ public class AdminstrateurBackofficeSceneController {
 
     // Methods to access UI elements SubControllers
 
-    public int getCurrentAdminId() {
-        return currentAdminId;
+    public int getLoggedInAdminId() {
+        return loggedInAdminId;
     }
 
     public Button getAccueilButton() {

@@ -1,8 +1,6 @@
 package application.utilities;
 
-import java.util.Map;
-
 @FunctionalInterface
-public interface ButtonClickHandler {
-    void handleButtonClick(Map<String, String> rowData);
+public interface ButtonClickHandler<T> {
+    void handleButtonClick(T rowData);
 }

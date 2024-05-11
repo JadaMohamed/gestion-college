@@ -12,8 +12,8 @@ public class Enseignant extends Personne {
     }
 
     public Enseignant(int id, Vector<Cours> listCours, String nom, String prenom, String email, String telephone,
-            Date dateNaissance) {
-        super(nom, prenom, email, telephone, dateNaissance);
+            Date dateNaissance, String sexe) {
+        super(nom, prenom, email, telephone, dateNaissance, sexe);
         this.id = id;
         this.listCours = new Vector<Cours>();
     }

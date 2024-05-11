@@ -10,11 +10,12 @@ public class Personne {
     private String telephone;
     private String photoURL;
     private Date dateNaissance;
+    private String sexe;
 
     public Personne() {
     }
 
-    public Personne(String nom, String prenom, String email, String telephone, Date dateNaissance) {
+    public Personne(String nom, String prenom, String email, String telephone, Date dateNaissance, String sexe) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
@@ -68,6 +69,14 @@ public class Personne {
 
     public void setDateNaissance(Date dateNaissance) {
         this.dateNaissance = dateNaissance;
+    }
+
+    public void setSexe(String sexe) {
+        this.sexe = sexe;
+    }
+
+    public String getSexe() {
+        return this.sexe;
     }
 
 }

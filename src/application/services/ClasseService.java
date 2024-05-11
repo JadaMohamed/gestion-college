@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 import application.model.Classe;
+import application.model.Etudiant;
 import application.model.NiveauClasse;
 import application.repositories.ClasseRepository;
 
@@ -95,6 +96,32 @@ public class ClasseService {
                 stat.put("heureFin16_18", result.getString("heureFin16_18"));
                 stat.put("nomSalle16_18", result.getString("nomSalle16_18"));
                 res.add(stat);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    public static Vector<Etudiant> getEtudiantsByClasseId(int classeId) {
+        Vector<Etudiant> res = new Vector<>();
+        ResultSet result;
+        try {
+            result = ClasseRepository.getEtudiantsByClasseId(classeId);
+            while (result.next()) {
+                Etudiant etudiant = new Etudiant();
+                etudiant.setId(result.getInt("id"));
+                etudiant.setCne(result.getString("cne"));
+                etudiant.setEmailParent(result.getString("emailParent"));
+                etudiant.setTelephoneParent(result.getString("telephoneParent"));
+                etudiant.setNom(result.getString("nom"));
+                etudiant.setPrenom(result.getString("prenom"));
+                etudiant.setEmail(result.getString("email"));
+                etudiant.setTelephone(result.getString("telephone"));
+                etudiant.setDateNaissance(result.getDate("dateNaissance"));
+                etudiant.setPhotoURL(result.getString("photoUrl"));
+                etudiant.setSexe(result.getString("sexe"));
+                res.add(etudiant);
             }
         } catch (SQLException e) {
             e.printStackTrace();

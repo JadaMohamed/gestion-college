@@ -23,7 +23,7 @@ public class ParametresPaneController {
     }
 
     public void loadAdminData() {
-        AdministrateurService.loadAdminData(mainController.getCurrentAdminId(), mainController.getNomFieldParametres(),
+        AdministrateurService.loadAdminData(mainController.getLoggedInAdminId(), mainController.getNomFieldParametres(),
                 mainController.getPreomFieldParametres(),
                 mainController.getTelephoneFieldParametres(),
                 mainController.getDateBirthDatePickerParametres(),
@@ -31,7 +31,7 @@ public class ParametresPaneController {
     }
 
     public void handleSauvegarderButtonSecurityParameters() {
-        boolean status = AdministrateurService.updatePassword(mainController.getCurrentAdminId(),
+        boolean status = AdministrateurService.updatePassword(mainController.getLoggedInAdminId(),
                 mainController.getOldPasswordParametres().getText(),
                 mainController.getNewPasswordParametres().getText(),
                 mainController.getEmailFieldParametres().getText());
@@ -50,7 +50,7 @@ public class ParametresPaneController {
     }
 
     public void handleSauvegarderButtonInfosParameters() {
-        boolean status = AdministrateurService.updateAdminData(mainController.getCurrentAdminId(),
+        boolean status = AdministrateurService.updateAdminData(mainController.getLoggedInAdminId(),
                 mainController.getNomFieldParametres().getText(), mainController.getPreomFieldParametres().getText(),
                 mainController.getTelephoneFieldParametres().getText(),
                 java.sql.Date.valueOf(mainController.getDateBirthDatePickerParametres().getValue()));

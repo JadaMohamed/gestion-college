@@ -25,4 +25,11 @@ public class ClasseRepository {
         parameters.add(idClasse);
         return dbClient.executeCommand(true, query, parameters);
     }
+
+    public static ResultSet getEtudiantsByClasseId(int classeId) {
+        Vector<Object> parameters = new Vector<Object>();
+        String query = "SELECT * FROM etudiant WHERE idClasse = ?";
+        parameters.add(classeId);
+        return dbClient.executeCommand(true, query, parameters);
+    }
 }

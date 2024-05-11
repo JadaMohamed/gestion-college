@@ -12,8 +12,8 @@ public class Administrateur extends Personne {
     }
 
     public Administrateur(int id, String nom, String prenom, String email, String telephone, Date dateNaissance,
-            String role, String motDePass) {
-        super(nom, prenom, email, telephone, dateNaissance);
+            String role, String motDePass, String sexe) {
+        super(nom, prenom, email, telephone, dateNaissance, sexe);
         this.id = id;
         this.role = role;
         this.motDePass = motDePass;

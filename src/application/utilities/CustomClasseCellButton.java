@@ -10,9 +10,9 @@ import java.util.Map;
 public class CustomClasseCellButton
         implements Callback<TableColumn<Map<String, String>, String>, TableCell<Map<String, String>, String>> {
     private final Pane activeClassePane;
-    private final ButtonClickHandler buttonClickHandler;
+    private final ButtonClickHandler<Map<String, String>> buttonClickHandler;
 
-    public CustomClasseCellButton(Pane activeClassePane, ButtonClickHandler buttonClickHandler) {
+    public CustomClasseCellButton(Pane activeClassePane, ButtonClickHandler<Map<String, String>> buttonClickHandler) {
         this.activeClassePane = activeClassePane;
         this.buttonClickHandler = buttonClickHandler;
     }
