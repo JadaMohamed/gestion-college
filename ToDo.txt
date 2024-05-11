@@ -1,33 +1,40 @@
-Create database
-    1- Create schema ✅
-    2- Create tables ✅
-    3- Insert data
-    4- Host database ✅
+AccueilPane
+    1- Search in `Cours encours` tableView
+    2- Filter `Cours encours` tableView by Classe Niveau
+    3- Replace `Hi, Admin` Label with real admin name
+    4- 
+        a- Show real dateTime ✅
+        b- Refresh each 1 minute
+    5- Refill `Cours encours` tableView each 1 minute
+    6- Show `Abseneces non excusés` metrics
 
-GUIs Implementations 
-    1- Implement LoginScene ✅
-    2- Implement BackofficeScene
-        a- Implement Sidebar & Panes navigator ✅
-        b- Implement Accueil Pane ✅
-        c- Implement Salle-X Pane
-        d- Implement Salles Pane ✅
-        e- Implement Absences Pane
-        f- Implement Classe-X Pane
-        g- Implement Classes Pane ✅
-        h- Implement Settings Pane ✅
+SideBar 
+    1- Show real admin photo
 
-Java Implementations
-    1- Implement dbConnector & mySqlDrivers ✅
-    2- Implement Model (CLasses) ✅
-    3- Implement repositories (CRUD)
-    4- Implement Services
-    5- Implement Controllers
-        a- Implement LoginController
-        b- Implement BackofficeController
-            1- Implement AccueilController
-            2- Implement Salle-XController
-            3- Implement SallesController
-            4- Implement AbsencesController
-            5- Implement Classe-XController
-            6- Implement ClassesController
-            7- Implement SettingsController ✅
+AffectationPane
+    1- Add button to show selected salle's materiels
+
+SallePane
+    1- Search in `Salles` tableView
+    2- Filter `Salles` tableView by Classe categorie
+
+ActiveSallePane
+    1- Present activeSalle infos as designed in the figma
+    2- Show activeSalle's materiels
+        a- Create repository `public ResultSet getMaterialBySalleId(int salleId)`
+        b- Create service `public Vector<MaterielSalle> getMaterialBySalleId(int salleId)`
+        c- Create controller to show activeSalle's materiels
+    3- (We might have) Exporter emplois du temps as pdf
+        
+ClassesPane
+    1- Search in `Classes` tableView
+    2- Filter `Classes` tableView by Niveau
+
+ActiveClassePane
+    1- Add button `Consulter la list des etudiants`
+    2- Show activeClasse's etudiants
+        a- Create activeClasseEtudiantsPane (Contains `Etudiants` tableView)
+        b- Create repository `public ResultSet getEtudiantsByClasseId(int classeId)`
+        c- Create service `public Vector<Etudiant> getEtudiantsByClasseId(int classeId)`
+        d- Create controller to show activeClasse's etudiants
+    3- (We might have) Exporter emplois du temps as pdf

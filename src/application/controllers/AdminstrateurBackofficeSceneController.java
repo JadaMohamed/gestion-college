@@ -23,6 +23,7 @@ import application.utilities.ET0810;
 import application.utilities.ET1012;
 import application.utilities.ET1416;
 import application.utilities.ET1618;
+import application.utilities.FormattedLocalDateTime;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,12 +31,22 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 public class AdminstrateurBackofficeSceneController {
 
-    // sideBar buttons
+    // sub controllers
+    private SidebarController sidebarController;
+    private ParametresPaneController parametresPaneController;
+    private AffectationPaneController affectationPaneController;
+    private AccueilPaneController accueilPaneController;
+    private ClassesPaneController classesPaneController;
+    private SallesPaneController sallesPaneController;
+
+    // sideBar components
     @FXML
     private Button accueilButton, classesButton, deconnecterButton, sallesButton, parametresButton, affectationButton,
             annulerButtonParametres;
@@ -45,15 +56,14 @@ public class AdminstrateurBackofficeSceneController {
     private Pane affectationPane, accueilPane, classesPane, sallesPane, parametresPane, rootPane, activeClassePane,
             activeSallePane;
 
-    // parameters Pane buttons
+    // parametersPane components
     @FXML
     private Button sauvegarderButtonInfosParametres, sauvegarderButtonSecurityParametres;
 
-    // affectation Pane buttons
+    // affectationPane components
+
     @FXML
     private Button handleAffecterButton, handleAnnulerAffectation;
-
-    // affectation Pane comboBoxes
     @FXML
     private ComboBox<Salle> sallesComboAffectation;
     @FXML
@@ -67,23 +77,22 @@ public class AdminstrateurBackofficeSceneController {
 
     // application Tableviews
     @FXML
-    private TableView<Map<String, String>> coursEncoursTableView, classesTableView, sallesTableView,
-            classeEmploiTableView,salleEmploiTableView ;
+    private TableView<Map<String, String>> classesTableView, sallesTableView,
+            classeEmploiTableView, salleEmploiTableView;
 
     @FXML
-    private TableColumn<Map<String, String>, String> coursEncoursSalleColumn, coursEncoursHorairesColumn,
-            coursEncoursClasseColumn, coursEncoursCourNomColumn, coursEncoursEffectifColumn, classesClasseColumn,
+    private TableColumn<Map<String, String>, String> classesClasseColumn,
             classesEffectifColumn, classesStatusColumn, classesSalleColumn, classesCoursColumn, classesActionColumn,
             sallesColumn, sallesCapaciteColumn, sallesStatutColumn, sallesCoursColumn, sallesClassesColumn,
             sallesActionColumn;
     @FXML
-    private TableColumn<Map<String, String>, Map<String, String>> coursEncoursProfesseurColumn, classesProfesseurColumn;
+    private TableColumn<Map<String, String>, Map<String, String>> classesProfesseurColumn;
 
     @FXML
     private TableColumn<Map<String, String>, Map<String, String>> classeEmploi8_10Column,
             classeEmploi10_12Column, classeEmploi14_16Column, classeEmploi16_18Column;
 
-     @FXML
+    @FXML
     private TableColumn<Map<String, String>, Map<String, String>> salleEmploi8_10Column,
             salleEmploi10_12Column, salleEmploi14_16Column, salleEmploi16_18Column;
     @FXML
@@ -108,25 +117,65 @@ public class AdminstrateurBackofficeSceneController {
     private int currentAdminId;
 
     @FXML
-    private Text SallesDisponibles, coursEnCours, effectifEnCours, activeClasseLabel, activeSalleLabel, tempText,
+    private Text SallesDisponibles, coursEnCours, effectifEnCours, activeClasseLabel, activeSalleLabel,
             tempText1;
 
     @FXML
-    private Label nombreLaboratoiresDisponibles, nombreSalleCoursDisponibles, nombreSalleDeSportDisponibles,
-            nombreClasse3EnCours, nombreClasse4EnCours, nombreClasse5EnCours, nombreClasse6EnCours,
-            nombreAbscencesNonExcuses,
-            nombre3emeEnCours, nombre4emeEnCours, nombre5emeEnCours, nombre6emeEnCours,
+    private Label nombre3emeEnCours, nombre4emeEnCours, nombre5emeEnCours, nombre6emeEnCours,
             nombreLabDisponibles, nombreSalleCourDisponibles, nombreSalleSportDisponibles;
 
-    private SidebarController sidebarController;
-    private ParametresPaneController parametresPaneController;
-    private AffectationPaneController affectationPaneController;
-    private AccueilPaneController accueilPaneController;
-    private ClassesPaneController classesPaneController;
-    private SallesPaneController sallesPaneController;
+    // activeSalle's @FXML
+    @FXML
+    private Label activeClasseNomLabel, activeClasseEffectif;
+    @FXML
+    private ImageView activeClasseStatutIcon;
 
+    // accueilPane Components
+    @FXML
+    private TableView<Map<String, String>> coursEncoursTableView;
+    @FXML
+    private Text localDateTimeLabelAccueilPane;
+    @FXML
+    private TableColumn<Map<String, String>, Map<String, String>> coursEncoursProfesseurColumn;
+    @FXML
+    private TableColumn<Map<String, String>, String> coursEncoursSalleColumn, coursEncoursHorairesColumn,
+            coursEncoursClasseColumn, coursEncoursCourNomColumn, coursEncoursEffectifColumn;
+    @FXML
+    private Label nombreLaboratoiresDisponibles, nombreSalleCoursDisponibles, nombreSalleDeSportDisponibles,
+            nombreClasse3EnCours, nombreClasse4EnCours, nombreClasse5EnCours, nombreClasse6EnCours,
+            nombreAbscencesNonExcuses;
+
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+
+    // initialize
     public void initialize(int adminId) {
         this.currentAdminId = adminId;
+        localDateTimeLabelAccueilPane.setText(FormattedLocalDateTime.getFormattedDateTime());
         sidebarController = new SidebarController(this);
         parametresPaneController = new ParametresPaneController(this);
         affectationPaneController = new AffectationPaneController(this);
@@ -167,6 +216,16 @@ public class AdminstrateurBackofficeSceneController {
         // Perform actions here based on the row data
         // For example:
         activeClasseLabel.setText(rowData.get("classeNom"));
+        activeClasseNomLabel.setText(rowData.get("classeNom"));
+        activeClasseEffectif.setText(rowData.get("effectif"));
+        if (Integer.parseInt(rowData.get("status")) == 1) {
+
+            activeClasseStatutIcon.setImage(
+                    new Image(getClass().getResourceAsStream("/resources/images/icons/Badge_En_cours.png")));
+        } else {
+            activeClasseStatutIcon.setImage(
+                    new Image(getClass().getResourceAsStream("/resources/images/icons/Badge_Hors_cours.png")));
+        }
         StringBuilder builder = new StringBuilder();
 
         // Iterate over the entries of the rowData map
@@ -174,10 +233,11 @@ public class AdminstrateurBackofficeSceneController {
             // Concatenate the key-value pair into the StringBuilder
             builder.append(entry.getKey()).append(": ").append(entry.getValue());
         }
-        ObservableList<Map<String, String>> data = FXCollections.observableArrayList();
+        ObservableList<Map<String, String>> data = FXCollections
+                .observableArrayList();
         data.addAll(ClasseService.getEmploiDeTemps(rowData.get("classeId")));
-        classeEmploiJourColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
-                cellData.getValue().get("Day").substring(0, 3)));
+        classeEmploiJourColumn.setCellValueFactory(
+                cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().get("Day").substring(0, 3)));
         // 8-10
         classeEmploi8_10Column.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
         classeEmploi8_10Column.setCellFactory(new ET0810());
@@ -191,8 +251,7 @@ public class AdminstrateurBackofficeSceneController {
         classeEmploi16_18Column.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
         classeEmploi16_18Column.setCellFactory(new ET1618());
         // Set the concatenated string to the tempText
-        tempText.setText(builder.toString());
-        classeEmploiTableView.setItems(data);    
+        classeEmploiTableView.setItems(data);
     };
 
     ButtonClickHandler clickHandler2 = rowData -> {
@@ -200,14 +259,14 @@ public class AdminstrateurBackofficeSceneController {
         // For example:
         activeSalleLabel.setText(rowData.get("nomSalle"));
         StringBuilder builder = new StringBuilder();
-    
+
         System.out.println(rowData);
         // Iterate over the entries of the rowData map
         for (Map.Entry<String, String> entry : rowData.entrySet()) {
             // Concatenate the key-value pair into the StringBuilder
             builder.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
         }
-        
+
         ObservableList<Map<String, String>> data = FXCollections.observableArrayList();
         data.addAll(SallesService.getEmploiDeTempsSalle(rowData.get("idSalle")));
         salleEmploiJourColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
@@ -224,13 +283,11 @@ public class AdminstrateurBackofficeSceneController {
         // 16-18
         salleEmploi16_18Column.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
         salleEmploi16_18Column.setCellFactory(new ET1618());
-        
+
         // Set the concatenated string to the tempText
         tempText1.setText(builder.toString());
-        salleEmploiTableView.setItems(data);    
+        salleEmploiTableView.setItems(data);
     };
-    
-    
 
     public void setSallesDisponiblesText(String text) {
         SallesDisponibles.setText(text);

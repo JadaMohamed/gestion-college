@@ -948,6 +948,57 @@
                </children>
             </Pane>
             <Pane fx:id="activeSallePane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Pane fx:id="activeSallePane" layoutX="10.0" layoutY="10.0" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" layoutX="24.0" layoutY="16.0" prefHeight="30.0" prefWidth="87.0">
+                     <children>
+                        <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons/_Breadcrumb%20button%20base.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons/chevron-right.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Salles">
+                           <font>
+                              <Font name="Inter Regular" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="2.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Pane fx:id="activeSallePane1" prefHeight="200.0" prefWidth="260.0" />
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons/chevron-right.png" />
+                           </image>
+                        </ImageView>
+                        <Text fx:id="activeSalleLabel" fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Salles">
+                           <font>
+                              <Font name="Inter Regular" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <Text fx:id="tempText1" fill="#475467" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="temp1" x="24.0">
+                     <font>
+                        <Font name="Inter Regular" size="14.0" />
+                     </font>
+                  </Text>
+                  <TableView fx:id="salleEmploiTableView" layoutX="23.0" layoutY="176.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="954.0">
+                     <columns>
+                        <TableColumn fx:id="salleEmploiJourColumn" editable="false" prefWidth="60.0" style="-fx-font-weight: bold;" text="Jour" />
+                        <TableColumn fx:id="salleEmploi8_10Column" editable="false" prefWidth="218.0" styleClass="tableViewColumn" text="08:00 - 10:00" />
+                        <TableColumn fx:id="salleEmploi10_12Column" editable="false" prefWidth="218.0" style="-fx-font-weight: bold;" styleClass="boldtableViewColumn" text="10:00 - 12:00" />
+                        <TableColumn fx:id="salleEmploi14_16Column" editable="false" prefWidth="218.0" styleClass="tableViewColumn" text="14:00 - 16:00" />
+                        <TableColumn fx:id="salleEmploi16_18Column" editable="false" prefWidth="218.0" style="-fx-font-weight: bold;" styleClass="boldtableViewColumn" text="16:00 - 18:00" />
+                     </columns>
+                  </TableView>
+               </children>
+            </Pane>
             <Pane fx:id="classesPane" layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <HBox layoutX="24.0" layoutY="16.0" spacing="2.0" />
@@ -995,7 +1046,7 @@
                               </HBox>
                            </children>
                         </AnchorPane>
-                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="98.0" prefWidth="226.0" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-color: EDEEF0; -fx-font-family: Inter;">
+                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="98.0" prefWidth="226.0" style="-fx-background-color: white; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10; -fx-border-color: #EDEEF0; -fx-font-family: Inter;">
                            <children>
                               <Text fill="#4e427f" layoutX="18.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4ème année" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="12.0">
                                  <font>
@@ -1194,13 +1245,103 @@
                   </VBox>
                </children>
             </Pane>
+            <Pane fx:id="activeClassePane" layoutX="40.0" layoutY="40.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" layoutX="24.0" layoutY="16.0" prefHeight="30.0" prefWidth="87.0">
+                     <children>
+                        <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../dev/gestion-college/src/resources/images/icons/_Breadcrumb%20button%20base.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../dev/gestion-college/src/resources/images/icons/chevron-right.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Classes">
+                           <font>
+                              <Font name="Inter Regular" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="2.0" />
+                           </HBox.margin>
+                        </Text>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../dev/gestion-college/src/resources/images/icons/chevron-right.png" />
+                           </image>
+                        </ImageView>
+                        <Text fx:id="activeClasseLabel" fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Classes">
+                           <font>
+                              <Font name="Inter Regular" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <VBox layoutX="22.0" layoutY="185.0" prefHeight="492.0" prefWidth="956.0" style="-fx-background-color: #fff; -fx-background-radius: 8px; -fx-border-color: #EDEEF0; -fx-border-radius: 8px;">
+                     <children>
+                        <TableView fx:id="classeEmploiTableView" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="954.0">
+                           <columns>
+                              <TableColumn fx:id="classeEmploiJourColumn" editable="false" prefWidth="60.0" style="-fx-font-weight: bold;" text="Jour" />
+                              <TableColumn fx:id="classeEmploi8_10Column" editable="false" prefWidth="218.0" style="-fx-font-weight: bold;" styleClass="boldtableViewColumn" text="08:00 - 10:00" />
+                              <TableColumn fx:id="classeEmploi10_12Column" editable="false" prefWidth="218.0" styleClass="tableViewColumn" text="10:00 - 12:00" />
+                              <TableColumn fx:id="classeEmploi14_16Column" editable="false" prefWidth="218.0" style="-fx-font-weight: bold;" styleClass="boldtableViewColumn" text="14:00 - 16:00" />
+                              <TableColumn fx:id="classeEmploi16_18Column" editable="false" prefWidth="218.0" styleClass="tableViewColumn" text="16:00 - 18:00" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+                  <AnchorPane layoutX="24.0" layoutY="80.0" prefHeight="90.0" prefWidth="954.0" style="-fx-background-color: #fff; -fx-border-color: #EDEEF0; -fx-border-radius: 4px; -fx-background-radius: 4px;">
+                     <children>
+                        <Label fx:id="activeClasseNomLabel" layoutX="19.0" layoutY="17.0" text="classeNom" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="16.0">
+                           <font>
+                              <Font name="Inter SemiBold" size="14.0" />
+                           </font>
+                        </Label>
+                        <HBox layoutX="328.0" layoutY="-5.0" spacing="32.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="16.0">
+                           <children>
+                              <HBox spacing="6.0">
+                                 <children>
+                                    <Label text="Status : " textFill="#475467">
+                                       <font>
+                                          <Font name="Inter Medium" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fx:id="activeClasseStatutIcon" fitHeight="20.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/icons/Badge_Hors_cours.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                              <HBox spacing="6.0">
+                                 <children>
+                                    <Label text="Effectif : " textFill="#475467">
+                                       <font>
+                                          <Font name="Inter Medium" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="activeClasseEffectif" text="?" textFill="#050505">
+                                       <font>
+                                          <Font name="Inter SemiBold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </Pane>
             <Pane fx:id="accueilPane" layoutX="20.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5; -fx-border-radius: 10; -fx-border-width: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <HBox layoutX="24.0" layoutY="16.0" spacing="2.0">
                      <children>
                         <Text fill="#4e427f" strokeType="OUTSIDE" strokeWidth="0.0" text="Hi, Admin ">
                            <font>
-                              <Font name="Inter ExtraBold" size="16.0" />
+                              <Font name="Inter SemiBold" size="16.0" />
                            </font>
                         </Text>
                         <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
@@ -1210,9 +1351,9 @@
                         </ImageView>
                      </children>
                   </HBox>
-                  <Text fill="#7b7b7b" layoutX="24.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fri, April 19">
+                  <Text fx:id="localDateTimeLabelAccueilPane" fill="#7b7b7b" layoutX="24.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fri, April 19">
                      <font>
-                        <Font name="Inter SemiBold" size="14.0" />
+                        <Font name="Inter Medium" size="13.0" />
                      </font>
                   </Text>
                   <HBox layoutX="24.0" layoutY="80.0" prefHeight="100.0" prefWidth="952.0" spacing="16.0">
@@ -1504,111 +1645,6 @@
                         </TableView>
                      </children>
                   </VBox>
-               </children>
-            </Pane>
-            <Pane fx:id="activeClassePane" layoutX="40.0" layoutY="40.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <HBox alignment="CENTER_LEFT" layoutX="24.0" layoutY="16.0" prefHeight="30.0" prefWidth="87.0">
-                     <children>
-                        <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../dev/gestion-college/src/resources/images/icons/_Breadcrumb%20button%20base.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../dev/gestion-college/src/resources/images/icons/chevron-right.png" />
-                           </image>
-                        </ImageView>
-                        <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Classes">
-                           <font>
-                              <Font name="Inter Regular" size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="2.0" />
-                           </HBox.margin>
-                        </Text>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../dev/gestion-college/src/resources/images/icons/chevron-right.png" />
-                           </image>
-                        </ImageView>
-                        <Text fx:id="activeClasseLabel" fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Classes">
-                           <font>
-                              <Font name="Inter Regular" size="14.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </HBox>
-                  <Text fx:id="tempText" fill="#475467" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="temp" x="24.0">
-                     <font>
-                        <Font name="Inter Regular" size="14.0" />
-                     </font>
-                  </Text>
-                  <VBox layoutX="22.0" layoutY="185.0" prefHeight="492.0" prefWidth="956.0" style="-fx-background-color: #fff; -fx-background-radius: 8px; -fx-border-color: #EDEEF0; -fx-border-radius: 8px;">
-                     <children>
-                        <TableView fx:id="classeEmploiTableView" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="954.0">
-                           <columns>
-                              <TableColumn fx:id="classeEmploiJourColumn" editable="false" prefWidth="60.0" style="-fx-font-weight: bold;" text="Jour" />
-                              <TableColumn fx:id="classeEmploi8_10Column" editable="false" prefWidth="218.0" style="-fx-font-weight: bold;" styleClass="boldtableViewColumn" text="08:00 - 10:00" />
-                              <TableColumn fx:id="classeEmploi10_12Column" editable="false" prefWidth="218.0" styleClass="tableViewColumn" text="10:00 - 12:00" />
-                              <TableColumn fx:id="classeEmploi14_16Column" editable="false" prefWidth="218.0" style="-fx-font-weight: bold;" styleClass="boldtableViewColumn" text="14:00 - 16:00" />
-                              <TableColumn fx:id="classeEmploi16_18Column" editable="false" prefWidth="218.0" styleClass="tableViewColumn" text="16:00 - 18:00" />
-                           </columns>
-                        </TableView>
-                     </children>
-                  </VBox>
-               </children>
-            </Pane>
-            <Pane fx:id="activeSallePane" layoutX="10.0" layoutY="10.0" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <HBox alignment="CENTER_LEFT" layoutX="24.0" layoutY="16.0" prefHeight="30.0" prefWidth="87.0">
-                     <children>
-                        <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/icons/_Breadcrumb%20button%20base.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/icons/chevron-right.png" />
-                           </image>
-                        </ImageView>
-                        <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Salles">
-                           <font>
-                              <Font name="Inter Regular" size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="2.0" />
-                           </HBox.margin>
-                        </Text>
-                        <Pane fx:id="activeSallePane1" prefHeight="200.0" prefWidth="260.0" />
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/icons/chevron-right.png" />
-                           </image>
-                        </ImageView>
-                        <Text fx:id="activeSalleLabel" fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Salles">
-                           <font>
-                              <Font name="Inter Regular" size="14.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </HBox>
-                  <Text fx:id="tempText1" fill="#475467" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="temp1" x="24.0">
-                     <font>
-                        <Font name="Inter Regular" size="14.0" />
-                     </font>
-                  </Text>
-                  <TableView fx:id="salleEmploiTableView" layoutX="23.0" layoutY="176.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="954.0">
-                     <columns>
-                        <TableColumn fx:id="salleEmploiJourColumn" editable="false" prefWidth="60.0" style="-fx-font-weight: bold;" text="Jour" />
-                        <TableColumn fx:id="salleEmploi8_10Column" editable="false" prefWidth="218.0" styleClass="tableViewColumn" text="08:00 - 10:00" />
-                        <TableColumn fx:id="salleEmploi10_12Column" editable="false" prefWidth="218.0" style="-fx-font-weight: bold;" styleClass="boldtableViewColumn" text="10:00 - 12:00" />
-                        <TableColumn fx:id="salleEmploi14_16Column" editable="false" prefWidth="218.0" styleClass="tableViewColumn" text="14:00 - 16:00" />
-                        <TableColumn fx:id="salleEmploi16_18Column" editable="false" prefWidth="218.0" style="-fx-font-weight: bold;" styleClass="boldtableViewColumn" text="16:00 - 18:00" />
-                     </columns>
-                  </TableView>
                </children>
             </Pane>
          </children>
