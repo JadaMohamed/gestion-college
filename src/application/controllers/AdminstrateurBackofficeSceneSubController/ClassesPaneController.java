@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import application.controllers.AdminstrateurBackofficeSceneController;
+import application.controllers.AjouterEtudiantSceneSceneController;
 import application.controllers.ModifierEtudiantSceneController;
 import application.model.Etudiant;
 import application.repositories.ClasseRepository;
@@ -11,8 +12,12 @@ import application.repositories.EtudiantRepository;
 import application.services.ClasseService;
 import application.services.SeanceService;
 import application.utilities.ButtonClickHandler;
+import application.utilities.CustomCellFactory;
+import application.utilities.CustomClasseCell;
+import application.utilities.CustomClasseCellButton;
 import application.utilities.CustomDeleteEtudiantButton;
 import application.utilities.CustomEditEtudiantButton;
+import application.utilities.CustomStatusCell;
 import application.utilities.ET0810;
 import application.utilities.ET1012;
 import application.utilities.ET1416;
@@ -36,6 +41,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -217,4 +223,62 @@ public class ClassesPaneController {
         listEtudiantsTableView.setItems(data);
     }
 
+    public void ajouterEtudiant() {
+        try {
+            // Load the FXML file for your modal form
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("../../../resources/interfaces/AjouterEtudiantScene.fxml"));
+            Parent root = loader.load();
+
+            AjouterEtudiantSceneSceneController controller = loader.getController();
+            controller.initialize((Stage) mainController.getScene().getWindow());
+            // Create a new stage
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Ajouter étudiant");
+            stage.setScene(new Scene(root));
+            // Get screen dimensions
+            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+
+            // Center the stage on the screen
+            stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
+            stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
+            // Show the stage
+            stage.showAndWait();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void fillClassesWithSeances(TableView<Map<String, String>> classesTableView,
+            TableColumn<Map<String, String>, String> classesSalleColumn,
+            TableColumn<Map<String, String>, String> classesStatusColumn,
+            TableColumn<Map<String, String>, String> classesClasseColumn,
+            TableColumn<Map<String, String>, String> classesEffectifColumn,
+            TableColumn<Map<String, String>, String> classesCoursColumn,
+            TableColumn<Map<String, String>, String> classesActionColumn,
+            TableColumn<Map<String, String>, Map<String, String>> classesProfesseurColumn, Pane activeClassePane,
+            ButtonClickHandler<Map<String, String>> clickHandler) {
+        ObservableList<Map<String, String>> data = FXCollections.observableArrayList();
+        data.addAll(ClasseService.getAllClassesWithCurrentSeances());
+        // Associate data with columns
+        classesSalleColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
+                cellData.getValue().get("salleNom")));
+        classesCoursColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
+                cellData.getValue().get("coursNom")));
+        classesStatusColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
+                cellData.getValue().get("status")));
+        classesStatusColumn.setCellFactory(new CustomStatusCell());
+        classesClasseColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
+                cellData.getValue().get("classeNom")));
+        // Set custom cell factory for classesClasseColumn
+        classesClasseColumn.setCellFactory(new CustomClasseCell());
+        classesProfesseurColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
+        classesProfesseurColumn.setCellFactory(new CustomCellFactory());
+        classesEffectifColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
+                cellData.getValue().get("effectif")));
+        classesActionColumn.setCellFactory(new CustomClasseCellButton(activeClassePane, clickHandler));
+
+        classesTableView.setItems(data);
+    }
 }

@@ -1,10 +1,7 @@
 package application.controllers;
 
-import java.io.IOException;
 import java.util.Map;
-
 import application.controllers.AdminstrateurBackofficeSceneSubController.AccueilPaneController;
-import application.controllers.AdminstrateurBackofficeSceneSubController.ActiveListEtudiantsPaneController;
 import application.controllers.AdminstrateurBackofficeSceneSubController.AffectationPaneController;
 import application.controllers.AdminstrateurBackofficeSceneSubController.ClassesPaneController;
 import application.controllers.AdminstrateurBackofficeSceneSubController.ParametresPaneController;
@@ -17,22 +14,14 @@ import application.model.Horaires;
 import application.model.Salle;
 import application.model.TypeCours;
 import application.model.enums.JoursSemaine;
-import application.services.ClasseService;
 import application.services.SallesService;
 import application.utilities.ButtonClickHandler;
-import application.utilities.CustomClasseCellButton;
-import application.utilities.CustomDeleteEtudiantButton;
-import application.utilities.CustomEditEtudiantButton;
 import application.utilities.CustomSalleCellButton;
 import application.utilities.ET0810;
 import application.utilities.ET1012;
 import application.utilities.ET1416;
 import application.utilities.ET1618;
-import application.utilities.EtudiantContactCell;
-import application.utilities.EtudiantContactParentsCell;
-import application.utilities.EtudiantNomPhotoCell;
 import application.utilities.FormattedLocalDateTime;
-import application.utilities.PushAlert;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -40,46 +29,133 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Screen;
-import javafx.stage.Stage;
 
 public class AdminstrateurBackofficeSceneController {
 
-    // sub controllers
-    private SidebarController sidebarController;
-    private ParametresPaneController parametresPaneController;
-    private AffectationPaneController affectationPaneController;
+    @FXML
+    private Pane rootPane;
+    @FXML
+    private Label errorPasswordUpdate;
+    private int loggedInAdminId;
+    private Classe activeClasse;
+    //
+    //
+    //
+    //
+    //
+    //
+    // Everything related to accueilpane
     private AccueilPaneController accueilPaneController;
+    @FXML
+    private Text localDateTimeLabelAccueilPane;
+    @FXML
+    private Text SallesDisponibles, coursEnCours, effectifEnCours;
+    @FXML
+    private Pane accueilPane;
+    @FXML
+    private TableView<Map<String, String>> coursEncoursTableView;
+    @FXML
+    private TableColumn<Map<String, String>, Map<String, String>> coursEncoursProfesseurColumn;
+    @FXML
+    private TableColumn<Map<String, String>, String> coursEncoursSalleColumn, coursEncoursHorairesColumn,
+            coursEncoursClasseColumn, coursEncoursCourNomColumn, coursEncoursEffectifColumn;
+    @FXML
+    private Label nombreLaboratoiresDisponibles, nombreSalleCoursDisponibles, nombreSalleDeSportDisponibles,
+            nombreClasse3EnCours, nombreClasse4EnCours, nombreClasse5EnCours, nombreClasse6EnCours,
+            nombreAbscencesNonExcuses;
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    // Everything related to classespane
     private ClassesPaneController classesPaneController;
-    private SallesPaneController sallesPaneController;
-    private ActiveListEtudiantsPaneController activeListEtudiantsPaneController;
-
-    // sideBar components
     @FXML
-    private Button accueilButton, classesButton, deconnecterButton, sallesButton, parametresButton, affectationButton,
-            annulerButtonParametres;
-
-    // application Panes
+    private TableView<Map<String, String>> classesTableView;
     @FXML
-    private Pane affectationPane, accueilPane, classesPane, sallesPane, parametresPane, rootPane, activeClassePane,
-            activeSallePane;
-
-    // parametersPane components
+    private Pane classesPane;
+    @FXML
+    private TableColumn<Map<String, String>, String> classesClasseColumn, classesEffectifColumn, classesStatusColumn,
+            classesSalleColumn, classesCoursColumn, classesActionColumn;
+    @FXML
+    private TableColumn<Map<String, String>, Map<String, String>> classesProfesseurColumn;
+    @FXML
+    private Label nombre3emeEnCours, nombre4emeEnCours, nombre5emeEnCours, nombre6emeEnCours,
+            nombreLabDisponibles, nombreSalleCourDisponibles, nombreSalleSportDisponibles;
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    // Everything related to parameterspane
+    private ParametresPaneController parametresPaneController;
+    @FXML
+    private Pane parametresPane;
     @FXML
     private Button sauvegarderButtonInfosParametres, sauvegarderButtonSecurityParametres;
+    @FXML
+    private DatePicker dateBirthDatePickerParametres;
+    @FXML
+    private TextField nomFieldParametres, prenomFieldParametres, telephoneFieldParametres, emailFieldParametres,
+            oldPasswordParametres,
+            newPasswordParametres;
 
-    // affectationPane components
+    @FXML
+    public void handleCancelParametresChanges(ActionEvent event) {
+        parametresPaneController.annulerLesModifications();
+    }
 
+    @FXML
+    public void handleSauvegarderButtonSecurityParameters(ActionEvent event) {
+        parametresPaneController.handleSauvegarderButtonSecurityParameters();
+    }
+
+    @FXML
+    public void handleSauvegarderButtonInfosParameters(ActionEvent event) {
+        parametresPaneController.handleSauvegarderButtonInfosParameters();
+    }
+
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    // Everything related to sideBar
+    private SidebarController sidebarController;
+    @FXML
+    private Button accueilButton, classesButton, parametresButton, deconnecterButton, sallesButton, affectationButton,
+            annulerButtonParametres;
+
+    @FXML
+    public void handleSideBarButtonAction(ActionEvent event) {
+        sidebarController.handleSideBarButtonAction(event);
+    }
+
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    // Everything realted to affectationPane
+    private AffectationPaneController affectationPaneController;
+    @FXML
+    private Pane affectationPane;
     @FXML
     private Button handleAffecterButton, handleAnnulerAffectation;
     @FXML
@@ -92,80 +168,69 @@ public class AdminstrateurBackofficeSceneController {
     private ComboBox<Enseignant> enseignantComboAffectation;
     @FXML
     private ComboBox<TypeCours> typeCoursComboAffectation;
-
-    // application Tableviews
     @FXML
-    private TableView<Map<String, String>> classesTableView, sallesTableView,
-            classeEmploiTableView, salleEmploiTableView;
-
+    private ComboBox<Classe> classesComboAffectation;
     @FXML
-    private TableColumn<Map<String, String>, String> classesClasseColumn,
-            classesEffectifColumn, classesStatusColumn, classesSalleColumn, classesCoursColumn, classesActionColumn,
-            sallesColumn, sallesCapaciteColumn, sallesStatutColumn, sallesCoursColumn, sallesClassesColumn,
-            sallesActionColumn;
-    @FXML
-    private TableColumn<Map<String, String>, Map<String, String>> classesProfesseurColumn;
+    private TextField nomCoursFieldAffectation;
 
     @FXML
-    private TableColumn<Map<String, String>, Map<String, String>> salleEmploi8_10Column,
-            salleEmploi10_12Column, salleEmploi14_16Column, salleEmploi16_18Column;
+    public void handleAffecterButton(ActionEvent event) {
+        affectationPaneController.affecterUneSeance();
+        accueilPaneController.fillCurrentSeances(coursEncoursTableView, coursEncoursSalleColumn,
+                coursEncoursHorairesColumn,
+                coursEncoursClasseColumn, coursEncoursCourNomColumn, coursEncoursEffectifColumn,
+                coursEncoursProfesseurColumn);
+    }
+
+    @FXML
+    public void handleAnnulerAffectation(ActionEvent event) {
+        affectationPaneController.annulerAffectation();
+    }
+
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    // Everuthing realted sallespane
+    private SallesPaneController sallesPaneController;
+    @FXML
+    private Pane sallesPane;
+    @FXML
+    private TableView<Map<String, String>> sallesTableView;
+    @FXML
+    private TextField searchField;
+
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    // Everything related to activeclassepane
+    @FXML
+    private Pane activeClassePane;
+    @FXML
+    private TableView<Map<String, String>> classeEmploiTableView;
     @FXML
     private TableColumn<Map<String, String>, String> classeEmploiJourColumn;
     @FXML
-    private TableColumn<Map<String, String>, String> salleEmploiJourColumn;
-
-    @FXML
-    private ComboBox<Classe> classesComboAffectation;
-
-    @FXML
-    private TextField nomFieldParametres, prenomFieldParametres, telephoneFieldParametres, emailFieldParametres,
-            oldPasswordParametres,
-            newPasswordParametres, nomCoursFieldAffectation, searchField;
-
-    @FXML
-    private DatePicker dateBirthDatePickerParametres;
-
-    @FXML
-    private Label errorPasswordUpdate;
-
-    private int loggedInAdminId;
-    private Classe activeClasse;
-
-    @FXML
-    private Text SallesDisponibles, coursEnCours, effectifEnCours, activeClasseLabel, activeSalleLabel,
-            tempText1;
-
-    @FXML
-    private Label nombre3emeEnCours, nombre4emeEnCours, nombre5emeEnCours, nombre6emeEnCours,
-            nombreLabDisponibles, nombreSalleCourDisponibles, nombreSalleSportDisponibles;
-
-    // activeClasse Pane
-    @FXML
     private TableColumn<Map<String, String>, Map<String, String>> classeEmploi8_10Column,
             classeEmploi10_12Column, classeEmploi14_16Column, classeEmploi16_18Column;
-
-    // activeSalle's @FXML
+    @FXML
+    private Text activeClasseLabel;
     @FXML
     private Label activeClasseNomLabel, activeClasseEffectif;
     @FXML
     private ImageView activeClasseStatutIcon;
-
-    // accueilPane Components
-    @FXML
-    private TableView<Map<String, String>> coursEncoursTableView;
-    @FXML
-    private Text localDateTimeLabelAccueilPane;
-    @FXML
-    private TableColumn<Map<String, String>, Map<String, String>> coursEncoursProfesseurColumn;
-    @FXML
-    private TableColumn<Map<String, String>, String> coursEncoursSalleColumn, coursEncoursHorairesColumn,
-            coursEncoursClasseColumn, coursEncoursCourNomColumn, coursEncoursEffectifColumn;
-    @FXML
-    private Label nombreLaboratoiresDisponibles, nombreSalleCoursDisponibles, nombreSalleDeSportDisponibles,
-            nombreClasse3EnCours, nombreClasse4EnCours, nombreClasse5EnCours, nombreClasse6EnCours,
-            nombreAbscencesNonExcuses;
-
-    // activeListEtudiantsPane components
     @FXML
     private TableView<Etudiant> listEtudiantsTableView;
     @FXML
@@ -181,32 +246,70 @@ public class AdminstrateurBackofficeSceneController {
 
     @FXML
     private void handleAjouterButtonOnAction(ActionEvent e) {
-        try {
-            // Load the FXML file for your modal form
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("../../resources/interfaces/AjouterEtudiantScene.fxml"));
-            Parent root = loader.load();
-
-            AjouterEtudiantSceneSceneController controller = loader.getController();
-            controller.initialize((Stage) getScene().getWindow());
-            // Create a new stage
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("Ajouter étudiant");
-            stage.setScene(new Scene(root));
-            // Get screen dimensions
-            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-
-            // Center the stage on the screen
-            stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
-            stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
-            // Show the stage
-            stage.showAndWait();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        classesPaneController.ajouterEtudiant();
     }
 
+    public void fillListEtudiantsTableView(String searchKey) {
+        classesPaneController.fillListEtudiantsTableView(activeClasse.getId(), searchKey, listEtudiantsTableView,
+                listEtudiantsEtudiantColumn, listEtudiantsContactColumn, listEtudiantsContactParentsColumn,
+                listEtudiantsDateNaissanceColumn, listEtudiantsDeleteColumn, listEtudiantsEditColumn,
+                listEtudiantsSexeColumn);
+    }
+
+    ButtonClickHandler<Map<String, String>> voirClasseClickHandler = rowData -> {
+        // set activeClasse (Classe) data
+        // used in active listEtudiantsPane
+        activeClasse.setId(Integer.parseInt(rowData.get("classeId")));
+        activeClasse.setEffectif(Integer.parseInt(rowData.get("effectif")));
+        activeClasse.setNom(rowData.get("classeNom"));
+        // set nomClasse's breadcrumb lable in activeClassePane
+        activeClasseLabel.setText(rowData.get("classeNom"));
+
+        // set activeClasse's informations
+        classesPaneController.setActiveClasseInformation(rowData, activeClasseEffectif, activeClasseNomLabel,
+                activeClasseEffectif, activeClasseStatutIcon);
+
+        // fill classeEmploiTableView
+        classesPaneController.fillEmploisDeTempsTableView(rowData, classeEmploiJourColumn, classeEmploiTableView,
+                classeEmploi8_10Column, classeEmploi10_12Column, classeEmploi14_16Column, classeEmploi16_18Column);
+        fillListEtudiantsTableView("");
+    };
+
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    // Everything related to activesallepane
+    @FXML
+    private Text tempText1, activeSalleLabel;
+    @FXML
+    private Pane activeSallePane;
+    @FXML
+    private TableView<Map<String, String>> salleEmploiTableView;
+    @FXML
+    private TableColumn<Map<String, String>, String> sallesColumn, sallesCapaciteColumn, sallesStatutColumn,
+            sallesCoursColumn, sallesClassesColumn,
+            sallesActionColumn;
+    @FXML
+    private TableColumn<Map<String, String>, Map<String, String>> salleEmploi8_10Column,
+            salleEmploi10_12Column, salleEmploi14_16Column, salleEmploi16_18Column;
+    @FXML
+    private TableColumn<Map<String, String>, String> salleEmploiJourColumn;
+
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
     //
     //
     //
@@ -236,17 +339,28 @@ public class AdminstrateurBackofficeSceneController {
 
     // initialize
     public void initialize(int adminId) {
+        //
+        // activeClasse caches the selected classe informations from classesTables View
         activeClasse = new Classe();
+        //
+        // to identify the logged in administrator
         this.loggedInAdminId = adminId;
+        //
+        // to show loacl date at the header of the dashboard
         localDateTimeLabelAccueilPane.setText(FormattedLocalDateTime.getFormattedDateTime());
+        //
+        // Initialize sub containers
         sidebarController = new SidebarController(this);
         parametresPaneController = new ParametresPaneController(this);
         affectationPaneController = new AffectationPaneController(this);
         classesPaneController = new ClassesPaneController(this);
         sallesPaneController = new SallesPaneController(this);
         accueilPaneController = new AccueilPaneController();
-        activeListEtudiantsPaneController = new ActiveListEtudiantsPaneController();
-
+        //
+        //
+        //
+        //
+        //
         // accueilPaneController usage
         accueilPaneController.updateCoursEnCoursLabels(nombreClasse3EnCours, nombreClasse4EnCours, nombreClasse5EnCours,
                 nombreClasse6EnCours);
@@ -255,37 +369,65 @@ public class AdminstrateurBackofficeSceneController {
                 nombreSalleDeSportDisponibles);
         accueilPaneController.updateCoursEnCours(coursEnCours);
         accueilPaneController.updateSallesDisponibles(SallesDisponibles);
-
-        //
-        sidebarController.initialize();
-        parametresPaneController.initialize();
-        parametresPaneController.loadAdminData();
-        affectationPaneController.initialize();
-        classesPaneController.initialize();
-        sallesPaneController.initialize();
         accueilPaneController.fillCurrentSeances(coursEncoursTableView, coursEncoursSalleColumn,
                 coursEncoursHorairesColumn,
                 coursEncoursClasseColumn, coursEncoursCourNomColumn, coursEncoursEffectifColumn,
                 coursEncoursProfesseurColumn);
-        accueilPaneController.fillClassesWithSeances(classesTableView, classesSalleColumn, classesStatusColumn,
+        //
+        //
+        //
+        //
+        //
+        //
+        // sideBarController usage
+        sidebarController.initialize();
+        //
+        //
+        //
+        //
+        //
+        // parametersPaneController usage
+        parametresPaneController.initialize();
+        parametresPaneController.loadAdminData();
+        //
+        //
+        //
+        //
+        //
+        // affectationPaneController usage
+        affectationPaneController.initialize();
+        //
+        //
+        //
+        //
+        //
+        // classesPaneController usage
+        classesPaneController.initialize();
+        classesPaneController.fillClassesWithSeances(classesTableView, classesSalleColumn, classesStatusColumn,
                 classesClasseColumn, classesEffectifColumn, classesCoursColumn, classesActionColumn,
-                classesProfesseurColumn);
-        classesActionColumn.setCellFactory(new CustomClasseCellButton(activeClassePane, clickHandler));
+                classesProfesseurColumn, activeClassePane, voirClasseClickHandler);
+        //
+        //
+        //
+        //
+        //
+        // sallesPaneController usage
+        sallesPaneController.initialize();
         sallesPaneController.fillSallesWithSeances(sallesTableView, sallesColumn, sallesStatutColumn,
                 sallesClassesColumn, sallesCapaciteColumn, sallesCoursColumn, sallesActionColumn);
-
         sallesActionColumn.setCellFactory(new CustomSalleCellButton(activeSallePane, clickHandler2));
-
         //
         //
-        // activeClassePane
+        //
+        //
+        //
+        // activeClassePaneController usage
         searchListEtudiantTextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 fillListEtudiantsTableView(newValue);
             }
         });
-
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.isEmpty()) {
                 // Si le champ de recherche est vide, remplissez la table avec toutes les
@@ -298,33 +440,6 @@ public class AdminstrateurBackofficeSceneController {
             }
         });
 
-    }
-
-    ButtonClickHandler<Map<String, String>> clickHandler = rowData -> {
-        // set activeClasse (Classe) data
-        // used in active listEtudiantsPane
-        activeClasse.setId(Integer.parseInt(rowData.get("classeId")));
-        activeClasse.setEffectif(Integer.parseInt(rowData.get("effectif")));
-        activeClasse.setNom(rowData.get("classeNom"));
-        // set nomClasse's breadcrumb lable in activeClassePane
-        activeClasseLabel.setText(rowData.get("classeNom"));
-
-        // set activeClasse's informations
-        classesPaneController.setActiveClasseInformation(rowData, activeClasseEffectif, activeClasseNomLabel,
-                activeClasseEffectif, activeClasseStatutIcon);
-
-        // fill classeEmploiTableView
-        classesPaneController.fillEmploisDeTempsTableView(rowData, classeEmploiJourColumn, classeEmploiTableView,
-                classeEmploi8_10Column, classeEmploi10_12Column, classeEmploi14_16Column, classeEmploi16_18Column);
-        fillListEtudiantsTableView("");
-
-    };
-
-    public void fillListEtudiantsTableView(String searchKey) {
-        classesPaneController.fillListEtudiantsTableView(activeClasse.getId(), searchKey, listEtudiantsTableView,
-                listEtudiantsEtudiantColumn, listEtudiantsContactColumn, listEtudiantsContactParentsColumn,
-                listEtudiantsDateNaissanceColumn, listEtudiantsDeleteColumn, listEtudiantsEditColumn,
-                listEtudiantsSexeColumn);
     }
 
     ButtonClickHandler<Map<String, String>> clickHandler2 = rowData -> {
@@ -359,63 +474,6 @@ public class AdminstrateurBackofficeSceneController {
         tempText1.setText(builder.toString());
         salleEmploiTableView.setItems(data);
     };
-
-    // active list Etudiants Pane
-    ButtonClickHandler<Etudiant> editEtudiantClickHandler = rowData -> {
-        Stage currentStage = (Stage) this.getScene().getWindow();
-        PushAlert.showAlert("info",
-                "Here we suppose to have form to edit student with id = " + rowData.getId() + " infos",
-                AlertType.INFORMATION,
-                currentStage);
-    };
-
-    ButtonClickHandler<Etudiant> deleteEtudiantClickHandler = rowData -> {
-        Stage currentStage = (Stage) this.getScene().getWindow();
-        PushAlert.showAlert("info",
-                "Here we suppose to have conformation to delete the student with id = " + rowData.getId()
-                        + " from database",
-                AlertType.WARNING,
-                currentStage);
-    };
-
-    @FXML
-    public void handleListEtudiantsButton(ActionEvent e) {
-
-        // get list etudianst from database by selected classe
-        ObservableList<Etudiant> data = FXCollections.observableArrayList();
-        data.addAll(ClasseService.getEtudiantsByClasseId(activeClasse.getId()));
-
-        // set Etudiant's basic infos (photo + fullname + cne) cell value and cell
-        // template
-        listEtudiantsEtudiantColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
-        listEtudiantsEtudiantColumn.setCellFactory(new EtudiantNomPhotoCell());
-
-        // set Etudiant's dateNaissance cell value
-        listEtudiantsDateNaissanceColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
-                cellData.getValue().getDateNaissance().toString()));
-
-        // set Etudiant's sexe cell value
-        listEtudiantsSexeColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
-                cellData.getValue().getSexe()));
-
-        // set Etudiant's contact (email + phone) cell value and cell template
-        listEtudiantsContactColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
-        listEtudiantsContactColumn.setCellFactory(new EtudiantContactCell());
-
-        // set Etudiant's prents contact (email + phone) cell value and cell template
-        listEtudiantsContactParentsColumn
-                .setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
-        // set Edit etudiant button template and clickhandler
-        listEtudiantsContactParentsColumn.setCellFactory(new EtudiantContactParentsCell());
-
-        listEtudiantsEditColumn
-                .setCellFactory(new CustomEditEtudiantButton(editEtudiantClickHandler));
-        listEtudiantsDeleteColumn
-                .setCellFactory(new CustomDeleteEtudiantButton(deleteEtudiantClickHandler));
-
-        // push data to the tablview
-        listEtudiantsTableView.setItems(data);
-    }
 
     public void setSallesDisponiblesText(String text) {
         SallesDisponibles.setText(text);
@@ -483,40 +541,6 @@ public class AdminstrateurBackofficeSceneController {
 
     public void setNombreSalleSportOccupesText(String text) {
         nombreSalleSportDisponibles.setText(text);
-    }
-
-    @FXML
-    public void handleSideBarButtonAction(ActionEvent event) {
-        sidebarController.handleSideBarButtonAction(event);
-    }
-
-    @FXML
-    public void handleCancelParametresChanges(ActionEvent event) {
-        parametresPaneController.annulerLesModifications();
-    }
-
-    @FXML
-    public void handleAnnulerAffectation(ActionEvent event) {
-        affectationPaneController.annulerAffectation();
-    }
-
-    @FXML
-    public void handleAffecterButton(ActionEvent event) {
-        affectationPaneController.affecterUneSeance();
-        accueilPaneController.fillCurrentSeances(coursEncoursTableView, coursEncoursSalleColumn,
-                coursEncoursHorairesColumn,
-                coursEncoursClasseColumn, coursEncoursCourNomColumn, coursEncoursEffectifColumn,
-                coursEncoursProfesseurColumn);
-    }
-
-    @FXML
-    public void handleSauvegarderButtonSecurityParameters(ActionEvent event) {
-        parametresPaneController.handleSauvegarderButtonSecurityParameters();
-    }
-
-    @FXML
-    public void handleSauvegarderButtonInfosParameters(ActionEvent event) {
-        parametresPaneController.handleSauvegarderButtonInfosParameters();
     }
 
     // Methods to access UI elements SubControllers

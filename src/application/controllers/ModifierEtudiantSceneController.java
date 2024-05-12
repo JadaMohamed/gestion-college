@@ -24,11 +24,9 @@ import javafx.stage.Stage;
 
 public class ModifierEtudiantSceneController {
 
-    private Stage stage; // Reference to the stage of this modal
-
+    private Stage stage;
     private Etudiant activeEtudiant;
 
-    // Method to set the stage of this modal
     public void setStage(Stage stage) {
         this.stage = stage;
     }
