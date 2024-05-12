@@ -15,7 +15,7 @@ AffectationPane
     1- Add button to show selected salle's materiels
 
 SallePane
-    1- Search in `Salles` tableView
+    1- Search in `Salles` tableView ✅
     2- Filter `Salles` tableView by Classe categorie
 
 ActiveSallePane
@@ -27,14 +27,14 @@ ActiveSallePane
     3- (We might have) Exporter emplois du temps as pdf
         
 ClassesPane
-    1- Search in `Classes` tableView
+    1- Search in `Classes` tableView ✅
     2- Filter `Classes` tableView by Niveau
 
 ActiveClassePane
-    1- Add button `Consulter la list des etudiants`
-    2- Show activeClasse's etudiants
-        a- Create activeClasseEtudiantsPane (Contains `Etudiants` tableView)
-        b- Create repository `public ResultSet getEtudiantsByClasseId(int classeId)`
-        c- Create service `public Vector<Etudiant> getEtudiantsByClasseId(int classeId)`
-        d- Create controller to show activeClasse's etudiants
+    1- Add button `Consulter la list des etudiants` ✅
+    2- Show activeClasse's etudiants ✅
+        a- Create activeClasseEtudiantsPane (Contains `Etudiants` tableView) ✅
+        b- Create repository `public ResultSet getEtudiantsByClasseId(int classeId)` ✅
+        c- Create service `public Vector<Etudiant> getEtudiantsByClasseId(int classeId)` ✅
+        d- Create controller to show activeClasse's etudiants ✅
     3- (We might have) Exporter emplois du temps as pdf
