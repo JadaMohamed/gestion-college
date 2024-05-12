@@ -129,4 +129,32 @@ public class ClasseService {
         return res;
     }
 
+    public static Vector<Etudiant> getEtudiantsByClasseId_search(int classeId, String searchKey) {
+        Vector<Etudiant> res = new Vector<>();
+        ResultSet result;
+        try {
+            result = ClasseRepository.getEtudiantsByClasseId_search(classeId, searchKey);
+            while (result.next()) {
+                Etudiant etudiant = new Etudiant();
+                etudiant.setId(result.getInt("id"));
+                etudiant.setCne(result.getString("cne"));
+                etudiant.setClasse(new Classe());
+                etudiant.getClasse().setId(classeId);
+                etudiant.setEmailParent(result.getString("emailParent"));
+                etudiant.setTelephoneParent(result.getString("telephoneParent"));
+                etudiant.setNom(result.getString("nom"));
+                etudiant.setPrenom(result.getString("prenom"));
+                etudiant.setEmail(result.getString("email"));
+                etudiant.setTelephone(result.getString("telephone"));
+                etudiant.setDateNaissance(result.getDate("dateNaissance"));
+                etudiant.setPhotoURL(result.getString("photoUrl"));
+                etudiant.setSexe(result.getString("sexe"));
+                res.add(etudiant);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
 }

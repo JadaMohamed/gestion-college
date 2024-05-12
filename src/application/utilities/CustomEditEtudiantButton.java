@@ -5,7 +5,9 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+
 import javafx.util.Callback;
+
 import application.model.Etudiant;
 
 public class CustomEditEtudiantButton
@@ -30,7 +32,7 @@ public class CustomEditEtudiantButton
                 // Set the image as the graphic for the button
                 button.setGraphic(imageView);
                 button.setStyle(
-                        "-fx-background-color: #F2E0A1; -fx-cursor: Hand");
+                        "-fx-background-color: #F2E0A1; -fx-cursor: Hand; -fx-padding: 5px");
                 button.setOnAction(event -> {
                     // Handle button click here
                     Etudiant rowData = getTableRow().getItem();
@@ -38,6 +40,7 @@ public class CustomEditEtudiantButton
 
                     // Call the button click handler function
                     buttonClickHandler.handleButtonClick(rowData);
+
                 });
             }
 

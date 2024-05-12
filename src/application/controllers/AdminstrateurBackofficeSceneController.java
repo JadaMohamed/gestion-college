@@ -1,5 +1,6 @@
 package application.controllers;
 
+import java.io.IOException;
 import java.util.Map;
 
 import application.controllers.AdminstrateurBackofficeSceneSubController.AccueilPaneController;
@@ -33,16 +34,23 @@ import application.utilities.EtudiantNomPhotoCell;
 import application.utilities.FormattedLocalDateTime;
 import application.utilities.PushAlert;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class AdminstrateurBackofficeSceneController {
@@ -159,8 +167,6 @@ public class AdminstrateurBackofficeSceneController {
 
     // activeListEtudiantsPane components
     @FXML
-    private Pane activeListEtudiantsPane;
-    @FXML
     private TableView<Etudiant> listEtudiantsTableView;
     @FXML
     private TableColumn<Etudiant, Etudiant> listEtudiantsEtudiantColumn,
@@ -169,9 +175,37 @@ public class AdminstrateurBackofficeSceneController {
     private TableColumn<Etudiant, String> listEtudiantsDateNaissanceColumn, listEtudiantsDeleteColumn,
             listEtudiantsEditColumn, listEtudiantsSexeColumn;
     @FXML
-    private Button listEtudiantsButton;
+    private TextField searchListEtudiantTextField;
     @FXML
-    private Text activeListEtudiantsClasseNom;
+    private Button ajouterEtudiantButton;
+
+    @FXML
+    private void handleAjouterButtonOnAction(ActionEvent e) {
+        try {
+            // Load the FXML file for your modal form
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("../../resources/interfaces/AjouterEtudiantScene.fxml"));
+            Parent root = loader.load();
+
+            AjouterEtudiantSceneSceneController controller = loader.getController();
+            controller.initialize((Stage) getScene().getWindow());
+            // Create a new stage
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Ajouter étudiant");
+            stage.setScene(new Scene(root));
+            // Get screen dimensions
+            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+
+            // Center the stage on the screen
+            stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
+            stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
+            // Show the stage
+            stage.showAndWait();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 
     //
     //
@@ -240,6 +274,16 @@ public class AdminstrateurBackofficeSceneController {
         sallesPaneController.fillSallesWithSeances(sallesTableView, sallesColumn, sallesStatutColumn,
                 sallesClassesColumn, sallesCapaciteColumn, sallesCoursColumn, sallesActionColumn);
         sallesActionColumn.setCellFactory(new CustomSalleCellButton(activeSallePane, clickHandler2));
+
+        //
+        //
+        // activeClassePane
+        searchListEtudiantTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                fillListEtudiantsTableView(newValue);
+            }
+        });
     }
 
     ButtonClickHandler<Map<String, String>> clickHandler = rowData -> {
@@ -250,15 +294,24 @@ public class AdminstrateurBackofficeSceneController {
         activeClasse.setNom(rowData.get("classeNom"));
         // set nomClasse's breadcrumb lable in activeClassePane
         activeClasseLabel.setText(rowData.get("classeNom"));
-        // set nomClasse's breadcrumb lable in activeListEtudiantsPane
-        activeListEtudiantsClasseNom.setText(rowData.get("classeNom"));
+
+        // set activeClasse's informations
+        classesPaneController.setActiveClasseInformation(rowData, activeClasseEffectif, activeClasseNomLabel,
+                activeClasseEffectif, activeClasseStatutIcon);
+
         // fill classeEmploiTableView
         classesPaneController.fillEmploisDeTempsTableView(rowData, classeEmploiJourColumn, classeEmploiTableView,
                 classeEmploi8_10Column, classeEmploi10_12Column, classeEmploi14_16Column, classeEmploi16_18Column);
-        // set active classe information
-        classesPaneController.setActiveClasseInformation(rowData, activeClasseEffectif, activeClasseNomLabel,
-                activeClasseEffectif, activeClasseStatutIcon);
+        fillListEtudiantsTableView("");
+
     };
+
+    public void fillListEtudiantsTableView(String searchKey) {
+        classesPaneController.fillListEtudiantsTableView(activeClasse.getId(), searchKey, listEtudiantsTableView,
+                listEtudiantsEtudiantColumn, listEtudiantsContactColumn, listEtudiantsContactParentsColumn,
+                listEtudiantsDateNaissanceColumn, listEtudiantsDeleteColumn, listEtudiantsEditColumn,
+                listEtudiantsSexeColumn);
+    }
 
     ButtonClickHandler<Map<String, String>> clickHandler2 = rowData -> {
         activeSalleLabel.setText(rowData.get("nomSalle"));
@@ -313,7 +366,6 @@ public class AdminstrateurBackofficeSceneController {
 
     @FXML
     public void handleListEtudiantsButton(ActionEvent e) {
-        activeListEtudiantsPane.toFront();
 
         // get list etudianst from database by selected classe
         ObservableList<Etudiant> data = FXCollections.observableArrayList();
@@ -567,4 +619,7 @@ public class AdminstrateurBackofficeSceneController {
         return enseignantComboAffectation;
     }
 
+    public Classe getActiveClasse() {
+        return activeClasse;
+    }
 }

@@ -151,3 +151,44 @@
 .tool-bar {
   -fx-background-color: #336699; /* Change the color code as needed */
 }
+
+.tab-pane .tab-header-area .tab-header-background {
+  -fx-opacity: 0;
+}
+
+.tab-pane .tab-header-area {
+  -fx-margin: 0 0 10px 0;
+  -fx-border-color: #d8d8d8;
+  -fx-border-width: 0 0 1 0;
+}
+
+.tab .tab-label {
+  -fx-font-weight: bold;
+  -fx-text-fill: #5f6778;
+}
+
+.tab-pane .tab-header-area .headers-region .tab:selected .tab-label {
+  -fx-text-fill: #6941c6;
+}
+
+.tab-pane .tab-header-area .headers-region .tab {
+  -fx-border-width: 0 0 2px 0;
+  -fx-border-color: transparent;
+  -fx-padding: 0px 16px 4px 0px;
+}
+.tab-pane .tab-header-area .headers-region .tab:selected {
+  -fx-border-width: 0 0 2px 0;
+  -fx-border-color: #6941c6;
+}
+.tab:selected {
+  -fx-background-insets: 0 0 0 0;
+  -fx-background-radius: 0 0 0 0;
+}
+
+.tab-pane:top *.tab-header-area {
+  -fx-background-insets: 0, 0 0 1 0;
+}
+
+.tab-pane .tab-header-area .headers-region .tab:selected .focus-indicator {
+  -fx-border-width: 0;
+}

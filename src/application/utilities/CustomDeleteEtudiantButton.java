@@ -30,7 +30,7 @@ public class CustomDeleteEtudiantButton
                 // Set the image as the graphic for the button
                 button.setGraphic(imageView);
                 button.setStyle(
-                        "-fx-background-color: #E5C4C2; -fx-cursor: Hand");
+                        "-fx-background-color: #E5C4C2; -fx-cursor: Hand; -fx-padding: 5px");
                 button.setOnAction(event -> {
                     // Handle button click here
                     Etudiant rowData = getTableRow().getItem();

@@ -32,4 +32,27 @@ public class ClasseRepository {
         parameters.add(classeId);
         return dbClient.executeCommand(true, query, parameters);
     }
+
+    public static ResultSet getEtudiantsByClasseId_search(int classeId, String searchKey) {
+        Vector<Object> parameters = new Vector<Object>();
+        String query = "SELECT * FROM etudiant WHERE idClasse = ? AND (cne LIKE ? OR nom LIKE ? OR prenom LIKE ? OR email LIKE ? OR telephone LIKE ? OR telephoneParent LIKE ? OR emailParent LIKE ?)";
+        parameters.add(classeId);
+        parameters.add("%" + searchKey + "%");
+        parameters.add("%" + searchKey + "%");
+        parameters.add("%" + searchKey + "%");
+        parameters.add("%" + searchKey + "%");
+        parameters.add("%" + searchKey + "%");
+        parameters.add("%" + searchKey + "%");
+        parameters.add("%" + searchKey + "%");
+        return dbClient.executeCommand(true, query, parameters);
+    }
+
+    public static void updateClasseEffectif(int classId, int effectif) {
+        Vector<Object> parameters = new Vector<Object>();
+        String query = "UPDATE classe SET effectif = ? WHERE id = ?";
+        parameters.add(effectif);
+        parameters.add(classId);
+        dbClient.executeCommand(false, query, parameters);
+    }
+
 }
