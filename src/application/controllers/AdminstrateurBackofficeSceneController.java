@@ -112,7 +112,7 @@ public class AdminstrateurBackofficeSceneController {
     @FXML
     private TextField nomFieldParametres, prenomFieldParametres, telephoneFieldParametres, emailFieldParametres,
             oldPasswordParametres,
-            newPasswordParametres, nomCoursFieldAffectation;
+            newPasswordParametres, nomCoursFieldAffectation, searchField;
 
     @FXML
     private DatePicker dateBirthDatePickerParametres;
@@ -200,6 +200,8 @@ public class AdminstrateurBackofficeSceneController {
     //
     //
 
+    
+
     // initialize
     public void initialize(int adminId) {
         activeClasse = new Classe();
@@ -239,7 +241,22 @@ public class AdminstrateurBackofficeSceneController {
         classesActionColumn.setCellFactory(new CustomClasseCellButton(activeClassePane, clickHandler));
         sallesPaneController.fillSallesWithSeances(sallesTableView, sallesColumn, sallesStatutColumn,
                 sallesClassesColumn, sallesCapaciteColumn, sallesCoursColumn, sallesActionColumn);
+
+        
         sallesActionColumn.setCellFactory(new CustomSalleCellButton(activeSallePane, clickHandler2));
+
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.isEmpty()) {
+                // Si le champ de recherche est vide, remplissez la table avec toutes les données
+                sallesPaneController.fillSallesWithSeances(sallesTableView, sallesColumn, sallesStatutColumn,
+                    sallesClassesColumn, sallesCapaciteColumn, sallesCoursColumn, sallesActionColumn);
+            } else {
+                // Sinon, effectuez la recherche avec le nouveau mot-clé
+                sallesPaneController.search(newValue, sallesTableView);
+            }
+        });
+        
+
     }
 
     ButtonClickHandler<Map<String, String>> clickHandler = rowData -> {
