@@ -8,6 +8,7 @@ import java.util.Vector;
 
 import application.model.CategorieSalle;
 import application.model.Horaires;
+import application.model.MaterielSalle;
 import application.model.Salle;
 import application.model.enums.JoursSemaine;
 import application.repositories.SallesRepository;
@@ -76,6 +77,28 @@ public class SallesService {
         }
         return salles;
     }
+    
+
+    
+    
+    public static Vector<MaterielSalle> getMaterialBySalleId(int SalleId) {
+        Vector<MaterielSalle> res = new Vector<>();
+        ResultSet result;
+        try {
+        result = SallesRepository.getMaterialBySalleId(SalleId);
+            while (result.next()) {
+                MaterielSalle materielsalle = new MaterielSalle();
+                materielsalle.setId(result.getInt("id"));
+                materielsalle.setNom(result.getString("nomMateriel"));
+                materielsalle.setQuantite(result.getInt("quantite"));
+                res.add(materielsalle);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
     public static Vector<Map<String, String>> getEmploiDeTempsSalle(String idSalle) {
         Vector<Map<String, String>> res = new Vector<>();
         ResultSet result;

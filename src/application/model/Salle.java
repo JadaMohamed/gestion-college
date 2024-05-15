@@ -24,7 +24,7 @@ public class Salle {
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     @Override

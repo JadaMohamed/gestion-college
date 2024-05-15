@@ -150,5 +150,12 @@ public class SallesRepository {
         parameters.add(idSalle);
         return dbClient.executeCommand(true, query, parameters);
     }
-    
+
+    public static ResultSet getMaterialBySalleId(int salleId){
+        Vector<Object> parameters = new Vector<Object>();
+        String query = "SELECT * FROM materielSalle WHERE idSalle = ?";
+        parameters.add(salleId);
+        return dbClient.executeCommand(true, query, parameters);
+    }
+
 }

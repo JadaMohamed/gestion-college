@@ -1,6 +1,8 @@
 package application.controllers;
 
 import java.util.Map;
+import java.util.Vector;
+import javafx.scene.layout.VBox;
 import application.controllers.AdminstrateurBackofficeSceneSubController.AccueilPaneController;
 import application.controllers.AdminstrateurBackofficeSceneSubController.AffectationPaneController;
 import application.controllers.AdminstrateurBackofficeSceneSubController.ClassesPaneController;
@@ -11,6 +13,7 @@ import application.model.Classe;
 import application.model.Enseignant;
 import application.model.Etudiant;
 import application.model.Horaires;
+import application.model.MaterielSalle;
 import application.model.Salle;
 import application.model.TypeCours;
 import application.model.enums.JoursSemaine;
@@ -32,6 +35,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
@@ -43,6 +47,7 @@ public class AdminstrateurBackofficeSceneController {
     private Label errorPasswordUpdate;
     private int loggedInAdminId;
     private Classe activeClasse;
+    private Salle activeSalle;
     //
     //
     //
@@ -204,7 +209,7 @@ public class AdminstrateurBackofficeSceneController {
     @FXML
     private TableView<Map<String, String>> sallesTableView;
     @FXML
-    private TextField searchField;
+    private TextField searchFieldSalle;
 
     //
     //
@@ -275,6 +280,11 @@ public class AdminstrateurBackofficeSceneController {
         fillListEtudiantsTableView("");
     };
 
+   
+    
+
+    
+
     //
     //
     //
@@ -286,9 +296,13 @@ public class AdminstrateurBackofficeSceneController {
     //
     // Everything related to activesallepane
     @FXML
-    private Text tempText1, activeSalleLabel;
+    private Text  activeSalleLabel,tempText1;
     @FXML
     private Pane activeSallePane;
+    @FXML
+    private Label activeSalleDisponibilite, activeSalleCoccupe, activeSalleCapacite, activeSalleNomLabel, materielSalleLabel;
+    @FXML
+    private ImageView activeSalleStatutIcon;
     @FXML
     private TableView<Map<String, String>> salleEmploiTableView;
     @FXML
@@ -300,6 +314,57 @@ public class AdminstrateurBackofficeSceneController {
             salleEmploi10_12Column, salleEmploi14_16Column, salleEmploi16_18Column;
     @FXML
     private TableColumn<Map<String, String>, String> salleEmploiJourColumn;
+    @FXML
+    private AnchorPane materielSalleAnchropane;
+
+
+public void fillMaterielSalleAnchorPane(int salleId, AnchorPane materielSalleAnchorPane) {
+    // Effacer le contenu précédent de l'AnchorPane
+    materielSalleAnchorPane.getChildren().clear();
+
+    // Récupérer les matériels de la salle à partir de la base de données
+    Vector<MaterielSalle> materiels = SallesService.getMaterialBySalleId(salleId);
+
+    // Créer un VBox pour contenir les labels des matériaux
+    VBox vbox = new VBox();
+    vbox.setSpacing(5.0); 
+
+    // Créer et configurer les Labels pour chaque matériel
+    for (MaterielSalle materiel : materiels) {
+        // Créer un Label avec le nom et la quantité du matériel
+        Label label = new Label("• " + materiel.getQuantite() + " " + materiel.getNom());
+
+        // Ajouter le Label au VBox
+        vbox.getChildren().add(label);
+    }
+
+    // Ajouter le VBox à l'AnchorPane
+    AnchorPane.setTopAnchor(vbox, 10.0); 
+    AnchorPane.setLeftAnchor(vbox, 10.0); 
+    materielSalleAnchorPane.getChildren().add(vbox);
+}
+
+    
+    
+
+// ButtonClickHandler<Map<String, String>> voirSalleClickHandler2 = rowData -> {
+//     System.out.println("hey");
+//     System.out.println(activeSalle.getId());
+//     // set activeSalle data
+//     activeSalle.setId(Integer.parseInt(rowData.get("salleId")));
+//     activeSalle.setNomSalle(rowData.get("Sallenom"));
+//     // set nomSalle's breadcrumb label in activeSallePane
+//     activeSalleLabel.setText(rowData.get("Sallenom"));
+    
+//     // set activeSalle's informations
+//     sallesPaneController.setActiveSalleInformation(rowData, activeSalleLabel, activeSalleNomLabel, activeSalleCapacite,
+//             activeSalleDisponibilite, activeSalleCoccupe, activeSalleStatutIcon, materielSalleLabel,materielSalleListView);
+//     // Afficher les matériaux de la salle active
+//     sallesPaneController.showActiveSalleMaterials(activeSalle.getId());
+// };
+
+
+
 
     //
     //
@@ -428,7 +493,7 @@ public class AdminstrateurBackofficeSceneController {
                 fillListEtudiantsTableView(newValue);
             }
         });
-        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+        searchFieldSalle.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.isEmpty()) {
                 // Si le champ de recherche est vide, remplissez la table avec toutes les
                 // données
@@ -439,13 +504,36 @@ public class AdminstrateurBackofficeSceneController {
                 sallesPaneController.search(newValue, sallesTableView);
             }
         });
+        //
+        //
+        //
+        //
+        //
+        // activePaneController usage
+
+
+
 
     }
 
     ButtonClickHandler<Map<String, String>> clickHandler2 = rowData -> {
+    
+        System.out.println(rowData.get("idSalle"));
+        // activeSalle.setId(Integer.parseInt(rowData.get("idSalle")));
+        // activeSalle.setNomSalle(rowData.get("nomSalle"));
+        // // set nomSalle's breadcrumb label in activeSallePane
+        // activeSalleLabel.setText(rowData.get("nomSalle"));
+    
+
+
+        sallesPaneController.setActiveSalleInformation(rowData, activeSalleLabel, activeSalleNomLabel, activeSalleCapacite,
+            activeSalleDisponibilite, activeSalleCoccupe, activeSalleStatutIcon, materielSalleLabel,materielSalleAnchropane);
+        sallesPaneController.showActiveSalleMaterials(Integer.parseInt(rowData.get("idSalle")));
+
+
         activeSalleLabel.setText(rowData.get("nomSalle"));
         StringBuilder builder = new StringBuilder();
-
+        
         System.out.println(rowData);
         // Iterate over the entries of the rowData map
         for (Map.Entry<String, String> entry : rowData.entrySet()) {
@@ -473,6 +561,12 @@ public class AdminstrateurBackofficeSceneController {
         // Set the concatenated string to the tempText
         tempText1.setText(builder.toString());
         salleEmploiTableView.setItems(data);
+
+        
+        // set activeSalle's informations
+        // sallesPaneController.setActiveSalleInformation(rowData, activeSalleLabel, activeSalleNomLabel, activeSalleCapacite,
+        //         activeSalleDisponibilite, activeSalleCoccupe, activeSalleStatutIcon, materielSalleLabel);
+        // Afficher les matériaux de la salle active
     };
 
     public void setSallesDisponiblesText(String text) {

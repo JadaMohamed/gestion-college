@@ -1,28 +1,45 @@
 package application.controllers.AdminstrateurBackofficeSceneSubController;
 
+//import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
-
+import java.util.Vector;
 import application.controllers.AdminstrateurBackofficeSceneController;
 import application.model.CategorieSalle;
+//import application.model.Etudiant;
+import application.model.MaterielSalle;
+//import application.repositories.SallesRepository;
+//import application.services.ClasseService;
 import application.services.SallesService;
 import application.services.SeanceService;
+//import application.utilities.CustomDeleteEtudiantButton;
+//import application.utilities.CustomEditEtudiantButton;
 import application.utilities.CustomSalleCell;
 import application.utilities.CustomStatusCell;
+//import application.utilities.EtudiantContactCell;
+//import application.utilities.EtudiantContactParentsCell;
+//import application.utilities.EtudiantNomPhotoCell;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
-import java.util.function.Predicate;
+import javafx.scene.control.Label;
+//import javafx.scene.control.ListView;
+import javafx.scene.text.Text;
+//import java.util.function.Predicate;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 // import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 public class SallesPaneController {
     private AdminstrateurBackofficeSceneController mainController;
-    // private TextField searchField;
+    // private TextField searchFieldSalle;
     private ObservableList<Map<String, String>> data = FXCollections.observableArrayList();
-    private TableView<Map<String, String>> sallesTableView;
+    //private TableView<Map<String, String>> sallesTableView;
     public SallesPaneController(AdminstrateurBackofficeSceneController mainController) {
         this.mainController = mainController;
     }
@@ -32,7 +49,7 @@ public class SallesPaneController {
         updateSallesOccupesLabels();
         // search("ll");
     }
-        // searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+        // searchFieldSalle.textProperty().addListener((observable, oldValue, newValue) -> {
         //     // Appelez une méthode de recherche à chaque fois que le texte change
         //     search(newValue);});
         // categoryComboBox.setPromptText("Select Category");
@@ -120,6 +137,81 @@ public class SallesPaneController {
     }
 
 
+public void setActiveSalleInformation(Map<String, String> rowData, Text activeSalleLabel,
+    Label activeSalleNomLabel, Label activeSalleCapacite, Label activeSalleDisponibilite,
+    Label activeSalleCoccupe, ImageView activeSalleStatutIcon, Label materielSalleLabel,
+    AnchorPane materielSalleAnchorPane) {
+
+    System.out.println(rowData.get("nomSalle"));
+    System.out.println(rowData.get("capacite"));
+    System.out.println(rowData.get("idSalle"));
+    activeSalleLabel.setText(rowData.get("nomSalle"));
+    activeSalleNomLabel.setText(rowData.get("nomSalle"));
+    activeSalleCapacite.setText(rowData.get("capacite"));
+    //rowData.get("Disponible")
+    activeSalleDisponibilite.setText("Oui");
+    //rowData.get("Occupée")
+    activeSalleCoccupe.setText("Non");
+
+    // Effacer le contenu précédent de l'AnchorPane
+    materielSalleAnchorPane.getChildren().clear();
+
+    // Récupérer les matériels de la salle
+    int salleId = Integer.parseInt(rowData.get("idSalle"));
+    Vector<MaterielSalle> materiels = SallesService.getMaterialBySalleId(salleId);
+
+    // Créer un VBox pour contenir les labels des matériaux
+    VBox vbox = new VBox();
+    vbox.setSpacing(5.0); 
+
+    // Créer et configurer les Labels pour chaque matériel
+    for (MaterielSalle materiel : materiels) {
+        // Créer un Label avec le nom et la quantité du matériel
+        Label label = new Label("• " + materiel.getQuantite() + " " + materiel.getNom());
+
+        // Ajouter le Label au VBox
+        vbox.getChildren().add(label);
+    }
+
+    // Ajouter le VBox à l'AnchorPane
+    AnchorPane.setTopAnchor(vbox, 10.0); 
+    AnchorPane.setLeftAnchor(vbox, 10.0); 
+    materielSalleAnchorPane.getChildren().add(vbox);
+
+    // Mettre à jour l'icône du statut en fonction du statut de la salle
+    if (Integer.parseInt(rowData.get("statut")) == 1) {
+        activeSalleStatutIcon.setImage(new Image(getClass().getResourceAsStream("/resources/images/icons/Badge_Disponible.png")));
+    } else {
+        activeSalleStatutIcon.setImage(new Image(getClass().getResourceAsStream("/resources/images/icons/Badge_Occupée.png")));
+    }
+
+    StringBuilder builder = new StringBuilder();
+
+    // Itérer sur les entrées de la carte rowData
+    for (Map.Entry<String, String> entry : rowData.entrySet()) {
+        // Concaténer la clé et la valeur avec un séparateur et ajouter au StringBuilder
+        builder.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
+    }
+
+    //materielSalleLabel.setText(builder.toString());
+}
+
+
+    
+
+public Vector<MaterielSalle> showActiveSalleMaterials(int salleId) {
+    System.out.println("hey me2");
+    // Appel de la méthode du service pour récupérer les matériaux de la salle active
+    Vector<MaterielSalle> materials = SallesService.getMaterialBySalleId(salleId);
+
+    // Affichage des matériaux dans votre interface utilisateur
+    for (MaterielSalle material : materials) {
+        System.out.println(material.getNom()); 
+    }
+
+    return materials;
+}
+    
     public void updateSallesOccupesLabels() {
         try {
             int[] nombreSallesOccupes = SeanceService.getNombreSallesOccupes();
@@ -138,7 +230,7 @@ public class SallesPaneController {
                                 TableColumn<Map<String, String>, String> sallesCapaciteColumn,
                                 TableColumn<Map<String, String>, String> sallesCoursColumn,
                                 TableColumn<Map<String, String>, String> sallesActionColumn) {
-                                    System.out.println("number1");
+                                    
     ObservableList<Map<String, String>> data = FXCollections.observableArrayList();
     data.addAll(SallesService.getAllSallesWithCurrentSeances());
 
@@ -159,5 +251,5 @@ public class SallesPaneController {
             cellData.getValue().get("cours")));
 
     sallesTableView.setItems(data);
-}
+    }
 }
