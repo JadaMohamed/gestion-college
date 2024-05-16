@@ -642,7 +642,7 @@ public void fillMaterielSalleAnchorPane(int salleId, AnchorPane materielSalleAnc
 
     private void filterTable(NiveauClasse selectedNiveauClasse) {
         ObservableList<Map<String, String>> filteredItems = FXCollections.observableArrayList();
-    
+        
         // Vérifiez si initialData est null ou vide
         if (initialData == null || initialData.isEmpty()) {
             System.out.println("initialData is null or empty");             

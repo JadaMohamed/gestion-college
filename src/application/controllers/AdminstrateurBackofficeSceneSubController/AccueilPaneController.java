@@ -43,7 +43,7 @@ public class AccueilPaneController {
                 System.out.println("Fichier image introuvable : " + adminUrlPhoto);
             }
         } else {
-            File defaultImageFile = new File("../../../../bin/resources/images/profiles/default.png");
+            File defaultImageFile = new File("../../../resources/images/profiles/default.png");
             String defaultImageUrl = defaultImageFile.toURI().toString();
             Image image = new Image(defaultImageUrl);
             photoAdmin.setImage(image);

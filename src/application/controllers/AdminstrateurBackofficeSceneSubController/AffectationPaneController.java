@@ -18,6 +18,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.collections.FXCollections;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -104,11 +105,13 @@ public class AffectationPaneController {
             updateAvailableSallesByHoraire();
             PushAlert.showAlert("Affectation succès", "L'affectation a été faite avec succès", AlertType.INFORMATION,
                     currentStage);
+            mainController.setInitialData(FXCollections.observableArrayList(SeanceService.getSeancesEnCoursBis()));
         } else {
             Stage currentStage = (Stage) mainController.getScene().getWindow();
             PushAlert.showAlert("Affectation échoué", "Veuillez remplir le formulaire", AlertType.ERROR,
                     currentStage);
         }
+
     }
 
     private void updateAvailableSallesByHoraire() {
