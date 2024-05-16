@@ -1821,7 +1821,7 @@
                   </VBox>
                   <HBox layoutX="868.0" layoutY="23.0" prefHeight="33.0" prefWidth="102.0">
                      <children>
-                        <Button fx:id="refreshButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleRefreshButtonAction" prefHeight="33.0" prefWidth="105.0" style="-fx-background-color: B692F6; -fx-border-radius: 10; -fx-background-radius: 10;" text="Refresh " textAlignment="CENTER" textFill="WHITE">
+                        <Button fx:id="refreshButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleRefreshButtonAction" prefHeight="33.0" prefWidth="105.0" style="-fx-background-color: #7F56D9; -fx-border-radius: 10; -fx-background-radius: 10; -fx-cursor: hand;" text="Refresh " textAlignment="CENTER" textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="20.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
