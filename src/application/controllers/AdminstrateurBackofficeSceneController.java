@@ -1,5 +1,6 @@
 package application.controllers;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -26,12 +27,17 @@ import application.services.SallesService;
 import application.services.SeanceService;
 import application.utilities.ButtonClickHandler;
 import application.utilities.CustomSalleCellButton;
+import application.utilities.DateUtil;
 import application.utilities.ET0810;
 import application.utilities.ET1012;
 import application.utilities.ET1416;
 import application.utilities.ET1618;
+import application.utilities.EtudiantNomPhotoCellMap;
 import application.utilities.FormattedLocalDateTime;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import application.utilities.AbsenceIsExcusedToggler;
+import application.utilities.AbsenceStatusToggler;
+import application.services.AbsenceService;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -79,22 +85,22 @@ public class AdminstrateurBackofficeSceneController {
     private Label nombreLaboratoiresDisponibles, nombreSalleCoursDisponibles, nombreSalleDeSportDisponibles,
             nombreClasse3EnCours, nombreClasse4EnCours, nombreClasse5EnCours, nombreClasse6EnCours,
             nombreAbscencesNonExcuses;
-    
+
     @FXML
     private ImageView photoAdmin;
     @FXML
     private Text nameAdminText;
-    @FXML 
+    @FXML
     private Button refreshButton;
-    @FXML 
+    @FXML
     private TextField searchTextFieldAccueilPane;
     @FXML
     private ComboBox<NiveauClasse> filterComboBoxCoursEncours;
     private List<String> niveauNames = ClasseService.getAllNiveauNames();
     private List<NiveauClasse> niveaux = ClasseService.getAllNiveaux();
     private List<NiveauClasse> niveauObjects = niveaux.stream()
-    .filter(niveau -> niveauNames.contains(niveau.getNom()))
-    .collect(Collectors.toList());
+            .filter(niveau -> niveauNames.contains(niveau.getNom()))
+            .collect(Collectors.toList());
     private ObservableList<Map<String, String>> initialData;
     private ObservableList<Map<String, String>> data = FXCollections.observableArrayList();
     //
@@ -164,7 +170,11 @@ public class AdminstrateurBackofficeSceneController {
     private SidebarController sidebarController;
     @FXML
     private Button accueilButton, classesButton, parametresButton, deconnecterButton, sallesButton, affectationButton,
-            annulerButtonParametres;
+            annulerButtonParametres, absencesButton;
+
+    public Button getAbsencesButton() {
+        return absencesButton;
+    }
 
     @FXML
     public void handleSideBarButtonAction(ActionEvent event) {
@@ -186,7 +196,7 @@ public class AdminstrateurBackofficeSceneController {
     @FXML
     private Pane affectationPane;
     @FXML
-    private Button handleAffecterButton, handleAnnulerAffectation,handleShowMaterielSalle;
+    private Button handleAffecterButton, handleAnnulerAffectation, handleShowMaterielSalle;
     @FXML
     private ComboBox<Salle> sallesComboAffectation;
     @FXML
@@ -290,12 +300,12 @@ public class AdminstrateurBackofficeSceneController {
                 listEtudiantsSexeColumn);
     }
 
-    public void fillListCoursEncoursTableView(String searchKey){
+    public void fillListCoursEncoursTableView(String searchKey) {
         accueilPaneController.fillListCoursEncoursTableView(searchKey,
-        coursEncoursTableView, coursEncoursSalleColumn,
-        coursEncoursHorairesColumn, coursEncoursClasseColumn,
-        coursEncoursCourNomColumn, coursEncoursEffectifColumn,
-        coursEncoursProfesseurColumn);
+                coursEncoursTableView, coursEncoursSalleColumn,
+                coursEncoursHorairesColumn, coursEncoursClasseColumn,
+                coursEncoursCourNomColumn, coursEncoursEffectifColumn,
+                coursEncoursProfesseurColumn);
     }
 
     ButtonClickHandler<Map<String, String>> voirClasseClickHandler = rowData -> {
@@ -317,11 +327,6 @@ public class AdminstrateurBackofficeSceneController {
         fillListEtudiantsTableView("");
     };
 
-   
-    
-
-    
-
     //
     //
     //
@@ -333,11 +338,12 @@ public class AdminstrateurBackofficeSceneController {
     //
     // Everything related to activesallepane
     @FXML
-    private Text  activeSalleLabel,tempText1;
+    private Text activeSalleLabel, tempText1;
     @FXML
     private Pane activeSallePane;
     @FXML
-    private Label activeSalleDisponibilite, activeSalleCoccupe, activeSalleCapacite, activeSalleNomLabel, materielSalleLabel;
+    private Label activeSalleDisponibilite, activeSalleCoccupe, activeSalleCapacite, activeSalleNomLabel,
+            materielSalleLabel;
     @FXML
     private ImageView activeSalleStatutIcon;
     @FXML
@@ -354,54 +360,49 @@ public class AdminstrateurBackofficeSceneController {
     @FXML
     private AnchorPane materielSalleAnchropane;
 
+    public void fillMaterielSalleAnchorPane(int salleId, AnchorPane materielSalleAnchorPane) {
+        // Effacer le contenu précédent de l'AnchorPane
+        materielSalleAnchorPane.getChildren().clear();
 
-public void fillMaterielSalleAnchorPane(int salleId, AnchorPane materielSalleAnchorPane) {
-    // Effacer le contenu précédent de l'AnchorPane
-    materielSalleAnchorPane.getChildren().clear();
+        // Récupérer les matériels de la salle à partir de la base de données
+        Vector<MaterielSalle> materiels = SallesService.getMaterialBySalleId(salleId);
 
-    // Récupérer les matériels de la salle à partir de la base de données
-    Vector<MaterielSalle> materiels = SallesService.getMaterialBySalleId(salleId);
+        // Créer un VBox pour contenir les labels des matériaux
+        VBox vbox = new VBox();
+        vbox.setSpacing(5.0);
 
-    // Créer un VBox pour contenir les labels des matériaux
-    VBox vbox = new VBox();
-    vbox.setSpacing(5.0); 
+        // Créer et configurer les Labels pour chaque matériel
+        for (MaterielSalle materiel : materiels) {
+            // Créer un Label avec le nom et la quantité du matériel
+            Label label = new Label("• " + materiel.getQuantite() + " " + materiel.getNom());
 
-    // Créer et configurer les Labels pour chaque matériel
-    for (MaterielSalle materiel : materiels) {
-        // Créer un Label avec le nom et la quantité du matériel
-        Label label = new Label("• " + materiel.getQuantite() + " " + materiel.getNom());
+            // Ajouter le Label au VBox
+            vbox.getChildren().add(label);
+        }
 
-        // Ajouter le Label au VBox
-        vbox.getChildren().add(label);
+        // Ajouter le VBox à l'AnchorPane
+        AnchorPane.setTopAnchor(vbox, 10.0);
+        AnchorPane.setLeftAnchor(vbox, 10.0);
+        materielSalleAnchorPane.getChildren().add(vbox);
     }
 
-    // Ajouter le VBox à l'AnchorPane
-    AnchorPane.setTopAnchor(vbox, 10.0); 
-    AnchorPane.setLeftAnchor(vbox, 10.0); 
-    materielSalleAnchorPane.getChildren().add(vbox);
-}
+    // ButtonClickHandler<Map<String, String>> voirSalleClickHandler2 = rowData -> {
+    // System.out.println("hey");
+    // System.out.println(activeSalle.getId());
+    // // set activeSalle data
+    // activeSalle.setId(Integer.parseInt(rowData.get("salleId")));
+    // activeSalle.setNomSalle(rowData.get("Sallenom"));
+    // // set nomSalle's breadcrumb label in activeSallePane
+    // activeSalleLabel.setText(rowData.get("Sallenom"));
 
-    
-    
-
-// ButtonClickHandler<Map<String, String>> voirSalleClickHandler2 = rowData -> {
-//     System.out.println("hey");
-//     System.out.println(activeSalle.getId());
-//     // set activeSalle data
-//     activeSalle.setId(Integer.parseInt(rowData.get("salleId")));
-//     activeSalle.setNomSalle(rowData.get("Sallenom"));
-//     // set nomSalle's breadcrumb label in activeSallePane
-//     activeSalleLabel.setText(rowData.get("Sallenom"));
-    
-//     // set activeSalle's informations
-//     sallesPaneController.setActiveSalleInformation(rowData, activeSalleLabel, activeSalleNomLabel, activeSalleCapacite,
-//             activeSalleDisponibilite, activeSalleCoccupe, activeSalleStatutIcon, materielSalleLabel,materielSalleListView);
-//     // Afficher les matériaux de la salle active
-//     sallesPaneController.showActiveSalleMaterials(activeSalle.getId());
-// };
-
-
-
+    // // set activeSalle's informations
+    // sallesPaneController.setActiveSalleInformation(rowData, activeSalleLabel,
+    // activeSalleNomLabel, activeSalleCapacite,
+    // activeSalleDisponibilite, activeSalleCoccupe, activeSalleStatutIcon,
+    // materielSalleLabel,materielSalleListView);
+    // // Afficher les matériaux de la salle active
+    // sallesPaneController.showActiveSalleMaterials(activeSalle.getId());
+    // };
 
     //
     //
@@ -417,6 +418,39 @@ public void fillMaterielSalleAnchorPane(int salleId, AnchorPane materielSalleAnc
     //
     //
     //
+    // Absence
+    @FXML
+    private Pane absencesPane;
+
+    public Pane getAbsencesPane() {
+        return absencesPane;
+    }
+
+    @FXML
+    private TableView<Map<String, String>> listAbscencesTableView;
+
+    @FXML
+    private TableColumn<Map<String, String>, String> laa_810_StatutColumn, laa_1012_StatutColumn,
+            laa_1416_StatutColumn,
+            laa_1618_StatutColumn;
+    @FXML
+    private TableColumn<Map<String, String>, String> laa_810_ExcuseColumn, laa_1012_ExcuseColumn,
+            laa_1416_ExcuseColumn,
+            laa_1618_ExcuseColumn;
+    @FXML
+    private TableColumn<Map<String, String>, Map<String, String>> laaEtudiantColumn;
+    @FXML
+    private ComboBox<Classe> listAbsenceclasseComboBox;
+    @FXML
+    private ComboBox<JoursSemaine> listAbsenceJourComboBox;
+
+    @FXML
+    private TextField listAbsencenumSemaineTextField;
+
+    @FXML
+    private void handleListAbsenceRefreshButton(ActionEvent e) {
+        fillListAbsences();
+    }
     //
     //
     //
@@ -485,14 +519,15 @@ public void fillMaterielSalleAnchorPane(int salleId, AnchorPane materielSalleAnc
         //
 
         filterComboBoxCoursEncours.setItems(FXCollections.observableArrayList(niveauObjects));
-        filterComboBoxCoursEncours.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                filterTable(newValue);
-            } else {
-                // Si aucun niveau n'est sélectionné, affichez toutes les données
-                coursEncoursTableView.setItems(initialData);
-            }
-        });
+        filterComboBoxCoursEncours.getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    if (newValue != null) {
+                        filterTable(newValue);
+                    } else {
+                        // Si aucun niveau n'est sélectionné, affichez toutes les données
+                        coursEncoursTableView.setItems(initialData);
+                    }
+                });
 
         //
         //
@@ -569,11 +604,104 @@ public void fillMaterielSalleAnchorPane(int salleId, AnchorPane materielSalleAnc
         //
         //
         //
-        // activePaneController usage
+        //
+        fillAbsencesClassesComboBox();
+        fillListAbsencesJoursSemaine();
+        listAbsencenumSemaineTextField.setText(String.valueOf(DateUtil.nombreDeSemainesDepuisDebutDesEtudes()));
+        fillListAbsences();
+        // Add a TextFormatter to restrict the input to numbers
+        listAbsencenumSemaineTextField.setTextFormatter(new TextFormatter<>(change -> {
+            String newText = change.getControlNewText();
+            if (newText.isEmpty()) {
+                return change; // Allow empty input to clear the field
+            }
+            try {
+                int newValue = Integer.parseInt(newText);
+                if (newValue >= 1 && newValue <= DateUtil.nombreDeSemainesDepuisDebutDesEtudes()) {
+                    return change; // Allow change if it's a valid number within range
+                }
+            } catch (NumberFormatException e) {
+                // Not a valid number
+            }
+            return null; // Reject change
+        }));
 
+        // Add a listener to ensure the field value remains within the range
+        listAbsencenumSemaineTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.isEmpty()) {
+                return; // Allow empty input to clear the field
+            }
+            try {
+                int intValue = Integer.parseInt(newValue);
+                if (intValue < 1 || intValue > DateUtil.nombreDeSemainesDepuisDebutDesEtudes()) {
+                    listAbsencenumSemaineTextField.setText(oldValue); // Revert to old value if out of range
+                }
+            } catch (NumberFormatException e) {
+                listAbsencenumSemaineTextField.setText(oldValue); // Revert to old value if not a valid number
+            }
+        });
 
+    }
 
+    public void fillAbsencesClassesComboBox() {
 
+        Vector<Classe> allClasses = ClasseService.getAllClasses();
+        listAbsenceclasseComboBox.getItems().clear();
+        listAbsenceclasseComboBox.getItems().addAll(allClasses);
+        if (!allClasses.isEmpty()) {
+            listAbsenceclasseComboBox.getSelectionModel().select(0);
+        }
+    }
+
+    public void fillListAbsencesJoursSemaine() {
+        listAbsenceJourComboBox.getItems().addAll(JoursSemaine.values());
+        listAbsenceJourComboBox.getSelectionModel().select(DateUtil.numDuJour() - 1);
+    }
+
+    ButtonClickHandler<Map<String, String>> statusTogglerClickHandler = rowData -> {
+        fillListAbsences();
+    };
+
+    public void fillListAbsences() {
+        // AbscencePane
+        ObservableList<Map<String, String>> data = FXCollections.observableArrayList();
+
+        if (listAbsencenumSemaineTextField.getText().isEmpty()) {
+            listAbsencenumSemaineTextField.setText(String.valueOf(DateUtil.nombreDeSemainesDepuisDebutDesEtudes()));
+        }
+
+        int numSemaine = Integer.parseInt(listAbsencenumSemaineTextField.getText());
+        int idClasse = listAbsenceclasseComboBox.getSelectionModel().getSelectedItem().getId();
+        String jourDeSemaine = listAbsenceJourComboBox.getSelectionModel().getSelectedItem().name();
+
+        data.addAll(AbsenceService.getListAbsence(numSemaine, jourDeSemaine, idClasse));
+
+        // laa_810_StatutColumn.setCellValueFactory(
+        // cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
+        laa_810_StatutColumn.setCellFactory(new AbsenceStatusToggler("8_10", numSemaine, statusTogglerClickHandler));
+        // laa_1012_StatutColumn.setCellValueFactory(
+        // cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
+        laa_1012_StatutColumn.setCellFactory(new AbsenceStatusToggler("10_12", numSemaine, statusTogglerClickHandler));
+        // laa_1416_StatutColumn.setCellValueFactory(
+        // cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
+        laa_1416_StatutColumn.setCellFactory(new AbsenceStatusToggler("14_16", numSemaine, statusTogglerClickHandler));
+        // laa_1618_StatutColumn.setCellValueFactory(
+        // cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
+        laa_1618_StatutColumn.setCellFactory(new AbsenceStatusToggler("16_18", numSemaine, statusTogglerClickHandler));
+        //
+        laa_810_ExcuseColumn.setCellFactory(new AbsenceIsExcusedToggler("8_10", numSemaine, statusTogglerClickHandler));
+        laa_1012_ExcuseColumn
+                .setCellFactory(new AbsenceIsExcusedToggler("10_12", numSemaine, statusTogglerClickHandler));
+        laa_1416_ExcuseColumn
+                .setCellFactory(new AbsenceIsExcusedToggler("14_16", numSemaine, statusTogglerClickHandler));
+        laa_1618_ExcuseColumn
+                .setCellFactory(new AbsenceIsExcusedToggler("16_18", numSemaine, statusTogglerClickHandler));
+
+        //
+        laaEtudiantColumn.setCellFactory(new EtudiantNomPhotoCellMap());
+        laaEtudiantColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
+
+        listAbscencesTableView.setItems(data);
     }
 
     @FXML
@@ -582,7 +710,7 @@ public void fillMaterielSalleAnchorPane(int salleId, AnchorPane materielSalleAnc
                 coursEncoursHorairesColumn,
                 coursEncoursClasseColumn, coursEncoursCourNomColumn, coursEncoursEffectifColumn,
                 coursEncoursProfesseurColumn);
-                accueilPaneController.updateCoursEnCoursLabels(nombreClasse3EnCours, nombreClasse4EnCours, nombreClasse5EnCours,
+        accueilPaneController.updateCoursEnCoursLabels(nombreClasse3EnCours, nombreClasse4EnCours, nombreClasse5EnCours,
                 nombreClasse6EnCours);
         accueilPaneController.updateEffectifEnCours(effectifEnCours);
         accueilPaneController.updateSallesOccupesLabels(nombreLaboratoiresDisponibles, nombreSalleCoursDisponibles,
@@ -592,23 +720,22 @@ public void fillMaterielSalleAnchorPane(int salleId, AnchorPane materielSalleAnc
     }
 
     ButtonClickHandler<Map<String, String>> clickHandler2 = rowData -> {
-    
+
         System.out.println(rowData.get("idSalle"));
         // activeSalle.setId(Integer.parseInt(rowData.get("idSalle")));
         // activeSalle.setNomSalle(rowData.get("nomSalle"));
         // // set nomSalle's breadcrumb label in activeSallePane
         // activeSalleLabel.setText(rowData.get("nomSalle"));
-    
 
-
-        sallesPaneController.setActiveSalleInformation(rowData, activeSalleLabel, activeSalleNomLabel, activeSalleCapacite,
-            activeSalleDisponibilite, activeSalleCoccupe, activeSalleStatutIcon, materielSalleLabel,materielSalleAnchropane);
+        sallesPaneController.setActiveSalleInformation(rowData, activeSalleLabel, activeSalleNomLabel,
+                activeSalleCapacite,
+                activeSalleDisponibilite, activeSalleCoccupe, activeSalleStatutIcon, materielSalleLabel,
+                materielSalleAnchropane);
         sallesPaneController.showActiveSalleMaterials(Integer.parseInt(rowData.get("idSalle")));
-
 
         activeSalleLabel.setText(rowData.get("nomSalle"));
         StringBuilder builder = new StringBuilder();
-        
+
         System.out.println(rowData);
         // Iterate over the entries of the rowData map
         for (Map.Entry<String, String> entry : rowData.entrySet()) {
@@ -637,23 +764,23 @@ public void fillMaterielSalleAnchorPane(int salleId, AnchorPane materielSalleAnc
         tempText1.setText(builder.toString());
         salleEmploiTableView.setItems(data);
 
-        
         // set activeSalle's informations
-        // sallesPaneController.setActiveSalleInformation(rowData, activeSalleLabel, activeSalleNomLabel, activeSalleCapacite,
-        //         activeSalleDisponibilite, activeSalleCoccupe, activeSalleStatutIcon, materielSalleLabel);
+        // sallesPaneController.setActiveSalleInformation(rowData, activeSalleLabel,
+        // activeSalleNomLabel, activeSalleCapacite,
+        // activeSalleDisponibilite, activeSalleCoccupe, activeSalleStatutIcon,
+        // materielSalleLabel);
         // Afficher les matériaux de la salle active
     };
 
-
     private void filterTable(NiveauClasse selectedNiveauClasse) {
         ObservableList<Map<String, String>> filteredItems = FXCollections.observableArrayList();
-        
+
         // Vérifiez si initialData est null ou vide
         if (initialData == null || initialData.isEmpty()) {
-            System.out.println("initialData is null or empty");             
+            System.out.println("initialData is null or empty");
             return;
         }
-    
+
         // Parcourez toutes les lignes de notre TableView
         for (Map<String, String> item : initialData) {
             if (item.get("classe").contains(selectedNiveauClasse.getNom())) {

@@ -26,7 +26,7 @@
 
 <BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.AdminstrateurBackofficeSceneController">
    <left>
-      <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="200.0" spacing="336.8" style="-fx-background-color: #6941C6;" stylesheets="@../styles/BackofficeSceneStyles.css" BorderPane.alignment="CENTER">
+      <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="200.0" spacing="298.4" style="-fx-background-color: #6941C6;" stylesheets="@../styles/BackofficeSceneStyles.css" BorderPane.alignment="CENTER">
          <children>
             <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="168.0">
                <children>
@@ -136,6 +136,24 @@
                            </graphic>
                            <font>
                               <Font name="Inter Medium" size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="absencesButton" alignment="TOP_LEFT" graphicTextGap="12.0" mnemonicParsing="false" onAction="#handleSideBarButtonAction" prefWidth="168.0" style="-fx-border-radius: 8px;" styleClass="sideBarButton" text="Absences" textFill="#f4ebff">
+                           <padding>
+                              <Insets bottom="8.0" left="12.0" right="12.0" top="8.0" />
+                           </padding>
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../gestion-college-mine/src/resources/images/icons/file-check-02.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Poppins Medium" size="14.0" />
                            </font>
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -1851,6 +1869,101 @@
                   </Label>
                </children>
             </Pane>
+            <Pane fx:id="absencesPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <VBox layoutX="24.0" layoutY="80.0" prefHeight="463.0" prefWidth="954.0" style="-fx-background-color: #fff; -fx-background-radius: 8px; -fx-border-color: #EDEEF0; -fx-border-radius: 8px;">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="952.0" spacing="341.0" style="-fx-border-color: #EDEEF0; -fx-border-width: 0 0 1 0; -fx-border-radius: 4px 4px 0 0;">
+                           <children>
+                              <Label layoutX="24.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="150.0" text="List d'abscences">
+                                 <font>
+                                    <Font name="Inter SemiBold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <HBox prefHeight="26.0" prefWidth="460.0" spacing="16.0">
+                                 <children>
+                                    <ComboBox fx:id="listAbsenceclasseComboBox" prefWidth="140.0" promptText="Classe" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;">
+                                       <padding>
+                                          <Insets bottom="4.0" left="6.0" right="6.0" top="4.0" />
+                                       </padding>
+                                    </ComboBox>
+                                    <TextField fx:id="listAbsencenumSemaineTextField" prefHeight="34.0" prefWidth="104.0" promptText="N° Semaine" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px; -fx-padding: 8px;">
+                                       <opaqueInsets>
+                                          <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                       </opaqueInsets>
+                                       <font>
+                                          <Font name="Inter SemiBold" size="13.0" />
+                                       </font>
+                                    </TextField>
+                                    <ComboBox fx:id="listAbsenceJourComboBox" prefWidth="125.0" promptText="Jours" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;">
+                                       <padding>
+                                          <Insets bottom="4.0" left="6.0" right="6.0" top="4.0" />
+                                       </padding>
+                                    </ComboBox>
+                                    <Button alignment="TOP_LEFT" graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleListAbsenceRefreshButton" prefHeight="34.0" prefWidth="22.0" style="-fx-border-radius: 8px;" styleClass="sideBarButton" textFill="#f4ebff">
+                                       <padding>
+                                          <Insets bottom="7.0" left="8.0" right="8.0" top="7.0" />
+                                       </padding>
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/icons/refresh-ccw-05.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <font>
+                                          <Font name="Poppins Medium" size="14.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="16.0" right="16.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                        <TableView fx:id="listAbscencesTableView" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="404.0" prefWidth="954.0">
+                           <columns>
+                              <TableColumn fx:id="laaEtudiantColumn" editable="false" prefWidth="200.0" text="Etudiant" />
+                              <TableColumn fx:id="laa_810_StatutColumn" editable="false" prefWidth="110.0" style="-fx-font-weight: bold;" styleClass="boldtableViewColumn" text="08-10" />
+                              <TableColumn fx:id="laa_810_ExcuseColumn" editable="false" prefWidth="72.0" style="-fx-font-weight: bold;" styleClass="boldtableViewColumn" text="Excusé" />
+                              <TableColumn fx:id="laa_1012_StatutColumn" editable="false" prefWidth="110.0" style="-fx-font-weight: bold;" styleClass="boldtableViewColumn" text="10-12" />
+                              <TableColumn fx:id="laa_1012_ExcuseColumn" editable="false" prefWidth="72.0" style="-fx-font-weight: bold;" styleClass="boldtableViewColumn" text="Excusé" />
+                              <TableColumn fx:id="laa_1416_StatutColumn" editable="false" prefWidth="110.0" style="-fx-font-weight: bold;" styleClass="boldtableViewColumn" text="14-16" />
+                              <TableColumn fx:id="laa_1416_ExcuseColumn" editable="false" prefWidth="72.0" style="-fx-font-weight: bold;" styleClass="boldtableViewColumn" text="Excusé" />
+                              <TableColumn fx:id="laa_1618_StatutColumn" editable="false" prefWidth="110.0" style="-fx-font-weight: bold;" styleClass="boldtableViewColumn" text="16-18" />
+                              <TableColumn fx:id="laa_1618_ExcuseColumn" editable="false" prefWidth="72.0" style="-fx-font-weight: bold;" styleClass="boldtableViewColumn" text="Excusé" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
+            <HBox alignment="CENTER_LEFT" layoutX="34.0" layoutY="26.0" prefHeight="30.0" prefWidth="87.0">
+               <children>
+                  <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons/_Breadcrumb%20button%20base.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons/chevron-right.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Absences">
+                     <font>
+                        <Font name="Inter Regular" size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="2.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
    </center>
