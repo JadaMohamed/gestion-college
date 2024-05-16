@@ -1,7 +1,7 @@
 AccueilPane
-    1- Search in `Cours encours` tableView
-    2- Filter `Cours encours` tableView by Classe Niveau
-    3- Replace `Hi, Admin` Label with real admin name
+    1- Search in `Cours encours` tableView ✅
+    2- Filter `Cours encours` tableView by Classe Niveau✅
+    3- Replace `Hi, Admin` Label with real admin name✅
     4- 
         a- Show real dateTime ✅
         b- Refresh each 1 minute
@@ -9,7 +9,7 @@ AccueilPane
     6- Show `Abseneces non excusés` metrics
 
 SideBar 
-    1- Show real admin photo
+    1- Show real admin photo ✅
 
 AffectationPane
     1- Add button to show selected salle's materiels
