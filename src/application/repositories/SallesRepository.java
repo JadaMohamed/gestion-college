@@ -157,5 +157,4 @@ public class SallesRepository {
         parameters.add(salleId);
         return dbClient.executeCommand(true, query, parameters);
     }
-
 }

@@ -1,5 +1,7 @@
 package application.controllers.AdminstrateurBackofficeSceneSubController;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Vector;
 import application.controllers.AdminstrateurBackofficeSceneController;
 import application.model.Classe;
@@ -8,6 +10,7 @@ import application.model.Horaires;
 import application.model.Salle;
 import application.model.TypeCours;
 import application.model.enums.JoursSemaine;
+import application.repositories.SallesRepository;
 import application.services.ClasseService;
 import application.services.EnseignantService;
 import application.services.SallesService;
@@ -19,6 +22,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.collections.FXCollections;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -219,4 +224,53 @@ public class AffectationPaneController {
             enseignantComboBox.getSelectionModel().select(0);
         }
     }
+
+    @FXML
+    public void handleShowMaterielSalle() {
+        Salle selectedSalle = mainController.getSallesComboAffectation().getValue();
+        if (selectedSalle != null) {
+            int salleId = selectedSalle.getId();
+            ResultSet resultSet = SallesRepository.getMaterialBySalleId(salleId);
+            if (resultSet != null) {
+                afficherAlerteMateriels(selectedSalle, resultSet);
+            } else {
+                afficherAucunMaterielAlerte(selectedSalle);
+            }
+        } else {
+            afficherAucuneSalleSelectionneeAlerte();
+        }
+    }
+
+    private void afficherAlerteMateriels(Salle salle, ResultSet resultSet) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Matériel de la salle : " + salle.getNomSalle());
+        alert.setHeaderText(null);
+        StringBuilder contentText = new StringBuilder("Liste du matériel de la salle " + salle.getNomSalle() + " :\n\n");
+        try {
+            while (resultSet.next()) {
+                contentText.append((resultSet.getString("quantite")+" "+resultSet.getString("nomMateriel"))).append("\n");
+            }
+            alert.setContentText(contentText.toString());
+            alert.showAndWait();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void afficherAucunMaterielAlerte(Salle salle) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Aucun matériel");
+        alert.setHeaderText(null);
+        alert.setContentText("Il n'y a aucun matériel dans la salle " + salle.getNomSalle() + ".");
+        alert.showAndWait();
+    }
+
+    private void afficherAucuneSalleSelectionneeAlerte() {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Aucune salle sélectionnée");
+        alert.setHeaderText(null);
+        alert.setContentText("Veuillez sélectionner une salle dans la liste.");
+        alert.showAndWait();
+    }
+
 }

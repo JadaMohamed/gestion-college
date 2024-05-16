@@ -186,7 +186,7 @@ public class AdminstrateurBackofficeSceneController {
     @FXML
     private Pane affectationPane;
     @FXML
-    private Button handleAffecterButton, handleAnnulerAffectation;
+    private Button handleAffecterButton, handleAnnulerAffectation,handleShowMaterielSalle;
     @FXML
     private ComboBox<Salle> sallesComboAffectation;
     @FXML
@@ -214,6 +214,11 @@ public class AdminstrateurBackofficeSceneController {
     @FXML
     public void handleAnnulerAffectation(ActionEvent event) {
         affectationPaneController.annulerAffectation();
+    }
+
+    @FXML
+    private void handleShowMaterielSalle(ActionEvent e) {
+        affectationPaneController.handleShowMaterielSalle();
     }
 
     //
