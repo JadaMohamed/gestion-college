@@ -231,10 +231,15 @@ public class AffectationPaneController {
         if (selectedSalle != null) {
             int salleId = selectedSalle.getId();
             ResultSet resultSet = SallesRepository.getMaterialBySalleId(salleId);
-            if (resultSet != null) {
-                afficherAlerteMateriels(selectedSalle, resultSet);
-            } else {
-                afficherAucunMaterielAlerte(selectedSalle);
+            try {
+                if (resultSet.next()) {
+                    resultSet.beforeFirst();
+                    afficherAlerteMateriels(selectedSalle, resultSet);
+                } else {
+                    afficherAucunMaterielAlerte(selectedSalle);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         } else {
             afficherAucuneSalleSelectionneeAlerte();

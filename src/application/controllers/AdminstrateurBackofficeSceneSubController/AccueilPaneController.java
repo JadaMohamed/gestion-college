@@ -82,10 +82,10 @@ public class AccueilPaneController {
     public void updateCoursEnCoursLabels(Label nombreClasse3EnCours, Label nombreClasse4EnCours,
             Label nombreClasse5EnCours, Label nombreClasse6EnCours) {
         int[] nombreCoursParNiveau = SeanceService.getNombreCoursParNiveau();
-        nombreClasse3EnCours.setText(String.valueOf(nombreCoursParNiveau[0]));
-        nombreClasse4EnCours.setText(String.valueOf(nombreCoursParNiveau[1]));
-        nombreClasse5EnCours.setText(String.valueOf(nombreCoursParNiveau[2]));
-        nombreClasse6EnCours.setText(String.valueOf(nombreCoursParNiveau[3]));
+        nombreClasse3EnCours.setText(String.valueOf(nombreCoursParNiveau[3]));
+        nombreClasse4EnCours.setText(String.valueOf(nombreCoursParNiveau[2]));
+        nombreClasse5EnCours.setText(String.valueOf(nombreCoursParNiveau[1]));
+        nombreClasse6EnCours.setText(String.valueOf(nombreCoursParNiveau[0]));
     }
 
     public void updateEffectifEnCours(Text effectifEnCours) {
