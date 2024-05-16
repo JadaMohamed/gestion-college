@@ -1,6 +1,9 @@
 package application.controllers;
 
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 import application.controllers.AdminstrateurBackofficeSceneSubController.AccueilPaneController;
 import application.controllers.AdminstrateurBackofficeSceneSubController.AffectationPaneController;
 import application.controllers.AdminstrateurBackofficeSceneSubController.ClassesPaneController;
@@ -11,10 +14,13 @@ import application.model.Classe;
 import application.model.Enseignant;
 import application.model.Etudiant;
 import application.model.Horaires;
+import application.model.NiveauClasse;
 import application.model.Salle;
 import application.model.TypeCours;
 import application.model.enums.JoursSemaine;
+import application.services.ClasseService;
 import application.services.SallesService;
+import application.services.SeanceService;
 import application.utilities.ButtonClickHandler;
 import application.utilities.CustomSalleCellButton;
 import application.utilities.ET0810;
@@ -68,6 +74,24 @@ public class AdminstrateurBackofficeSceneController {
     private Label nombreLaboratoiresDisponibles, nombreSalleCoursDisponibles, nombreSalleDeSportDisponibles,
             nombreClasse3EnCours, nombreClasse4EnCours, nombreClasse5EnCours, nombreClasse6EnCours,
             nombreAbscencesNonExcuses;
+    
+    @FXML
+    private ImageView photoAdmin;
+    @FXML
+    private Text nameAdminText;
+    @FXML 
+    private Button refreshButton;
+    @FXML 
+    private TextField searchTextFieldAccueilPane;
+    @FXML
+    private ComboBox<NiveauClasse> filterComboBoxCoursEncours;
+    private List<String> niveauNames = ClasseService.getAllNiveauNames();
+    private List<NiveauClasse> niveaux = ClasseService.getAllNiveaux();
+    private List<NiveauClasse> niveauObjects = niveaux.stream()
+    .filter(niveau -> niveauNames.contains(niveau.getNom()))
+    .collect(Collectors.toList());
+    private ObservableList<Map<String, String>> initialData;
+    private ObservableList<Map<String, String>> data = FXCollections.observableArrayList();
     //
     //
     //
@@ -256,6 +280,14 @@ public class AdminstrateurBackofficeSceneController {
                 listEtudiantsSexeColumn);
     }
 
+    public void fillListCoursEncoursTableView(String searchKey){
+        accueilPaneController.fillListCoursEncoursTableView(searchKey,
+        coursEncoursTableView, coursEncoursSalleColumn,
+        coursEncoursHorairesColumn, coursEncoursClasseColumn,
+        coursEncoursCourNomColumn, coursEncoursEffectifColumn,
+        coursEncoursProfesseurColumn);
+    }
+
     ButtonClickHandler<Map<String, String>> voirClasseClickHandler = rowData -> {
         // set activeClasse (Classe) data
         // used in active listEtudiantsPane
@@ -345,6 +377,9 @@ public class AdminstrateurBackofficeSceneController {
         //
         // to identify the logged in administrator
         this.loggedInAdminId = adminId;
+
+        initialData = FXCollections.observableArrayList(SeanceService.getSeancesEnCoursBis());
+        coursEncoursTableView.setItems(data);
         //
         // to show loacl date at the header of the dashboard
         localDateTimeLabelAccueilPane.setText(FormattedLocalDateTime.getFormattedDateTime());
@@ -355,7 +390,7 @@ public class AdminstrateurBackofficeSceneController {
         affectationPaneController = new AffectationPaneController(this);
         classesPaneController = new ClassesPaneController(this);
         sallesPaneController = new SallesPaneController(this);
-        accueilPaneController = new AccueilPaneController();
+        accueilPaneController = new AccueilPaneController(this);
         //
         //
         //
@@ -373,8 +408,22 @@ public class AdminstrateurBackofficeSceneController {
                 coursEncoursHorairesColumn,
                 coursEncoursClasseColumn, coursEncoursCourNomColumn, coursEncoursEffectifColumn,
                 coursEncoursProfesseurColumn);
+        accueilPaneController.updateNameAdmin(nameAdminText);
+        accueilPaneController.updatePhotoAdmin(photoAdmin);
+        accueilPaneController.initialize();
         //
         //
+
+        filterComboBoxCoursEncours.setItems(FXCollections.observableArrayList(niveauObjects));
+        filterComboBoxCoursEncours.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                filterTable(newValue);
+            } else {
+                // Si aucun niveau n'est sélectionné, affichez toutes les données
+                coursEncoursTableView.setItems(initialData);
+            }
+        });
+
         //
         //
         //
@@ -422,6 +471,12 @@ public class AdminstrateurBackofficeSceneController {
         //
         //
         // activeClassePaneController usage
+        searchTextFieldAccueilPane.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                fillListCoursEncoursTableView(newValue);
+            }
+        });
         searchListEtudiantTextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -440,6 +495,21 @@ public class AdminstrateurBackofficeSceneController {
             }
         });
 
+    }
+
+    @FXML
+    private void handleRefreshButtonAction(ActionEvent e) {
+        accueilPaneController.fillCurrentSeances(coursEncoursTableView, coursEncoursSalleColumn,
+                coursEncoursHorairesColumn,
+                coursEncoursClasseColumn, coursEncoursCourNomColumn, coursEncoursEffectifColumn,
+                coursEncoursProfesseurColumn);
+                accueilPaneController.updateCoursEnCoursLabels(nombreClasse3EnCours, nombreClasse4EnCours, nombreClasse5EnCours,
+                nombreClasse6EnCours);
+        accueilPaneController.updateEffectifEnCours(effectifEnCours);
+        accueilPaneController.updateSallesOccupesLabels(nombreLaboratoiresDisponibles, nombreSalleCoursDisponibles,
+                nombreSalleDeSportDisponibles);
+        accueilPaneController.updateCoursEnCours(coursEnCours);
+        accueilPaneController.updateSallesDisponibles(SallesDisponibles);
     }
 
     ButtonClickHandler<Map<String, String>> clickHandler2 = rowData -> {
@@ -474,6 +544,27 @@ public class AdminstrateurBackofficeSceneController {
         tempText1.setText(builder.toString());
         salleEmploiTableView.setItems(data);
     };
+
+
+    private void filterTable(NiveauClasse selectedNiveauClasse) {
+        ObservableList<Map<String, String>> filteredItems = FXCollections.observableArrayList();
+    
+        // Vérifiez si initialData est null ou vide
+        if (initialData == null || initialData.isEmpty()) {
+            System.out.println("initialData is null or empty");             
+            return;
+        }
+    
+        // Parcourez toutes les lignes de notre TableView
+        for (Map<String, String> item : initialData) {
+            if (item.get("classe").contains(selectedNiveauClasse.getNom())) {
+                filteredItems.add(item);
+            }
+        }
+        // Mettez à jour le TableView avec les éléments filtrés
+        System.out.println(filteredItems);
+        coursEncoursTableView.setItems(filteredItems);
+    }
 
     public void setSallesDisponiblesText(String text) {
         SallesDisponibles.setText(text);
@@ -659,5 +750,37 @@ public class AdminstrateurBackofficeSceneController {
 
     public Classe getActiveClasse() {
         return activeClasse;
+    }
+
+    public void setCoursEncoursTableView(TableView<Map<String, String>> coursEncoursTableView) {
+        this.coursEncoursTableView = coursEncoursTableView;
+    }
+
+    public TableView<Map<String, String>> getCoursEncoursTableView() {
+        return coursEncoursTableView;
+    }
+
+    public void setInitialData(ObservableList<Map<String, String>> initialData) {
+        this.initialData = initialData;
+    }
+
+    public ObservableList<Map<String, String>> getInitialData() {
+        return initialData;
+    }
+
+    public void setSearchField(TextField searchField) {
+        this.searchField = searchField;
+    }
+
+    public TextField getSearchField() {
+        return searchField;
+    }
+
+    public void setAccueilPaneController(AccueilPaneController accueilPaneController) {
+        this.accueilPaneController = accueilPaneController;
+    }
+
+    public AccueilPaneController getAccueilPaneController() {
+        return accueilPaneController;
     }
 }

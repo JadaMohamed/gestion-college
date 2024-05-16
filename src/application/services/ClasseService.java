@@ -2,15 +2,40 @@ package application.services;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Vector;
+import java.util.stream.Collectors;
+
 import application.model.Classe;
 import application.model.Etudiant;
 import application.model.NiveauClasse;
 import application.repositories.ClasseRepository;
 
 public class ClasseService {
+
+    public static List<String> getAllNiveauNames() {
+        List<NiveauClasse> niveaux = getAllNiveaux();
+        return niveaux.stream().map(NiveauClasse::getNom).collect(Collectors.toList());
+    }
+    
+    public static List<NiveauClasse> getAllNiveaux() {
+    List<NiveauClasse> resNiveaux = new ArrayList<>();
+    ResultSet result;
+    try {
+        result = ClasseRepository.getAllNiveaux();
+        while (result.next()) {
+            NiveauClasse statNiveau = new NiveauClasse();
+            statNiveau.setNom(result.getString("nom"));
+            resNiveaux.add(statNiveau);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return resNiveaux;
+}
 
     public static Vector<Classe> getAllClasses() {
 

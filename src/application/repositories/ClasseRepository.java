@@ -7,6 +7,12 @@ import application.database.dbClient;
 
 public class ClasseRepository {
 
+    public static ResultSet getAllNiveaux() throws SQLException {
+        Vector<Object> parameters = new Vector<Object>();
+        String query = "SELECT * FROM niveau";
+        return dbClient.executeCommand(true, query, parameters);
+    }
+
     public static ResultSet getAllClasses() throws SQLException {
         Vector<Object> parameters = new Vector<Object>();
         String query = "SELECT CL.*, NI.nom FROM classe CL, niveau NI WHERE CL.idNiveauClasse = NI.id";

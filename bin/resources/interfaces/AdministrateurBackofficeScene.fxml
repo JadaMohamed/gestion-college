@@ -46,7 +46,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="photoAdmin" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/adminprofile.png" />
                            </image>
@@ -1426,7 +1426,12 @@
                <children>
                   <HBox layoutX="24.0" layoutY="16.0" spacing="2.0">
                      <children>
-                        <Text fill="#4e427f" strokeType="OUTSIDE" strokeWidth="0.0" text="Hi, Admin ">
+                        <Text fill="#4e427f" strokeType="OUTSIDE" strokeWidth="0.0" text="Hi, ">
+                           <font>
+                              <Font name="Inter SemiBold" size="16.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="nameAdminText" fill="#4e427f" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                            <font>
                               <Font name="Inter SemiBold" size="16.0" />
                            </font>
@@ -1693,7 +1698,7 @@
                                  <children>
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                        <children>
-                                          <TextField maxHeight="-Infinity" prefHeight="35.2" prefWidth="300.0" promptText="Search" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-background-radius: 4px; -fx-border-radius: 4px;">
+                                          <TextField fx:id="searchTextFieldAccueilPane" maxHeight="-Infinity" prefHeight="35.2" prefWidth="300.0" promptText="Search" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-background-radius: 4px; -fx-border-radius: 4px;">
                                              <padding>
                                                 <Insets bottom="7.2" left="36.0" right="16.0" top="7.2" />
                                              </padding>
@@ -1708,7 +1713,7 @@
                                           </ImageView>
                                        </children>
                                     </AnchorPane>
-                                    <ComboBox prefWidth="180.0" promptText="Filter" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;">
+                                    <ComboBox fx:id="filterComboBoxCoursEncours" prefWidth="180.0" promptText="Filter" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;">
                                        <padding>
                                           <Insets bottom="4.0" left="6.0" right="6.0" top="4.0" />
                                        </padding>
@@ -1732,6 +1737,15 @@
                         </TableView>
                      </children>
                   </VBox>
+                  <Button fx:id="refreshButton" layoutX="882.0" layoutY="29.0" mnemonicParsing="false" onAction="#handleRefreshButtonAction" style="-fx-background-color: transparent; -fx-border-width: 1; -fx-border-color: #7b7b7b; -fx-cursor: hand; -fx-border-radius: 6;">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons/refresh.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
             </Pane>
          </children>
