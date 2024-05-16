@@ -169,4 +169,57 @@ public class SeanceService {
         return seances;
     }
 
+    public static Vector<Map<String, String>> getSeancesEnCoursBis() {
+        Vector<Map<String, String>> seances = new Vector<Map<String, String>>();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        ResultSet result;
+        try {
+            result = SeanceRepository.getSeancesEnCours();
+            while (result.next()) {
+                Map<String, String> seance = new HashMap<>();
+                seance.put("enseignantFullName",
+                        result.getString("nomEnseignant") + " " + result.getString("prenomEnseignant"));
+                seance.put("enseignantEmail", result.getString("emailEnseignant"));
+                seance.put("enseignantPhotoUrl", result.getString("photoUrlEnseignant"));
+                seance.put("horaire",
+                        result.getTime("heureDebut").toLocalTime().format(formatter) + " - "
+                                + result.getTime("heureFin").toLocalTime().format(formatter));
+                seance.put("nomCours", result.getString("nomCours"));
+                seance.put("classe", result.getString("nomNiveau") + " " + result.getString("numeroClasse"));
+                seance.put("nomSalle", result.getString("nomSalle"));
+                seance.put("effectif", result.getString("effectif"));
+                seances.add(seance);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return seances;
+    }
+
+    public static Vector<Map<String, String>> getSeances_search(String searchKey) {
+        Vector<Map<String, String>> res = new Vector<>();
+        ResultSet result;
+        try {
+            result = SeanceRepository.getSeances_search(searchKey);
+            while (result.next()) {
+                Map<String, String> seance = new HashMap<>();
+                seance.put("id", String.valueOf(result.getInt(1)));
+                seance.put("nomSalle", String.valueOf(result.getString(2)));
+                seance.put("nomCours", result.getString(3));
+                seance.put("classe", result.getString(4) +" "+result.getString(6));
+                seance.put("effectif", String.valueOf(result.getInt(5)));
+                seance.put("enseignantFullName", result.getString(7) + " " + result.getString(8));
+                seance.put("enseignantEmail", result.getString(9));
+                String heureDebut = result.getTime(11).toLocalTime().toString();
+                String heureFin = result.getTime(12).toLocalTime().toString();
+                String horaire = heureDebut.substring(0, 5) + " - " + heureFin.substring(0, 5);
+                seance.put("horaire", horaire);
+                seance.put("enseignantPhotoUrl",result.getString(10));
+                res.add(seance);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
 }

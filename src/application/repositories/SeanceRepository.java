@@ -173,4 +173,59 @@ public class SeanceRepository {
         Vector<Object> parameters = new Vector<Object>();
         return dbClient.executeCommand(true, query, parameters);
     }
+
+    public static ResultSet getSeances_search(String searchKey) {
+        Vector<Object> parameters = new Vector<>();
+        String query = "SELECT seance.id AS idSeance, " +
+                "salle.nom AS nomSalle,"+
+                "cours.nom AS nomCours, " +
+                "niveau.nom AS nomNiveau, " +
+                "classe.effectif AS effectif, " +
+                "classe.numero AS numeroClasse, " +
+                "enseignant.nom AS nomEnseignant, " +
+                "enseignant.prenom AS prenomEnseignant, " +
+                "enseignant.email AS emailEnseignant, " +
+                "enseignant.photoUrl AS photoUrlEnseignant, " +
+                "seance.heureDebut, " +
+                "seance.heureFin " +
+                "FROM salle, cours, classe, enseignant, seance, niveau " +
+                "WHERE salle.id = seance.idSalle " +
+                "AND enseignant.id = cours.idEnseignant " +
+                "AND seance.idCours = cours.id " +
+                "AND seance.idClasse = classe.id " +
+                "AND niveau.id = classe.idNiveauClasse " +
+                "AND DAYOFWEEK(CURDATE()) = CASE " +
+                "    WHEN seance.jour = 'LUNDI' THEN 2 " +
+                "    WHEN seance.jour = 'MARDI' THEN 3 " +
+                "    WHEN seance.jour = 'MERCREDI' THEN 4 " +
+                "    WHEN seance.jour = 'JEUDI' THEN 5 " +
+                "    WHEN seance.jour = 'VENDREDI' THEN 6 " +
+                "    WHEN seance.jour = 'SAMEDI' THEN 7 " +
+                "    WHEN seance.jour = 'DIMANCHE' THEN 1 " +
+                "END " +
+                "AND CURTIME() BETWEEN seance.heureDebut AND seance.heureFin " +
+                "AND (seance.heureDebut LIKE ? OR " +
+                "     seance.heureFin LIKE ? OR " +
+                "     classe.effectif LIKE ? OR " +
+                "     salle.nom LIKE ? OR " +
+                "     cours.nom LIKE ? OR " +
+                "     enseignant.nom LIKE ? OR " +
+                "     classe.numero LIKE ? OR " +
+                "     enseignant.prenom LIKE ? OR " +
+                "     enseignant.email LIKE ? OR " +
+                "     niveau.nom LIKE ? );";
+
+        String searchPattern = "%" + searchKey + "%";
+        parameters.add(searchPattern);
+        parameters.add(searchPattern);
+        parameters.add(searchPattern);
+        parameters.add(searchPattern);
+        parameters.add(searchPattern);
+        parameters.add(searchPattern);
+        parameters.add(searchPattern);
+        parameters.add(searchPattern);
+        parameters.add(searchPattern);
+        parameters.add(searchPattern);
+        return dbClient.executeCommand(true, query, parameters);
+    }
 }

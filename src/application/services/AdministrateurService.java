@@ -54,4 +54,30 @@ public class AdministrateurService {
             return false; // Password update failed
         }
     }
+
+    public static String getNameAdminById(int adminId){
+        String adminName = null;
+        try{
+            ResultSet rs = AdministrateurRepository.getAdminData(adminId);
+            if(rs.next()){
+                adminName = rs.getString("nom");
+            }
+        }catch(SQLException se){
+            se.printStackTrace();
+        }
+        return adminName;
+    }
+
+    public static String getUrlPhotoAdminById(int adminId){
+        String adminUrlPhoto = null;
+        try{
+            ResultSet rs = AdministrateurRepository.getAdminData(adminId);
+            if(rs.next()){
+                adminUrlPhoto = rs.getString("photoUrl");
+            }
+        }catch(SQLException se){
+            se.printStackTrace();
+        }
+        return adminUrlPhoto;
+    }
 }

@@ -1,9 +1,13 @@
 package application.controllers.AdminstrateurBackofficeSceneSubController;
 
+import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
+
+import application.controllers.AdminstrateurBackofficeSceneController;
 import application.repositories.SeanceRepository;
+import application.services.AdministrateurService;
 import application.services.SeanceService;
 import application.utilities.CustomCellFactory;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -12,12 +16,44 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
 public class AccueilPaneController {
+    private AdminstrateurBackofficeSceneController mainController;
+    public AccueilPaneController(AdminstrateurBackofficeSceneController mainController) {
+        this.mainController = mainController;
+    }
 
-    public AccueilPaneController() {
+    public void initialize(){
 
+    }
+
+    public void updatePhotoAdmin(ImageView photoAdmin){
+        int adminId = mainController.getLoggedInAdminId();
+        String adminUrlPhoto = AdministrateurService.getUrlPhotoAdminById(adminId);
+        if (adminUrlPhoto != null && !adminUrlPhoto.isEmpty()) {
+            File file = new File(adminUrlPhoto);
+            if (file.exists()) {
+                String imageUrl = file.toURI().toString();
+                Image image = new Image(imageUrl);
+                photoAdmin.setImage(image);
+            } else {
+                System.out.println("Fichier image introuvable : " + adminUrlPhoto);
+            }
+        } else {
+            File defaultImageFile = new File("../../../../bin/resources/images/profiles/default.png");
+            String defaultImageUrl = defaultImageFile.toURI().toString();
+            Image image = new Image(defaultImageUrl);
+            photoAdmin.setImage(image);
+        }
+    }
+
+    public void updateNameAdmin(Text nameAdminText){
+        int adminId = mainController.getLoggedInAdminId();
+        String nameAdmin = AdministrateurService.getNameAdminById(adminId);
+        nameAdminText.setText(nameAdmin);
     }
 
     public void updateSallesDisponibles(Text SallesDisponibles) {
@@ -75,24 +111,24 @@ public class AccueilPaneController {
             TableColumn<Map<String, String>, String> coursEncoursEffectifColumn,
             TableColumn<Map<String, String>, Map<String, String>> coursEncoursProfesseurColumn) {
         ObservableList<Map<String, String>> coursEncoursData = FXCollections.observableArrayList();
-        coursEncoursData.addAll(SeanceService.getSeancesEnCours());
+        coursEncoursData.addAll(SeanceService.getSeancesEnCoursBis());
 
         // Associate data with columns
         coursEncoursSalleColumn
                 .setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
-                        cellData.getValue().get("salleNom")));
+                        cellData.getValue().get("nomSalle")));
         coursEncoursHorairesColumn
                 .setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
-                        cellData.getValue().get("horaires")));
+                        cellData.getValue().get("horaire")));
         coursEncoursClasseColumn
                 .setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
-                        cellData.getValue().get("classeNom")));
+                        cellData.getValue().get("classe")));
         coursEncoursProfesseurColumn
                 .setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
         coursEncoursProfesseurColumn.setCellFactory(new CustomCellFactory());
         coursEncoursCourNomColumn
                 .setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
-                        cellData.getValue().get("coursNom")));
+                        cellData.getValue().get("nomCours")));
         coursEncoursEffectifColumn
                 .setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
                         cellData.getValue().get("effectif")));
@@ -100,4 +136,33 @@ public class AccueilPaneController {
         coursEncoursTableView.setItems(coursEncoursData);
     }
 
+    public void fillListCoursEncoursTableView(String searchKey,
+                                          TableView<Map<String, String>> coursEncoursTableView,
+                                          TableColumn<Map<String, String>, String> coursEncoursSalleColumn,
+                                          TableColumn<Map<String, String>, String> coursEncoursHorairesColumn,
+                                          TableColumn<Map<String, String>, String> coursEncoursClasseColumn,
+                                          TableColumn<Map<String, String>, String> coursEncoursCourNomColumn,
+                                          TableColumn<Map<String, String>, String> coursEncoursEffectifColumn,
+                                          TableColumn<Map<String, String>, Map<String, String>> coursEncoursProfesseurColumn) {
+
+    // Get data from database
+    ObservableList<Map<String, String>> data = FXCollections.observableArrayList();
+    if (searchKey == null || searchKey.isEmpty()) {
+        data.addAll(SeanceService.getSeancesEnCoursBis());
+    } else {
+        data.addAll(SeanceService.getSeances_search(searchKey));
+    }
+
+    // Set cell value factories
+    coursEncoursHorairesColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().get("horaire")));
+    coursEncoursClasseColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().get("classe")));
+    coursEncoursCourNomColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().get("nomCours")));
+    coursEncoursSalleColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().get("nomSalle")));
+    coursEncoursEffectifColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().get("effectif")));
+    coursEncoursProfesseurColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
+    coursEncoursProfesseurColumn.setCellFactory(new CustomCellFactory());
+
+    // Set data to TableView
+    coursEncoursTableView.setItems(data);
+    }
 }
