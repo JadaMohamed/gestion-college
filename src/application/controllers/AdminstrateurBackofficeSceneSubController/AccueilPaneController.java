@@ -30,25 +30,20 @@ public class AccueilPaneController {
 
     }
 
-    public void updatePhotoAdmin(ImageView photoAdmin){
+    public void updatePhotoAdmin(ImageView photoAdmin) {
         int adminId = mainController.getLoggedInAdminId();
         String adminUrlPhoto = AdministrateurService.getUrlPhotoAdminById(adminId);
         if (adminUrlPhoto != null && !adminUrlPhoto.isEmpty()) {
-            File file = new File(adminUrlPhoto);
-            if (file.exists()) {
-                String imageUrl = file.toURI().toString();
-                Image image = new Image(imageUrl);
-                photoAdmin.setImage(image);
-            } else {
-                System.out.println("Fichier image introuvable : " + adminUrlPhoto);
-            }
+            String imageUrl = getClass().getResource(adminUrlPhoto).toExternalForm();
+            Image image = new Image(imageUrl);
+            photoAdmin.setImage(image);
         } else {
-            File defaultImageFile = new File("../../../resources/images/profiles/default.png");
-            String defaultImageUrl = defaultImageFile.toURI().toString();
+            String defaultImageUrl = getClass().getResource("../../../images/profiles/default.png").toExternalForm();
             Image image = new Image(defaultImageUrl);
             photoAdmin.setImage(image);
         }
     }
+    
 
     public void updateNameAdmin(Text nameAdminText){
         int adminId = mainController.getLoggedInAdminId();

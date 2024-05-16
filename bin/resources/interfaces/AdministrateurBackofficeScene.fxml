@@ -1819,12 +1819,18 @@
                         </TableView>
                      </children>
                   </VBox>
-                  <HBox layoutX="854.0" layoutY="21.0" prefHeight="33.0" prefWidth="95.0">
+                  <HBox layoutX="868.0" layoutY="23.0" prefHeight="33.0" prefWidth="102.0">
                      <children>
-                        <Button fx:id="refreshButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleRefreshButtonAction" prefHeight="33.0" prefWidth="89.0" text="Refresh" textAlignment="CENTER">
+                        <Button fx:id="refreshButton" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#handleRefreshButtonAction" prefHeight="33.0" prefWidth="105.0" style="-fx-background-color: B692F6; -fx-border-radius: 10; -fx-background-radius: 10;" text="Refresh " textAlignment="CENTER" textFill="WHITE">
                            <graphic>
-                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fitHeight="20.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/icons/refresh.png" />
+                                 </image></ImageView>
                            </graphic>
+                           <font>
+                              <Font name="Inter SemiBold" size="13.0" />
+                           </font>
                         </Button>
                      </children>
                   </HBox>
