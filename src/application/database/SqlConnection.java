@@ -6,11 +6,11 @@ import java.sql.SQLException;
 
 public class SqlConnection {
     private static Connection conn;
-    private static String databaseName = "sql8705393";
+    private static String databaseName = "sql8706902";
     private static String hostName = "sql8.freesqldatabase.com";
     private static String port = "3306";
-    private static String user = "sql8705393";
-    private static String password = "tXSEGWjLA8";
+    private static String user = "sql8706902";
+    private static String password = "Ga1hdmcnil";
     private static String url = "jdbc:mysql://" + hostName + ":" + port + "/" + databaseName;
 
     static {
