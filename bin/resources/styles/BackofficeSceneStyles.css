@@ -192,3 +192,7 @@
 .tab-pane .tab-header-area .headers-region .tab:selected .focus-indicator {
   -fx-border-width: 0;
 }
+
+.photo {
+  -fx-background-radius: 50%;
+}
