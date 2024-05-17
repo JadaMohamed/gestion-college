@@ -4,8 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 import java.util.stream.Collectors;
-
+import application.database.dbClient;
 import application.database.SqlConnection;
 
 public class CategorieSalleRepository {
@@ -39,5 +40,5 @@ public class CategorieSalleRepository {
         }
         return nomsCategories;
     }
-
+ 
 }

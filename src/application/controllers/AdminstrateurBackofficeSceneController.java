@@ -11,6 +11,7 @@ import application.controllers.AdminstrateurBackofficeSceneSubController.Classes
 import application.controllers.AdminstrateurBackofficeSceneSubController.ParametresPaneController;
 import application.controllers.AdminstrateurBackofficeSceneSubController.SallesPaneController;
 import application.controllers.AdminstrateurBackofficeSceneSubController.SidebarController;
+import application.model.CategorieSalle;
 import application.model.Classe;
 import application.model.Enseignant;
 import application.model.Etudiant;
@@ -252,6 +253,14 @@ public class AdminstrateurBackofficeSceneController {
     private TableView<Map<String, String>> sallesTableView;
     @FXML
     private TextField searchFieldSalle;
+    @FXML
+    private ComboBox<CategorieSalle> categoryComboBox ;
+    private List<String> categorieNames = SallesService.getAllCategorieNames();
+    private List<CategorieSalle> categories = SallesService.getAllCategories();
+    private List<CategorieSalle> categorieObjects = categories.stream()
+            .filter(categorieSalle -> categorieNames.contains(categorieSalle.getNom()))
+            .collect(Collectors.toList());
+ 
 
     //
     //
@@ -484,8 +493,11 @@ public class AdminstrateurBackofficeSceneController {
         //
         // to identify the logged in administrator
         this.loggedInAdminId = adminId;
-
+        categoryComboBox = new ComboBox<>();
         initialData = FXCollections.observableArrayList(SeanceService.getSeancesEnCoursBis());
+        coursEncoursTableView.setItems(data);
+
+        initialData = FXCollections.observableArrayList(SallesService.getAllSallesWithCurrentSeances());
         coursEncoursTableView.setItems(data);
         //
         // to show loacl date at the header of the dashboard
@@ -576,6 +588,18 @@ public class AdminstrateurBackofficeSceneController {
         //
         //
         //
+        
+        categoryComboBox.setItems(FXCollections.observableArrayList(categorieObjects));
+        categoryComboBox.getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    if (newValue != null) {
+                        System.out.println("hey");
+                        filterTable1(newValue);
+                    } else {
+                        // Si aucun niveau n'est sélectionné, affichez toutes les données
+                        sallesTableView.setItems(initialData);
+                    }
+                });
         //
         //
         // activeClassePaneController usage
@@ -795,6 +819,26 @@ public class AdminstrateurBackofficeSceneController {
         coursEncoursTableView.setItems(filteredItems);
     }
 
+    private void filterTable1(CategorieSalle selectedCategorieSalle) {
+        ObservableList<Map<String, String>> filteredItems = FXCollections.observableArrayList();
+
+        // Vérifiez si initialData est null ou vide
+        if (initialData == null || initialData.isEmpty()) {
+            System.out.println("initialData is null or empty");
+            return;
+        }
+
+        // Parcourez toutes les lignes de notre TableView
+        for (Map<String, String> item : initialData) {
+            if (item.get("salle").contains(selectedCategorieSalle.getNom())) {
+                filteredItems.add(item);
+            }
+        }
+        // Mettez à jour le TableView avec les éléments filtrés
+        System.out.println(filteredItems);
+        sallesTableView.setItems(filteredItems);
+    }
+
     public void setSallesDisponiblesText(String text) {
         SallesDisponibles.setText(text);
     }
@@ -987,6 +1031,14 @@ public class AdminstrateurBackofficeSceneController {
 
     public TableView<Map<String, String>> getCoursEncoursTableView() {
         return coursEncoursTableView;
+    }
+
+    public void setSallesTableView(TableView<Map<String, String>> sallesTableView) {
+        this.sallesTableView = sallesTableView;
+    }
+
+    public TableView<Map<String, String>> getSallesTableView() {
+        return sallesTableView;
     }
 
     public void setInitialData(ObservableList<Map<String, String>> initialData) {
