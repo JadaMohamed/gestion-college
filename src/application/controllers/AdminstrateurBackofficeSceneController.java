@@ -509,6 +509,11 @@ public class AdminstrateurBackofficeSceneController {
     }
 
     @FXML
+    private void handleAjouterEnseignantButton(ActionEvent e) {
+        ensignantsPaneController.ajouterEnseignant();
+    }
+
+    @FXML
     private TableView<Map<String, String>> enseignantEmploiTableView;
     @FXML
     private TableColumn<Map<String, String>, String> enseignantEmploiJourColumn;

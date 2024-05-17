@@ -10,6 +10,27 @@ import application.model.Enseignant;
 import application.repositories.EnseignantRepository;
 
 public class EnseignantService {
+    public static Enseignant getEnseignantById(int idEnseignant) {
+
+        Enseignant resEnseignant = new Enseignant();
+        ResultSet result;
+        try {
+            result = EnseignantRepository.getEnseignantById(idEnseignant);
+            while (result.next()) {
+                resEnseignant.setId(result.getInt("id"));
+                resEnseignant.setNom(result.getString("nom"));
+                resEnseignant.setPrenom(result.getString("prenom"));
+                resEnseignant.setSexe(result.getString("sexe"));
+                resEnseignant.setEmail(result.getString("email"));
+                resEnseignant.setTelephone(result.getString("telephone"));
+                resEnseignant.setPhotoURL(result.getString("photoUrl"));
+                resEnseignant.setDateNaissance(result.getDate("dateNaissance"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resEnseignant;
+    }
 
     public static Vector<Enseignant> getAllEnseignants() {
 
