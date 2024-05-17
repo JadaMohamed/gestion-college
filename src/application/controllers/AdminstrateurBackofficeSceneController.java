@@ -472,8 +472,11 @@ public class AdminstrateurBackofficeSceneController {
     //
 
     // initialize
-    public void initialize(int adminId) {
+    public void initialize(int adminId,String role) {
         //
+        if ("vie scolaire".equalsIgnoreCase(role)) {
+            affectationButton.setVisible(false);
+        }
         // activeClasse caches the selected classe informations from classesTables View
         activeClasse = new Classe();
         //

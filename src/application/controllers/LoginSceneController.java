@@ -1,8 +1,10 @@
 package application.controllers;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import application.repositories.AdministrateurRepository;
+import application.services.AdministrateurService;
 import application.repositories.LoginRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -72,14 +74,15 @@ public class LoginSceneController {
         }
     }
 
-    private void openHomePage(int adminId) {
+    private void openHomePage(int adminId) throws SQLException {
         try {
+            String role = AdministrateurService.getRoleUser(adminId);
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("../../resources/interfaces/AdministrateurBackofficeScene.fxml"));
             Parent root = loader.load();
 
             AdminstrateurBackofficeSceneController administrateueBackofficeController = loader.getController();
-            administrateueBackofficeController.initialize(adminId);
+            administrateueBackofficeController.initialize(adminId,role);
 
             Scene scene = new Scene(root);
             Stage stage = (Stage) loginButton.getScene().getWindow();
