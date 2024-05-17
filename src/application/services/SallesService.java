@@ -146,6 +146,7 @@ public class SallesService {
         }
         return res;
     }
+
     public static List<String> getAllCategorieNames() {
         List<CategorieSalle> niveaux = getAllCategories();
         return niveaux.stream().map(CategorieSalle::getNom).collect(Collectors.toList());
@@ -165,6 +166,6 @@ public class SallesService {
         e.printStackTrace();
     }
     return resCategories;
-}
+    }
     
 }
