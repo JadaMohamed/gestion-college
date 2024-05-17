@@ -16,7 +16,7 @@
    <children>
       <ImageView fitHeight="500.0" fitWidth="410.0" layoutX="613.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../images/logincover.png" />
+            <Image url="@../images/abstract/logincover.png" />
          </image>
       </ImageView>
       <Label layoutX="56.0" layoutY="104.0" text="Log in" textFill="#6941c6" AnchorPane.leftAnchor="56.0">
