@@ -6,6 +6,14 @@
       "name": "App",
       "request": "launch",
       "mainClass": "application.App",
+      "projectName": "gestion-college-3_8aad62e8",
+      "vmArgs": "--module-path \"c:/javafx-sdk-22/lib\" --add-modules javafx.controls,javafx.fxml"
+    },
+    {
+      "type": "java",
+      "name": "App",
+      "request": "launch",
+      "mainClass": "application.App",
       "projectName": "gestion-college-1_8aad62e6",
       "vmArgs": "--module-path \"c:/javafx-sdk-22/lib\" --add-modules javafx.controls,javafx.fxml"
     },

@@ -157,4 +157,9 @@ public class SallesRepository {
         parameters.add(salleId);
         return dbClient.executeCommand(true, query, parameters);
     }
+    public static ResultSet getAllCategories() throws SQLException {
+        Vector<Object> parameters = new Vector<Object>();
+        String query = "SELECT * FROM categorieSalle";
+        return dbClient.executeCommand(true, query, parameters);
+    }
 }

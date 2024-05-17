@@ -2,15 +2,19 @@ package application.services;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Vector;
+import java.util.stream.Collectors;
 
 import application.model.CategorieSalle;
 import application.model.Horaires;
 import application.model.MaterielSalle;
 import application.model.Salle;
 import application.model.enums.JoursSemaine;
+import application.repositories.CategorieSalleRepository;
 import application.repositories.SallesRepository;
 
 public class SallesService {
@@ -142,5 +146,25 @@ public class SallesService {
         }
         return res;
     }
+    public static List<String> getAllCategorieNames() {
+        List<CategorieSalle> niveaux = getAllCategories();
+        return niveaux.stream().map(CategorieSalle::getNom).collect(Collectors.toList());
+    }
+    
+    public static List<CategorieSalle> getAllCategories() {
+    List<CategorieSalle> resCategories = new ArrayList<>();
+    ResultSet result;
+    try {
+        result = SallesRepository.getAllCategories();
+        while (result.next()) {
+            CategorieSalle statCategorie = new CategorieSalle();
+            statCategorie.setNom(result.getString("nom"));
+            resCategories.add(statCategorie);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return resCategories;
+}
     
 }
