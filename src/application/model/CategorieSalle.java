@@ -28,4 +28,5 @@ public class CategorieSalle {
     public void setNom(String nom) {
         this.nom = nom;
     }
+
 }
