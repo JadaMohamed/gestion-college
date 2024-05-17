@@ -40,6 +40,9 @@ public class SidebarController {
         } else if (event.getSource() == mainController.getAbsencesButton()) {
             mainController.getAbsencesPane().toFront();
             toggleStyleClass(mainController.getAbsencesButton());
+        } else if (event.getSource() == mainController.getProfesseursButton()) {
+            mainController.getProfesseursPane().toFront();
+            toggleStyleClass(mainController.getProfesseursButton());
         }
     }
 
@@ -50,7 +53,8 @@ public class SidebarController {
                 mainController.getClassesButton(),
                 mainController.getParametresButton(),
                 mainController.getAffectationButton(),
-                mainController.getAbsencesButton()
+                mainController.getAbsencesButton(),
+                mainController.getProfesseursButton()
         };
 
         for (Button button : buttons) {

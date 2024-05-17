@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import application.controllers.AdminstrateurBackofficeSceneSubController.AccueilPaneController;
 import application.controllers.AdminstrateurBackofficeSceneSubController.AffectationPaneController;
 import application.controllers.AdminstrateurBackofficeSceneSubController.ClassesPaneController;
+import application.controllers.AdminstrateurBackofficeSceneSubController.EnsignantsPaneController;
 import application.controllers.AdminstrateurBackofficeSceneSubController.ParametresPaneController;
 import application.controllers.AdminstrateurBackofficeSceneSubController.SallesPaneController;
 import application.controllers.AdminstrateurBackofficeSceneSubController.SidebarController;
@@ -169,10 +170,14 @@ public class AdminstrateurBackofficeSceneController {
     private SidebarController sidebarController;
     @FXML
     private Button accueilButton, classesButton, parametresButton, deconnecterButton, sallesButton, affectationButton,
-            annulerButtonParametres, absencesButton;
+            annulerButtonParametres, absencesButton, professeursButton;
 
     public Button getAbsencesButton() {
         return absencesButton;
+    }
+
+    public Button getProfesseursButton() {
+        return professeursButton;
     }
 
     @FXML
@@ -472,6 +477,125 @@ public class AdminstrateurBackofficeSceneController {
     //
     //
     //
+
+    // ProfesseursPane
+    private EnsignantsPaneController ensignantsPaneController;
+    @FXML
+    private Pane professeursPane;
+    @FXML
+    private Pane activeEnseignantPane;
+    @FXML
+    private TableView<Map<String, String>> professeursTableView;
+    @FXML
+
+    private TableColumn<Map<String, String>, Map<String, String>> professeursProfColumn, professeursCoursEnCoursColumn;
+    @FXML
+    private TableColumn<Map<String, String>, String> professeursTelephoneColumn, professeursNaissanceColumn,
+            professeursNbrCoursColumn, professeursStatutColumn,
+            professeursEditActionColumn, professeursDeleteActionColumn,
+            professeursVoirActionColumn;
+    @FXML
+    private Label activeEnseignantNomLabel, activeEnseignantTotalSeancesLabel;
+    @FXML
+    private ImageView activeEnseignantStatutIcon;
+    @FXML
+    private Text activeEnseignantNomText;
+
+    public Label getActiveEnseignantNomLabel() {
+        return activeEnseignantNomLabel;
+    }
+
+    public Label getActiveEnseignantTotalSeancesLabel() {
+        return activeEnseignantTotalSeancesLabel;
+    }
+
+    public ImageView getActiveEnseignantStatutIcon() {
+        return activeEnseignantStatutIcon;
+    }
+
+    public Text getActiveEnseignantNomText() {
+        return activeEnseignantNomText;
+    }
+
+    @FXML
+    private TableView<Map<String, String>> enseignantEmploiTableView;
+    @FXML
+    private TableColumn<Map<String, String>, String> enseignantEmploiJourColumn;
+    @FXML
+    private TableColumn<Map<String, String>, Map<String, String>> enseignantEmploi8_10Column,
+            enseignantEmploi10_12Column, enseignantEmploi14_16Column, enseignantEmploi16_18Column;
+
+    public Pane getActiveEnseignantPane() {
+        return activeEnseignantPane;
+    }
+
+    public TableView<Map<String, String>> getEnseignantEmploiTableView() {
+        return enseignantEmploiTableView;
+    }
+
+    public TableColumn<Map<String, String>, String> getEnseignantEmploiJourColumn() {
+        return enseignantEmploiJourColumn;
+    }
+
+    public TableColumn<Map<String, String>, Map<String, String>> getEnseignantEmploi8_10Column() {
+        return enseignantEmploi8_10Column;
+    }
+
+    public TableColumn<Map<String, String>, Map<String, String>> getEnseignantEmploi10_12Column() {
+        return enseignantEmploi10_12Column;
+    }
+
+    public TableColumn<Map<String, String>, Map<String, String>> getEnseignantEmploi14_16Column() {
+        return enseignantEmploi14_16Column;
+    }
+
+    public TableColumn<Map<String, String>, Map<String, String>> getEnseignantEmploi16_18Column() {
+        return enseignantEmploi16_18Column;
+    }
+
+    public TableView<Map<String, String>> getProfesseursTableView() {
+        return professeursTableView;
+    }
+
+    public TableColumn<Map<String, String>, Map<String, String>> getProfesseursProfColumn() {
+        return professeursProfColumn;
+    }
+
+    public TableColumn<Map<String, String>, String> getProfesseursTelephoneColumn() {
+        return professeursTelephoneColumn;
+    }
+
+    public TableColumn<Map<String, String>, String> getProfesseursNaissanceColumn() {
+        return professeursNaissanceColumn;
+    }
+
+    public TableColumn<Map<String, String>, String> getProfesseursNbrCoursColumn() {
+        return professeursNbrCoursColumn;
+    }
+
+    public TableColumn<Map<String, String>, String> getProfesseursStatutColumn() {
+        return professeursStatutColumn;
+    }
+
+    public TableColumn<Map<String, String>, Map<String, String>> getProfesseursCoursEnCoursColumn() {
+        return professeursCoursEnCoursColumn;
+    }
+
+    public TableColumn<Map<String, String>, String> getProfesseursEditActionColumn() {
+        return professeursEditActionColumn;
+    }
+
+    public TableColumn<Map<String, String>, String> getProfesseursDeleteActionColumn() {
+        return professeursDeleteActionColumn;
+    }
+
+    public TableColumn<Map<String, String>, String> getProfesseursVoirActionColumn() {
+        return professeursVoirActionColumn;
+    }
+
+    public Pane getProfesseursPane() {
+        return professeursPane;
+    }
     //
     //
     //
@@ -510,6 +634,9 @@ public class AdminstrateurBackofficeSceneController {
         classesPaneController = new ClassesPaneController(this);
         sallesPaneController = new SallesPaneController(this);
         accueilPaneController = new AccueilPaneController(this);
+        ensignantsPaneController = new EnsignantsPaneController(this);
+
+        ensignantsPaneController.initialize();
         //
         //
         //

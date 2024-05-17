@@ -20,7 +20,8 @@ AffectationPane
     
 -----------------
 Might Have new Pane for Professors managment
-    1- Add new Professor
-    2- Edit Professor
-    3- Delete Professor
-    4- Show Professor's Emplois de temps
+    1- Show all Professors ✅
+    2- Add new Professor
+    3- Edit Professor
+    4- Delete Professor
+    5- Show Professor's Emplois de temps ✅
