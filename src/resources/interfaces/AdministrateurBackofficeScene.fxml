@@ -1250,293 +1250,6 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="affectationPane" layoutX="40.0" layoutY="20.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5; -fx-border-radius: 10; -fx-border-width: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <HBox alignment="CENTER_LEFT" layoutX="24.0" layoutY="16.0" prefHeight="30.0" prefWidth="87.0">
-                     <children>
-                        <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/icons/_Breadcrumb%20button%20base.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/icons/chevron-right.png" />
-                           </image>
-                        </ImageView>
-                        <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Affectation">
-                           <font>
-                              <Font name="Inter Regular" size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="2.0" />
-                           </HBox.margin>
-                        </Text>
-                     </children>
-                  </HBox>
-                  <VBox layoutX="24.0" layoutY="80.0" prefHeight="200.0" prefWidth="952.0" spacing="16.0">
-                     <children>
-                        <HBox prefHeight="40.0" prefWidth="952.0" spacing="485.8" style="-fx-border-color: #D0D5DD; -fx-border-width: 0 0 1 0;">
-                           <children>
-                              <VBox prefHeight="40.0" prefWidth="275.0" spacing="4.0">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Informations de classe">
-                                       <font>
-                                          <Font name="Inter SemiBold" size="16.0" />
-                                       </font>
-                                    </Text>
-                                    <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Saisi les informations de la classe ici">
-                                       <font>
-                                          <Font name="Inter Light" size="13.0" />
-                                       </font>
-                                    </Text>
-                                 </children>
-                              </VBox>
-                           </children>
-                           <padding>
-                              <Insets bottom="16.0" />
-                           </padding>
-                        </HBox>
-                        <HBox prefHeight="40.0" prefWidth="952.0" spacing="50.0" style="-fx-border-color: #D0D5DD; -fx-border-width: 0 0 1 0;">
-                           <children>
-                              <Text fill="#344054" strokeType="OUTSIDE" strokeWidth="0.0" text="Classe" wrappingWidth="275.0">
-                                 <font>
-                                    <Font name="Inter Medium" size="13.0" />
-                                 </font>
-                              </Text>
-                              <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="626.0" spacing="16.0">
-                                 <children>
-                                    <ComboBox fx:id="classesComboAffectation" prefWidth="396.0" promptText="Sélectionner une classe" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;" styleClass="combo-box">
-                                       <padding>
-                                          <Insets bottom="4.0" left="5.0" right="5.0" top="4.0" />
-                                       </padding>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </ComboBox>
-                                 </children>
-                              </HBox>
-                           </children>
-                           <padding>
-                              <Insets bottom="16.0" />
-                           </padding>
-                        </HBox>
-                        <HBox prefHeight="40.0" prefWidth="952.0" spacing="485.8" style="-fx-border-color: #D0D5DD; -fx-border-width: 0 0 1 0;">
-                           <children>
-                              <VBox prefHeight="40.0" prefWidth="275.0" spacing="4.0">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Informations de cours">
-                                       <font>
-                                          <Font name="Inter SemiBold" size="16.0" />
-                                       </font>
-                                    </Text>
-                                    <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Saisi les informations de cours ici">
-                                       <font>
-                                          <Font name="Inter Light" size="13.0" />
-                                       </font>
-                                    </Text>
-                                 </children>
-                              </VBox>
-                           </children>
-                           <padding>
-                              <Insets bottom="16.0" />
-                           </padding>
-                        </HBox>
-                        <HBox prefHeight="40.0" prefWidth="952.0" spacing="50.0">
-                           <children>
-                              <Text fill="#344054" strokeType="OUTSIDE" strokeWidth="0.0" text="Type de cours" wrappingWidth="275.0">
-                                 <font>
-                                    <Font name="Inter Medium" size="13.0" />
-                                 </font>
-                              </Text>
-                              <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="626.0" spacing="16.0">
-                                 <children>
-                                    <ComboBox fx:id="typeCoursComboAffectation" prefWidth="396.0" promptText="Sélectionner un type de cours" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;" styleClass="combo-box">
-                                       <padding>
-                                          <Insets bottom="4.0" left="5.0" right="5.0" top="4.0" />
-                                       </padding>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </ComboBox>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="40.0" prefWidth="952.0" spacing="50.0">
-                           <children>
-                              <Text fill="#344054" strokeType="OUTSIDE" strokeWidth="0.0" text="Enseignant" wrappingWidth="275.0">
-                                 <font>
-                                    <Font name="Inter Medium" size="13.0" />
-                                 </font>
-                              </Text>
-                              <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="626.0" spacing="16.0">
-                                 <children>
-                                    <ComboBox fx:id="enseignantComboAffectation" prefWidth="396.0" promptText="Sélectionner un enseignant" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;" styleClass="combo-box">
-                                       <padding>
-                                          <Insets bottom="4.0" left="5.0" right="5.0" top="4.0" />
-                                       </padding>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </ComboBox>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="40.0" prefWidth="952.0" spacing="50.0" style="-fx-border-color: #D0D5DD; -fx-border-width: 0 0 1 0;">
-                           <children>
-                              <Text fill="#344054" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom cours" wrappingWidth="275.0">
-                                 <font>
-                                    <Font name="Inter Medium" size="13.0" />
-                                 </font>
-                              </Text>
-                              <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="626.0" spacing="16.0">
-                                 <children>
-                                    <TextField fx:id="nomCoursFieldAffectation" prefHeight="34.0" prefWidth="396.0" promptText="Nom cours" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;">
-                                       <padding>
-                                          <Insets bottom="8.0" left="12.0" right="12.0" top="8.0" />
-                                       </padding>
-                                       <font>
-                                          <Font name="Inter Bold" size="13.0" />
-                                       </font>
-                                    </TextField>
-                                 </children>
-                              </HBox>
-                           </children>
-                           <padding>
-                              <Insets bottom="16.0" />
-                           </padding>
-                        </HBox>
-                        <HBox prefHeight="40.0" prefWidth="952.0" spacing="485.8" style="-fx-border-color: #D0D5DD; -fx-border-width: 0 0 1 0;">
-                           <children>
-                              <VBox prefHeight="40.0" prefWidth="275.0" spacing="4.0">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Informations de seance">
-                                       <font>
-                                          <Font name="Inter SemiBold" size="16.0" />
-                                       </font>
-                                    </Text>
-                                    <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Saisi les informations de la salle et horaires ici">
-                                       <font>
-                                          <Font name="Inter Light" size="13.0" />
-                                       </font>
-                                    </Text>
-                                 </children>
-                              </VBox>
-                           </children>
-                           <padding>
-                              <Insets bottom="16.0" />
-                           </padding>
-                        </HBox>
-                        <HBox prefHeight="40.0" prefWidth="952.0" spacing="50.0">
-                           <children>
-                              <Text fill="#344054" strokeType="OUTSIDE" strokeWidth="0.0" text="Jour/Horaires" wrappingWidth="275.0">
-                                 <font>
-                                    <Font name="Inter Medium" size="13.0" />
-                                 </font>
-                              </Text>
-                              <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="626.0" spacing="16.0">
-                                 <children>
-                                    <ComboBox fx:id="joursComboAffectation" prefWidth="190.0" promptText="Jour" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;" styleClass="combo-box">
-                                       <padding>
-                                          <Insets bottom="4.0" left="5.0" right="5.0" top="4.0" />
-                                       </padding>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </ComboBox>
-                                    <ComboBox fx:id="horairesComboAffectation" prefWidth="190.0" promptText="Horaire" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;" styleClass="combo-box">
-                                       <padding>
-                                          <Insets bottom="4.0" left="5.0" right="5.0" top="4.0" />
-                                       </padding>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </ComboBox>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="34.0" prefWidth="977.0" spacing="50.0">
-                           <children>
-                              <Text fill="#344054" strokeType="OUTSIDE" strokeWidth="0.0" text="Salle" wrappingWidth="275.0">
-                                 <font>
-                                    <Font name="Inter Medium" size="13.0" />
-                                 </font>
-                              </Text>
-                              <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="398.0" spacing="16.0">
-                                 <children>
-                                    <ComboBox fx:id="sallesComboAffectation" prefHeight="34.0" prefWidth="355.0" promptText="Sélectionner une salle" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4 0 0 4; -fx-background-radius: 4 0 0 4;" styleClass="combo-box">
-                                       <padding>
-                                          <Insets bottom="4.0" left="5.0" right="5.0" top="4.0" />
-                                       </padding>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </ComboBox>
-                                    <Button fx:id="handleShowMaterielSalle" mnemonicParsing="false" onAction="#handleShowMaterielSalle" prefHeight="34.0" prefWidth="42.0" style="-fx-background-color: #fff; -fx-border-radius: 0 4 4 0; -fx-background-radius: 0 4 4 0; -fx-border-color: #D0D5DD; -fx-cursor: hand;">
-                                       <graphic>
-                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/icons/materiel.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <HBox.margin>
-                                          <Insets left="-17.0" />
-                                       </HBox.margin>
-                                       <padding>
-                                          <Insets bottom="-1.0" />
-                                       </padding>
-                                    </Button>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="40.0" prefWidth="952.0" spacing="485.8" style="-fx-border-color: #D0D5DD; -fx-border-width: 1 0 0 0;">
-                           <children>
-                              <VBox prefHeight="40.0" prefWidth="275.0" spacing="4.0" />
-                              <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="194.0" spacing="16.0">
-                                 <children>
-                                    <Button mnemonicParsing="false" onAction="#handleAnnulerAffectation" prefWidth="84.4" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Annuler" textAlignment="CENTER" textFill="#344054">
-                                       <font>
-                                          <Font name="Inter Medium" size="13.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets bottom="8.0" left="12.0" right="12.0" top="8.0" />
-                                       </padding>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                    <Button fx:id="sauvegarderButtonInfosParametres11" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleAffecterButton" prefWidth="94.0" style="-fx-background-color: #7F56D9; -fx-background-radius: 4px; -fx-border-radius: 4px;" text="Affecter" textAlignment="CENTER" textFill="WHITE">
-                                       <font>
-                                          <Font name="Inter Medium" size="13.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets bottom="8.0" left="12.0" right="12.0" top="8.0" />
-                                       </padding>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                 </children>
-                              </HBox>
-                           </children>
-                           <padding>
-                              <Insets top="16.0" />
-                           </padding>
-                        </HBox>
-                     </children>
-                  </VBox>
-                  <Label fx:id="errorPasswordUpdate1" layoutX="351.0" layoutY="646.0" prefHeight="34.0" prefWidth="396.0" textFill="RED">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
             <Pane fx:id="accueilPane" layoutX="20.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5; -fx-border-radius: 10; -fx-border-width: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <HBox layoutX="24.0" layoutY="16.0" spacing="2.0">
@@ -1965,6 +1678,305 @@
                         </Text>
                      </children>
                   </HBox>
+               </children>
+            </Pane>
+            <Pane fx:id="affectationPane" layoutX="40.0" layoutY="20.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5; -fx-border-radius: 10; -fx-border-width: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" layoutX="24.0" layoutY="16.0" prefHeight="30.0" prefWidth="87.0">
+                     <children>
+                        <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons/_Breadcrumb%20button%20base.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons/chevron-right.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Affectation">
+                           <font>
+                              <Font name="Inter Regular" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="2.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <VBox layoutX="24.0" layoutY="80.0" prefHeight="200.0" prefWidth="952.0" spacing="16.0">
+                     <children>
+                        <HBox prefHeight="40.0" prefWidth="952.0" spacing="485.8" style="-fx-border-color: #D0D5DD; -fx-border-width: 0 0 1 0;">
+                           <children>
+                              <VBox prefHeight="40.0" prefWidth="275.0" spacing="4.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Informations de classe">
+                                       <font>
+                                          <Font name="Inter SemiBold" size="16.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Saisi les informations de la classe ici">
+                                       <font>
+                                          <Font name="Inter Light" size="13.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="16.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="40.0" prefWidth="952.0" spacing="50.0" style="-fx-border-color: #D0D5DD; -fx-border-width: 0 0 1 0;">
+                           <children>
+                              <Text fill="#344054" strokeType="OUTSIDE" strokeWidth="0.0" text="Classe" wrappingWidth="275.0">
+                                 <font>
+                                    <Font name="Inter Medium" size="13.0" />
+                                 </font>
+                              </Text>
+                              <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="626.0" spacing="16.0">
+                                 <children>
+                                    <ComboBox fx:id="classesComboAffectation" prefWidth="396.0" promptText="Sélectionner une classe" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;" styleClass="combo-box">
+                                       <padding>
+                                          <Insets bottom="4.0" left="5.0" right="5.0" top="4.0" />
+                                       </padding>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ComboBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="16.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="40.0" prefWidth="952.0" spacing="485.8" style="-fx-border-color: #D0D5DD; -fx-border-width: 0 0 1 0;">
+                           <children>
+                              <VBox prefHeight="40.0" prefWidth="275.0" spacing="4.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Informations de cours">
+                                       <font>
+                                          <Font name="Inter SemiBold" size="16.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Saisi les informations de cours ici">
+                                       <font>
+                                          <Font name="Inter Light" size="13.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="16.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="40.0" prefWidth="952.0" spacing="50.0">
+                           <children>
+                              <Text fill="#344054" strokeType="OUTSIDE" strokeWidth="0.0" text="Type de cours" wrappingWidth="275.0">
+                                 <font>
+                                    <Font name="Inter Medium" size="13.0" />
+                                 </font>
+                              </Text>
+                              <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="626.0">
+                                 <children>
+                                    <ComboBox fx:id="typeCoursComboAffectation" prefWidth="355.0" promptText="Sélectionner un type de cours" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px 0 0 4px; -fx-background-radius: 4px;" styleClass="combo-box">
+                                       <padding>
+                                          <Insets bottom="4.0" left="5.0" right="5.0" top="4.0" />
+                                       </padding>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ComboBox>
+                                    <Button mnemonicParsing="false" onAction="#handleAjouterTypeCoursButton" prefHeight="34.0" prefWidth="42.0" style="-fx-background-color: #fff; -fx-border-radius: 0 4 4 0; -fx-background-radius: 0 4 4 0; -fx-border-color: #D0D5DD; -fx-cursor: hand; -fx-border-width: 1 1 1 0;">
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/icons/plus.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <padding>
+                                          <Insets bottom="-1.0" />
+                                       </padding>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="40.0" prefWidth="952.0" spacing="50.0">
+                           <children>
+                              <Text fill="#344054" strokeType="OUTSIDE" strokeWidth="0.0" text="Enseignant" wrappingWidth="275.0">
+                                 <font>
+                                    <Font name="Inter Medium" size="13.0" />
+                                 </font>
+                              </Text>
+                              <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="626.0" spacing="16.0">
+                                 <children>
+                                    <ComboBox fx:id="enseignantComboAffectation" prefWidth="396.0" promptText="Sélectionner un enseignant" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;" styleClass="combo-box">
+                                       <padding>
+                                          <Insets bottom="4.0" left="5.0" right="5.0" top="4.0" />
+                                       </padding>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ComboBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="40.0" prefWidth="952.0" spacing="50.0" style="-fx-border-color: #D0D5DD; -fx-border-width: 0 0 1 0;">
+                           <children>
+                              <Text fill="#344054" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom cours" wrappingWidth="275.0">
+                                 <font>
+                                    <Font name="Inter Medium" size="13.0" />
+                                 </font>
+                              </Text>
+                              <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="626.0" spacing="16.0">
+                                 <children>
+                                    <TextField fx:id="nomCoursFieldAffectation" prefHeight="34.0" prefWidth="396.0" promptText="Nom cours" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;">
+                                       <padding>
+                                          <Insets bottom="8.0" left="12.0" right="12.0" top="8.0" />
+                                       </padding>
+                                       <font>
+                                          <Font name="Inter Bold" size="13.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="16.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="40.0" prefWidth="952.0" spacing="485.8" style="-fx-border-color: #D0D5DD; -fx-border-width: 0 0 1 0;">
+                           <children>
+                              <VBox prefHeight="40.0" prefWidth="275.0" spacing="4.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Informations de seance">
+                                       <font>
+                                          <Font name="Inter SemiBold" size="16.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fill="#475467" strokeType="OUTSIDE" strokeWidth="0.0" text="Saisi les informations de la salle et horaires ici">
+                                       <font>
+                                          <Font name="Inter Light" size="13.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="16.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="40.0" prefWidth="952.0" spacing="50.0">
+                           <children>
+                              <Text fill="#344054" strokeType="OUTSIDE" strokeWidth="0.0" text="Jour/Horaires" wrappingWidth="275.0">
+                                 <font>
+                                    <Font name="Inter Medium" size="13.0" />
+                                 </font>
+                              </Text>
+                              <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="626.0" spacing="16.0">
+                                 <children>
+                                    <ComboBox fx:id="joursComboAffectation" prefWidth="190.0" promptText="Jour" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;" styleClass="combo-box">
+                                       <padding>
+                                          <Insets bottom="4.0" left="5.0" right="5.0" top="4.0" />
+                                       </padding>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ComboBox>
+                                    <ComboBox fx:id="horairesComboAffectation" prefWidth="190.0" promptText="Horaire" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;" styleClass="combo-box">
+                                       <padding>
+                                          <Insets bottom="4.0" left="5.0" right="5.0" top="4.0" />
+                                       </padding>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ComboBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="34.0" prefWidth="977.0" spacing="50.0">
+                           <children>
+                              <Text fill="#344054" strokeType="OUTSIDE" strokeWidth="0.0" text="Salle" wrappingWidth="275.0">
+                                 <font>
+                                    <Font name="Inter Medium" size="13.0" />
+                                 </font>
+                              </Text>
+                              <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="34.0" prefWidth="398.0" spacing="16.0">
+                                 <children>
+                                    <ComboBox fx:id="sallesComboAffectation" prefHeight="34.0" prefWidth="355.0" promptText="Sélectionner une salle" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4 0 0 4; -fx-background-radius: 4 0 0 4;" styleClass="combo-box">
+                                       <padding>
+                                          <Insets bottom="4.0" left="5.0" right="5.0" top="4.0" />
+                                       </padding>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ComboBox>
+                                    <Button fx:id="handleShowMaterielSalle" mnemonicParsing="false" onAction="#handleShowMaterielSalle" prefHeight="34.0" prefWidth="42.0" style="-fx-background-color: #fff; -fx-border-radius: 0 4 4 0; -fx-background-radius: 0 4 4 0; -fx-border-color: #D0D5DD; -fx-cursor: hand;">
+                                       <graphic>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../images/icons/materiel.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <HBox.margin>
+                                          <Insets left="-17.0" />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets bottom="-1.0" />
+                                       </padding>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="40.0" prefWidth="952.0" spacing="485.8" style="-fx-border-color: #D0D5DD; -fx-border-width: 1 0 0 0;">
+                           <children>
+                              <VBox prefHeight="40.0" prefWidth="275.0" spacing="4.0" />
+                              <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="194.0" spacing="16.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#handleAnnulerAffectation" prefWidth="84.4" style="-fx-background-color: #fff; -fx-border-color: #D0D5DD; -fx-border-radius: 4px; -fx-background-radius: 4px;" text="Annuler" textAlignment="CENTER" textFill="#344054">
+                                       <font>
+                                          <Font name="Inter Medium" size="13.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="8.0" left="12.0" right="12.0" top="8.0" />
+                                       </padding>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                    <Button fx:id="sauvegarderButtonInfosParametres11" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleAffecterButton" prefWidth="94.0" style="-fx-background-color: #7F56D9; -fx-background-radius: 4px; -fx-border-radius: 4px;" text="Affecter" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font name="Inter Medium" size="13.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="8.0" left="12.0" right="12.0" top="8.0" />
+                                       </padding>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="16.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <Label fx:id="errorPasswordUpdate1" layoutX="351.0" layoutY="646.0" prefHeight="34.0" prefWidth="396.0" textFill="RED">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </children>

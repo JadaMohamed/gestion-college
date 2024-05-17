@@ -2,6 +2,7 @@ package application.controllers.AdminstrateurBackofficeSceneSubController;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.Vector;
 import application.controllers.AdminstrateurBackofficeSceneController;
 import application.model.Classe;
@@ -11,6 +12,7 @@ import application.model.Salle;
 import application.model.TypeCours;
 import application.model.enums.JoursSemaine;
 import application.repositories.SallesRepository;
+import application.repositories.TypeCoursRepository;
 import application.services.ClasseService;
 import application.services.EnseignantService;
 import application.services.SallesService;
@@ -21,6 +23,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextInputDialog;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -129,6 +132,41 @@ public class AffectationPaneController {
             Vector<Salle> salles = SallesService.getAvailableSallesByHoraire(selectedJours, selectedHoraires);
             mainController.getSallesComboAffectation().getItems().addAll(salles);
             mainController.getSallesComboAffectation().getSelectionModel().select(0);
+        }
+    }
+
+    public void AjouterTypeCours() {
+        String typeCoursName;
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Ajouter type cours");
+        dialog.setHeaderText("Type Cours");
+        dialog.setContentText("Entrez s'il vous plait le nom de type: ");
+
+        // Show the dialog and wait for the user to input text
+        Optional<String> result = dialog.showAndWait();
+
+        // Capture the input and assign it to the variable motif
+        typeCoursName = result.get();
+        Stage currentStage = (Stage) mainController.getScene().getWindow();
+        if (typeCoursName.isEmpty()) {
+
+            PushAlert.showAlert("Ajout échoué", "Veuillez forni un nom pour le type", AlertType.ERROR,
+                    currentStage);
+        } else {
+            TypeCoursRepository.AjouterTypeCours(typeCoursName);
+            PushAlert.showAlert("Ajout succès", "L'ajout a été faite avec succès", AlertType.INFORMATION,
+                    currentStage);
+            Vector<TypeCours> allTypes = TypeCoursService.getAllTypes();
+            mainController.getTypeCoursComboAffectation().getItems().clear();
+            mainController.getTypeCoursComboAffectation().getItems().addAll(allTypes);
+            if (!allTypes.isEmpty()) {
+                for (TypeCours typeCours : allTypes) {
+                    if (typeCours.getNom().equals(typeCoursName)) {
+                        mainController.getTypeCoursComboAffectation().getSelectionModel().select(typeCours);
+                        break;
+                    }
+                }
+            }
         }
     }
 
@@ -250,10 +288,12 @@ public class AffectationPaneController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Matériel de la salle : " + salle.getNomSalle());
         alert.setHeaderText(null);
-        StringBuilder contentText = new StringBuilder("Liste du matériel de la salle " + salle.getNomSalle() + " :\n\n");
+        StringBuilder contentText = new StringBuilder(
+                "Liste du matériel de la salle " + salle.getNomSalle() + " :\n\n");
         try {
             while (resultSet.next()) {
-                contentText.append((resultSet.getString("quantite")+" "+resultSet.getString("nomMateriel"))).append("\n");
+                contentText.append((resultSet.getString("quantite") + " " + resultSet.getString("nomMateriel")))
+                        .append("\n");
             }
             alert.setContentText(contentText.toString());
             alert.showAndWait();

@@ -12,7 +12,7 @@ ActiveClassePane
     1- Show student's Abseneces
     2- Delete OR Edit Seance
 AffectationPane
-    1- Add possibility to add new typeCours if not exist
+    1- Add possibility to add new typeCours if not exist ✅
 
 
 

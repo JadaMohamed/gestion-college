@@ -13,4 +13,11 @@ public class TypeCoursRepository {
         String query = "SELECT * FROM typeCours";
         return dbClient.executeCommand(true, query, parameters);
     }
+
+    public static void AjouterTypeCours(String nom) {
+        Vector<Object> parameters = new Vector<Object>();
+        String query = "INSERT INTO typeCours(id, nom) VALUES (null, ?)";
+        parameters.add(nom);
+        dbClient.executeCommand(false, query, parameters);
+    }
 }

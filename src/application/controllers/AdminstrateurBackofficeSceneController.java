@@ -1,12 +1,10 @@
 package application.controllers;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 import javafx.scene.layout.VBox;
 import java.util.stream.Collectors;
-
 import application.controllers.AdminstrateurBackofficeSceneSubController.AccueilPaneController;
 import application.controllers.AdminstrateurBackofficeSceneSubController.AffectationPaneController;
 import application.controllers.AdminstrateurBackofficeSceneSubController.ClassesPaneController;
@@ -229,6 +227,11 @@ public class AdminstrateurBackofficeSceneController {
     @FXML
     private void handleShowMaterielSalle(ActionEvent e) {
         affectationPaneController.handleShowMaterielSalle();
+    }
+
+    @FXML
+    private void handleAjouterTypeCoursButton(ActionEvent e) {
+        affectationPaneController.AjouterTypeCours();
     }
 
     //
