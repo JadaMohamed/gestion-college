@@ -2,6 +2,9 @@ package application.repositories;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import com.mysql.jdbc.PreparedStatement;
+
 import application.database.SqlConnection;
 
 public class AdministrateurRepository {
@@ -62,5 +65,14 @@ public class AdministrateurRepository {
         statement.setString(2, newPassword);
         statement.setInt(3, adminId);
         statement.executeUpdate();
+    }
+
+    public static ResultSet getRoleUser(int idUser) throws SQLException {
+        java.sql.Connection conn = SqlConnection.getConnection();
+        String query = "SELECT role FROM administrateur WHERE id = ?";
+        java.sql.PreparedStatement ps = conn.prepareStatement(query);
+        ps.setInt(1,idUser);
+        ResultSet rs = ps.executeQuery();
+        return rs;
     }
 }

@@ -610,8 +610,11 @@ public class AdminstrateurBackofficeSceneController {
     //
 
     // initialize
-    public void initialize(int adminId) {
+    public void initialize(int adminId,String role) {
         //
+        if ("vie scolaire".equalsIgnoreCase(role)) {
+            affectationButton.setVisible(false);
+        }
         // activeClasse caches the selected classe informations from classesTables View
         activeClasse = new Classe();
         //
@@ -889,7 +892,6 @@ public class AdminstrateurBackofficeSceneController {
 
         activeSalleLabel.setText(rowData.get("nomSalle"));
         StringBuilder builder = new StringBuilder();
-
         System.out.println(rowData);
         // Iterate over the entries of the rowData map
         for (Map.Entry<String, String> entry : rowData.entrySet()) {

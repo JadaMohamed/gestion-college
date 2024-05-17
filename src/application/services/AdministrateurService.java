@@ -80,4 +80,12 @@ public class AdministrateurService {
         }
         return adminUrlPhoto;
     }
+
+    public static String getRoleUser(int adminId) throws SQLException {
+        ResultSet rs = AdministrateurRepository.getRoleUser(adminId);
+        if (rs.next()) {
+            return rs.getString("role");
+        }
+        return null;
+    }
 }
