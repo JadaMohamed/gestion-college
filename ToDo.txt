@@ -4,7 +4,7 @@ AccueilPane
     1- Add "All" option to Filter options
     2- Show yesterday's number none excused absences
 SallePane
-    1- Filter by salle categorie
+    1- Filter by salle categorie ✅
 ClassesPane
     1- Search in Classes
     2- Filter by Classe Niveau
