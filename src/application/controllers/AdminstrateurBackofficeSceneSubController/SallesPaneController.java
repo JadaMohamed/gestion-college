@@ -1,34 +1,23 @@
 package application.controllers.AdminstrateurBackofficeSceneSubController;
 
-//import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 import java.util.Vector;
 import application.controllers.AdminstrateurBackofficeSceneController;
 import application.model.CategorieSalle;
-//import application.model.Etudiant;
 import application.model.MaterielSalle;
-//import application.services.ClasseService;
 import application.services.SallesService;
 import application.services.SeanceService;
-//import application.utilities.CustomDeleteEtudiantButton;
-//import application.utilities.CustomEditEtudiantButton;
 import application.utilities.CustomSalleCell;
 import application.utilities.CustomStatusCell;
-//import application.utilities.EtudiantContactCell;
-//import application.utilities.EtudiantContactParentsCell;
-//import application.utilities.EtudiantNomPhotoCell;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-//import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
-//import java.util.function.Predicate;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-// import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -49,6 +38,10 @@ public class SallesPaneController {
 
     public void initialize() {
         updateSallesOccupesLabels();
+
+    }
+
+    public void search(String keyword, TableView<Map<String, String>> sallesTableView) {
         // search("ll");
     }
     // searchFieldSalle.textProperty().addListener((observable, oldValue, newValue)
@@ -115,8 +108,6 @@ public class SallesPaneController {
         }
 
         sallesTableView.setItems(filteredItems);
-
-        System.out.println("it's me 3");
         return;
 
         // Créez un prédicat pour filtrer les données

@@ -5,7 +5,12 @@ public class CategorieSalle {
     private int id;
     private String nom;
 
+
+    public CategorieSalle(String nom) {
+        this.nom = nom;
+    }
     public CategorieSalle() {
+   
     }
 
     public CategorieSalle(int id, String nom) {

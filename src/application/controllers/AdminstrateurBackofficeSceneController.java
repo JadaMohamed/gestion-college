@@ -1,5 +1,4 @@
 package application.controllers;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -422,38 +421,7 @@ public class AdminstrateurBackofficeSceneController {
         materielSalleAnchorPane.getChildren().add(vbox);
     }
 
-    // ButtonClickHandler<Map<String, String>> voirSalleClickHandler2 = rowData -> {
-    // System.out.println("hey");
-    // System.out.println(activeSalle.getId());
-    // // set activeSalle data
-    // activeSalle.setId(Integer.parseInt(rowData.get("salleId")));
-    // activeSalle.setNomSalle(rowData.get("Sallenom"));
-    // // set nomSalle's breadcrumb label in activeSallePane
-    // activeSalleLabel.setText(rowData.get("Sallenom"));
-
-    // // set activeSalle's informations
-    // sallesPaneController.setActiveSalleInformation(rowData, activeSalleLabel,
-    // activeSalleNomLabel, activeSalleCapacite,
-    // activeSalleDisponibilite, activeSalleCoccupe, activeSalleStatutIcon,
-    // materielSalleLabel,materielSalleListView);
-    // // Afficher les matériaux de la salle active
-    // sallesPaneController.showActiveSalleMaterials(activeSalle.getId());
-    // };
-
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
+   
     // Absence
     @FXML
     private Pane absencesPane;
@@ -632,7 +600,6 @@ public class AdminstrateurBackofficeSceneController {
     //
     //
     //
-
     // initialize
     public void initialize(int adminId, String role) {
         //
@@ -643,7 +610,7 @@ public class AdminstrateurBackofficeSceneController {
         niveauObjects.add(0, allOption);
         // activeClasse caches the selected classe informations from classesTables View
         activeClasse = new Classe();
-        //
+        // 
         // to identify the logged in administrator
         this.loggedInAdminId = adminId;
         categorieObjects = categories.stream()
@@ -691,7 +658,6 @@ public class AdminstrateurBackofficeSceneController {
         accueilPaneController.initialize();
         //
         //
-
         filterComboBoxCoursEncours.setItems(FXCollections.observableArrayList(niveauObjects));
         filterComboBoxCoursEncours.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
@@ -762,11 +728,10 @@ public class AdminstrateurBackofficeSceneController {
 
         categoryComboBox.setItems(FXCollections.observableArrayList(categorieObjects));
         categoryComboBox.setOnAction(e -> filterTable1(categoryComboBox.getValue()));
-
         initialDataSalles = FXCollections.observableArrayList(SallesService.getAllSallesWithCurrentSeances());
         dataSalles.addAll(initialDataSalles);
         sallesTableView.setItems(dataSalles);
-        //
+        // //
         //
         // activeClassePaneController usage
         searchTextFieldAccueilPane.textProperty().addListener(new ChangeListener<String>() {
@@ -955,13 +920,6 @@ public class AdminstrateurBackofficeSceneController {
         // Set the concatenated string to the tempText
         tempText1.setText(builder.toString());
         salleEmploiTableView.setItems(data);
-
-        // set activeSalle's informations
-        // sallesPaneController.setActiveSalleInformation(rowData, activeSalleLabel,
-        // activeSalleNomLabel, activeSalleCapacite,
-        // activeSalleDisponibilite, activeSalleCoccupe, activeSalleStatutIcon,
-        // materielSalleLabel);
-        // Afficher les matériaux de la salle active
     };
 
     private void filterTable(NiveauClasse selectedNiveauClasse) {
@@ -989,7 +947,7 @@ public class AdminstrateurBackofficeSceneController {
 
     private void filterTable1(CategorieSalle selectedCategorieSalle) {
         ObservableList<Map<String, String>> filteredItems = FXCollections.observableArrayList();
-
+    
         if (initialDataSalles == null || initialDataSalles.isEmpty()) {
             System.out.println("initialDataSalles is null or empty");
             return;
