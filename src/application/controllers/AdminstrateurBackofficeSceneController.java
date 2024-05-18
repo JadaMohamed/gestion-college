@@ -310,7 +310,7 @@ public class AdminstrateurBackofficeSceneController {
             listEtudiantsContactColumn, listEtudiantsContactParentsColumn;
     @FXML
     private TableColumn<Etudiant, String> listEtudiantsDateNaissanceColumn, listEtudiantsDeleteColumn,
-            listEtudiantsEditColumn, listEtudiantsSexeColumn;
+            listEtudiantsEditColumn, listEtudiantsSexeColumn, listEtudiantsAbsenceColumn;
     @FXML
     private TextField searchListEtudiantTextField;
     @FXML
@@ -325,7 +325,7 @@ public class AdminstrateurBackofficeSceneController {
         classesPaneController.fillListEtudiantsTableView(activeClasse.getId(), searchKey, listEtudiantsTableView,
                 listEtudiantsEtudiantColumn, listEtudiantsContactColumn, listEtudiantsContactParentsColumn,
                 listEtudiantsDateNaissanceColumn, listEtudiantsDeleteColumn, listEtudiantsEditColumn,
-                listEtudiantsSexeColumn);
+                listEtudiantsSexeColumn, listEtudiantsAbsenceColumn);
     }
 
     public void fillListCoursEncoursTableView(String searchKey) {
@@ -415,9 +415,9 @@ public class AdminstrateurBackofficeSceneController {
             vbox.getChildren().add(label);
         }
 
-        // Ajouter le VBox à l'AnchorPane
-        AnchorPane.setTopAnchor(vbox, 10.0);
-        AnchorPane.setLeftAnchor(vbox, 10.0);
+        // // Ajouter le VBox à l'AnchorPane
+        // AnchorPane.setTopAnchor(vbox, 10.0);
+        // AnchorPane.setLeftAnchor(vbox, 10.0);
         materielSalleAnchorPane.getChildren().add(vbox);
     }
 
