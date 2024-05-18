@@ -108,6 +108,9 @@ public class AdminstrateurBackofficeSceneController {
     private ObservableList<Map<String, String>> initialDataSalles;
     private ObservableList<Map<String, String>> dataSalles = FXCollections.observableArrayList();
 
+    private ObservableList<Map<String, String>> initialDataClasses;
+    private ObservableList<Map<String, String>> dataClasses = FXCollections.observableArrayList();
+
     private NiveauClasse allOption = new NiveauClasse("All");
     //
     //
@@ -130,6 +133,9 @@ public class AdminstrateurBackofficeSceneController {
     @FXML
     private Label nombre3emeEnCours, nombre4emeEnCours, nombre5emeEnCours, nombre6emeEnCours,
             nombreLabDisponibles, nombreSalleCourDisponibles, nombreSalleSportDisponibles;
+    @FXML 
+    private TextField searchFieldClassesPane;
+    @FXML ComboBox<NiveauClasse> filterComboBoxClassesPane;
     //
     //
     //
@@ -634,9 +640,13 @@ public class AdminstrateurBackofficeSceneController {
         categorieObjects = categories.stream()
             .filter(categorieSalle -> categorieNames.contains(categorieSalle.getNom()))
             .collect(Collectors.toList());
+
         initialData = FXCollections.observableArrayList(SeanceService.getSeancesEnCoursBis());
         coursEncoursTableView.setItems(data);
-        //
+
+        initialDataClasses = FXCollections.observableArrayList(ClasseService.getAllClassesWithCurrentSeances());
+        classesTableView.setItems(dataClasses);
+
         // to show loacl date at the header of the dashboard
         localDateTimeLabelAccueilPane.setText(FormattedLocalDateTime.getFormattedDateTime());
         //
@@ -715,6 +725,18 @@ public class AdminstrateurBackofficeSceneController {
         classesPaneController.fillClassesWithSeances(classesTableView, classesSalleColumn, classesStatusColumn,
                 classesClasseColumn, classesEffectifColumn, classesCoursColumn, classesActionColumn,
                 classesProfesseurColumn, activeClassePane, voirClasseClickHandler);
+
+                filterComboBoxClassesPane.setItems(FXCollections.observableArrayList(niveauObjects));
+                filterComboBoxClassesPane.getSelectionModel().selectedItemProperty()
+                        .addListener((observable, oldValue, newValue) -> {
+                            if (newValue != null) {
+                                filterTableClasses(newValue);
+                            } else {
+                                // Si aucun niveau n'est sélectionné, affichez toutes les données
+                                classesTableView.setItems(initialDataClasses);
+                            }
+                        });
+
         //
         //
         //
@@ -950,9 +972,7 @@ public class AdminstrateurBackofficeSceneController {
                 }
             }
         }
-
         // Mettez à jour le TableView avec les éléments filtrés
-        System.out.println(filteredItems);
         coursEncoursTableView.setItems(filteredItems);
     }
 
@@ -990,16 +1010,37 @@ public class AdminstrateurBackofficeSceneController {
 
     for (Map<String, String> item : initialDataSalles) {
         String nomSalle = item.get("nomSalle");
-        System.out.println("nomSalle: " + nomSalle); // Debugging output
         String categorieSalle = salleToCategorieMap.get(nomSalle);
-        System.out.println("categorieSalle: " + categorieSalle); // Debugging output
         if (categorieSalle != null && categorieSalle.equals(selectedCategorieSalle.getNom())) {
             filteredItems.add(item);
         }
     }
-    System.out.println(filteredItems);
-    sallesTableView.setItems(filteredItems);
-}
+        sallesTableView.setItems(filteredItems);
+    }
+
+    private void filterTableClasses(NiveauClasse selectedNiveauClasse) {
+        ObservableList<Map<String, String>> filteredItems = FXCollections.observableArrayList();
+
+        // Vérifiez si initialData est null ou vide
+        if (initialDataClasses == null || initialDataClasses.isEmpty()) {
+            System.out.println("initialDataClasses is null or empty");
+            return;
+        }
+
+        if (selectedNiveauClasse != null && "All".equals(selectedNiveauClasse.getNom())) {
+            filteredItems.addAll(initialDataClasses);
+        } else {
+            // Sinon, filtrez les données en fonction de la sélection
+            for (Map<String, String> item : initialDataClasses) {
+                if (item.get("classeNom").contains(selectedNiveauClasse.getNom())) {
+                    filteredItems.add(item);
+                }
+            }
+        }
+
+        // Mettez à jour le TableView avec les éléments filtrés
+        classesTableView.setItems(filteredItems);
+    }
 
     public void setSallesDisponiblesText(String text) {
         SallesDisponibles.setText(text);
