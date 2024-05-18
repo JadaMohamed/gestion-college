@@ -41,9 +41,6 @@ public class SallesPaneController {
 
     }
 
-    public void search(String keyword, TableView<Map<String, String>> sallesTableView) {
-        // search("ll");
-    }
     // searchFieldSalle.textProperty().addListener((observable, oldValue, newValue)
     // -> {
     // // Appelez une méthode de recherche à chaque fois que le texte change
