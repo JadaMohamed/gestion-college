@@ -84,6 +84,13 @@ public class AbsenceRepository {
         return dbClient.executeCommand(true, query, parameters);
     }
 
+    public static ResultSet getAbsencePourEtudiant(int idEtudiant) {
+        Vector<Object> parameters = new Vector<>();
+        String query = "SELECT absence.*, seance.jour FROM absence, seance WHERE absence.idSeance = seance.id AND idEtudiant = ?";
+        parameters.add(idEtudiant);
+        return dbClient.executeCommand(true, query, parameters);
+    }
+
     public static void ajouterAbsencePourEtudiant(int numSemaine, int idSeance, int idEtudiant) {
         Vector<Object> parameters = new Vector<>();
         String query = "INSERT INTO absence"

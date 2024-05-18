@@ -5,10 +5,34 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
-
 import application.repositories.AbsenceRepository;
 
 public class AbsenceService {
+
+    public static Vector<Map<String, String>> getAbsencePourEtudiant(int idEtudiant) {
+        Vector<Map<String, String>> rows = new Vector<Map<String, String>>();
+
+        ResultSet result;
+        try {
+            result = AbsenceRepository.getAbsencePourEtudiant(idEtudiant);
+            while (result.next()) {
+                Map<String, String> row = new HashMap<>();
+                row.put("idAbsence", result.getString("id"));
+                row.put("idSeance", result.getString("idSeance"));
+                row.put("motif", result.getString("motif"));
+                row.put("estExcuse", result.getString("estExcuse"));
+                row.put("numSemaine", result.getString("numSemaine"));
+                row.put("idEtudiant", result.getString("idEtudiant"));
+                row.put("jour", result.getString("jour"));
+
+                rows.add(row);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rows;
+    }
 
     public static Vector<Map<String, String>> getListAbsence(int nbrSemaine, String jour, int idClasse) {
         Vector<Map<String, String>> rows = new Vector<Map<String, String>>();

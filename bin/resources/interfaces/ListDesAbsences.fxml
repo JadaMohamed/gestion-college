@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" stylesheets="@../styles/BackofficeSceneStyles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.ConsulterAbsecesEtudiantSceneController">
+   <children>
+      <TableView fx:id="absencesTableView" layoutX="10.0" layoutY="10.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="451.0" prefWidth="552.0" style="-fx-background-color: #fff; -fx-background-radius: 8px;" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="80.0">
+         <columns>
+            <TableColumn fx:id="jourColumn" editable="false" prefWidth="120.0" style="-fx-font-weight: bold;" text="Jour">
+               <styleClass>
+                  <String fx:value="tableViewColumn" />
+                  <String fx:value="boldtableViewColumn" />
+               </styleClass>
+            </TableColumn>
+            <TableColumn fx:id="semaineColumn" editable="false" prefWidth="100.0" style="-fx-font-weight: bold;" text="Semaine">
+               <styleClass>
+                  <String fx:value="tableViewColumn" />
+                  <String fx:value="boldtableViewColumn" />
+               </styleClass>
+            </TableColumn>
+            <TableColumn fx:id="statutColumn" editable="false" prefWidth="110.0" style="-fx-font-weight: bold;" text="Excusé">
+               <styleClass>
+                  <String fx:value="tableViewColumn" />
+                  <String fx:value="boldtableViewColumn" />
+               </styleClass>
+            </TableColumn>
+            <TableColumn fx:id="motifColumn" editable="false" prefWidth="200.0" style="-fx-font-weight: bold;" styleClass="tableViewColumn" text="Motif" />
+         </columns>
+      </TableView>
+      <Text fx:id="nomEtudiantText" layoutX="69.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jada Mohamed" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="24.0">
+         <font>
+            <Font name="Inter SemiBold" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="cneEtudiantText" fill="#0000007c" layoutX="46.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="D36382636" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="50.0">
+         <font>
+            <Font name="Inter Medium" size="12.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

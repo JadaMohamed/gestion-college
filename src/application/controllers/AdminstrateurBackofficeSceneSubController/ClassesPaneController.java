@@ -5,6 +5,7 @@ import java.util.Map;
 
 import application.controllers.AdminstrateurBackofficeSceneController;
 import application.controllers.AjouterEtudiantSceneSceneController;
+import application.controllers.ConsulterAbsecesEtudiantSceneController;
 import application.controllers.ConsulterSeanceSceneController;
 import application.controllers.ModifierEtudiantSceneController;
 import application.model.Etudiant;
@@ -16,6 +17,7 @@ import application.utilities.ButtonClickHandler;
 import application.utilities.CustomCellFactory;
 import application.utilities.CustomClasseCell;
 import application.utilities.CustomClasseCellButton;
+import application.utilities.CustomConsulterAbsenceEtudiantButton;
 import application.utilities.CustomDeleteEtudiantButton;
 import application.utilities.CustomEditEtudiantButton;
 import application.utilities.CustomStatusCell;
@@ -203,6 +205,33 @@ public class ClassesPaneController {
         });
     };
 
+    ButtonClickHandler<Etudiant> consulterAbsenceEtudiantClickHandler = rowData -> {
+        try {
+            // Load the FXML file for your modal form
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("../../../resources/interfaces/ListDesAbsences.fxml"));
+            Parent root = loader.load();
+
+            ConsulterAbsecesEtudiantSceneController controller = loader.getController();
+            controller.initialize(rowData);
+            // Create a new stage
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Les absences de " + rowData.getNom() + " " + rowData.getPrenom());
+            stage.setScene(new Scene(root));
+            // Get screen dimensions
+            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+
+            // Center the stage on the screen
+            stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
+            stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
+            // Show the stage
+            stage.showAndWait();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    };
+
     public void fillListEtudiantsTableView(int activeClasseId, String searchKey,
             TableView<Etudiant> listEtudiantsTableView,
             TableColumn<Etudiant, Etudiant> listEtudiantsEtudiantColumn,
@@ -211,7 +240,8 @@ public class ClassesPaneController {
             TableColumn<Etudiant, String> listEtudiantsDateNaissanceColumn,
             TableColumn<Etudiant, String> listEtudiantsDeleteColumn,
             TableColumn<Etudiant, String> listEtudiantsEditColumn,
-            TableColumn<Etudiant, String> listEtudiantsSexeColumn) {
+            TableColumn<Etudiant, String> listEtudiantsSexeColumn,
+            TableColumn<Etudiant, String> listEtudiantsAbsenceColumn) {
 
         // get list etudianst from database by selected classe
         ObservableList<Etudiant> data = FXCollections.observableArrayList();
@@ -247,6 +277,8 @@ public class ClassesPaneController {
                 .setCellFactory(new CustomEditEtudiantButton(editEtudiantClickHandler));
         listEtudiantsDeleteColumn
                 .setCellFactory(new CustomDeleteEtudiantButton(deleteEtudiantClickHandler));
+        listEtudiantsAbsenceColumn
+                .setCellFactory(new CustomConsulterAbsenceEtudiantButton(consulterAbsenceEtudiantClickHandler));
 
         // push data to the tablview
         listEtudiantsTableView.setItems(data);
