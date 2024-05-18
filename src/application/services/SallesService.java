@@ -81,15 +81,12 @@ public class SallesService {
         }
         return salles;
     }
-    
 
-    
-    
     public static Vector<MaterielSalle> getMaterialBySalleId(int SalleId) {
         Vector<MaterielSalle> res = new Vector<>();
         ResultSet result;
         try {
-        result = SallesRepository.getMaterialBySalleId(SalleId);
+            result = SallesRepository.getMaterialBySalleId(SalleId);
             while (result.next()) {
                 MaterielSalle materielsalle = new MaterielSalle();
                 materielsalle.setId(result.getInt("id"));
@@ -119,6 +116,10 @@ public class SallesService {
                 stat.put("heureFin8_10", result.getString("heureFin8_10"));
                 stat.put("nomSalle8_10", result.getString("nomSalle8_10"));
                 stat.put("coursnom10_12", result.getString("coursnom10_12"));
+                stat.put("seanceId8_10", result.getString("seanceId8_10"));
+                stat.put("seanceId10_12", result.getString("seanceId10_12"));
+                stat.put("seanceId14_16", result.getString("seanceId14_16"));
+                stat.put("seanceId16_18", result.getString("seanceId16_18"));
                 stat.put("enseignantFullName10_12",
                         result.getString("nomEnseignant10_12") + " " + result.getString("prenomEnseignant10_12"));
                 stat.put("photoUrlEnseignant10_12", result.getString("photoUrlEnseignant10_12"));
@@ -151,21 +152,21 @@ public class SallesService {
         List<CategorieSalle> niveaux = getAllCategories();
         return niveaux.stream().map(CategorieSalle::getNom).collect(Collectors.toList());
     }
-    
+
     public static List<CategorieSalle> getAllCategories() {
-    List<CategorieSalle> resCategories = new ArrayList<>();
-    ResultSet result;
-    try {
-        result = SallesRepository.getAllCategories();
-        while (result.next()) {
-            CategorieSalle statCategorie = new CategorieSalle();
-            statCategorie.setNom(result.getString("nom"));
-            resCategories.add(statCategorie);
+        List<CategorieSalle> resCategories = new ArrayList<>();
+        ResultSet result;
+        try {
+            result = SallesRepository.getAllCategories();
+            while (result.next()) {
+                CategorieSalle statCategorie = new CategorieSalle();
+                statCategorie.setNom(result.getString("nom"));
+                resCategories.add(statCategorie);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
+        return resCategories;
     }
-    return resCategories;
-    }
-    
+
 }

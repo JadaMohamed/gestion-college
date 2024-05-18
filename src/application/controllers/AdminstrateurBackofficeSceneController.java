@@ -259,13 +259,12 @@ public class AdminstrateurBackofficeSceneController {
     @FXML
     private TextField searchFieldSalle;
     @FXML
-    private ComboBox<CategorieSalle> categoryComboBox ;
+    private ComboBox<CategorieSalle> categoryComboBox;
     private List<String> categorieNames = SallesService.getAllCategorieNames();
     private List<CategorieSalle> categories = SallesService.getAllCategories();
     private List<CategorieSalle> categorieObjects = categories.stream()
             .filter(categorieSalle -> categorieNames.contains(categorieSalle.getNom()))
             .collect(Collectors.toList());
- 
 
     //
     //
@@ -337,12 +336,19 @@ public class AdminstrateurBackofficeSceneController {
         // set activeClasse's informations
         classesPaneController.setActiveClasseInformation(rowData, activeClasseEffectif, activeClasseNomLabel,
                 activeClasseEffectif, activeClasseStatutIcon);
-
-        // fill classeEmploiTableView
-        classesPaneController.fillEmploisDeTempsTableView(rowData, classeEmploiJourColumn, classeEmploiTableView,
+        classesPaneController.fillEmploisDeTempsTableView(rowData.get("classeId"), classeEmploiJourColumn,
+                classeEmploiTableView,
                 classeEmploi8_10Column, classeEmploi10_12Column, classeEmploi14_16Column, classeEmploi16_18Column);
+        // fill classeEmploiTableView
+
         fillListEtudiantsTableView("");
     };
+
+    public void fillActiveClasseEmploisDeTemps() {
+        classesPaneController.fillEmploisDeTempsTableView(String.valueOf(activeClasse.getId()), classeEmploiJourColumn,
+                classeEmploiTableView,
+                classeEmploi8_10Column, classeEmploi10_12Column, classeEmploi14_16Column, classeEmploi16_18Column);
+    }
 
     //
     //
@@ -615,7 +621,7 @@ public class AdminstrateurBackofficeSceneController {
     //
 
     // initialize
-    public void initialize(int adminId,String role) {
+    public void initialize(int adminId, String role) {
         //
         if ("vie scolaire".equalsIgnoreCase(role)) {
             affectationButton.setVisible(false);
@@ -723,7 +729,7 @@ public class AdminstrateurBackofficeSceneController {
         //
         //
         //
-        
+
         categoryComboBox.setItems(FXCollections.observableArrayList(categorieObjects));
         categoryComboBox.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {

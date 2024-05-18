@@ -16,6 +16,10 @@ public class Seance {
     private Classe classe;
     private Vector<Absence> listAbsence;
 
+    public Seance() {
+
+    }
+
     public Seance(int id, JoursSemaine jour, Time heureDebut, Time heureFin) {
         this.id = id;
         this.jour = jour;

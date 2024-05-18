@@ -8,10 +8,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
+import application.model.CategorieSalle;
 import application.model.Classe;
+import application.model.Cours;
 import application.model.Enseignant;
 import application.model.Horaires;
 import application.model.Salle;
+import application.model.Seance;
 import application.model.TypeCours;
 import application.model.enums.JoursSemaine;
 import application.repositories.CoursRepository;
@@ -25,6 +28,61 @@ public class SeanceService {
             { 14, 0, 16, 0 }, // 2:00 PM - 4:00 PM
             { 16, 0, 18, 0 } // 4:00 PM - 6:00 PM
     };
+
+    public static Seance getSeanceById(int idSeance) {
+        Seance resSeance = new Seance();
+        try {
+            ResultSet result = SeanceRepository.getSeanceById(idSeance);
+            if (result.next()) {
+                // Create and set the Salle object
+                Salle salle = new Salle();
+                salle.setId(result.getInt("salle_id"));
+                salle.setNomSalle(result.getString("salle_nom"));
+                salle.setCapacite(result.getInt("salle_capacite"));
+                CategorieSalle categorieSalle = new CategorieSalle();
+                categorieSalle.setId(result.getInt("categorie_salle_id"));
+                salle.setCategorieSalle(categorieSalle);
+                resSeance.setSalle(salle);
+
+                // Create and set the Cours object
+                Cours cours = new Cours();
+                cours.setId(result.getInt("cours_id"));
+                cours.setNomCours(result.getString("cours_nom"));
+                TypeCours typeCours = new TypeCours();
+                typeCours.setId(result.getInt("typecours_id"));
+                typeCours.setNom(result.getString("typecours_nom"));
+                cours.setTypeCours(typeCours);
+                Enseignant enseignant = new Enseignant();
+                enseignant.setId(result.getInt("enseignant_id"));
+                enseignant.setNom(result.getString("enseignant_nom"));
+                enseignant.setPrenom(result.getString("enseignant_prenom"));
+                enseignant.setSexe(result.getString("enseignant_sexe"));
+                enseignant.setEmail(result.getString("enseignant_email"));
+                enseignant.setTelephone(result.getString("enseignant_telephone"));
+                enseignant.setDateNaissance(result.getDate("enseignant_date_naissance"));
+                enseignant.setPhotoURL(result.getString("enseignant_photo_url"));
+                cours.setEnseignant(enseignant);
+                resSeance.setCours(cours);
+
+                // Create and set the Classe object
+                Classe classe = new Classe();
+                classe.setId(result.getInt("classe_id"));
+                resSeance.setClasse(classe);
+
+                // Set the remaining Seance fields
+                resSeance.setId(result.getInt("seance_id"));
+                String jourString = result.getString("seance_jour");
+                JoursSemaine jourEnum = JoursSemaine.valueOf(jourString.toUpperCase());
+                resSeance.setJour(jourEnum);
+                resSeance.setHeureDebut(result.getTime("seance_heureDebut"));
+                resSeance.setHeureFin(result.getTime("seance_heureFin"));
+            }
+        } catch (SQLException e) {
+            System.out.println("error while getting seance by id : " + idSeance);
+            e.printStackTrace();
+        }
+        return resSeance;
+    }
 
     public static Vector<Horaires> getAvailableHoraires(JoursSemaine jour, Classe classe, Enseignant enseignant) {
         Vector<Horaires> resHoraires = new Vector<>();
@@ -76,6 +134,24 @@ public class SeanceService {
         }
         try {
             SeanceRepository.insertIntoSeance(salle.getId(), jour.name(), horaires.getHeureDebut().toString(),
+                    horaires.getHeureFin().toString(), idCours, classe.getId());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void modifierSeance(Classe classe, TypeCours typeCours, Enseignant enseignant, String coursNom,
+            Horaires horaires, JoursSemaine jour, Salle salle, int idCours, int idSeance) {
+        try {
+            CoursRepository.modifierCours(idCours, typeCours.getId(), coursNom,
+                    enseignant.getId(),
+                    classe.getNiveau().getId());
+        } catch (SQLException e) {
+            System.out.println("Error while updating course information");
+            e.printStackTrace();
+        }
+        try {
+            SeanceRepository.modifierSeance(idSeance, salle.getId(), jour.name(), horaires.getHeureDebut().toString(),
                     horaires.getHeureFin().toString(), idCours, classe.getId());
         } catch (SQLException e) {
             e.printStackTrace();
@@ -206,7 +282,7 @@ public class SeanceService {
                 seance.put("id", String.valueOf(result.getInt(1)));
                 seance.put("nomSalle", String.valueOf(result.getString(2)));
                 seance.put("nomCours", result.getString(3));
-                seance.put("classe", result.getString(4) +" "+result.getString(6));
+                seance.put("classe", result.getString(4) + " " + result.getString(6));
                 seance.put("effectif", String.valueOf(result.getInt(5)));
                 seance.put("enseignantFullName", result.getString(7) + " " + result.getString(8));
                 seance.put("enseignantEmail", result.getString(9));
@@ -214,7 +290,7 @@ public class SeanceService {
                 String heureFin = result.getTime(12).toLocalTime().toString();
                 String horaire = heureDebut.substring(0, 5) + " - " + heureFin.substring(0, 5);
                 seance.put("horaire", horaire);
-                seance.put("enseignantPhotoUrl",result.getString(10));
+                seance.put("enseignantPhotoUrl", result.getString(10));
                 res.add(seance);
             }
         } catch (SQLException e) {
