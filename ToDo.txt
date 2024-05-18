@@ -1,10 +1,10 @@
 Login ✅
     1- Detect Logged in user's role and redirect to the appropriate page (remove the ability to add seances if not admin) ✅
 AccueilPane
-    1- Add "All" option to Filter options
+    1- Add "All" option to Filter options✅
     2- Show yesterday's number none excused absences
 SallePane
-    1- Filter by salle categorie
+    1- Filter by salle categorie ✅
 ClassesPane
     1- Search in Classes
     2- Filter by Classe Niveau

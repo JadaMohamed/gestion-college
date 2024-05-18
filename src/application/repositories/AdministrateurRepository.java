@@ -3,8 +3,6 @@ package application.repositories;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.mysql.jdbc.PreparedStatement;
-
 import application.database.SqlConnection;
 
 public class AdministrateurRepository {

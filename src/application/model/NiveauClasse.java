@@ -5,6 +5,10 @@ public class NiveauClasse {
     private int id;
     private String nom;
 
+    public NiveauClasse(String nom) {
+        this.nom = nom;
+    }
+
     public NiveauClasse() {
 
     }

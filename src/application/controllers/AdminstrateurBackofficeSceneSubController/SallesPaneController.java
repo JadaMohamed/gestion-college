@@ -8,7 +8,6 @@ import application.controllers.AdminstrateurBackofficeSceneController;
 import application.model.CategorieSalle;
 //import application.model.Etudiant;
 import application.model.MaterielSalle;
-//import application.repositories.SallesRepository;
 //import application.services.ClasseService;
 import application.services.SallesService;
 import application.services.SeanceService;
@@ -148,10 +147,15 @@ public void setActiveSalleInformation(Map<String, String> rowData, Text activeSa
     activeSalleLabel.setText(rowData.get("nomSalle"));
     activeSalleNomLabel.setText(rowData.get("nomSalle"));
     activeSalleCapacite.setText(rowData.get("capacite"));
-    //rowData.get("Disponible")
-    activeSalleDisponibilite.setText("Oui");
-    //rowData.get("Occupée")
-    activeSalleCoccupe.setText("Non");
+    // Calcul du nombre d'heures disponibles et occupées par semaine
+    int idSalle = Integer.parseInt(rowData.get("idSalle"));
+    int availableHoursPerWeek = SallesService.getAvailableHoursPerWeek(idSalle);
+    int occupiedHoursPerWeek = SallesService.getOccupiedHoursPerWeek(idSalle);
+    
+    // Affichage du statut de disponibilité de la salle en fonction des heures
+    activeSalleDisponibilite.setText(availableHoursPerWeek > 0 ? "" + availableHoursPerWeek + " h/semaine" : "Non");
+    activeSalleCoccupe.setText(occupiedHoursPerWeek > 0 ? "" + occupiedHoursPerWeek + " h/semaine" : "Non");
+
 
     // Effacer le contenu précédent de l'AnchorPane
     materielSalleAnchorPane.getChildren().clear();
