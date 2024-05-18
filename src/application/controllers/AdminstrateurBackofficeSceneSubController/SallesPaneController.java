@@ -8,7 +8,6 @@ import application.controllers.AdminstrateurBackofficeSceneController;
 import application.model.CategorieSalle;
 //import application.model.Etudiant;
 import application.model.MaterielSalle;
-import application.repositories.SallesRepository;
 //import application.services.ClasseService;
 import application.services.SallesService;
 import application.services.SeanceService;

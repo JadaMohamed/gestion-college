@@ -107,6 +107,8 @@ public class AdminstrateurBackofficeSceneController {
 
     private ObservableList<Map<String, String>> initialDataSalles;
     private ObservableList<Map<String, String>> dataSalles = FXCollections.observableArrayList();
+
+    private NiveauClasse allOption = new NiveauClasse("All");
     //
     //
     //
@@ -622,6 +624,8 @@ public class AdminstrateurBackofficeSceneController {
         if ("vie scolaire".equalsIgnoreCase(role)) {
             affectationButton.setVisible(false);
         }
+
+        niveauObjects.add(0, allOption);
         // activeClasse caches the selected classe informations from classesTables View
         activeClasse = new Classe();
         //
@@ -936,12 +940,17 @@ public class AdminstrateurBackofficeSceneController {
             return;
         }
 
-        // Parcourez toutes les lignes de notre TableView
-        for (Map<String, String> item : initialData) {
-            if (item.get("classe").contains(selectedNiveauClasse.getNom())) {
-                filteredItems.add(item);
+        if (selectedNiveauClasse != null && "All".equals(selectedNiveauClasse.getNom())) {
+            filteredItems.addAll(initialData);
+        } else {
+            // Sinon, filtrez les données en fonction de la sélection
+            for (Map<String, String> item : initialData) {
+                if (item.get("classe").contains(selectedNiveauClasse.getNom())) {
+                    filteredItems.add(item);
+                }
             }
         }
+
         // Mettez à jour le TableView avec les éléments filtrés
         System.out.println(filteredItems);
         coursEncoursTableView.setItems(filteredItems);
