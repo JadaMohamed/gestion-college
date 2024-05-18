@@ -1,34 +1,23 @@
 package application.controllers.AdminstrateurBackofficeSceneSubController;
 
-//import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 import java.util.Vector;
 import application.controllers.AdminstrateurBackofficeSceneController;
 import application.model.CategorieSalle;
-//import application.model.Etudiant;
 import application.model.MaterielSalle;
-//import application.services.ClasseService;
 import application.services.SallesService;
 import application.services.SeanceService;
-//import application.utilities.CustomDeleteEtudiantButton;
-//import application.utilities.CustomEditEtudiantButton;
 import application.utilities.CustomSalleCell;
 import application.utilities.CustomStatusCell;
-//import application.utilities.EtudiantContactCell;
-//import application.utilities.EtudiantContactParentsCell;
-//import application.utilities.EtudiantNomPhotoCell;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-//import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
-//import java.util.function.Predicate;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-// import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -46,35 +35,9 @@ public class SallesPaneController {
         ComboBox<CategorieSalle> categoryComboBox = new ComboBox<>();
     public void initialize() {
         updateSallesOccupesLabels();
-        // search("ll");
+     
     }
-        // searchFieldSalle.textProperty().addListener((observable, oldValue, newValue) -> {
-        //     // Appelez une méthode de recherche à chaque fois que le texte change
-        //     search(newValue);});
-        // categoryComboBox.setPromptText("Select Category");
-
-        // // Remplir le ComboBox avec les catégories de salle disponibles
-        // categoryComboBox.getItems().addAll(
-        // new CategorieSalle(1, "LABORATOIRE"),
-        // new CategorieSalle(2, "CLASSE"),
-        // new CategorieSalle(3, "SALLE_DE_SPORTS")
-//);
-    
-    // Ajouter un gestionnaire d'événements pour le ComboBox
-    // categoryComboBox.setOnAction(event -> {
-    //     CategorieSalle selectedCategory = categoryComboBox.getValue(); // Obtenir la catégorie de salle sélectionnée
-    
-    //     // Filtrer les données des salles en fonction de la catégorie de salle sélectionnée
-    //     Predicate<Map<String, String>> sallePredicate = salle -> {
-    //         String salleCategory = salle.get("categorieSalle"); // Remplacez "categorieSalle" par le nom de la colonne correspondant à la catégorie de salle dans vos données
-    //         return salleCategory.equals(selectedCategory.toString()); // Vérifiez si la catégorie de salle de la salle correspond à la catégorie sélectionnée
-    //     };
-    
-    //     // Appliquer le prédicat de filtre et afficher les résultats dans la table des salles
-    //     ObservableList<Map<String, String>> filteredData = data.filtered(sallePredicate);
-    //     sallesTableView.setItems(filteredData);
-    // });
-    // }
+      
     public void search(String keyword,TableView<Map<String, String>> sallesTableView) {
         // Vérifiez si le champ de recherche est vide
         if (keyword.isEmpty()) {
@@ -82,8 +45,6 @@ public class SallesPaneController {
             sallesTableView.setItems(data);
             return;
         }
-        
-        System.out.println("it's me");
 
         // TableView<Map<String, String>> tableView = sallesTableView; // assuming sallesTableView is accessible
         if (sallesTableView == null) {
@@ -103,28 +64,8 @@ public class SallesPaneController {
         }
 
         sallesTableView.setItems(filteredItems);
-
-        System.out.println("it's me 3");
         return;
        
-        // Créez un prédicat pour filtrer les données
-        // Predicate<Map<String, String>> predicate = salle -> {
-        //     System.out.println("it's me 2");
-        //     String nomSalle = salle.get("nomSalle").toLowerCase(); 
-        //     System.out.println(nomSalle);
-        //     return nomSalle.contains(keyword.toLowerCase()); // Vérifiez si le nom de la salle contient le mot-clé de recherche
-        // };
-
-    //    System.out.println(predicate);
-        // for (Map<String,String> predicate : data) {
-        //     System.out.println("it's me 3");
-        // // }
-        // return;
-    
-        // Appliquez le prédicat pour filtrer les données
-        // ObservableList<Map<String, String>> filteredData = data.filtered(predicate);
-        // // Mettez à jour le TableView avec les données filtrées
-        // sallesTableView.setItems(filteredData);
      }
      private String toCamelCase(String str) {
         String[] parts = str.split("\\s+");
@@ -197,14 +138,10 @@ public void setActiveSalleInformation(Map<String, String> rowData, Text activeSa
         builder.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
     }
 
-    //materielSalleLabel.setText(builder.toString());
+    
 }
 
-
-    
-
 public Vector<MaterielSalle> showActiveSalleMaterials(int salleId) {
-    System.out.println("hey me2");
     // Appel de la méthode du service pour récupérer les matériaux de la salle active
     Vector<MaterielSalle> materials = SallesService.getMaterialBySalleId(salleId);
 

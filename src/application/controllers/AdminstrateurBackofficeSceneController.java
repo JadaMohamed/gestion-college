@@ -1,6 +1,4 @@
 package application.controllers;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -423,38 +421,7 @@ public class AdminstrateurBackofficeSceneController {
         materielSalleAnchorPane.getChildren().add(vbox);
     }
 
-    // ButtonClickHandler<Map<String, String>> voirSalleClickHandler2 = rowData -> {
-    // System.out.println("hey");
-    // System.out.println(activeSalle.getId());
-    // // set activeSalle data
-    // activeSalle.setId(Integer.parseInt(rowData.get("salleId")));
-    // activeSalle.setNomSalle(rowData.get("Sallenom"));
-    // // set nomSalle's breadcrumb label in activeSallePane
-    // activeSalleLabel.setText(rowData.get("Sallenom"));
-
-    // // set activeSalle's informations
-    // sallesPaneController.setActiveSalleInformation(rowData, activeSalleLabel,
-    // activeSalleNomLabel, activeSalleCapacite,
-    // activeSalleDisponibilite, activeSalleCoccupe, activeSalleStatutIcon,
-    // materielSalleLabel,materielSalleListView);
-    // // Afficher les matériaux de la salle active
-    // sallesPaneController.showActiveSalleMaterials(activeSalle.getId());
-    // };
-
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
+   
     // Absence
     @FXML
     private Pane absencesPane;
@@ -643,9 +610,7 @@ public class AdminstrateurBackofficeSceneController {
         niveauObjects.add(0, allOption);
         // activeClasse caches the selected classe informations from classesTables View
         activeClasse = new Classe();
-        //
-       
-      
+        // 
         // to identify the logged in administrator
         this.loggedInAdminId = adminId;
         categorieObjects = categories.stream()
@@ -955,13 +920,6 @@ public class AdminstrateurBackofficeSceneController {
         // Set the concatenated string to the tempText
         tempText1.setText(builder.toString());
         salleEmploiTableView.setItems(data);
-
-        // set activeSalle's informations
-        // sallesPaneController.setActiveSalleInformation(rowData, activeSalleLabel,
-        // activeSalleNomLabel, activeSalleCapacite,
-        // activeSalleDisponibilite, activeSalleCoccupe, activeSalleStatutIcon,
-        // materielSalleLabel);
-        // Afficher les matériaux de la salle active
     };
 
     private void filterTable(NiveauClasse selectedNiveauClasse) {
