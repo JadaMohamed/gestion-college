@@ -5,6 +5,7 @@ import java.util.Map;
 
 import application.controllers.AdminstrateurBackofficeSceneController;
 import application.controllers.AjouterEnseignantSceneSceneController;
+import application.controllers.ConsulterSeanceSceneController;
 import application.controllers.ModifierEnseignantSceneController;
 import application.repositories.EnseignantRepository;
 import application.services.EnseignantService;
@@ -15,10 +16,7 @@ import application.utilities.CustomEditEnseignantButton;
 import application.utilities.CustomEnseignantCoursCell;
 import application.utilities.CustomStatusCell;
 import application.utilities.CustomVoirEnseignantButton;
-import application.utilities.ET0810;
-import application.utilities.ET1012;
-import application.utilities.ET1416;
-import application.utilities.ET1618;
+import application.utilities.EmploiSubjectCard;
 import application.utilities.PushAlert;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -158,6 +156,37 @@ public class EnsignantsPaneController {
                 mainController.getProfesseursTableView().setItems(data);
         }
 
+        ButtonClickHandler<Map<String, String>> editSeanceClickHandler = rowData -> {
+
+                Stage currentStage = (Stage) mainController.getScene().getWindow();
+                try {
+                        // Load the FXML file for your modal form
+                        FXMLLoader loader = new FXMLLoader(
+                                        getClass().getResource(
+                                                        "../../../resources/interfaces/ConsulterSeanceScene.fxml"));
+                        Parent root = loader.load();
+
+                        ConsulterSeanceSceneController controller = loader.getController();
+                        controller.initialize(currentStage, Integer.parseInt(rowData.get("activeSeanceId")));
+                        // Create a new stage
+                        Stage stage = new Stage();
+                        stage.initModality(Modality.APPLICATION_MODAL);
+                        stage.setTitle("Modifier étudiant");
+                        stage.setScene(new Scene(root));
+                        // Get screen dimensions
+                        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+
+                        // Center the stage on the screen
+                        stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
+                        stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
+                        // Show the stage
+                        stage.showAndWait();
+                } catch (IOException ex) {
+                        ex.printStackTrace();
+                }
+                mainController.fillListEtudiantsTableView("");
+        };
+
         public void fillEmploisDeTempsTableView(String idEnseignant) {
                 ObservableList<Map<String, String>> data = FXCollections
                                 .observableArrayList();
@@ -168,19 +197,23 @@ public class EnsignantsPaneController {
                 // 8-10
                 mainController.getEnseignantEmploi8_10Column()
                                 .setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
-                mainController.getEnseignantEmploi8_10Column().setCellFactory(new ET0810());
+                mainController.getEnseignantEmploi8_10Column()
+                                .setCellFactory(new EmploiSubjectCard("8_10", editSeanceClickHandler));
                 // 10-12
                 mainController.getEnseignantEmploi10_12Column()
                                 .setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
-                mainController.getEnseignantEmploi10_12Column().setCellFactory(new ET1012());
+                mainController.getEnseignantEmploi10_12Column()
+                                .setCellFactory(new EmploiSubjectCard("10_12", editSeanceClickHandler));
                 // 14-16
                 mainController.getEnseignantEmploi14_16Column()
                                 .setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
-                mainController.getEnseignantEmploi14_16Column().setCellFactory(new ET1416());
+                mainController.getEnseignantEmploi14_16Column()
+                                .setCellFactory(new EmploiSubjectCard("14_16", editSeanceClickHandler));
                 // 16-18
                 mainController.getEnseignantEmploi16_18Column()
                                 .setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
-                mainController.getEnseignantEmploi16_18Column().setCellFactory(new ET1618());
+                mainController.getEnseignantEmploi16_18Column()
+                                .setCellFactory(new EmploiSubjectCard("16_18", editSeanceClickHandler));
                 // Set the concatenated string to the tempText
                 mainController.getEnseignantEmploiTableView().setItems(data);
         }
