@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 import application.database.dbClient;
+import application.model.Enseignant;
 import application.utilities.DateUtil;
 
 public class EnseignantRepository {
@@ -13,6 +14,46 @@ public class EnseignantRepository {
         Vector<Object> parameters = new Vector<Object>();
         String query = "SELECT * FROM enseignant";
         return dbClient.executeCommand(true, query, parameters);
+    }
+
+    public static ResultSet getEnseignantById(int idEnseignant) {
+        Vector<Object> parameters = new Vector<Object>();
+        String query = "SELECT * FROM enseignant WHERE id = ?";
+        parameters.add(idEnseignant);
+        return dbClient.executeCommand(true, query, parameters);
+    }
+
+    public static void modifierEnseignant(Enseignant enseignant) {
+        Vector<Object> parameters = new Vector<>();
+        String query = "UPDATE enseignant SET nom = ?, prenom = ?, sexe = ?, email = ?, telephone = ?, dateNaissance = ? WHERE id =?";
+        parameters.add(enseignant.getNom());
+        parameters.add(enseignant.getPrenom());
+        parameters.add(enseignant.getSexe());
+        parameters.add(enseignant.getEmail());
+        parameters.add(enseignant.getTelephone());
+        parameters.add(enseignant.getDateNaissance().toString());
+        parameters.add(enseignant.getId());
+        dbClient.executeCommand(false, query, parameters);
+    }
+
+    public static void ajouterEnseignant(Enseignant enseignant) {
+        Vector<Object> parameters = new Vector<>();
+        String query = "INSERT INTO enseignant (id, nom, prenom, sexe, email, telephone, dateNaissance) "
+                + " VALUES (NULL, ?, ?, ?, ?, ?, ?);";
+        parameters.add(enseignant.getNom());
+        parameters.add(enseignant.getPrenom());
+        parameters.add(enseignant.getSexe());
+        parameters.add(enseignant.getEmail());
+        parameters.add(enseignant.getTelephone());
+        parameters.add(enseignant.getDateNaissance().toString());
+        dbClient.executeCommand(false, query, parameters);
+    }
+
+    public static void supprimerEnseignant(int idEnseignant) {
+        Vector<Object> parameters = new Vector<>();
+        String query = "DELETE FROM enseignant WHERE enseignant.id = ?";
+        parameters.add(idEnseignant);
+        dbClient.executeCommand(false, query, parameters);
     }
 
     public static ResultSet getAllEnseignantsWithEngoingSeances() {

@@ -1,5 +1,5 @@
-Login 
-    1- Detect Logged in user's role and redirect to the appropriate page (remove the ability to add seances if not admin) 
+Login ✅
+    1- Detect Logged in user's role and redirect to the appropriate page (remove the ability to add seances if not admin) ✅
 AccueilPane
     1- Add "All" option to Filter options
     2- Show yesterday's number none excused absences
@@ -11,7 +11,7 @@ ClassesPane
 ActiveClassePane
     1- Show student's Abseneces
     2- Delete OR Edit Seance
-AffectationPane
+AffectationPane ✅
     1- Add possibility to add new typeCours if not exist ✅
 
 
@@ -21,7 +21,7 @@ AffectationPane
 -----------------
 Might Have new Pane for Professors managment
     1- Show all Professors ✅
-    2- Add new Professor
-    3- Edit Professor
-    4- Delete Professor
+    2- Add new Professor ✅
+    3- Edit Professor ✅
+    4- Delete Professor ✅
     5- Show Professor's Emplois de temps ✅

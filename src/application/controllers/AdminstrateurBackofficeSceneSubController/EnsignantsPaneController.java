@@ -1,8 +1,12 @@
 package application.controllers.AdminstrateurBackofficeSceneSubController;
 
+import java.io.IOException;
 import java.util.Map;
 
 import application.controllers.AdminstrateurBackofficeSceneController;
+import application.controllers.AjouterEnseignantSceneSceneController;
+import application.controllers.ModifierEnseignantSceneController;
+import application.repositories.EnseignantRepository;
 import application.services.EnseignantService;
 import application.utilities.ButtonClickHandler;
 import application.utilities.CustomCellFactory;
@@ -15,10 +19,21 @@ import application.utilities.ET0810;
 import application.utilities.ET1012;
 import application.utilities.ET1416;
 import application.utilities.ET1618;
+import application.utilities.PushAlert;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
+import javafx.stage.Modality;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
 
 public class EnsignantsPaneController {
         private AdminstrateurBackofficeSceneController mainController;
@@ -33,10 +48,61 @@ public class EnsignantsPaneController {
         }
 
         ButtonClickHandler<Map<String, String>> deleteEnseignantClickHandler = rowData -> {
+                Stage currentStage = (Stage) mainController.getScene().getWindow();
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation Dialog");
+                alert.setHeaderText("Confirm Deletion");
+                alert.setContentText("Les séances attribuées à cet enseignant seront également supprimées");
+
+                // Show and wait for the user's response
+                alert.initOwner(currentStage);
+                alert.showAndWait().ifPresent(response -> {
+                        if (response == ButtonType.OK) {
+                                // User clicked OK, perform delete action
+                                EnseignantRepository.supprimerEnseignant(Integer.parseInt(rowData.get("enseignantId")));
+
+                                PushAlert.showAlert("Succès",
+                                                "L'enseignant a été supprimé avec succès",
+                                                AlertType.INFORMATION,
+                                                currentStage);
+                                fillProfesseursTableView();
+                        }
+                });
+
         };
 
         ButtonClickHandler<Map<String, String>> editEnseignantClickHandler = rowData -> {
+
+                Stage currentStage = (Stage) mainController.getScene().getWindow();
+
+                try {
+                        // Load the FXML file for your modal form
+                        FXMLLoader loader = new FXMLLoader(getClass()
+                                        .getResource("../../../resources/interfaces/ModifierEnseignantScene.fxml"));
+                        Parent root = loader.load();
+
+                        ModifierEnseignantSceneController controller = loader.getController();
+                        controller.initialize(currentStage, Integer.parseInt(rowData.get("enseignantId")));
+                        // Create a new stage
+                        Stage stage = new Stage();
+                        stage.initModality(Modality.APPLICATION_MODAL);
+                        stage.setTitle("Modifier Enseignant");
+                        stage.setScene(new Scene(root));
+                        // Get screen dimensions
+                        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+
+                        // Center the stage on the screen
+                        stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
+                        stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
+                        // Show the stage
+                        stage.showAndWait();
+                } catch (IOException ex) {
+                        ex.printStackTrace();
+                }
+
+                fillProfesseursTableView();
         };
+
         ButtonClickHandler<Map<String, String>> voirEnseignantClickHandler = rowData -> {
                 mainController.getActiveEnseignantNomText().setText(rowData.get("enseignantFullName"));
                 mainController.getActiveEnseignantNomLabel().setText(rowData.get("enseignantFullName"));
@@ -117,5 +183,33 @@ public class EnsignantsPaneController {
                 mainController.getEnseignantEmploi16_18Column().setCellFactory(new ET1618());
                 // Set the concatenated string to the tempText
                 mainController.getEnseignantEmploiTableView().setItems(data);
+        }
+
+        public void ajouterEnseignant() {
+                try {
+                        // Load the FXML file for your modal form
+                        FXMLLoader loader = new FXMLLoader(
+                                        getClass().getResource(
+                                                        "../../../resources/interfaces/AjouterEnseignantScene.fxml"));
+                        Parent root = loader.load();
+
+                        AjouterEnseignantSceneSceneController controller = loader.getController();
+                        controller.initialize((Stage) mainController.getScene().getWindow());
+                        // Create a new stage
+                        Stage stage = new Stage();
+                        stage.initModality(Modality.APPLICATION_MODAL);
+                        stage.setTitle("Ajouter étudiant");
+                        stage.setScene(new Scene(root));
+                        // Get screen dimensions
+                        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+
+                        // Center the stage on the screen
+                        stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
+                        stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
+                        // Show the stage
+                        stage.showAndWait();
+                } catch (IOException ex) {
+                        ex.printStackTrace();
+                }
         }
 }
