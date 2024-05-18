@@ -14,9 +14,8 @@ import application.model.Horaires;
 import application.model.MaterielSalle;
 import application.model.Salle;
 import application.model.enums.JoursSemaine;
-import application.repositories.CategorieSalleRepository;
 import application.repositories.SallesRepository;
-import application.repositories.SeanceRepository;
+
 
 public class SallesService {
 

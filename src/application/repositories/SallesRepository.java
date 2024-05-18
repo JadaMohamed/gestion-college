@@ -2,11 +2,7 @@ package application.repositories;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.temporal.TemporalAdjusters;
 import java.util.Vector;
-import java.sql.Date;
 import application.database.dbClient;
 import application.model.Horaires;
 import application.model.enums.JoursSemaine;
