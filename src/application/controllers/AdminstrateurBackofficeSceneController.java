@@ -278,7 +278,6 @@ public class AdminstrateurBackofficeSceneController {
     private List<CategorieSalle> categorieObjects = categories.stream()
             .filter(categorieSalle -> categorieNames.contains(categorieSalle.getNom()))
             .collect(Collectors.toList());
-    private List<CategorieSalle> categorieObjects;
 
     //
     //
