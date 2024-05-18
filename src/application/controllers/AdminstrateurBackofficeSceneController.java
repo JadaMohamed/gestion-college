@@ -277,7 +277,7 @@ public class AdminstrateurBackofficeSceneController {
     private List<CategorieSalle> categorieObjects = categories.stream()
             .filter(categorieSalle -> categorieNames.contains(categorieSalle.getNom()))
             .collect(Collectors.toList());
-
+            private CategorieSalle allOptionSalle = new CategorieSalle("All");
     //
     //
     //
@@ -616,7 +616,7 @@ public class AdminstrateurBackofficeSceneController {
         categorieObjects = categories.stream()
                 .filter(categorieSalle -> categorieNames.contains(categorieSalle.getNom()))
                 .collect(Collectors.toList());
-
+                categorieObjects.add(0, allOptionSalle);
         initialData = FXCollections.observableArrayList(SeanceService.getSeancesEnCoursBis());
         coursEncoursTableView.setItems(data);
 
@@ -880,10 +880,6 @@ public class AdminstrateurBackofficeSceneController {
     ButtonClickHandler<Map<String, String>> clickHandler2 = rowData -> {
 
         System.out.println(rowData.get("idSalle"));
-        // activeSalle.setId(Integer.parseInt(rowData.get("idSalle")));
-        // activeSalle.setNomSalle(rowData.get("nomSalle"));
-        // // set nomSalle's breadcrumb label in activeSallePane
-        // activeSalleLabel.setText(rowData.get("nomSalle"));
 
         sallesPaneController.setActiveSalleInformation(rowData, activeSalleLabel, activeSalleNomLabel,
                 activeSalleCapacite,
@@ -952,6 +948,9 @@ public class AdminstrateurBackofficeSceneController {
             System.out.println("initialDataSalles is null or empty");
             return;
         }
+        if (selectedCategorieSalle != null && "All".equals(selectedCategorieSalle.getNom())) {
+            filteredItems.addAll(initialDataSalles);
+        } 
 
         Map<String, String> salleToCategorieMap = new HashMap<>();
         salleToCategorieMap.put("Salle A1", "Classe");
