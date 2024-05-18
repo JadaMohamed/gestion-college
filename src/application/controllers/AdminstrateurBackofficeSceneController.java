@@ -1,5 +1,6 @@
 package application.controllers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -268,8 +269,9 @@ public class AdminstrateurBackofficeSceneController {
     private ComboBox<CategorieSalle> categoryComboBox ;
     private List<String> categorieNames = SallesService.getAllCategorieNames();
     private List<CategorieSalle> categories = SallesService.getAllCategories();
-    private List<CategorieSalle> categorieObjects;
-
+    private List<CategorieSalle> categorieObjects = new ArrayList<>();
+    private CategorieSalle allOptionSalle = new CategorieSalle("All");
+    
 
     //
     //
@@ -629,6 +631,8 @@ public class AdminstrateurBackofficeSceneController {
         // activeClasse caches the selected classe informations from classesTables View
         activeClasse = new Classe();
         //
+       
+      
         // to identify the logged in administrator
         this.loggedInAdminId = adminId;
         categorieObjects = categories.stream()
@@ -637,6 +641,7 @@ public class AdminstrateurBackofficeSceneController {
         initialData = FXCollections.observableArrayList(SeanceService.getSeancesEnCoursBis());
         coursEncoursTableView.setItems(data);
         //
+        categorieObjects.add(0, allOptionSalle);
         // to show loacl date at the header of the dashboard
         localDateTimeLabelAccueilPane.setText(FormattedLocalDateTime.getFormattedDateTime());
         //
@@ -727,13 +732,16 @@ public class AdminstrateurBackofficeSceneController {
         sallesActionColumn.setCellFactory(new CustomSalleCellButton(activeSallePane, clickHandler2));
         //
         //
+         
+       
+
+
         categoryComboBox.setItems(FXCollections.observableArrayList(categorieObjects));
         categoryComboBox.setOnAction(e -> filterTable1(categoryComboBox.getValue()));
-
         initialDataSalles = FXCollections.observableArrayList(SallesService.getAllSallesWithCurrentSeances());
         dataSalles.addAll(initialDataSalles);
         sallesTableView.setItems(dataSalles);
-        //
+        // //
         //
         // activeClassePaneController usage
         searchTextFieldAccueilPane.textProperty().addListener(new ChangeListener<String>() {
@@ -958,48 +966,102 @@ public class AdminstrateurBackofficeSceneController {
 
     private void filterTable1(CategorieSalle selectedCategorieSalle) {
         ObservableList<Map<String, String>> filteredItems = FXCollections.observableArrayList();
-
+    
         if (initialDataSalles == null || initialDataSalles.isEmpty()) {
             System.out.println("initialDataSalles is null or empty");
             return;
         }
-
-        Map<String, String> salleToCategorieMap = new HashMap<>();
-    salleToCategorieMap.put("Salle A1", "Classe");
-    salleToCategorieMap.put("Salle A2", "Classe");
-    salleToCategorieMap.put("Salle B1", "Classe");
-    salleToCategorieMap.put("Salle B2", "Classe");
-    salleToCategorieMap.put("Salle C1", "Classe");
-    salleToCategorieMap.put("Salle C2", "Classe");
-    salleToCategorieMap.put("Salle D1", "Classe");
-    salleToCategorieMap.put("Salle D2", "Classe");
-    salleToCategorieMap.put("Salle E1", "Classe");
-    salleToCategorieMap.put("Salle E2", "Classe");
-    salleToCategorieMap.put("Salle F1", "Classe");
-    salleToCategorieMap.put("Salle F2", "Classe");
-    salleToCategorieMap.put("Salle G1", "Classe");
-    salleToCategorieMap.put("Salle G2", "Classe");
-    salleToCategorieMap.put("Salle H1", "Classe");
-    salleToCategorieMap.put("Salle H2", "Classe");
-    salleToCategorieMap.put("Salle H3", "Classe");
-    salleToCategorieMap.put("Laboratoire de biologie", "Laboratoire");
-    salleToCategorieMap.put("Laboratoire de chimie", "Laboratoire");
-    salleToCategorieMap.put("Terrain de volleyball", "Salle de sports");
-    salleToCategorieMap.put("Terrain de Basketball", "Salle de sports");
-    salleToCategorieMap.put("Terrain de Football", "Salle de sports");
-
-    for (Map<String, String> item : initialDataSalles) {
-        String nomSalle = item.get("nomSalle");
-        System.out.println("nomSalle: " + nomSalle); // Debugging output
-        String categorieSalle = salleToCategorieMap.get(nomSalle);
-        System.out.println("categorieSalle: " + categorieSalle); // Debugging output
-        if (categorieSalle != null && categorieSalle.equals(selectedCategorieSalle.getNom())) {
-            filteredItems.add(item);
+        
+        // Vérifiez si "All" est sélectionné, et si c'est le cas, ajoutez toutes les salles sans filtrage
+        if (selectedCategorieSalle != null && "All".equals(selectedCategorieSalle.getNom())) {
+            filteredItems.addAll(initialDataSalles);
+        } else {
+            // Sinon, filtrez les données en fonction de la catégorie sélectionnée
+            Map<String, String> salleToCategorieMap = new HashMap<>();
+            salleToCategorieMap.put("Salle A1", "Classe");
+            salleToCategorieMap.put("Salle A2", "Classe");
+            salleToCategorieMap.put("Salle B1", "Classe");
+            salleToCategorieMap.put("Salle B2", "Classe");
+            salleToCategorieMap.put("Salle C1", "Classe");
+            salleToCategorieMap.put("Salle C2", "Classe");
+            salleToCategorieMap.put("Salle D1", "Classe");
+            salleToCategorieMap.put("Salle D2", "Classe");
+            salleToCategorieMap.put("Salle E1", "Classe");
+            salleToCategorieMap.put("Salle E2", "Classe");
+            salleToCategorieMap.put("Salle F1", "Classe");
+            salleToCategorieMap.put("Salle F2", "Classe");
+            salleToCategorieMap.put("Salle G1", "Classe");
+            salleToCategorieMap.put("Salle G2", "Classe");
+            salleToCategorieMap.put("Salle H1", "Classe");
+            salleToCategorieMap.put("Salle H2", "Classe");
+            salleToCategorieMap.put("Salle H3", "Classe");
+            salleToCategorieMap.put("Laboratoire de biologie", "Laboratoire");
+            salleToCategorieMap.put("Laboratoire de chimie", "Laboratoire");
+            salleToCategorieMap.put("Terrain de volleyball", "Salle de sports");
+            salleToCategorieMap.put("Terrain de Basketball", "Salle de sports");
+            salleToCategorieMap.put("Terrain de Football", "Salle de sports");
+            
+            for (Map<String, String> item : initialDataSalles) {
+                String nomSalle = item.get("nomSalle");
+                String categorieSalle = salleToCategorieMap.get(nomSalle);
+                if (categorieSalle != null && categorieSalle.equals(selectedCategorieSalle.getNom())) {
+                    filteredItems.add(item);
+                }
+            }
         }
+        
+        System.out.println(filteredItems);
+        sallesTableView.setItems(filteredItems);
     }
-    System.out.println(filteredItems);
-    sallesTableView.setItems(filteredItems);
-}
+    
+//     private void filterTable1(CategorieSalle selectedCategorieSalle) {
+//         ObservableList<Map<String, String>> filteredItems = FXCollections.observableArrayList();
+
+//         if (initialDataSalles == null || initialDataSalles.isEmpty()) {
+//             System.out.println("initialDataSalles is null or empty");
+//             return;
+//         }
+//         if (selectedCategorieSalle != null && "All".equals(selectedCategorieSalle.getNom())) {
+//             filteredItems.addAll(initialData);
+//         } 
+        
+
+//         Map<String, String> salleToCategorieMap = new HashMap<>();
+//     salleToCategorieMap.put("Salle A1", "Classe");
+//     salleToCategorieMap.put("Salle A2", "Classe");
+//     salleToCategorieMap.put("Salle B1", "Classe");
+//     salleToCategorieMap.put("Salle B2", "Classe");
+//     salleToCategorieMap.put("Salle C1", "Classe");
+//     salleToCategorieMap.put("Salle C2", "Classe");
+//     salleToCategorieMap.put("Salle D1", "Classe");
+//     salleToCategorieMap.put("Salle D2", "Classe");
+//     salleToCategorieMap.put("Salle E1", "Classe");
+//     salleToCategorieMap.put("Salle E2", "Classe");
+//     salleToCategorieMap.put("Salle F1", "Classe");
+//     salleToCategorieMap.put("Salle F2", "Classe");
+//     salleToCategorieMap.put("Salle G1", "Classe");
+//     salleToCategorieMap.put("Salle G2", "Classe");
+//     salleToCategorieMap.put("Salle H1", "Classe");
+//     salleToCategorieMap.put("Salle H2", "Classe");
+//     salleToCategorieMap.put("Salle H3", "Classe");
+//     salleToCategorieMap.put("Laboratoire de biologie", "Laboratoire");
+//     salleToCategorieMap.put("Laboratoire de chimie", "Laboratoire");
+//     salleToCategorieMap.put("Terrain de volleyball", "Salle de sports");
+//     salleToCategorieMap.put("Terrain de Basketball", "Salle de sports");
+//     salleToCategorieMap.put("Terrain de Football", "Salle de sports");
+
+//     for (Map<String, String> item : initialDataSalles) {
+//         String nomSalle = item.get("nomSalle");
+//         System.out.println("nomSalle: " + nomSalle); // Debugging output
+//         String categorieSalle = salleToCategorieMap.get(nomSalle);
+//         System.out.println("categorieSalle: " + categorieSalle); // Debugging output
+//         if (categorieSalle != null && categorieSalle.equals(selectedCategorieSalle.getNom())) {
+//             filteredItems.add(item);
+//         }
+//     }
+//     System.out.println(filteredItems);
+//     sallesTableView.setItems(filteredItems);
+// }
 
     public void setSallesDisponiblesText(String text) {
         SallesDisponibles.setText(text);
