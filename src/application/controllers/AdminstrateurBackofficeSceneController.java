@@ -1,5 +1,6 @@
 package application.controllers;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -103,6 +104,9 @@ public class AdminstrateurBackofficeSceneController {
             .collect(Collectors.toList());
     private ObservableList<Map<String, String>> initialData;
     private ObservableList<Map<String, String>> data = FXCollections.observableArrayList();
+
+    private ObservableList<Map<String, String>> initialDataSalles;
+    private ObservableList<Map<String, String>> dataSalles = FXCollections.observableArrayList();
     //
     //
     //
@@ -262,10 +266,8 @@ public class AdminstrateurBackofficeSceneController {
     private ComboBox<CategorieSalle> categoryComboBox ;
     private List<String> categorieNames = SallesService.getAllCategorieNames();
     private List<CategorieSalle> categories = SallesService.getAllCategories();
-    private List<CategorieSalle> categorieObjects = categories.stream()
-            .filter(categorieSalle -> categorieNames.contains(categorieSalle.getNom()))
-            .collect(Collectors.toList());
- 
+    private List<CategorieSalle> categorieObjects;
+
 
     //
     //
@@ -625,11 +627,10 @@ public class AdminstrateurBackofficeSceneController {
         //
         // to identify the logged in administrator
         this.loggedInAdminId = adminId;
-        categoryComboBox = new ComboBox<>();
+        categorieObjects = categories.stream()
+            .filter(categorieSalle -> categorieNames.contains(categorieSalle.getNom()))
+            .collect(Collectors.toList());
         initialData = FXCollections.observableArrayList(SeanceService.getSeancesEnCoursBis());
-        coursEncoursTableView.setItems(data);
-
-        initialData = FXCollections.observableArrayList(SallesService.getAllSallesWithCurrentSeances());
         coursEncoursTableView.setItems(data);
         //
         // to show loacl date at the header of the dashboard
@@ -722,19 +723,12 @@ public class AdminstrateurBackofficeSceneController {
         sallesActionColumn.setCellFactory(new CustomSalleCellButton(activeSallePane, clickHandler2));
         //
         //
-        //
-        
         categoryComboBox.setItems(FXCollections.observableArrayList(categorieObjects));
-        categoryComboBox.getSelectionModel().selectedItemProperty()
-                .addListener((observable, oldValue, newValue) -> {
-                    if (newValue != null) {
-                        System.out.println("hey");
-                        filterTable1(newValue);
-                    } else {
-                        // Si aucun niveau n'est sélectionné, affichez toutes les données
-                        sallesTableView.setItems(initialData);
-                    }
-                });
+        categoryComboBox.setOnAction(e -> filterTable1(categoryComboBox.getValue()));
+
+        initialDataSalles = FXCollections.observableArrayList(SallesService.getAllSallesWithCurrentSeances());
+        dataSalles.addAll(initialDataSalles);
+        sallesTableView.setItems(dataSalles);
         //
         //
         // activeClassePaneController usage
@@ -956,22 +950,47 @@ public class AdminstrateurBackofficeSceneController {
     private void filterTable1(CategorieSalle selectedCategorieSalle) {
         ObservableList<Map<String, String>> filteredItems = FXCollections.observableArrayList();
 
-        // Vérifiez si initialData est null ou vide
-        if (initialData == null || initialData.isEmpty()) {
-            System.out.println("initialData is null or empty");
+        if (initialDataSalles == null || initialDataSalles.isEmpty()) {
+            System.out.println("initialDataSalles is null or empty");
             return;
         }
 
-        // Parcourez toutes les lignes de notre TableView
-        for (Map<String, String> item : initialData) {
-            if (item.get("salle").contains(selectedCategorieSalle.getNom())) {
-                filteredItems.add(item);
-            }
+        Map<String, String> salleToCategorieMap = new HashMap<>();
+    salleToCategorieMap.put("Salle A1", "Classe");
+    salleToCategorieMap.put("Salle A2", "Classe");
+    salleToCategorieMap.put("Salle B1", "Classe");
+    salleToCategorieMap.put("Salle B2", "Classe");
+    salleToCategorieMap.put("Salle C1", "Classe");
+    salleToCategorieMap.put("Salle C2", "Classe");
+    salleToCategorieMap.put("Salle D1", "Classe");
+    salleToCategorieMap.put("Salle D2", "Classe");
+    salleToCategorieMap.put("Salle E1", "Classe");
+    salleToCategorieMap.put("Salle E2", "Classe");
+    salleToCategorieMap.put("Salle F1", "Classe");
+    salleToCategorieMap.put("Salle F2", "Classe");
+    salleToCategorieMap.put("Salle G1", "Classe");
+    salleToCategorieMap.put("Salle G2", "Classe");
+    salleToCategorieMap.put("Salle H1", "Classe");
+    salleToCategorieMap.put("Salle H2", "Classe");
+    salleToCategorieMap.put("Salle H3", "Classe");
+    salleToCategorieMap.put("Laboratoire de biologie", "Laboratoire");
+    salleToCategorieMap.put("Laboratoire de chimie", "Laboratoire");
+    salleToCategorieMap.put("Terrain de volleyball", "Salle de sports");
+    salleToCategorieMap.put("Terrain de Basketball", "Salle de sports");
+    salleToCategorieMap.put("Terrain de Football", "Salle de sports");
+
+    for (Map<String, String> item : initialDataSalles) {
+        String nomSalle = item.get("nomSalle");
+        System.out.println("nomSalle: " + nomSalle); // Debugging output
+        String categorieSalle = salleToCategorieMap.get(nomSalle);
+        System.out.println("categorieSalle: " + categorieSalle); // Debugging output
+        if (categorieSalle != null && categorieSalle.equals(selectedCategorieSalle.getNom())) {
+            filteredItems.add(item);
         }
-        // Mettez à jour le TableView avec les éléments filtrés
-        System.out.println(filteredItems);
-        sallesTableView.setItems(filteredItems);
     }
+    System.out.println(filteredItems);
+    sallesTableView.setItems(filteredItems);
+}
 
     public void setSallesDisponiblesText(String text) {
         SallesDisponibles.setText(text);
