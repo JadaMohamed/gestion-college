@@ -693,7 +693,6 @@ public class AdminstrateurBackofficeSceneController {
         accueilPaneController.initialize();
         //
         //
-
         filterComboBoxCoursEncours.setItems(FXCollections.observableArrayList(niveauObjects));
         filterComboBoxCoursEncours.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {

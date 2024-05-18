@@ -185,7 +185,7 @@ public class SallesService {
             int totalOccupiedHours = totalSeances * 2;
 
             // Définir la capacité totale de la salle (40 heures dans votre exemple)
-            int capaciteTotale = 40;
+            int capaciteTotale = 48;
 
             // Calculer les heures disponibles en soustrayant les heures occupées de la
             // capacité totale
