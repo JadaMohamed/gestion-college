@@ -228,4 +228,10 @@ public class SeanceRepository {
         parameters.add(searchPattern);
         return dbClient.executeCommand(true, query, parameters);
     }
+    // public static ResultSet getseancesBySalleId(int idSalle) throws SQLException {
+    //     List<Object> parameters = new ArrayList<>();
+    //     String query = "SELECT * FROM seance WHERE  idSalle= ?";
+    //     parameters.add(idSalle);
+    //     return dbClient.executeCommand(true, query, parameters);
+    // }
 }

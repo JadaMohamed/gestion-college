@@ -2,8 +2,11 @@ package application.repositories;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Vector;
-
+import java.sql.Date;
 import application.database.dbClient;
 import application.model.Horaires;
 import application.model.enums.JoursSemaine;
@@ -162,4 +165,30 @@ public class SallesRepository {
         String query = "SELECT * FROM categorieSalle";
         return dbClient.executeCommand(true, query, parameters);
     }
+    public static ResultSet getSeancesBySalle(int idSalle) throws SQLException {
+        Vector<Object> parameters = new Vector<>();
+        parameters.add(idSalle);
+    
+        String query = "SELECT * FROM seance WHERE idSalle = ?";
+        return dbClient.executeCommand(true, query, parameters);
+    }
+// public static int getCapaciteSalleById(int idSalle) throws SQLException {
+//     Vector<Object> parameters = new Vector<>();
+//     parameters.add(idSalle);
+
+//     String query = "SELECT capacite FROM salle WHERE id = ?";
+//     ResultSet resultSet = dbClient.executeCommand(true, query, parameters);
+
+//     // Vérifiez si le résultat contient une ligne
+//     if (resultSet.next()) {
+//         // Récupérez la capacité de la salle à partir du résultat de la requête
+//         return resultSet.getInt("capacite");
+//     } else {
+//         // Si aucune ligne n'est retournée, retournez 0 ou une valeur par défaut
+//         return 0;
+//     }
+// }
+
+
+
 }

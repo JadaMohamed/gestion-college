@@ -16,6 +16,7 @@ import application.model.Salle;
 import application.model.enums.JoursSemaine;
 import application.repositories.CategorieSalleRepository;
 import application.repositories.SallesRepository;
+import application.repositories.SeanceRepository;
 
 public class SallesService {
 
@@ -167,5 +168,73 @@ public class SallesService {
     }
     return resCategories;
     }
+
+    public static int getAvailableHoursPerWeek(int idSalle) {
+    try {
+        ResultSet seances = SallesRepository.getSeancesBySalle(idSalle);
+
+        // Définir une variable pour suivre le nombre total de séances
+        int totalSeances = 0;
+
+        // Parcourir chaque séance pour compter le nombre total de séances
+        while (seances.next()) {
+            totalSeances++;
+        }
+
+        // Chaque séance contient deux heures, donc multiplions le nombre total de séances par deux
+        int totalOccupiedHours = totalSeances * 2;
+
+        // Définir la capacité totale de la salle (40 heures dans votre exemple)
+        int capaciteTotale = 40;
+
+        // Calculer les heures disponibles en soustrayant les heures occupées de la capacité totale
+        int availableHoursPerWeek = capaciteTotale - totalOccupiedHours;
+
+        // Retourner le nombre d'heures disponibles par semaine
+        return availableHoursPerWeek;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return 0; // En cas d'erreur, retourner 0 pour indiquer qu'aucune heure n'est disponible
+    }
+}
+
+public static int getOccupiedHoursPerWeek(int idSalle) {
+    try {
+        ResultSet seances = SallesRepository.getSeancesBySalle(idSalle);
+
+        // Définir une variable pour suivre le nombre total de séances
+        int totalSeances = 0;
+
+        // Parcourir chaque séance pour compter le nombre total de séances
+        while (seances.next()) {
+            totalSeances++;
+        }
+
+        // Chaque séance contient deux heures, donc multiplions le nombre total de séances par deux
+        int totalOccupiedHours = totalSeances * 2;
+
+        // Retourner le nombre d'heures occupées par semaine
+        return totalOccupiedHours;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return 0; // En cas d'erreur, retourner 0 pour indiquer qu'aucune heure n'est occupée
+    }
+}
+
+
+    // public static int getOccupiedHoursPerWeek(int idSalle) {
+    //     int occupiedHours = 0;
+    //     try {
+    //         ResultSet resultSet = SallesRepository.getOccupiedHoursPerWeek(idSalle);
+    //         // Traitement du ResultSet pour obtenir le nombre total d'heures occupées
+    //         // Utilisez les données récupérées dans ResultSet pour calculer le nombre total d'heures occupées par semaine
+    //         // Ajoutez ces heures à la variable occupiedHours
+    //     } catch (SQLException e) {
+    //         e.printStackTrace();
+    //         // Gérer l'exception SQL
+    //     }
+    //     return occupiedHours;
+    // }
+    
     
 }
