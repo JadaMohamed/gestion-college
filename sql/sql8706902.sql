@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: sql8.freesqldatabase.com
--- Generation Time: May 17, 2024 at 12:00 PM
+-- Generation Time: May 17, 2024 at 09:29 PM
 -- Server version: 5.5.62-0ubuntu0.14.04.1
 -- PHP Version: 7.0.33-0ubuntu0.16.04.16
 
@@ -62,7 +62,8 @@ CREATE TABLE `administrateur` (
 INSERT INTO `administrateur` (`id`, `nom`, `prenom`, `email`, `dateNaissance`, `motDePass`, `telephone`, `photoUrl`, `role`) VALUES
 (1, 'Jada', 'Mohamed', 'mohamed@jada.com', '2002-07-19', 'jada', '0679008358', '/resources/images/profiles/default.png', 'Administrateur'),
 (2, 'RAIDI', 'Oualid', 'raidioualid@crestwood.com', '2003-11-25', 'raidioualid', '0620726234', '/resources/images/profiles/default.png', 'Administrateur'),
-(3, 'RIFAI', 'Mohamed', 'mohamed@com', '2003-10-05', 'rifai', '0659905400', '/resources/images/profiles/default.png', 'Administrateur');
+(3, 'RIFAI', 'Mohamed', 'mohamed@com', '2003-10-05', 'rifai', '0659905400', '/resources/images/profiles/default.png', 'Administrateur'),
+(4, 'Fadil', 'Youssef', 'f@cwd.com', '2003-07-22', '123', '0670861002', '/resources/images/profiles/default.png', 'vie scolaire');
 
 -- --------------------------------------------------------
 
@@ -134,6 +135,22 @@ CREATE TABLE `cours` (
   `idNiveau` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `cours`
+--
+
+INSERT INTO `cours` (`id`, `idTypeCours`, `nom`, `idEnseignant`, `idNiveau`) VALUES
+(13, 1, 'Algorithmique 1', 1, 3),
+(14, 1, 'Language C', 1, 4),
+(15, 2, 'Opérations sur les Nombres', 2, 1),
+(16, 2, 'Géomètrie dans le plan', 2, 1),
+(17, 2, 'Algèbre Élémentaire', 2, 1),
+(18, 2, 'Les nombres rationnels', 3, 2),
+(19, 2, 'Les triangles', 3, 2),
+(20, 2, 'Équations, Ordre et Statistiques', 3, 2),
+(21, 1, 'POO', 1, 1),
+(22, 2, 'Analyse numerique', 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -156,7 +173,7 @@ CREATE TABLE `enseignant` (
 --
 
 INSERT INTO `enseignant` (`id`, `nom`, `prenom`, `sexe`, `email`, `telephone`, `dateNaissance`, `photoUrl`) VALUES
-(1, 'Elmoudden', 'Hafid', 'M', 'elmouddenhafid@gmail.com', '0650776520', '1980-05-20', '/resources/images/profiles/hafid.png'),
+(1, 'Ibrahimi', 'Hafid', 'M', 'ibrahimihafid@gmail.com', '0650776520', '1980-05-21', '/resources/images/profiles/hafid.png'),
 (2, 'Khaldoune', 'aziz', 'M', 'khaldouneaziz@gmail.com', '0645665789', '1977-05-21', '/resources/images/profiles/aziz.png'),
 (3, 'Ibrahim', 'Jamal', 'M', 'ibrahimjamal@gmail.com', '0655334276', '1988-03-25', '/resources/images/profiles/ibrahim.png'),
 (6, 'Haddad', 'Moulay', 'M', 'moulay.haddad@gmail.com', '0612345678', '1975-01-15', '/resources/images/profiles/haddad.png'),
@@ -542,6 +559,14 @@ CREATE TABLE `seance` (
   `idClasse` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `seance`
+--
+
+INSERT INTO `seance` (`id`, `idSalle`, `jour`, `heureDebut`, `heureFin`, `idCours`, `idClasse`) VALUES
+(16, 7, 'VENDREDI', '08:00:00', '23:00:00', 21, 20),
+(17, 7, 'MERCREDI', '10:00:00', '12:00:00', 22, 20);
+
 -- --------------------------------------------------------
 
 --
@@ -566,7 +591,8 @@ INSERT INTO `typeCours` (`id`, `nom`) VALUES
 (6, 'Économie'),
 (7, 'Français'),
 (8, 'Anglais'),
-(9, 'Sports');
+(9, 'Sports'),
+(10, 'testType');
 
 --
 -- Indexes for dumped tables
@@ -665,12 +691,12 @@ ALTER TABLE `typeCours`
 -- AUTO_INCREMENT for table `absence`
 --
 ALTER TABLE `absence`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `administrateur`
 --
 ALTER TABLE `administrateur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `categorieSalle`
 --
@@ -685,12 +711,12 @@ ALTER TABLE `classe`
 -- AUTO_INCREMENT for table `cours`
 --
 ALTER TABLE `cours`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `enseignant`
 --
 ALTER TABLE `enseignant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `etudiant`
 --
@@ -715,12 +741,12 @@ ALTER TABLE `salle`
 -- AUTO_INCREMENT for table `seance`
 --
 ALTER TABLE `seance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `typeCours`
 --
 ALTER TABLE `typeCours`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- Constraints for dumped tables
 --
