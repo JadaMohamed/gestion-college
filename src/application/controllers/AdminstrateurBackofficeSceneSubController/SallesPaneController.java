@@ -177,9 +177,9 @@ public class SallesPaneController {
             vbox.getChildren().add(label);
         }
 
-        // // Ajouter le VBox à l'AnchorPane
-        // AnchorPane.setTopAnchor(vbox, 10.0);
-        // AnchorPane.setLeftAnchor(vbox, 10.0);
+        // Ajouter le VBox à l'AnchorPane
+        AnchorPane.setTopAnchor(vbox, 10.0);
+        AnchorPane.setLeftAnchor(vbox, 10.0);
         materielSalleAnchorPane.getChildren().add(vbox);
 
         // Mettre à jour l'icône du statut en fonction du statut de la salle

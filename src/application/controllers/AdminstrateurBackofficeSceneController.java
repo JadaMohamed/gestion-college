@@ -415,9 +415,9 @@ public class AdminstrateurBackofficeSceneController {
             vbox.getChildren().add(label);
         }
 
-        // // Ajouter le VBox à l'AnchorPane
-        // AnchorPane.setTopAnchor(vbox, 10.0);
-        // AnchorPane.setLeftAnchor(vbox, 10.0);
+        // Ajouter le VBox à l'AnchorPane
+        AnchorPane.setTopAnchor(vbox, 10.0);
+        AnchorPane.setLeftAnchor(vbox, 10.0);
         materielSalleAnchorPane.getChildren().add(vbox);
     }
 
