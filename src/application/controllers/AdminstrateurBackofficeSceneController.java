@@ -356,7 +356,7 @@ public class AdminstrateurBackofficeSceneController {
         // set activeClasse (Classe) data
         // used in active listEtudiantsPane
         System.out.println("Row Data = " + rowData);
-        activeClasse.setId(Integer.parseInt(rowData.get("classeId")));
+        activeClasse.setId(Integer.parseInt(rowData.get("id")));
         activeClasse.setEffectif(Integer.parseInt(rowData.get("effectif")));
         activeClasse.setNom(rowData.get("classeNom"));
         // set nomClasse's breadcrumb lable in activeClassePane
