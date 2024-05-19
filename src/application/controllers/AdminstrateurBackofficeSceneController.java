@@ -365,7 +365,7 @@ public class AdminstrateurBackofficeSceneController {
         // set activeClasse's informations
         classesPaneController.setActiveClasseInformation(rowData, activeClasseEffectif, activeClasseNomLabel,
                 activeClasseEffectif, activeClasseStatutIcon);
-        classesPaneController.fillEmploisDeTempsTableView(rowData.get("classeId"), classeEmploiJourColumn,
+        classesPaneController.fillEmploisDeTempsTableView(rowData.get("id"), classeEmploiJourColumn,
                 classeEmploiTableView,
                 classeEmploi8_10Column, classeEmploi10_12Column, classeEmploi14_16Column, classeEmploi16_18Column);
         // fill classeEmploiTableView
