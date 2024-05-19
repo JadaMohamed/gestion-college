@@ -1,4 +1,4 @@
-# README
+# Gestion administrative d’un collège
 
 ## Membres du Groupe
 
