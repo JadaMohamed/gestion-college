@@ -1030,8 +1030,6 @@ public class AdminstrateurBackofficeSceneController {
                 }
             }
         }
-
-        // Mettez à jour le TableView avec les éléments filtrés
         classesTableView.setItems(filteredItems);
     }
 
