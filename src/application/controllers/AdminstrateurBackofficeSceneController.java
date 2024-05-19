@@ -356,7 +356,7 @@ public class AdminstrateurBackofficeSceneController {
         // set activeClasse (Classe) data
         // used in active listEtudiantsPane
         System.out.println("Row Data = " + rowData);
-        activeClasse.setId(Integer.parseInt(rowData.get("id")));
+        activeClasse.setId(Integer.parseInt(rowData.get("classeId")));
         activeClasse.setEffectif(Integer.parseInt(rowData.get("effectif")));
         activeClasse.setNom(rowData.get("classeNom"));
         // set nomClasse's breadcrumb lable in activeClassePane
@@ -365,7 +365,7 @@ public class AdminstrateurBackofficeSceneController {
         // set activeClasse's informations
         classesPaneController.setActiveClasseInformation(rowData, activeClasseEffectif, activeClasseNomLabel,
                 activeClasseEffectif, activeClasseStatutIcon);
-        classesPaneController.fillEmploisDeTempsTableView(rowData.get("id"), classeEmploiJourColumn,
+        classesPaneController.fillEmploisDeTempsTableView(rowData.get("classeId"), classeEmploiJourColumn,
                 classeEmploiTableView,
                 classeEmploi8_10Column, classeEmploi10_12Column, classeEmploi14_16Column, classeEmploi16_18Column);
         // fill classeEmploiTableView
@@ -637,7 +637,7 @@ public class AdminstrateurBackofficeSceneController {
         initialData = FXCollections.observableArrayList(SeanceService.getSeancesEnCoursBis());
         coursEncoursTableView.setItems(data);
 
-        initialDataClasses = FXCollections.observableArrayList(ClasseService.getAllClassesWithCurrentSeancesBIS());
+        initialDataClasses = FXCollections.observableArrayList(ClasseService.getAllClassesWithCurrentSeances());
         classesTableView.setItems(dataClasses);
 
         // to show loacl date at the header of the dashboard
@@ -1025,7 +1025,7 @@ public class AdminstrateurBackofficeSceneController {
         } else {
             // Sinon, filtrez les données en fonction de la sélection
             for (Map<String, String> item : initialDataClasses) {
-                if (item.get("classe").contains(selectedNiveauClasse.getNom())) {
+                if (item.get("classeNom").contains(selectedNiveauClasse.getNom())) {
                     filteredItems.add(item);
                 }
             }

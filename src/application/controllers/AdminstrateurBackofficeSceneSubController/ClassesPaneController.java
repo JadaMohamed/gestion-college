@@ -371,12 +371,12 @@ public class ClassesPaneController {
     ObservableList<Map<String, String>> data = FXCollections.observableArrayList();
     for (Map<String,String> classe : classes) {
         Map<String, String> map = new HashMap<>();
-        map.put("id",classe.get("id"));
-        map.put("salle", classe.get("salle"));
+        map.put("classeId",classe.get("classeId"));
+        map.put("salleNom", classe.get("salleNom"));
         map.put("status", classe.get("status"));
-        map.put("classe", classe.get("classe"));
+        map.put("classeNom", classe.get("classeNom"));
         map.put("effectif", classe.get("effectif"));
-        map.put("cours", classe.get("cours"));
+        map.put("coursNom", classe.get("coursNom"));
         map.put("enseignantFullName", classe.get("enseignantFullName"));
         map.put("enseignantEmail", classe.get("enseignantEmail"));
         map.put("enseignantPhotoUrl", classe.get("enseignantPhotoUrl"));
@@ -384,11 +384,11 @@ public class ClassesPaneController {
     }
 
     // Set cell value factories
-    classesSalleColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().get("salle")));
+    classesSalleColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().get("salleNom")));
     classesStatusColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().get("status")));
-    classesClasseColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().get("classe")));
+    classesClasseColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().get("classeNom")));
     classesEffectifColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().get("effectif")));
-    classesCoursColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().get("cours")));
+    classesCoursColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().get("coursNom")));
     classesProfesseurColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
     classesActionColumn.setCellValueFactory(cellData -> {
         Map<String, String> value = cellData.getValue();
