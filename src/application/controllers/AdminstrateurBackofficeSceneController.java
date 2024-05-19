@@ -1,4 +1,5 @@
 package application.controllers;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -277,7 +278,7 @@ public class AdminstrateurBackofficeSceneController {
     private List<CategorieSalle> categorieObjects = categories.stream()
             .filter(categorieSalle -> categorieNames.contains(categorieSalle.getNom()))
             .collect(Collectors.toList());
-            private CategorieSalle allOptionSalle = new CategorieSalle("All");
+    private CategorieSalle allOptionSalle = new CategorieSalle("All");
     //
     //
     //
@@ -338,29 +339,28 @@ public class AdminstrateurBackofficeSceneController {
 
     public void fillListClassesTableView(String searchKey) {
         classesPaneController.fillListClassesTableView(
-            searchKey, 
-            classesTableView, 
-            classesSalleColumn, 
-            classesStatusColumn, 
-            classesClasseColumn, 
-            classesEffectifColumn, 
-            classesCoursColumn, 
-            classesProfesseurColumn, 
-            classesActionColumn, 
-            activeClassePane, 
-            voirClasseClickHandler
-        );
+                searchKey,
+                classesTableView,
+                classesSalleColumn,
+                classesStatusColumn,
+                classesClasseColumn,
+                classesEffectifColumn,
+                classesCoursColumn,
+                classesProfesseurColumn,
+                classesActionColumn,
+                activeClassePane,
+                voirClasseClickHandler);
     }
 
     ButtonClickHandler<Map<String, String>> voirClasseClickHandler = rowData -> {
         // set activeClasse (Classe) data
         // used in active listEtudiantsPane
-        System.out.println("Row Data = "+rowData);
-        // activeClasse.setId(Integer.parseInt(rowData.get("classeId")));
+        System.out.println("Row Data = " + rowData);
+        activeClasse.setId(Integer.parseInt(rowData.get("classeId")));
         activeClasse.setEffectif(Integer.parseInt(rowData.get("effectif")));
-        activeClasse.setNom(rowData.get("classe"));
+        activeClasse.setNom(rowData.get("classeNom"));
         // set nomClasse's breadcrumb lable in activeClassePane
-        activeClasseLabel.setText(rowData.get("classe"));
+        activeClasseLabel.setText(rowData.get("classeNom"));
 
         // set activeClasse's informations
         classesPaneController.setActiveClasseInformation(rowData, activeClasseEffectif, activeClasseNomLabel,
@@ -438,7 +438,6 @@ public class AdminstrateurBackofficeSceneController {
         materielSalleAnchorPane.getChildren().add(vbox);
     }
 
-   
     // Absence
     @FXML
     private Pane absencesPane;
@@ -605,6 +604,7 @@ public class AdminstrateurBackofficeSceneController {
     public Pane getProfesseursPane() {
         return professeursPane;
     }
+
     //
     //
     //
@@ -627,13 +627,13 @@ public class AdminstrateurBackofficeSceneController {
         niveauObjects.add(0, allOption);
         // activeClasse caches the selected classe informations from classesTables View
         activeClasse = new Classe();
-        // 
+        //
         // to identify the logged in administrator
         this.loggedInAdminId = adminId;
         categorieObjects = categories.stream()
                 .filter(categorieSalle -> categorieNames.contains(categorieSalle.getNom()))
                 .collect(Collectors.toList());
-                categorieObjects.add(0, allOptionSalle);
+        categorieObjects.add(0, allOptionSalle);
         initialData = FXCollections.observableArrayList(SeanceService.getSeancesEnCoursBis());
         coursEncoursTableView.setItems(data);
 
@@ -968,14 +968,14 @@ public class AdminstrateurBackofficeSceneController {
 
     private void filterTable1(CategorieSalle selectedCategorieSalle) {
         ObservableList<Map<String, String>> filteredItems = FXCollections.observableArrayList();
-    
+
         if (initialDataSalles == null || initialDataSalles.isEmpty()) {
             System.out.println("initialDataSalles is null or empty");
             return;
         }
         if (selectedCategorieSalle != null && "All".equals(selectedCategorieSalle.getNom())) {
             filteredItems.addAll(initialDataSalles);
-        } 
+        }
 
         Map<String, String> salleToCategorieMap = new HashMap<>();
         salleToCategorieMap.put("Salle A1", "Classe");
