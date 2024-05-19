@@ -11,15 +11,6 @@
         "libraries/javafx-sdk-22/lib/javafx.swing.jar",
         "libraries/javafx-sdk-22/lib/javafx.web.jar",
         "libraries/javafx-sdk-22/lib/javafx-swt.jar",
-        "libraries/jdbc-driver/com.mysql.jdbc_5.1.5.jar",
-        "c:\\javafx-sdk-22\\lib\\javafx.base.jar",
-        "c:\\javafx-sdk-22\\lib\\javafx.controls.jar",
-        "c:\\javafx-sdk-22\\lib\\javafx.fxml.jar",
-        "c:\\javafx-sdk-22\\lib\\javafx.graphics.jar",
-        "c:\\javafx-sdk-22\\lib\\javafx.media.jar",
-        "c:\\javafx-sdk-22\\lib\\javafx.swing.jar",
-        "c:\\javafx-sdk-22\\lib\\javafx.web.jar",
-        "c:\\javafx-sdk-22\\lib\\javafx-swt.jar",
-        "c:\\jdbc-driver\\com.mysql.jdbc_5.1.5.jar"
+        "libraries/jdbc-driver/com.mysql.jdbc_5.1.5.jar"
     ]
 }
