@@ -338,7 +338,7 @@ public class AdminstrateurBackofficeSceneController {
     }
 
     public void fillListClassesTableView(String searchKey) {
-        classesPaneController.fillListClassesTableView(
+        classesPaneController.fillListClassesTableView(activeClasse.getId(),
                 searchKey,
                 classesTableView,
                 classesSalleColumn,
@@ -637,7 +637,7 @@ public class AdminstrateurBackofficeSceneController {
         initialData = FXCollections.observableArrayList(SeanceService.getSeancesEnCoursBis());
         coursEncoursTableView.setItems(data);
 
-        initialDataClasses = FXCollections.observableArrayList(ClasseService.getAllClassesWithCurrentSeances());
+        initialDataClasses = FXCollections.observableArrayList(ClasseService.getAllClassesWithCurrentSeancesBIS());
         classesTableView.setItems(dataClasses);
 
         // to show loacl date at the header of the dashboard
@@ -1025,7 +1025,7 @@ public class AdminstrateurBackofficeSceneController {
         } else {
             // Sinon, filtrez les données en fonction de la sélection
             for (Map<String, String> item : initialDataClasses) {
-                if (item.get("classeNom").contains(selectedNiveauClasse.getNom())) {
+                if (item.get("classe").contains(selectedNiveauClasse.getNom())) {
                     filteredItems.add(item);
                 }
             }

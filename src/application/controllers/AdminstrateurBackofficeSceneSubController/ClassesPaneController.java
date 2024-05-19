@@ -346,7 +346,7 @@ public class ClassesPaneController {
         classesTableView.setItems(data);
     }
 
-    public void fillListClassesTableView(String searchKey,
+    public void fillListClassesTableView(int activeClasseId, String searchKey,
                                      TableView<Map<String, String>> classesTableView,
                                      TableColumn<Map<String, String>, String> classesSalleColumn,
                                      TableColumn<Map<String, String>, String> classesStatusColumn,
@@ -366,10 +366,12 @@ public class ClassesPaneController {
         classes = ClasseService.getClasses_search(searchKey);
     }
 
+    System.out.println("CLASSES : "+classes);
     // Convert List<Map<String,String>> to ObservableList<Map<String, String>>
     ObservableList<Map<String, String>> data = FXCollections.observableArrayList();
     for (Map<String,String> classe : classes) {
         Map<String, String> map = new HashMap<>();
+        map.put("id",classe.get("id"));
         map.put("salle", classe.get("salle"));
         map.put("status", classe.get("status"));
         map.put("classe", classe.get("classe"));
