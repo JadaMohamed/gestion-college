@@ -99,6 +99,5 @@
             <Font name="Inter Medium" size="12.0" />
          </font>
       </Label>
-      <Button layoutX="704.0" layoutY="462.0" mnemonicParsing="false" onAction="#handleAutofillJada" text="AUTOFILL_JADA" AnchorPane.leftAnchor="704.0" AnchorPane.topAnchor="462.0" />
    </children>
 </AnchorPane>
