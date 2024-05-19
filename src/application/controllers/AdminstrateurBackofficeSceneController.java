@@ -335,14 +335,31 @@ public class AdminstrateurBackofficeSceneController {
                 coursEncoursProfesseurColumn);
     }
 
+    public void fillListClassesTableView(String searchKey) {
+        classesPaneController.fillListClassesTableView(
+            searchKey, 
+            classesTableView, 
+            classesSalleColumn, 
+            classesStatusColumn, 
+            classesClasseColumn, 
+            classesEffectifColumn, 
+            classesCoursColumn, 
+            classesProfesseurColumn, 
+            classesActionColumn, 
+            activeClassePane, 
+            voirClasseClickHandler
+        );
+    }
+
     ButtonClickHandler<Map<String, String>> voirClasseClickHandler = rowData -> {
         // set activeClasse (Classe) data
         // used in active listEtudiantsPane
-        activeClasse.setId(Integer.parseInt(rowData.get("classeId")));
+        System.out.println("Row Data = "+rowData);
+        // activeClasse.setId(Integer.parseInt(rowData.get("classeId")));
         activeClasse.setEffectif(Integer.parseInt(rowData.get("effectif")));
-        activeClasse.setNom(rowData.get("classeNom"));
+        activeClasse.setNom(rowData.get("classe"));
         // set nomClasse's breadcrumb lable in activeClassePane
-        activeClasseLabel.setText(rowData.get("classeNom"));
+        activeClasseLabel.setText(rowData.get("classe"));
 
         // set activeClasse's informations
         classesPaneController.setActiveClasseInformation(rowData, activeClasseEffectif, activeClasseNomLabel,
@@ -764,6 +781,14 @@ public class AdminstrateurBackofficeSceneController {
                 fillListCoursEncoursTableView(newValue);
             }
         });
+
+        searchFieldClassesPane.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                fillListClassesTableView(newValue);
+            }
+        });
+
         searchListEtudiantTextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {

@@ -61,4 +61,114 @@ public class ClasseRepository {
         dbClient.executeCommand(false, query, parameters);
     }
 
+    public static ResultSet getClasses_search(String searchKey) {
+        Vector<Object> parameters = new Vector<>();
+        String query = "SELECT " +
+    "classe.id, " +
+    "CONCAT(niveau.nom, ' ', classe.numero) AS classe, " +
+    "classe.effectif, " +
+    "CASE " +
+    "    WHEN seance.id IS NOT NULL THEN " +
+    "        CASE " +
+    "            WHEN DAYOFWEEK(CURDATE()) = " +
+    "                CASE " +
+    "                    WHEN seance.jour = 'LUNDI' THEN 2 " +
+    "                    WHEN seance.jour = 'MARDI' THEN 3 " +
+    "                    WHEN seance.jour = 'MERCREDI' THEN 4 " +
+    "                    WHEN seance.jour = 'JEUDI' THEN 5 " +
+    "                    WHEN seance.jour = 'VENDREDI' THEN 6 " +
+    "                    WHEN seance.jour = 'SAMEDI' THEN 7 " +
+    "                    WHEN seance.jour = 'DIMANCHE' THEN 1 " +
+    "                END " +
+    "            AND CURTIME() BETWEEN seance.heureDebut AND seance.heureFin " +
+    "            THEN 1 " +
+    "            ELSE 0 " +
+    "        END " +
+    "    ELSE 0 " +
+    "END AS status, " +
+    "CASE " +
+    "    WHEN seance.id IS NOT NULL THEN " +
+    "        CASE " +
+    "            WHEN DAYOFWEEK(CURDATE()) = " +
+    "                CASE " +
+    "                    WHEN seance.jour = 'LUNDI' THEN 2 " +
+    "                    WHEN seance.jour = 'MARDI' THEN 3 " +
+    "                    WHEN seance.jour = 'MERCREDI' THEN 4 " +
+    "                    WHEN seance.jour = 'JEUDI' THEN 5 " +
+    "                    WHEN seance.jour = 'VENDREDI' THEN 6 " +
+    "                    WHEN seance.jour = 'SAMEDI' THEN 7 " +
+    "                    WHEN seance.jour = 'DIMANCHE' THEN 1 " +
+    "                END " +
+    "            AND CURTIME() BETWEEN seance.heureDebut AND seance.heureFin " +
+    "            THEN salle.nom " +
+    "            ELSE '-' " +
+    "        END " +
+    "    ELSE '-' " +
+    "END AS nomSalle, " +
+    "CASE " +
+    "    WHEN seance.id IS NOT NULL THEN " +
+    "        COALESCE(cours.nom, '-') " +
+    "    ELSE '-' " +
+    "END AS nomCours, " +
+    "CASE " +
+    "    WHEN seance.id IS NOT NULL THEN " +
+    "        COALESCE(enseignant.nom, '-') " +
+    "    ELSE '-' " +
+    "END AS nomEnseignant, " +
+    "CASE " +
+    "    WHEN seance.id IS NOT NULL THEN " +
+    "        COALESCE(enseignant.prenom, '-') " +
+    "    ELSE '-' " +
+    "END AS prenomEnseignant, " +
+    "CASE " +
+    "    WHEN seance.id IS NOT NULL THEN " +
+    "        COALESCE(enseignant.email, '-') " +
+    "    ELSE '-' " +
+    "END AS emailEnseignant, " +
+    "CASE " +
+    "    WHEN seance.id IS NOT NULL THEN " +
+    "        COALESCE(enseignant.photoUrl, '-') " +
+    "    ELSE '-' " +
+    "END AS photoUrlEnseignant " +
+    "FROM " +
+    "    classe " +
+    "LEFT JOIN niveau ON niveau.id = classe.idNiveauClasse " +
+    "LEFT JOIN seance ON classe.id = seance.idClasse " +
+    "    AND DAYOFWEEK(CURDATE()) = " +
+    "        CASE " +
+    "            WHEN seance.jour = 'LUNDI' THEN 2 " +
+    "            WHEN seance.jour = 'MARDI' THEN 3 " +
+    "            WHEN seance.jour = 'MERCREDI' THEN 4 " +
+    "            WHEN seance.jour = 'JEUDI' THEN 5 " +
+    "            WHEN seance.jour = 'VENDREDI' THEN 6 " +
+    "            WHEN seance.jour = 'SAMEDI' THEN 7 " +
+    "            WHEN seance.jour = 'DIMANCHE' THEN 1 " +
+    "        END " +
+    "    AND CURTIME() BETWEEN seance.heureDebut AND seance.heureFin " +
+    "LEFT JOIN salle ON seance.idSalle = salle.id " +
+    "LEFT JOIN cours ON cours.id = seance.idCours " +
+    "LEFT JOIN enseignant ON enseignant.id = cours.idEnseignant " +
+    "WHERE ( " +
+    "       classe.numero LIKE ? " +
+    "       OR classe.effectif LIKE ? " +
+    "       OR salle.nom LIKE ? " +
+    "       OR cours.nom LIKE ? " +
+    "       OR enseignant.nom LIKE ? " +
+    "       OR enseignant.prenom LIKE ? " +
+    "       OR enseignant.email LIKE ? " +
+    "       OR niveau.nom LIKE ? " +
+    "      )";
+        
+        String searchPattern = "%" + searchKey + "%";
+        parameters.add(searchPattern);
+        parameters.add(searchPattern);
+        parameters.add(searchPattern);
+        parameters.add(searchPattern);
+        parameters.add(searchPattern);
+        parameters.add(searchPattern);
+        parameters.add(searchPattern);
+        parameters.add(searchPattern);
+        
+        return dbClient.executeCommand(true, query, parameters);
+    }
 }

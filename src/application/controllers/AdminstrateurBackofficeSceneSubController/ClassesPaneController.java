@@ -1,6 +1,8 @@
 package application.controllers.AdminstrateurBackofficeSceneSubController;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import application.controllers.AdminstrateurBackofficeSceneController;
@@ -45,7 +47,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 public class ClassesPaneController {
     private AdminstrateurBackofficeSceneController mainController;
 
@@ -281,4 +284,70 @@ public class ClassesPaneController {
 
         classesTableView.setItems(data);
     }
+
+    public void fillListClassesTableView(String searchKey,
+                                     TableView<Map<String, String>> classesTableView,
+                                     TableColumn<Map<String, String>, String> classesSalleColumn,
+                                     TableColumn<Map<String, String>, String> classesStatusColumn,
+                                     TableColumn<Map<String, String>, String> classesClasseColumn,
+                                     TableColumn<Map<String, String>, String> classesEffectifColumn,
+                                     TableColumn<Map<String, String>, String> classesCoursColumn,
+                                     TableColumn<Map<String, String>, Map<String, String>> classesProfesseurColumn,
+                                     TableColumn<Map<String, String>, String> classesActionColumn,
+                                     Pane activeClassePane,
+                                     ButtonClickHandler<Map<String, String>> voirClasseClickHandler) {
+
+    // Get data from database
+    List<Map<String,String>> classes;
+    if (searchKey == null || searchKey.isEmpty()) {
+        classes = ClasseService.getAllClassesWithCurrentSeancesBIS();
+    } else {
+        classes = ClasseService.getClasses_search(searchKey);
+    }
+
+    // Convert List<Map<String,String>> to ObservableList<Map<String, String>>
+    ObservableList<Map<String, String>> data = FXCollections.observableArrayList();
+    for (Map<String,String> classe : classes) {
+        Map<String, String> map = new HashMap<>();
+        map.put("salle", classe.get("salle"));
+        map.put("status", classe.get("status"));
+        map.put("classe", classe.get("classe"));
+        map.put("effectif", classe.get("effectif"));
+        map.put("cours", classe.get("cours"));
+        map.put("enseignantFullName", classe.get("enseignantFullName"));
+        map.put("enseignantEmail", classe.get("enseignantEmail"));
+        map.put("enseignantPhotoUrl", classe.get("enseignantPhotoUrl"));
+        data.add(map);
+    }
+
+    // Set cell value factories
+    classesSalleColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().get("salle")));
+    classesStatusColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().get("status")));
+    classesClasseColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().get("classe")));
+    classesEffectifColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().get("effectif")));
+    classesCoursColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().get("cours")));
+    classesProfesseurColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue()));
+    classesActionColumn.setCellValueFactory(cellData -> {
+        Map<String, String> value = cellData.getValue();
+        if (value != null && !value.isEmpty()) {
+            StringBuilder sb = new StringBuilder();
+            for (Map.Entry<String, String> entry : value.entrySet()) {
+                sb.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
+            }
+            return new ReadOnlyObjectWrapper<>(sb.toString());
+        } else {
+            return new ReadOnlyObjectWrapper<>("");
+        }
+    });
+    
+
+    // Set cell factories
+    classesProfesseurColumn.setCellFactory(new CustomCellFactory());
+    classesStatusColumn.setCellFactory(new CustomStatusCell());
+    classesActionColumn.setCellFactory(new CustomClasseCellButton(activeClassePane,voirClasseClickHandler));
+
+    // Set data to TableView
+    classesTableView.setItems(data);
+}
+
 }

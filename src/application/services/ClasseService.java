@@ -84,6 +84,32 @@ public class ClasseService {
         return seances;
     }
 
+    public static Vector<Map<String, String>> getAllClassesWithCurrentSeancesBIS() {
+        Vector<Map<String, String>> seances = new Vector<Map<String, String>>();
+        ResultSet result;
+        try {
+            result = ClasseRepository.getAllClassesWithCurrentSeances();
+            while (result.next()) {
+                Map<String, String> seance = new HashMap<>();
+                seance.put("enseignantFullName",
+                        result.getString("nomEnseignant") + " " + result.getString("prenomEnseignant"));
+                seance.put("enseignantEmail", result.getString("emailEnseignant"));
+                seance.put("enseignantPhotoUrl", result.getString("photoUrlEnseignant"));
+                seance.put("cours", seance.get("enseignantFullName").contains("-") ? "-"
+                        : result.getString("nomCours"));
+                seance.put("classe", result.getString("nomNiveau") + " " + result.getString("numeroClasse"));
+                seance.put("salle", result.getString("nomSalle"));
+                seance.put("effectif", result.getString("effectif"));
+                seance.put("classeId", result.getString("id"));
+                seance.put("status", result.getString("status"));
+                seances.add(seance);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return seances;
+    }
+
     public static Vector<Map<String, String>> getEmploiDeTemps(String idClasse) {
         Vector<Map<String, String>> res = new Vector<>();
         ResultSet result;
@@ -182,4 +208,26 @@ public class ClasseService {
         return res;
     }
 
+    public static Vector<Map<String, String>> getClasses_search(String searchKey) {
+    Vector<Map<String, String>> res = new Vector<>();
+    ResultSet result;
+    try {
+        result = ClasseRepository.getClasses_search(searchKey);
+        while (result.next()) {
+            Map<String, String> classe = new HashMap<>();
+            classe.put("classe", result.getString(2));
+            classe.put("effectif", String.valueOf(result.getInt(3)));
+            classe.put("status", result.getString(4));
+            classe.put("salle", result.getString(5));
+            classe.put("cours", result.getString(6));
+            classe.put("enseignantFullName", result.getString(7)+' '+result.getString(8));
+            classe.put("enseignantEmail", result.getString(9));
+            classe.put("enseignantPhotoUrl", result.getString(10));
+            res.add(classe);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return res;
+}
 }

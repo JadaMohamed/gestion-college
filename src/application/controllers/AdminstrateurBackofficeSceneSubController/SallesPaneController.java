@@ -82,8 +82,6 @@ public class SallesPaneController {
             sallesTableView.setItems(data);
             return;
         }
-        
-        System.out.println("it's me");
 
         // TableView<Map<String, String>> tableView = sallesTableView; // assuming sallesTableView is accessible
         if (sallesTableView == null) {
@@ -106,27 +104,9 @@ public class SallesPaneController {
 
         System.out.println("it's me 3");
         return;
-       
-        // Créez un prédicat pour filtrer les données
-        // Predicate<Map<String, String>> predicate = salle -> {
-        //     System.out.println("it's me 2");
-        //     String nomSalle = salle.get("nomSalle").toLowerCase(); 
-        //     System.out.println(nomSalle);
-        //     return nomSalle.contains(keyword.toLowerCase()); // Vérifiez si le nom de la salle contient le mot-clé de recherche
-        // };
+    }
 
-    //    System.out.println(predicate);
-        // for (Map<String,String> predicate : data) {
-        //     System.out.println("it's me 3");
-        // // }
-        // return;
-    
-        // Appliquez le prédicat pour filtrer les données
-        // ObservableList<Map<String, String>> filteredData = data.filtered(predicate);
-        // // Mettez à jour le TableView avec les données filtrées
-        // sallesTableView.setItems(filteredData);
-     }
-     private String toCamelCase(String str) {
+    private String toCamelCase(String str) {
         String[] parts = str.split("\\s+");
         StringBuilder camelCaseString = new StringBuilder();
         for (String part : parts) {
