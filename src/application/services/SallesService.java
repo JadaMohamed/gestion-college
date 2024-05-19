@@ -16,7 +16,6 @@ import application.model.Salle;
 import application.model.enums.JoursSemaine;
 import application.repositories.SallesRepository;
 
-
 public class SallesService {
 
     public static Vector<Salle> getAllSalles() {
@@ -81,15 +80,12 @@ public class SallesService {
         }
         return salles;
     }
-    
 
-    
-    
     public static Vector<MaterielSalle> getMaterialBySalleId(int SalleId) {
         Vector<MaterielSalle> res = new Vector<>();
         ResultSet result;
         try {
-        result = SallesRepository.getMaterialBySalleId(SalleId);
+            result = SallesRepository.getMaterialBySalleId(SalleId);
             while (result.next()) {
                 MaterielSalle materielsalle = new MaterielSalle();
                 materielsalle.setId(result.getInt("id"));
@@ -119,6 +115,10 @@ public class SallesService {
                 stat.put("heureFin8_10", result.getString("heureFin8_10"));
                 stat.put("nomSalle8_10", result.getString("nomSalle8_10"));
                 stat.put("coursnom10_12", result.getString("coursnom10_12"));
+                stat.put("seanceId8_10", result.getString("seanceId8_10"));
+                stat.put("seanceId10_12", result.getString("seanceId10_12"));
+                stat.put("seanceId14_16", result.getString("seanceId14_16"));
+                stat.put("seanceId16_18", result.getString("seanceId16_18"));
                 stat.put("enseignantFullName10_12",
                         result.getString("nomEnseignant10_12") + " " + result.getString("prenomEnseignant10_12"));
                 stat.put("photoUrlEnseignant10_12", result.getString("photoUrlEnseignant10_12"));
@@ -151,89 +151,91 @@ public class SallesService {
         List<CategorieSalle> niveaux = getAllCategories();
         return niveaux.stream().map(CategorieSalle::getNom).collect(Collectors.toList());
     }
-    
+
     public static List<CategorieSalle> getAllCategories() {
-    List<CategorieSalle> resCategories = new ArrayList<>();
-    ResultSet result;
-    try {
-        result = SallesRepository.getAllCategories();
-        while (result.next()) {
-            CategorieSalle statCategorie = new CategorieSalle();
-            statCategorie.setNom(result.getString("nom"));
-            resCategories.add(statCategorie);
+        List<CategorieSalle> resCategories = new ArrayList<>();
+        ResultSet result;
+        try {
+            result = SallesRepository.getAllCategories();
+            while (result.next()) {
+                CategorieSalle statCategorie = new CategorieSalle();
+                statCategorie.setNom(result.getString("nom"));
+                resCategories.add(statCategorie);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-    return resCategories;
+        return resCategories;
     }
 
     public static int getAvailableHoursPerWeek(int idSalle) {
-    try {
-        ResultSet seances = SallesRepository.getSeancesBySalle(idSalle);
+        try {
+            ResultSet seances = SallesRepository.getSeancesBySalle(idSalle);
 
-        // Définir une variable pour suivre le nombre total de séances
-        int totalSeances = 0;
+            // Définir une variable pour suivre le nombre total de séances
+            int totalSeances = 0;
 
-        // Parcourir chaque séance pour compter le nombre total de séances
-        while (seances.next()) {
-            totalSeances++;
+            // Parcourir chaque séance pour compter le nombre total de séances
+            while (seances.next()) {
+                totalSeances++;
+            }
+
+            // Chaque séance contient deux heures, donc multiplions le nombre total de
+            // séances par deux
+            int totalOccupiedHours = totalSeances * 2;
+
+            // Définir la capacité totale de la salle (40 heures dans votre exemple)
+            int capaciteTotale = 48;
+
+            // Calculer les heures disponibles en soustrayant les heures occupées de la
+            // capacité totale
+            int availableHoursPerWeek = capaciteTotale - totalOccupiedHours;
+
+            // Retourner le nombre d'heures disponibles par semaine
+            return availableHoursPerWeek;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0; // En cas d'erreur, retourner 0 pour indiquer qu'aucune heure n'est disponible
         }
-
-        // Chaque séance contient deux heures, donc multiplions le nombre total de séances par deux
-        int totalOccupiedHours = totalSeances * 2;
-
-        // Définir la capacité totale de la salle (40 heures dans votre exemple)
-        int capaciteTotale = 40;
-
-        // Calculer les heures disponibles en soustrayant les heures occupées de la capacité totale
-        int availableHoursPerWeek = capaciteTotale - totalOccupiedHours;
-
-        // Retourner le nombre d'heures disponibles par semaine
-        return availableHoursPerWeek;
-    } catch (SQLException e) {
-        e.printStackTrace();
-        return 0; // En cas d'erreur, retourner 0 pour indiquer qu'aucune heure n'est disponible
     }
-}
 
-public static int getOccupiedHoursPerWeek(int idSalle) {
-    try {
-        ResultSet seances = SallesRepository.getSeancesBySalle(idSalle);
+    public static int getOccupiedHoursPerWeek(int idSalle) {
+        try {
+            ResultSet seances = SallesRepository.getSeancesBySalle(idSalle);
 
-        // Définir une variable pour suivre le nombre total de séances
-        int totalSeances = 0;
+            // Définir une variable pour suivre le nombre total de séances
+            int totalSeances = 0;
 
-        // Parcourir chaque séance pour compter le nombre total de séances
-        while (seances.next()) {
-            totalSeances++;
+            // Parcourir chaque séance pour compter le nombre total de séances
+            while (seances.next()) {
+                totalSeances++;
+            }
+
+            // Chaque séance contient deux heures, donc multiplions le nombre total de
+            // séances par deux
+            int totalOccupiedHours = totalSeances * 2;
+
+            // Retourner le nombre d'heures occupées par semaine
+            return totalOccupiedHours;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0; // En cas d'erreur, retourner 0 pour indiquer qu'aucune heure n'est occupée
         }
-
-        // Chaque séance contient deux heures, donc multiplions le nombre total de séances par deux
-        int totalOccupiedHours = totalSeances * 2;
-
-        // Retourner le nombre d'heures occupées par semaine
-        return totalOccupiedHours;
-    } catch (SQLException e) {
-        e.printStackTrace();
-        return 0; // En cas d'erreur, retourner 0 pour indiquer qu'aucune heure n'est occupée
     }
-}
-
 
     // public static int getOccupiedHoursPerWeek(int idSalle) {
-    //     int occupiedHours = 0;
-    //     try {
-    //         ResultSet resultSet = SallesRepository.getOccupiedHoursPerWeek(idSalle);
-    //         // Traitement du ResultSet pour obtenir le nombre total d'heures occupées
-    //         // Utilisez les données récupérées dans ResultSet pour calculer le nombre total d'heures occupées par semaine
-    //         // Ajoutez ces heures à la variable occupiedHours
-    //     } catch (SQLException e) {
-    //         e.printStackTrace();
-    //         // Gérer l'exception SQL
-    //     }
-    //     return occupiedHours;
+    // int occupiedHours = 0;
+    // try {
+    // ResultSet resultSet = SallesRepository.getOccupiedHoursPerWeek(idSalle);
+    // // Traitement du ResultSet pour obtenir le nombre total d'heures occupées
+    // // Utilisez les données récupérées dans ResultSet pour calculer le nombre
+    // total d'heures occupées par semaine
+    // // Ajoutez ces heures à la variable occupiedHours
+    // } catch (SQLException e) {
+    // e.printStackTrace();
+    // // Gérer l'exception SQL
     // }
-    
-    
+    // return occupiedHours;
+    // }
+
 }

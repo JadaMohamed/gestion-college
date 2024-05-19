@@ -10,7 +10,7 @@ ClassesPane
     2- Filter by Classe Niveau
 ActiveClassePane
     1- Show student's Abseneces
-    2- Delete OR Edit Seance
+    2- Delete OR Edit Seance ✅
 AffectationPane ✅
     1- Add possibility to add new typeCours if not exist ✅
 
@@ -19,7 +19,7 @@ AffectationPane ✅
 
     
 -----------------
-Might Have new Pane for Professors managment
+Might Have new Pane for Professors managment ✅
     1- Show all Professors ✅
     2- Add new Professor ✅
     3- Edit Professor ✅

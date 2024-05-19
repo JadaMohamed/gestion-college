@@ -20,22 +20,22 @@ public class ClasseService {
         List<NiveauClasse> niveaux = getAllNiveaux();
         return niveaux.stream().map(NiveauClasse::getNom).collect(Collectors.toList());
     }
-    
+
     public static List<NiveauClasse> getAllNiveaux() {
-    List<NiveauClasse> resNiveaux = new ArrayList<>();
-    ResultSet result;
-    try {
-        result = ClasseRepository.getAllNiveaux();
-        while (result.next()) {
-            NiveauClasse statNiveau = new NiveauClasse();
-            statNiveau.setNom(result.getString("nom"));
-            resNiveaux.add(statNiveau);
+        List<NiveauClasse> resNiveaux = new ArrayList<>();
+        ResultSet result;
+        try {
+            result = ClasseRepository.getAllNiveaux();
+            while (result.next()) {
+                NiveauClasse statNiveau = new NiveauClasse();
+                statNiveau.setNom(result.getString("nom"));
+                resNiveaux.add(statNiveau);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
+        return resNiveaux;
     }
-    return resNiveaux;
-}
 
     public static Vector<Classe> getAllClasses() {
 
@@ -119,6 +119,7 @@ public class ClasseService {
                 Map<String, String> stat = new HashMap<>();
                 stat.put("Day", result.getString("Day"));
                 stat.put("coursnom8_10", result.getString("coursnom8_10"));
+                stat.put("seanceId8_10", result.getString("seanceId8_10"));
                 stat.put("enseignantFullName8_10",
                         result.getString("nomEnseignant8_10") + " " + result.getString("prenomEnseignant8_10"));
                 stat.put("photoUrlEnseignant8_10", result.getString("photoUrlEnseignant8_10"));
@@ -126,6 +127,7 @@ public class ClasseService {
                 stat.put("heureFin8_10", result.getString("heureFin8_10"));
                 stat.put("nomSalle8_10", result.getString("nomSalle8_10"));
                 stat.put("coursnom10_12", result.getString("coursnom10_12"));
+                stat.put("seanceId10_12", result.getString("seanceId10_12"));
                 stat.put("enseignantFullName10_12",
                         result.getString("nomEnseignant10_12") + " " + result.getString("prenomEnseignant10_12"));
                 stat.put("photoUrlEnseignant10_12", result.getString("photoUrlEnseignant10_12"));
@@ -133,6 +135,7 @@ public class ClasseService {
                 stat.put("heureFin10_12", result.getString("heureFin10_12"));
                 stat.put("nomSalle10_12", result.getString("nomSalle10_12"));
                 stat.put("coursnom14_16", result.getString("coursnom14_16"));
+                stat.put("seanceId14_16", result.getString("seanceId14_16"));
                 stat.put("enseignantFullName14_16",
                         result.getString("nomEnseignant14_16") + " " + result.getString("prenomEnseignant14_16"));
                 stat.put("photoUrlEnseignant14_16", result.getString("photoUrlEnseignant14_16"));
@@ -140,6 +143,7 @@ public class ClasseService {
                 stat.put("heureFin14_16", result.getString("heureFin14_16"));
                 stat.put("nomSalle14_16", result.getString("nomSalle14_16"));
                 stat.put("coursnom16_18", result.getString("coursnom16_18"));
+                stat.put("seanceId16_18", result.getString("seanceId16_18"));
                 stat.put("enseignantFullName16_18",
                         result.getString("nomEnseignant16_18") + " " + result.getString("prenomEnseignant16_18"));
                 stat.put("photoUrlEnseignant16_18", result.getString("photoUrlEnseignant16_18"));

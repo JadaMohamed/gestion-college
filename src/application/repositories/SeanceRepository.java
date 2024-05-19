@@ -12,6 +12,13 @@ import application.model.enums.JoursSemaine;
 
 public class SeanceRepository {
 
+    public static ResultSet getSeanceById(int idSeance) {
+        Vector<Object> parameters = new Vector<Object>();
+        String query = "SELECT seance.id AS seance_id, seance.idSalle AS salle_id, seance.jour AS seance_jour, seance.heureDebut AS seance_heureDebut, seance.heureFin AS seance_heureFin, seance.idCours AS cours_id, seance.idClasse AS classe_id, cours.nom AS cours_nom, cours.idtypeCours AS typeCours_id, cours.idEnseignant AS enseignant_id, cours.idNiveau AS niveau_id, salle.idCategorieSalle AS categorie_salle_id, salle.nom AS salle_nom, salle.capacite AS salle_capacite, enseignant.nom AS enseignant_nom, enseignant.prenom AS enseignant_prenom, enseignant.sexe AS enseignant_sexe, enseignant.email AS enseignant_email, enseignant.telephone AS enseignant_telephone, enseignant.dateNaissance AS enseignant_date_naissance, enseignant.photoUrl AS enseignant_photo_url, typeCours.nom AS typeCours_nom FROM seance JOIN cours ON seance.idCours = cours.id JOIN salle ON seance.idSalle = salle.id JOIN enseignant ON cours.idEnseignant = enseignant.id JOIN typeCours ON cours.idtypeCours = typeCours.id WHERE seance.id = ?;";
+        parameters.add(idSeance);
+        return dbClient.executeCommand(true, query, parameters);
+    }
+
     public static ResultSet getOccupiedHoraires(JoursSemaine jour, Classe classe, Enseignant enseignant)
             throws SQLException {
         String query = "SELECT s.heureDebut, s.heureFin " +
@@ -24,6 +31,28 @@ public class SeanceRepository {
         parameters.add(enseignant.getId());
         parameters.add(jour.name());
         return dbClient.executeCommand(true, query, parameters);
+    }
+
+    public static void supprimerSeanceById(int idSeance) {
+        Vector<Object> parameters = new Vector<>();
+        String query = "DELETE FROM seance WHERE id = ?";
+        parameters.add(idSeance);
+        dbClient.executeCommand(false, query, parameters);
+    }
+
+    public static void modifierSeance(int idSeance, int idSalle, String jour, String heureDebut, String heureFin,
+            int idCours,
+            int idClasse) throws SQLException {
+        String query = "UPDATE seance SET idSalle = ?, jour = ?, heureDebut = ?, heureFin = ?, idCours =?, idClasse = ? WHERE id = ?";
+        Vector<Object> parameters = new Vector<Object>();
+        parameters.add(idSalle);
+        parameters.add(jour);
+        parameters.add(heureDebut);
+        parameters.add(heureFin);
+        parameters.add(idCours);
+        parameters.add(idClasse);
+        parameters.add(idSeance);
+        dbClient.executeCommand(false, query, parameters);
     }
 
     public static void insertIntoSeance(int idSalle, String jour, String heureDebut, String heureFin, int idCours,
@@ -72,7 +101,7 @@ public class SeanceRepository {
                 "                              WHEN seance.jour = 'DIMANCHE' THEN 1 " +
                 "                             END " +
                 " AND CURTIME() BETWEEN seance.heureDebut AND seance.heureFin) AS nombreLaboratoiresOccupes, " +
-                
+
                 "(SELECT COUNT(DISTINCT idSalle) " +
                 " FROM seance " +
                 " JOIN salle ON seance.idSalle = salle.id " +
@@ -87,7 +116,7 @@ public class SeanceRepository {
                 "                              WHEN seance.jour = 'DIMANCHE' THEN 1 " +
                 "                             END " +
                 " AND CURTIME() BETWEEN seance.heureDebut AND seance.heureFin) AS nombreSalleCoursOccupes, " +
-                
+
                 "(SELECT COUNT(DISTINCT idSalle) " +
                 " FROM seance " +
                 " JOIN salle ON seance.idSalle = salle.id " +
@@ -177,7 +206,7 @@ public class SeanceRepository {
     public static ResultSet getSeances_search(String searchKey) {
         Vector<Object> parameters = new Vector<>();
         String query = "SELECT seance.id AS idSeance, " +
-                "salle.nom AS nomSalle,"+
+                "salle.nom AS nomSalle," +
                 "cours.nom AS nomCours, " +
                 "niveau.nom AS nomNiveau, " +
                 "classe.effectif AS effectif, " +
