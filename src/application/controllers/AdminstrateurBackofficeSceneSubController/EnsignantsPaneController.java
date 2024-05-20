@@ -191,6 +191,7 @@ public class EnsignantsPaneController {
                 ObservableList<Map<String, String>> data = FXCollections
                                 .observableArrayList();
                 data.addAll(EnseignantService.getEmploiDeTemps(idEnseignant));
+                
                 mainController.getEnseignantEmploiJourColumn().setCellValueFactory(
                                 cellData -> new ReadOnlyObjectWrapper<>(
                                                 cellData.getValue().get("Day").substring(0, 3)));

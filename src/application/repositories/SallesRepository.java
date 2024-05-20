@@ -32,42 +32,58 @@ public class SallesRepository {
 
     public static ResultSet getAllSallesWithCurrentSeances() throws SQLException {
         Vector<Object> parameters = new Vector<>();
-        String query = "SELECT " +
-                "    salle.id, " +
-                "    salle.nom, " +
-                "    salle.capacite, " +
-                "    IFNULL(statut, '0') AS statut, " +
-                "    IFNULL(nomCours, '-') AS nomCours, " +
-                "    IFNULL(numeroClasse, '-') AS numeroClasse " +
-                "FROM " +
-                "    salle " +
-                "LEFT JOIN ( " +
-                "    SELECT " +
-                "        idSalle, " +
-                "        CASE " +
-                "            WHEN CURTIME() BETWEEN seance.heureDebut AND seance.heureFin THEN '1' " +
-                "            ELSE '0' " +
-                "        END AS statut, " +
-                "        COALESCE(cours.nom, '-') AS nomCours, " +
-                "        CONCAT(niveau.nom, ' ', classe.numero) AS numeroClasse " +
-                "    FROM " +
-                "        seance " +
-                "    LEFT JOIN cours ON cours.id = seance.idCours " +
-                "    LEFT JOIN classe ON classe.id = seance.idClasse " +
-                "    LEFT JOIN niveau ON niveau.id = classe.idNiveauClasse " +
-                "    WHERE " +
-                "        DAYOFWEEK(CURDATE()) = " +
-                "        CASE " +
-                "            WHEN seance.jour = 'LUNDI' THEN 2 " +
-                "            WHEN seance.jour = 'MARDI' THEN 3 " +
-                "            WHEN seance.jour = 'MERCREDI' THEN 4 " +
-                "            WHEN seance.jour = 'JEUDI' THEN 5 " +
-                "            WHEN seance.jour = 'VENDREDI' THEN 6 " +
-                "            WHEN seance.jour = 'SAMEDI' THEN 7 " +
-                "            WHEN seance.jour = 'DIMANCHE' THEN 1 " +
-                "        END " +
-                ") AS seance_info ON salle.id = seance_info.idSalle " +
-                "GROUP BY salle.id;";
+        String query = 
+    "SELECT " +
+    "    salle.id, " +
+    "    salle.nom, " +
+    "    salle.capacite, " +
+    "    IFNULL(seance_info.statut, '0') AS statut, " +
+    "    CASE " +
+    "        WHEN IFNULL(seance_info.statut, '0') = '1' THEN IFNULL(seance_info.nomCours, '-') " +
+    "        ELSE '-' " +
+    "    END AS nomCours, " +
+    "    CASE " +
+    "        WHEN IFNULL(seance_info.statut, '0') = '1' THEN IFNULL(seance_info.numeroClasse, '-') " +
+    "        ELSE '-' " +
+    "    END AS numeroClasse " +
+    "FROM " +
+    "    salle " +
+    "LEFT JOIN " +
+    "    ( " +
+    "    SELECT " +
+    "        idSalle, " +
+    "        MAX( " +
+    "            CASE " +
+    "                WHEN CURTIME() BETWEEN seance.heureDebut AND seance.heureFin THEN '1' " +
+    "                ELSE '0' " +
+    "            END " +
+    "        ) AS statut, " +
+    "        COALESCE(cours.nom, '-') AS nomCours, " +
+    "        CONCAT(niveau.nom, ' ', classe.numero) AS numeroClasse " +
+    "    FROM " +
+    "        seance " +
+    "    LEFT JOIN " +
+    "        cours ON cours.id = seance.idCours " +
+    "    LEFT JOIN " +
+    "        classe ON classe.id = seance.idClasse " +
+    "    LEFT JOIN " +
+    "        niveau ON niveau.id = classe.idNiveauClasse " +
+    "    WHERE " +
+    "        DAYOFWEEK(CURDATE()) = " +
+    "        CASE " +
+    "            WHEN seance.jour = 'LUNDI' THEN 2 " +
+    "            WHEN seance.jour = 'MARDI' THEN 3 " +
+    "            WHEN seance.jour = 'MERCREDI' THEN 4 " +
+    "            WHEN seance.jour = 'JEUDI' THEN 5 " +
+    "            WHEN seance.jour = 'VENDREDI' THEN 6 " +
+    "            WHEN seance.jour = 'SAMEDI' THEN 7 " +
+    "            WHEN seance.jour = 'DIMANCHE' THEN 1 " +
+    "        END " +
+    "    AND " +
+    "        CURTIME() BETWEEN seance.heureDebut AND seance.heureFin " +
+    "    GROUP BY " +
+    "        idSalle " +
+    "    ) AS seance_info ON salle.id = seance_info.idSalle;";
 
         return dbClient.executeCommand(true, query, parameters);
     }

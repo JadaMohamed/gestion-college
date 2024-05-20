@@ -630,6 +630,7 @@ public class AdminstrateurBackofficeSceneController {
         //
         // to identify the logged in administrator
         this.loggedInAdminId = adminId;
+
         categorieObjects = categories.stream()
                 .filter(categorieSalle -> categorieNames.contains(categorieSalle.getNom()))
                 .collect(Collectors.toList());
@@ -742,12 +743,12 @@ public class AdminstrateurBackofficeSceneController {
         //
         //
         //
-
-        categoryComboBox.setItems(FXCollections.observableArrayList(categorieObjects));
-        categoryComboBox.setOnAction(e -> filterTable1(categoryComboBox.getValue()));
         initialDataSalles = FXCollections.observableArrayList(SallesService.getAllSallesWithCurrentSeances());
         dataSalles.addAll(initialDataSalles);
         sallesTableView.setItems(dataSalles);
+        categoryComboBox.setItems(FXCollections.observableArrayList(categorieObjects));
+        categoryComboBox.setOnAction(e -> filterTable1(categoryComboBox.getValue()));
+        
         // //
         //
         // activeClassePaneController usage
@@ -914,7 +915,7 @@ public class AdminstrateurBackofficeSceneController {
 
         activeSalleLabel.setText(rowData.get("nomSalle"));
         StringBuilder builder = new StringBuilder();
-        System.out.println(rowData);
+        
         // Iterate over the entries of the rowData map
         for (Map.Entry<String, String> entry : rowData.entrySet()) {
             // Concatenate the key-value pair into the StringBuilder

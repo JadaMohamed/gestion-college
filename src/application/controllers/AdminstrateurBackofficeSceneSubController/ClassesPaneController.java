@@ -17,6 +17,7 @@ import application.services.ClasseService;
 import application.services.SeanceService;
 import application.utilities.ButtonClickHandler;
 import application.utilities.CustomCellFactory;
+
 import application.utilities.CustomClasseCell;
 import application.utilities.CustomClasseCellButton;
 import application.utilities.CustomConsulterAbsenceEtudiantButton;
@@ -340,7 +341,6 @@ public class ClassesPaneController {
         classesEffectifColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(
                 cellData.getValue().get("effectif")));
         classesActionColumn.setCellFactory(new CustomClasseCellButton(activeClassePane, clickHandler));
-
         classesTableView.setItems(data);
     }
 

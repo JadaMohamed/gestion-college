@@ -150,7 +150,7 @@ public class AffectationPaneController {
         Stage currentStage = (Stage) mainController.getScene().getWindow();
         if (typeCoursName.isEmpty()) {
 
-            PushAlert.showAlert("Ajout échoué", "Veuillez forni un nom pour le type", AlertType.ERROR,
+            PushAlert.showAlert("Ajout échoué", "Veuillez fournir un nom pour le type", AlertType.ERROR,
                     currentStage);
         } else {
             TypeCoursRepository.AjouterTypeCours(typeCoursName);
