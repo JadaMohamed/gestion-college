@@ -92,7 +92,6 @@ public class ModifierEnseignantSceneController {
         this.activeEnseignant = EnseignantService.getEnseignantById(activeEnseignant.getId());
         fillSexeComboBox();
         fillTextFields();
-
     }
 
     @FXML
@@ -106,7 +105,6 @@ public class ModifierEnseignantSceneController {
         ImageView p = new ImageView();
         try {
             p.setImage(new Image(getClass().getResourceAsStream(activeEnseignant.getPhotoURL())));
-            System.out.println("null");
             // Set size of the image view
             p.setFitWidth(24);
             p.setFitHeight(24);

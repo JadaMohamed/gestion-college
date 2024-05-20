@@ -181,7 +181,6 @@ public class SeanceService {
                 nombreSallesOccupes[0] = resultSet.getInt("nombreLaboratoiresOccupes");
                 nombreSallesOccupes[1] = resultSet.getInt("nombreSalleCoursOccupes");
                 nombreSallesOccupes[2] = resultSet.getInt("nombreSalleDeSportOccupes");
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
