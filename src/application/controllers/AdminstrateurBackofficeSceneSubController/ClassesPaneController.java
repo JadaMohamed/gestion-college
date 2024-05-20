@@ -47,8 +47,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
 public class ClassesPaneController {
     private AdminstrateurBackofficeSceneController mainController;
 
