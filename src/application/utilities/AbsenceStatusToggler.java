@@ -61,7 +61,7 @@ public class AbsenceStatusToggler
                     setGraphic(null);
                 } else {
                     // Get the current row data
-                    Boolean haveCourse = false;
+                    Boolean haveCourse = false; 
                     Map<String, String> rowData = getTableRow().getItem();
                     if (rowData != null) {
                         // Customize the button based on the row data
