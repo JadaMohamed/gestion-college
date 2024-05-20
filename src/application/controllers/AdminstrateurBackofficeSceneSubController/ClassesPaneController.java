@@ -82,7 +82,7 @@ public class ClassesPaneController {
             // Create a new stage
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("Modifier étudiant");
+            stage.setTitle("Modifier séance");
             stage.setScene(new Scene(root));
             // Get screen dimensions
             Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
@@ -166,7 +166,7 @@ public class ClassesPaneController {
             controller.initialize(currentStage, rowData.getId());
             // Create a new stage
             Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
+            // stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Modifier étudiant");
             stage.setScene(new Scene(root));
             // Get screen dimensions

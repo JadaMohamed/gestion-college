@@ -874,12 +874,9 @@ public class AdminstrateurBackofficeSceneController {
         laa_1618_StatutColumn.setCellFactory(new AbsenceStatusToggler("16_18", numSemaine, statusTogglerClickHandler));
         //
         laa_810_ExcuseColumn.setCellFactory(new AbsenceIsExcusedToggler("8_10", numSemaine, statusTogglerClickHandler));
-        laa_1012_ExcuseColumn
-                .setCellFactory(new AbsenceIsExcusedToggler("10_12", numSemaine, statusTogglerClickHandler));
-        laa_1416_ExcuseColumn
-                .setCellFactory(new AbsenceIsExcusedToggler("14_16", numSemaine, statusTogglerClickHandler));
-        laa_1618_ExcuseColumn
-                .setCellFactory(new AbsenceIsExcusedToggler("16_18", numSemaine, statusTogglerClickHandler));
+        laa_1012_ExcuseColumn.setCellFactory(new AbsenceIsExcusedToggler("10_12", numSemaine, statusTogglerClickHandler));
+        laa_1416_ExcuseColumn.setCellFactory(new AbsenceIsExcusedToggler("14_16", numSemaine, statusTogglerClickHandler));
+        laa_1618_ExcuseColumn.setCellFactory(new AbsenceIsExcusedToggler("16_18", numSemaine, statusTogglerClickHandler));
 
         //
         laaEtudiantColumn.setCellFactory(new EtudiantNomPhotoCellMap());
@@ -915,7 +912,7 @@ public class AdminstrateurBackofficeSceneController {
 
         activeSalleLabel.setText(rowData.get("nomSalle"));
         StringBuilder builder = new StringBuilder();
-        
+
         // Iterate over the entries of the rowData map
         for (Map.Entry<String, String> entry : rowData.entrySet()) {
             // Concatenate the key-value pair into the StringBuilder

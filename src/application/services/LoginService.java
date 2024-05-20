@@ -13,9 +13,6 @@ public class LoginService {
 
     public static void seDeconnecter(Button deconnecterButton) {
         try {
-            // Fermer la connexion
-            // SqlConnection.closeConnection();
-
             // Afficher la scène de connexion
             FXMLLoader loader = new FXMLLoader(
                     LoginService.class.getResource("../../resources/interfaces/LoginScene.fxml"));
